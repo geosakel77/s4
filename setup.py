@@ -1,8 +1,21 @@
-from lib.libbase import write_to_json,read_from_json
-from lib.libbase import MITREATTCKConfig
+from s4lib.libbase import write_to_json,read_from_json
+from s4lib.libbase import MITREATTCKConfig
 if __name__=='__main__':
     print("Preparing Configuration for S4")
     mitreattackconfig = MITREATTCKConfig()
+    print("...extracting and writing controls")
     write_to_json(mitreattackconfig.config['actors_path'],mitreattackconfig.actors)
-    data = read_from_json(mitreattackconfig.config['actors_path'])
-    print(data)
+    print("...extracting and writing controls")
+    write_to_json(mitreattackconfig.config['controls_path'],mitreattackconfig.controls)
+    print("...extracting and writing malwares")
+    write_to_json(mitreattackconfig.config['malwares_path'], mitreattackconfig.malwares)
+    print("...extracting and writing mitigations")
+    write_to_json(mitreattackconfig.config['mitigations_path'],mitreattackconfig.mitigations)
+    print("...extracting and writing tactics")
+    write_to_json(mitreattackconfig.config['tactics_path'], mitreattackconfig.tactics)
+    print("...extracting and writing techniques")
+    write_to_json(mitreattackconfig.config['techniques_path'],mitreattackconfig.techniques)
+    print("...extracting and writing tools")
+    write_to_json(mitreattackconfig.config['tools_path'],mitreattackconfig.tools)
+    #data = read_from_json(mitreattackconfig.config['actors_path'])
+    #print(data)

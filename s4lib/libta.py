@@ -1,21 +1,11 @@
-from lib.libbase import Agent,read_from_json
-from pyattck import Attck
+from s4lib.libbase import AttackerAgent,read_from_json
 import random
 
 
-class TA(Agent):
+class TA(AttackerAgent):
 
     def __init__(self,agent_type="TA",actor_name=None):
         super().__init__(agent_type=agent_type)
-        self.mitre_attack=Attck(nested_techniques=True,use_config=True,
-                                config_file_path=self.config['pyattck_path'],
-                                data_path=self.config['pyattck_data'],
-                                enterprise_attck_json=self.config['enterprise_attck_path'],
-                                generated_nist_json=self.config['generated_nist_path'],
-                                ics_attck_json=self.config['ics_attck_path'],
-                                mobile_attck_json=self.config['mobile_attck_path'],
-                                nist_controls_json=self.config['nist_controls_path'],
-                                pre_attck_json=self.config['pre_attck_path'])
         if actor_name is None:
             actors=read_from_json(self.config['actors_path'])
             self.actor_name= actors[random.choice(list(actors.keys()))]
@@ -36,6 +26,7 @@ class TA(Agent):
         techniques=self.actor.techniques
         for technique in techniques:
             print(technique)
+            break
 
 
     def get_external_references(self):
@@ -53,4 +44,4 @@ class TA(Agent):
 if __name__ == "__main__":
     ta =TA(actor_name="APT29")
     print(ta.agent_type)
-    ta.get_external_references()
+    ta.get_techniques()
