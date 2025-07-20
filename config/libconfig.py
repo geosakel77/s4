@@ -1,8 +1,5 @@
 import configparser
 
-from tests.conftest import mitre_attack_data_enterprise
-
-
 def read_config(filepath="config.ini"):
     # Create a ConfigParser object
     config = configparser.ConfigParser()
@@ -29,11 +26,14 @@ def read_config(filepath="config.ini"):
     tools_path = config.get('ta', 'tools_path')
     techniques_path = config.get('ta', 'techniques_path')
     mitre_enterprise_path = config.get('ta', 'mitre_enterprise_path')
-
+    software_used_by_groups = config.get('ta', 'software_used_by_groups')
+    techniques_used_by_groups = config.get('ta', 'techniques_used_by_groups')
+    software_using_technique = config.get('ta', 'software_using_technique')
     openai_api_key = config.get('openai', 'openai_api_key')
     openai_organization_id = config.get('openai', 'organization_id')
     openai_project_id = config.get('openai', 'project_id')
     openai_model = config.get('openai', 'model')
+    experiments_data_path = config.get('experiments', 'experiments_data_path')
 
     # Return a dictionary with the retrieved values
     config_values = {
@@ -55,10 +55,14 @@ def read_config(filepath="config.ini"):
         'tools_path': tools_path,
         'techniques_path': techniques_path,
         'mitre_enterprise_path': mitre_enterprise_path,
+        'software_used_by_groups': software_used_by_groups,
+        'techniques_used_by_groups': techniques_used_by_groups,
+        'software_using_technique': software_using_technique,
         'openai_api_key': openai_api_key,
         'openai_organization_id': openai_organization_id,
         'openai_project_id': openai_project_id,
         'openai_model': openai_model,
+        'experiments_data_path': experiments_data_path,
     }
 
     return config_values

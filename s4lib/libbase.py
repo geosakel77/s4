@@ -1,11 +1,10 @@
 import json
 from config.libconfig import read_config
-from config.libconstants import MAP_TECHNIQUES_TO_TACTICS
 from pyattck import Attck
 from typing import  Any
 from openai import OpenAI
 from stix2 import FileSystemStore,Filter
-from pprint import pprint
+from config.libconstants import MAP_TACTICS_TO_NAMES
 
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
@@ -43,13 +42,22 @@ class OpenAIClient:
 
 
 class AttackerAgent(Agent):
-    def __init__(self, agent_type,use_local=False):
+    def __init__(self, agent_type):
         super().__init__(agent_type=agent_type)
-        self.use_local=use_local
-        if self.use_local:
-            self.mitre_attack=FileSystemStore(self.config['mitre_enterprise_path'])
-        else:
-            self.mitre_attack = Attck(nested_techniques=True, use_config=True,
+        self.actor=None
+        self.actor_tactics=None
+        self.actor_techniques=None
+        self.actor_software=None
+        self.kill_chain=MAP_TACTICS_TO_NAMES
+
+
+class AttackerAgentDA(Agent):
+
+    def __init__(self,agent_type,custom=False):
+        super().__init__(agent_type=agent_type)
+        self.mitre_attack_da = FileSystemStore(self.config['mitre_enterprise_path'])
+        self.custom=custom
+        self.mitre_attack = Attck(nested_techniques=True, use_config=True,
                                   config_file_path=self.config['pyattck_path'],
                                   data_path=self.config['pyattck_data'],
                                   enterprise_attck_json=self.config['enterprise_attck_path'],
@@ -58,6 +66,7 @@ class AttackerAgent(Agent):
                                   mobile_attck_json=self.config['mobile_attck_path'],
                                   nist_controls_json=self.config['nist_controls_path'],
                                   pre_attck_json=self.config['pre_attck_path'])
+
 
     def remove_revoked_deprecated(self,stix_objects):
         """Remove any revoked or deprecated objects from queries made to the data source"""
@@ -79,8 +88,8 @@ class AttackerAgent(Agent):
              target_type: target type for the relationship, e.g "intrusion-set"
              reverse: build reverse mapping of target to source
         """
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         relationships = thesrc.query([
             Filter('type', '=', 'relationship'),
             Filter('relationship_type', '=', rel_type),
@@ -153,11 +162,11 @@ class AttackerAgent(Agent):
         return output
 
     # software:group
-    def software_used_by_groups(self,thesrc):
+    def software_used_by_groups(self,thesrc=None):
         """returns group_id => {software, relationship} for each software used by the group and each software used by campaigns attributed to the group."""
         # get all software used by groups
-        if self.use_local:
-            thesrc=self.mitre_attack
+        if not self.custom:
+            thesrc=self.mitre_attack_da
         tools_used_by_group = self.get_related(thesrc, "intrusion-set", "uses", "tool")
         malware_used_by_group = self.get_related(thesrc, "intrusion-set", "uses", "malware")
         software_used_by_group = {**tools_used_by_group,
@@ -192,11 +201,11 @@ class AttackerAgent(Agent):
                 software_used_by_group[group_id] = software_used_by_campaigns
         return software_used_by_group
 
-    def groups_using_software(self,thesrc):
+    def groups_using_software(self,thesrc=None):
         """returns software_id => {group, relationship} for each group using the software and each software used by attributed campaigns."""
         # get all groups using software
-        if self.use_local:
-            thesrc=self.mitre_attack
+        if not self.custom:
+            thesrc=self.mitre_attack_da
         groups_using_tool = self.get_related(thesrc, "intrusion-set", "uses", "tool", reverse=True)
         groups_using_malware = self.get_related(thesrc, "intrusion-set", "uses", "malware", reverse=True)
         groups_using_software = {**groups_using_tool, **groups_using_malware}  # software_id => {group, relationship}
@@ -231,12 +240,12 @@ class AttackerAgent(Agent):
         return groups_using_software
 
     # technique:group
-    def techniques_used_by_groups(self,thesrc):
+    def techniques_used_by_groups(self,thesrc=None):
         """returns group_id => {technique, relationship} for each technique used by the group and each
            technique used by campaigns attributed to the group."""
         # get all techniques used by groups
-        if self.use_local:
-            thesrc= self.mitre_attack
+        if not self.custom:
+            thesrc= self.mitre_attack_da
         techniques_used_by_groups = self.get_related(thesrc, "intrusion-set", "uses",
                                                 "attack-pattern")  # group_id => {technique, relationship}
 
@@ -263,11 +272,11 @@ class AttackerAgent(Agent):
                 techniques_used_by_groups[group_id] = techniques_used_by_campaigns
         return techniques_used_by_groups
 
-    def groups_using_technique(self,thesrc):
+    def groups_using_technique(self,thesrc=None):
         """returns technique_id => {group, relationship} for each group using the technique and each campaign attributed to groups using the technique."""
         # get all groups using techniques
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         groups_using_techniques = self.get_related(thesrc, "intrusion-set", "uses", "attack-pattern",
                                               reverse=True)  # technique_id => {group, relationship}
 
@@ -296,62 +305,62 @@ class AttackerAgent(Agent):
 
 
     # technique:software
-    def techniques_used_by_software(self,thesrc):
+    def techniques_used_by_software(self,thesrc=None):
         """return software_id => {technique, relationship} for each technique used by the software."""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         techniques_by_tool = self.get_related(thesrc, "tool", "uses", "attack-pattern")
         techniques_by_malware = self.get_related(thesrc, "malware", "uses", "attack-pattern")
         return {**techniques_by_tool, **techniques_by_malware}
 
-    def software_using_technique(self,thesrc):
+    def software_using_technique(self,thesrc=None):
         """return technique_id  => {software, relationship} for each software using the technique."""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         tools_by_technique_id = self.get_related(thesrc, "tool", "uses", "attack-pattern", reverse=True)
         malware_by_technique_id = self.get_related(thesrc, "malware", "uses", "attack-pattern", reverse=True)
         return {**tools_by_technique_id, **malware_by_technique_id}
 
     # technique:mitigation
-    def mitigation_mitigates_techniques(self,thesrc):
+    def mitigation_mitigates_techniques(self,thesrc=None):
         """return mitigation_id => {technique, relationship} for each technique mitigated by the mitigation."""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "course-of-action", "mitigates", "attack-pattern", reverse=False)
 
-    def technique_mitigated_by_mitigations(self,thesrc):
+    def technique_mitigated_by_mitigations(self,thesrc=None):
         """return technique_id => {mitigation, relationship} for each mitigation of the technique."""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "course-of-action", "mitigates", "attack-pattern", reverse=True)
 
     # technique:sub-technique
-    def subtechniques_of(self,thesrc):
+    def subtechniques_of(self,thesrc=None):
         """return technique_id => {subtechnique, relationship} for each subtechnique of the technique."""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "attack-pattern", "subtechnique-of", "attack-pattern", reverse=True)
 
-    def parent_technique_of(self,thesrc):
+    def parent_technique_of(self,thesrc=None):
         """return subtechnique_id => {technique, relationship} describing the parent technique of the subtechnique"""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "attack-pattern", "subtechnique-of", "attack-pattern")[0]
 
     # technique:data-component
-    def datacomponent_detects_techniques(self,thesrc):
+    def datacomponent_detects_techniques(self,thesrc=None):
         """return datacomponent_id => {technique, relationship} describing the detections of each data component"""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "x-mitre-data-component", "detects", "attack-pattern")
 
-    def technique_detected_by_datacomponents(self,thesrc):
+    def technique_detected_by_datacomponents(self,thesrc=None):
         """return technique_id => {datacomponent, relationship} describing the data components that can detect the technique"""
-        if self.use_local:
-            thesrc = self.mitre_attack
+        if not self.custom:
+            thesrc = self.mitre_attack_da
         return self.get_related(thesrc, "x-mitre-data-component", "detects", "attack-pattern", reverse=True)
 
-class MITREATTCKConfig(AttackerAgent):
+class MITREATTCKConfig(AttackerAgentDA):
 
     def __init__(self,agent_type="MITREATTCK"):
         super().__init__(agent_type=agent_type)
@@ -367,7 +376,36 @@ class MITREATTCKConfig(AttackerAgent):
     def _get_actors(self):
         actors ={}
         for actor in self.mitre_attack.enterprise.actors:
-            actors[actor.id]=actor.name
+            ext_ref_serialized=[]
+            for ext_ref in actor.external_references:
+                ext_ref_serialized.append({'source_name':ext_ref.source_name,'url':ext_ref.url,'external_id':ext_ref.external_id,'description':ext_ref.description})
+            serialized_actor = {'id':actor.id,
+                                'name':actor.name,
+                                'created':actor.created,
+                                'modified':actor.modified,
+                                'x_mitre_version':actor.x_mitre_version,
+                                'type':actor.type,
+                                'aliases':actor.aliases,
+                                'x_mitre_contributors':actor.x_mitre_contributors,
+                                'revoked':actor.revoked,
+                                'description':actor.description,
+                                'x_mitre_modified_by_ref':actor.x_mitre_modified_by_ref,
+                                'x_mitre_deprecated':actor.x_mitre_deprecated,
+                                'x_mitre_attack_spec_version':actor.x_mitre_attack_spec_version,
+                                'created_by_ref':actor.created_by_ref,
+                                'x_mitre_domains':actor.x_mitre_domains,
+                                'object_marking_refs':actor.object_marking_refs,
+                                'external_references':ext_ref_serialized,
+                                'names':actor.names,
+                                'external_tools':actor.external_tools,
+                                'country':actor.country,
+                                'operations':actor.operations,
+                                'links':actor.links,
+                                'targets':actor.targets,
+                                'external_description':actor.external_description,
+                                'attck_id':actor.attck_id,
+                                'comment':actor.comment}
+            actors[actor.id]=serialized_actor
         return actors
 
     def _get_controls(self):
@@ -381,7 +419,6 @@ class MITREATTCKConfig(AttackerAgent):
         for malware in self.mitre_attack.enterprise.malwares:
             malwares[malware.id]={'name':malware.name,"malware_id":malware.external_references[0].external_id,'x_mitre_platforms':malware.x_mitre_platforms}
         return malwares
-
 
     def _get_mitigations(self):
         mitigations={}
@@ -411,11 +448,18 @@ class MITREATTCKConfig(AttackerAgent):
             tools[tool.id]={'name':tool.name,"tool_id":tool.external_references[0].external_id,'x_mitre_platforms': tool.x_mitre_platforms}
         return tools
 
-
-    def _create_actors_indicators(self):
-        for actor in self.mitre_attack.enterprise.actors:
-            #TODO
-            pass
+    @staticmethod
+    def get_data_serialized(data):
+        serialized_data={}
+        for key in data.keys():
+            list_of_dict=data[key]
+            serialized_list_of_dicts=[]
+            for dict_obj_rel in list_of_dict:
+                new_entry= {'object': dict_obj_rel['object'].serialize(),
+                            'relationship': dict_obj_rel['relationship'].serialize()}
+                serialized_list_of_dicts.append(new_entry)
+            serialized_data[key]=serialized_list_of_dicts
+        return serialized_data
 
 
 
