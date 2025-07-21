@@ -1,10 +1,18 @@
-import json
+import json,uvicorn,httpx, asyncio, uuid,openai,requests,re,tempfile
+from distutils.command.upload import upload
+
 from config.libconfig import read_config
 from pyattck import Attck
-from typing import  Any
+from typing import  Any,List
 from openai import OpenAI
 from stix2 import FileSystemStore,Filter
 from config.libconstants import MAP_TACTICS_TO_NAMES
+from fastapi import FastAPI, Request
+from typing import Dict
+from contextlib import asynccontextmanager
+
+
+
 
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
@@ -15,10 +23,81 @@ def read_from_json(json_file):
         json_data = json.load(infile)
         return json_data
 
+
+
+class APIServer:
+    """
+    Async HTTP server that exposes two endpoints:
+      GET  /health    → {"status":"ok"}
+      POST /echo      → {"received": <your JSON>}
+    """
+
+    def __init__(self, host: str = "0.0.0.0", port: int = 8000) -> None:
+        self.host = host
+        self.port = port
+        self.app = FastAPI(title="Async Echo API")
+        self._register_routes()
+
+    def _register_routes(self) -> None:
+        @self.app.get("/health")
+        async def health() -> Dict[str, str]:
+            return {"status": "ok"}
+
+        @self.app.post("/echo")
+        async def echo(req: Request) -> Dict[str, Any]:
+            data = await req.json()
+            return {"received": data}
+
+    def run(self) -> None:
+        """Block forever and serve HTTP until Ctrl‑C."""
+        uvicorn.run(self.app, host=self.host, port=self.port, log_level="info")
+
+
+class APIClient:
+    """Async client for APIServer."""
+
+    def __init__(self, base_url: str = "http://127.0.0.1:8000") -> None:
+        self.base_url = base_url
+        self._client: httpx.AsyncClient | None = None
+
+    async def __aenter__(self) -> "APIClient":
+        self._client = httpx.AsyncClient(base_url=self.base_url, timeout=10)
+        return self
+
+    async def __aexit__(self, exc_type, exc, tb) -> None:
+        if self._client:
+            await self._client.aclose()
+
+    async def health(self) -> Dict[str, Any]:
+        """GET /health"""
+        async with self._ensure_client() as cli:
+            r = await cli.get("/health")
+            r.raise_for_status()
+            return r.json()
+
+    async def echo(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """POST /echo with arbitrary JSON"""
+        async with self._ensure_client() as cli:
+            r = await cli.post("/echo", json=payload)
+            r.raise_for_status()
+            return r.json()
+
+    @asynccontextmanager
+    async def _ensure_client(self):
+        """Use existing client if inside __aenter__, else create temp one."""
+        if self._client:  # already in a with‑block
+            yield self._client
+        else:             # standalone call
+            async with httpx.AsyncClient(base_url=self.base_url, timeout=10) as cli:
+                yield cli
+
 class Agent:
     def __init__(self,agent_type,config_file='C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'):
+        self.uuid=uuid.uuid4()
         self.agent_type=agent_type
         self.config=read_config(config_file)
+        self.server=APIServer()
+        self.client=APIClient()
 
 
 class OpenAIClient:
@@ -27,28 +106,111 @@ class OpenAIClient:
         self.client = OpenAI(api_key=self.config['openai_api_key'], organization=self.config['openai_organization_id'],
                              project=self.config['openai_project_id'])
 
+    def call(self,message):
+        response = self.client.responses.create(model=self.config['openai_model'],input=message)
+        return response.output_text
+
     def call_openai(self, message):
         messages_list: list[dict[str, str | Any]] = [{
             "role": "user",
             "content": message
         }]
         response = self._call_run(messages_list)
-        return response
+        return response.choices[0].message['content']
 
     def _call_run(self, messages_list):
-        return self.client.chat.completions.create(messages=messages_list, model=self.config['openai_model'],
-                                                   temperature=0).choices[
-            0].message.content
+        return openai.ChatCompletion.create(model=self.config['openai_model'],messages=messages_list,temperature=0)
+        #return self.client.ChatCompletion.create(messages=messages_list, model=self.config['openai_model'],
+        #                                          temperature=0).choices[
+        #    0].message.content
 
 
 class AttackerAgent(Agent):
     def __init__(self, agent_type):
         super().__init__(agent_type=agent_type)
         self.actor=None
+        self.actor_id=None
         self.actor_tactics=None
         self.actor_techniques=None
         self.actor_software=None
         self.kill_chain=MAP_TACTICS_TO_NAMES
+        self.openai = OpenAIClient(self.config)
+
+    def _generate_indicators(self):
+        indicators={}
+        actor_indicators=[]
+        actor_external_references=self.actor['external_references']
+        actor_external_references.pop(0)
+        for actor_external_reference in actor_external_references:
+            url=actor_external_reference['url']
+            if url:
+                indicator = self._generate_indicator(url)
+                actor_indicators.append(indicator)
+                indicators[self.actor_id]=actor_indicators
+
+        for software in self.actor_software:
+            software_dict=json.loads(software['object'])
+            software_id=software_dict['id']
+            software_indicators=[]
+            software_external_references=software_dict['external_references']
+            software_external_references.pop(0)
+            for software_external_reference in software_external_references:
+                if 'url' in software_external_reference.keys():
+                    url=software_external_reference['url']
+                    if url:
+                        indicator=self._generate_indicator(url)
+                        software_indicators.append(indicator)
+                        indicators[software_id]=software_indicators
+        return indicators
+
+    def _generate_indicator(self,url:str):
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            print(response.status_code)
+
+            if url.endswith('pdf'):
+                with tempfile.NamedTemporaryFile(suffix=".pdf",delete=False) as tmp:
+                    tmp.write(response.content)
+                    tmp_path=tmp.name
+                    uploaded_file = self.openai.client.files.create(file=open(tmp_path,'rb'),purpose="assistants")
+                    print(f"File ID:{uploaded_file.id}")
+                    #TODO
+                    assistant=self.openai.client.beta.assistants.create()
+            else:
+                pass
+
+
+        except requests.exceptions.RequestException as e:
+            print(e)
+
+        return url
+
+
+    def _extract_stix_indicators(self,response):
+        extracted_json_text= self._extract_code_blocks(response)
+        #try:
+        #    data = json.loads(response)
+        #    print("STIX bundle saved to apt17_iocs.json")
+        #except json.JSONDecodeError:
+        #    # If the assistant wrapped the JSON in markdown fences, strip them:
+        #    cleaned = response.strip("```json\n").rstrip("```").strip()
+        #    data = json.loads(cleaned)
+        return extracted_json_text#data
+
+    @staticmethod
+    def _extract_code_blocks(markdown: str) -> List[str]:
+        """
+        Return every chunk of text found between matching pairs of ```
+        (works whether or not a language tag follows the opening ```
+        and is tolerant of leading/trailing whitespace).
+
+        Example: >>> extract_code_blocks("Text ```python\nx=1```\nMore")
+            ['python\nx=1']
+        """
+        pattern = r"```(?:[^\n]*\n)?(.*?)```"   # non‑greedy, DOTALL by default
+        return re.findall(pattern, markdown, flags=re.DOTALL)
+
 
 
 class AttackerAgentDA(Agent):
@@ -68,7 +230,8 @@ class AttackerAgentDA(Agent):
                                   pre_attck_json=self.config['pre_attck_path'])
 
 
-    def remove_revoked_deprecated(self,stix_objects):
+    @staticmethod
+    def remove_revoked_deprecated(stix_objects):
         """Remove any revoked or deprecated objects from queries made to the data source"""
         # Note we use .get() because the property may not be present in the JSON data. The default is False
         # if the property is not set.
@@ -144,6 +307,7 @@ class AttackerAgentDA(Agent):
 
         # build lookup of stixID to stix object
         id_to_target = {}
+
         for target in targets:
             id_to_target[target.id] = target
 

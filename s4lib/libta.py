@@ -1,7 +1,9 @@
 from s4lib.libbase import AttackerAgent,read_from_json,write_to_json,OpenAIClient
 from config.libconstants import MAP_TECHNIQUES_TO_TACTICS
 from pprint import pprint
-import random,os,json
+import random,os,json,re
+
+
 
 
 class TA(AttackerAgent):
@@ -48,12 +50,19 @@ class TA(AttackerAgent):
                 self.actor_techniques_to_tactics_map=self._map_actor_techniques_to_tactics()
             else:
                 self.actor_techniques_to_tactics_map={}
+
+
             actors_config['actor']=self.actor
             actors_config['techniques']=self.actor_techniques
             actors_config['software']=self.actor_software
             actors_config['actor_techniques_software_map']=self.actor_techniques_software_map
             actors_config['actor_techniques_to_tactics_map']=self.actor_techniques_to_tactics_map
             write_to_json(os.path.join(self.config['experiments_data_path'],self.actor_conf_file),actors_config)
+
+        self.indicators=self._generate_indicators()
+        print(self.indicators)
+
+
 
     def _map_actor_techniques_to_software(self):
             actor_techniques_map={}
@@ -106,7 +115,7 @@ class TA(AttackerAgent):
 
 
 if __name__ == "__main__":
-    ta =TA()
+    ta =TA(actor_name="SilverTerrier")
 
 
 
