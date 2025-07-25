@@ -10,6 +10,7 @@ def read_config(filepath="config.ini"):
     # Access values from the configuration file
     debug_mode = config.getboolean('general', 'debug')
     log_level = config.get('general', 'log_level')
+    wkhtmltopdf_path = config.get('general', 'wkhtmltopdf_path')
     pyattck_path = config.get('ta', 'pyattck_path')
     pyattck_data=config.get('ta', 'pyattck_data')
     enterprise_attck_path=config.get('ta', 'enterprise_attck_path')
@@ -34,11 +35,12 @@ def read_config(filepath="config.ini"):
     openai_project_id = config.get('openai', 'project_id')
     openai_model = config.get('openai', 'model')
     experiments_data_path = config.get('experiments', 'experiments_data_path')
-
+    coordinator_port=config.get('experiments', 'coordinator_port')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
         'log_level': log_level,
+        'wkhtmltopdf_path': wkhtmltopdf_path,
         'pyattck_path': pyattck_path,
         'pyattck_data': pyattck_data,
         'enterprise_attck_path': enterprise_attck_path,
@@ -63,6 +65,7 @@ def read_config(filepath="config.ini"):
         'openai_project_id': openai_project_id,
         'openai_model': openai_model,
         'experiments_data_path': experiments_data_path,
+        'coordinator_port': coordinator_port
     }
 
     return config_values

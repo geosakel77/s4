@@ -1,6 +1,5 @@
-import json,uvicorn,httpx, asyncio, uuid,openai,requests,re,tempfile
-from distutils.command.upload import upload
-
+import json,uvicorn,httpx, uuid,openai,requests,re,tempfile,pprint,pdfkit,os,time,random
+from io import BytesIO
 from config.libconfig import read_config
 from pyattck import Attck
 from typing import  Any,List
@@ -11,9 +10,6 @@ from fastapi import FastAPI, Request
 from typing import Dict
 from contextlib import asynccontextmanager
 
-
-
-
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
         json.dump(json_data,outfile)
@@ -22,7 +18,6 @@ def read_from_json(json_file):
     with open(json_file,'r') as infile:
         json_data = json.load(infile)
         return json_data
-
 
 
 class APIServer:
@@ -144,6 +139,7 @@ class AttackerAgent(Agent):
         for actor_external_reference in actor_external_references:
             url=actor_external_reference['url']
             if url:
+                time.sleep(random.randint(30,60))
                 indicator = self._generate_indicator(url)
                 actor_indicators.append(indicator)
                 indicators[self.actor_id]=actor_indicators
@@ -158,45 +154,77 @@ class AttackerAgent(Agent):
                 if 'url' in software_external_reference.keys():
                     url=software_external_reference['url']
                     if url:
+                        time.sleep(random.randint(30, 60))
                         indicator=self._generate_indicator(url)
-                        software_indicators.append(indicator)
-                        indicators[software_id]=software_indicators
+                        if indicator:
+                            software_indicators.append(indicator)
+            indicators[software_id]=software_indicators
         return indicators
 
     def _generate_indicator(self,url:str):
+        generated_indicators=None
         try:
             response = requests.get(url, timeout=30)
             response.raise_for_status()
-            print(response.status_code)
-
+            print(f"{response.status_code} - {url}")
             if url.endswith('pdf'):
-                with tempfile.NamedTemporaryFile(suffix=".pdf",delete=False) as tmp:
-                    tmp.write(response.content)
-                    tmp_path=tmp.name
-                    uploaded_file = self.openai.client.files.create(file=open(tmp_path,'rb'),purpose="assistants")
-                    print(f"File ID:{uploaded_file.id}")
-                    #TODO
-                    assistant=self.openai.client.beta.assistants.create()
+                generated_indicators=self._query_ai_for_indicators(response.content,suffix=".pdf")
             else:
-                pass
-
-
+                configwk = pdfkit.configuration(wkhtmltopdf=os.path.abspath(self.config['wkhtmltopdf_path']))
+                pdf_bytes = pdfkit.from_url(url, output_path=False, configuration=configwk)
+                pdf_buffer = BytesIO(pdf_bytes)
+                pdf_buffer.seek(0)
+                generated_indicators = self._query_ai_for_indicators(pdf_buffer.getvalue(), suffix=".pdf")
         except requests.exceptions.RequestException as e:
             print(e)
+        return generated_indicators
 
-        return url
 
+    def _query_ai_for_indicators(self, content,suffix=".pdf"):
+        with (tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp):
+            try:
+                tmp.write(content)
+                tmp_path = tmp.name
+                vector_store = self.openai.client.vector_stores.create(name="Report file")
+                file_streams = [open(tmp_path, 'rb')]
+                file_batch = self.openai.client.vector_stores.file_batches.upload_and_poll(
+                    vector_store_id=vector_store.id,
+                    files=file_streams)
+                print(f"File upload {file_batch.status}")
+                responseq = self.openai.client.responses.create(
+                    model=self.config['openai_model'],
+                    input="Generate the indicators of compromise of  the uploaded document following the stix v2 schema in json format",
+                    tools=[{
+                        "type": "file_search",
+                        "vector_store_ids": [vector_store.id]
+                        }])
+                generated_indicators = self._extract_stix_indicators(responseq.output_text)
+            except openai.RateLimitError as e:
+                print(e)
+                time.sleep(60)
+                generated_indicators = None
+            except openai.BadRequestError as a:
+                print(a)
+                generated_indicators = None
+            return generated_indicators
 
     def _extract_stix_indicators(self,response):
-        extracted_json_text= self._extract_code_blocks(response)
-        #try:
-        #    data = json.loads(response)
-        #    print("STIX bundle saved to apt17_iocs.json")
-        #except json.JSONDecodeError:
-        #    # If the assistant wrapped the JSON in markdown fences, strip them:
-        #    cleaned = response.strip("```json\n").rstrip("```").strip()
-        #    data = json.loads(cleaned)
-        return extracted_json_text#data
+        if self._extract_code_blocks(response):
+            extracted_json_text= self._extract_code_blocks(response)[0]
+            try:
+                data = json.loads(extracted_json_text)
+            except json.JSONDecodeError:
+            #If the assistant wrapped the JSON in markdown fences, strip them:
+                cleaned = response.strip("```json\n").rstrip("```").strip()
+                try:
+                    data = json.loads(cleaned)
+                except json.JSONDecodeError as e:
+                    print(e)
+                    print(cleaned)
+                    data = None
+        else:
+            data= None
+        return data
 
     @staticmethod
     def _extract_code_blocks(markdown: str) -> List[str]:

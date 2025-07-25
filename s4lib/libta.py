@@ -1,7 +1,7 @@
 from s4lib.libbase import AttackerAgent,read_from_json,write_to_json,OpenAIClient
 from config.libconstants import MAP_TECHNIQUES_TO_TACTICS
 from pprint import pprint
-import random,os,json,re
+import random,os,json,re,time
 
 
 
@@ -28,6 +28,7 @@ class TA(AttackerAgent):
             self.actor_software=actors_config['software']
             self.actor_techniques_software_map=actors_config['actor_techniques_software_map']
             self.actor_techniques_to_tactics_map=actors_config['actor_techniques_to_tactics_map']
+            self.indicators=actors_config['indicators']
         else:
             actors_config={}
             self.actor = actors[self.actor_id]
@@ -50,17 +51,16 @@ class TA(AttackerAgent):
                 self.actor_techniques_to_tactics_map=self._map_actor_techniques_to_tactics()
             else:
                 self.actor_techniques_to_tactics_map={}
-
-
+            self.indicators = self._generate_indicators()
             actors_config['actor']=self.actor
             actors_config['techniques']=self.actor_techniques
             actors_config['software']=self.actor_software
             actors_config['actor_techniques_software_map']=self.actor_techniques_software_map
             actors_config['actor_techniques_to_tactics_map']=self.actor_techniques_to_tactics_map
+            actors_config['indicators']=self.indicators
             write_to_json(os.path.join(self.config['experiments_data_path'],self.actor_conf_file),actors_config)
 
-        self.indicators=self._generate_indicators()
-        print(self.indicators)
+
 
 
 
@@ -102,20 +102,19 @@ class TA(AttackerAgent):
                 actor_techniques_to_tactics_map[tactic] = list_of_techniques
         return actor_techniques_to_tactics_map
 
-    def get_external_references(self):
-        external_references=self.actor.external_references
-        for external_reference in external_references:
-            print(external_reference)
-        return external_references
-
-
 
 
 
 
 
 if __name__ == "__main__":
-    ta =TA(actor_name="SilverTerrier")
+
+    for i in range(1,100):
+        ta=TA()
+        time.sleep(random.randint(30,60))
+        print(ta.actor_name)
+
+
 
 
 
