@@ -1,0 +1,1091 @@
+{
+  "actor": {
+    "id": "intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c",
+    "name": "PROMETHIUM",
+    "created": "2018-01-16T16:13:52.465Z",
+    "modified": "2020-10-22T18:12:48.893Z",
+    "x_mitre_version": "2.0",
+    "type": "intrusion-set",
+    "aliases": [
+      "PROMETHIUM",
+      "StrongPity"
+    ],
+    "x_mitre_contributors": [],
+    "revoked": false,
+    "description": null,
+    "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_deprecated": false,
+    "x_mitre_attack_spec_version": "",
+    "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_domains": [
+      "enterprise-attack"
+    ],
+    "object_marking_refs": [
+      "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+    ],
+    "external_references": [
+      {
+        "source_name": "PROMETHIUM",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Microsoft NEODYMIUM Dec 2016) (Citation: Microsoft SIR Vol 21)"
+      },
+      {
+        "source_name": "StrongPity",
+        "url": "",
+        "external_id": "",
+        "description": "The name StrongPity has also been used to describe the group and the malware used by the group.(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)"
+      },
+      {
+        "source_name": "Microsoft NEODYMIUM Dec 2016",
+        "url": "https://blogs.technet.microsoft.com/mmpc/2016/12/14/twin-zero-day-attacks-promethium-and-neodymium-target-individuals-in-europe/",
+        "external_id": "",
+        "description": "Microsoft. (2016, December 14). Twin zero-day attacks: PROMETHIUM and NEODYMIUM target individuals in Europe. Retrieved November 27, 2017."
+      },
+      {
+        "source_name": "Microsoft SIR Vol 21",
+        "url": "http://download.microsoft.com/download/E/B/0/EB0F50CC-989C-4B66-B7F6-68CD3DC90DE3/Microsoft_Security_Intelligence_Report_Volume_21_English.pdf",
+        "external_id": "",
+        "description": "Anthe, C. et al. (2016, December 14). Microsoft Security Intelligence Report Volume 21. Retrieved November 27, 2017."
+      },
+      {
+        "source_name": "Talos Promethium June 2020",
+        "url": "https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html",
+        "external_id": "",
+        "description": "Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020."
+      },
+      {
+        "source_name": "Bitdefender StrongPity June 2020",
+        "url": "https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf",
+        "external_id": "",
+        "description": "Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020."
+      }
+    ],
+    "names": [
+      "PROMETHIUM",
+      "APT-C-41",
+      "StrongPity"
+    ],
+    "external_tools": [
+      "APKs",
+      "Imminent RAT",
+      "Quasar RAT"
+    ],
+    "country": "other",
+    "operations": [],
+    "links": [
+      "https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html",
+      "https://cybleinc.com/2020/12/31/strongpity-apt-extends-global-reach-with-new-infrastructure/",
+      "https://www.trendmicro.com/en_us/research/21/g/strongpity-apt-group-deploys-android-malware-for-the-first-time.html",
+      "https://securelist.com/on-the-strongpity-waterhole-attacks-targeting-italian-and-belgian-encryption-users/76147/",
+      "https://www.welivesecurity.com/2017/12/08/strongpity-like-spyware-replaces-finfisher/",
+      "https://www.alienvault.com/blogs/labs-research/newly-identified-strongpity-operations",
+      "https://blogs.technet.microsoft.com/mmpc/2016/12/14/twin-zero-day-attacks-promethium-and-neodymium-target-individuals-in-europe/",
+      "https://www.welivesecurity.com/2023/01/10/strongpity-espionage-campaign-targeting-android-users/",
+      "https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf",
+      "https://threatvector.cylance.com/en_us/home/whack-a-mole-the-impact-of-threat-intelligence-on-adversaries.html",
+      "https://citizenlab.ca/2018/03/bad-traffic-sandvines-packetlogic-devices-deploy-government-spyware-turkey-syria/"
+    ],
+    "targets": [],
+    "external_description": [],
+    "attck_id": "G0056",
+    "comment": null
+  },
+  "techniques": [
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-11T14:49:36.954Z\", \"modified\": \"2025-04-15T19:58:13.883Z\", \"name\": \"Malicious File\", \"description\": \"An adversary may rely upon a user opening a malicious file in order to gain execution. Users may be subjected to social engineering to get them to open a file that will lead to code execution. This user action will typically be observed as follow-on behavior from [Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001). Adversaries may use several types of files that require a user to execute them, including .doc, .pdf, .xls, .rtf, .scr, .exe, .lnk, .pif, .cpl, and .reg.\\n\\nAdversaries may employ various forms of [Masquerading](https://attack.mitre.org/techniques/T1036) and [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to increase the likelihood that a user will open and successfully execute a malicious file. These methods may include using a familiar naming convention and/or password protecting the file and supplying instructions to a user on how to open it.(Citation: Password Protected Word Docs) \\n\\nWhile [Malicious File](https://attack.mitre.org/techniques/T1204/002) frequently occurs shortly after Initial Access it may occur at other phases of an intrusion, such as when an adversary places a file in a shared directory or on a user's desktop hoping that a user will click on it. This activity may also be seen shortly after [Internal Spearphishing](https://attack.mitre.org/techniques/T1534).\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1204/002\", \"external_id\": \"T1204.002\"}, {\"source_name\": \"Password Protected Word Docs\", \"description\": \"Lawrence Abrams. (2017, July 12). PSA: Don't Open SPAM Containing Password Protected Word Docs. Retrieved January 5, 2022.\", \"url\": \"https://www.bleepingcomputer.com/news/security/psa-dont-open-spam-containing-password-protected-word-docs/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"TruKno\"], \"x_mitre_data_sources\": [\"Process: Process Creation\", \"File: File Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor the execution of and command-line arguments for applications that may be used by an adversary to gain initial access that require user interaction. This includes compression applications, such as those for zip files, that can be used to [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140) in payloads.\\n\\nAnti-virus can potentially detect malicious documents and files that are downloaded and executed on the user's computer. Endpoint sensing or network sensing can potentially detect malicious events once the file is opened (such as a Microsoft Word document or PDF reaching out to the internet or spawning powershell.exe).\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\"], \"x_mitre_version\": \"1.5\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--49be75c9-8484-492e-9ebc-f81d2e203e4e\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T17:59:34.649Z\", \"modified\": \"2025-04-28T15:46:22.110Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has attempted to get users to execute compromised installation files for legitimate software including compression applications, security software, browsers, file recovery applications, and other tools and utilities.(Citation: Talos Promethium June 2020)(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--34b3f738-bd64-40e5-a112-29b0542bc8bf\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-10-01T01:41:08.652Z\", \"modified\": \"2025-04-15T22:05:55.035Z\", \"name\": \"Code Signing Certificates\", \"description\": \"Adversaries may create self-signed code signing certificates that can be used during targeting. Code signing is the process of digitally signing executables and scripts to confirm the software author and guarantee that the code has not been altered or corrupted. Code signing provides a level of authenticity for a program from the developer and a guarantee that the program has not been tampered with.(Citation: Wikipedia Code Signing) Users and/or security tools may trust a signed piece of code more than an unsigned piece of code even if they don't know who issued the certificate or who the author is.\\n\\nPrior to [Code Signing](https://attack.mitre.org/techniques/T1553/002), adversaries may develop self-signed code signing certificates for use in operations.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"resource-development\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1587/002\", \"external_id\": \"T1587.002\"}, {\"source_name\": \"Wikipedia Code Signing\", \"description\": \"Wikipedia. (2015, November 10). Code Signing. Retrieved March 31, 2016.\", \"url\": \"https://en.wikipedia.org/wiki/Code_signing\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Malware Repository: Malware Metadata\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Consider analyzing self-signed code signing certificates for features that may be associated with the adversary and/or their developers, such as the thumbprint, algorithm used, validity period, and common name. Malware repositories can also be used to identify additional samples associated with the adversary and identify patterns an adversary has used in crafting self-signed code signing certificates.\\n\\nMuch of this activity will take place outside the visibility of the target organization, making detection of this behavior difficult. Detection efforts may be focused on related follow-on behavior, such as [Code Signing](https://attack.mitre.org/techniques/T1553/002) or [Install Root Certificate](https://attack.mitre.org/techniques/T1553/004).\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"PRE\"], \"x_mitre_version\": \"1.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--4ac5b593-8f47-46cc-9af3-fcb0eb20f66e\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-10-15T02:02:39.748Z\", \"modified\": \"2025-04-28T15:46:36.105Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has created self-signed certificates to sign malicious installers.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--34b3f738-bd64-40e5-a112-29b0542bc8bf\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-13T20:26:46.695Z\", \"modified\": \"2025-04-15T19:59:24.607Z\", \"name\": \"Local Accounts\", \"description\": \"Adversaries may obtain and abuse credentials of a local account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Local accounts are those configured by an organization for use by users, remote support, services, or for administration on a single system or service.\\n\\nLocal Accounts may also be abused to elevate privileges and harvest credentials through [OS Credential Dumping](https://attack.mitre.org/techniques/T1003). Password reuse may allow the abuse of local accounts across a set of machines on a network for the purposes of Privilege Escalation and Lateral Movement. \", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"persistence\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"privilege-escalation\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"initial-access\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1078/003\", \"external_id\": \"T1078.003\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Logon Session: Logon Session Creation\", \"Logon Session: Logon Session Metadata\", \"User Account: User Account Authentication\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Perform regular audits of local system accounts to detect accounts that may have been created by an adversary for persistence. Look for suspicious account behavior, such as accounts logged in at odd times or outside of business hours.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\", \"Containers\", \"Network Devices\", \"ESXi\"], \"x_mitre_version\": \"1.5\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--56e4bdb5-a57a-463a-a396-7bed2eb6893e\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T18:16:41.740Z\", \"modified\": \"2025-04-28T15:48:44.728Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has created admin accounts on a compromised host.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--1cec9319-743b-4840-bb65-431547bce82a\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-10-01T01:42:24.974Z\", \"modified\": \"2025-04-15T22:18:36.653Z\", \"name\": \"Digital Certificates\", \"description\": \"Adversaries may create self-signed SSL/TLS certificates that can be used during targeting. SSL/TLS certificates are designed to instill trust. They include information about the key, information about its owner's identity, and the digital signature of an entity that has verified the certificate's contents are correct. If the signature is valid, and the person examining the certificate trusts the signer, then they know they can use that key to communicate with its owner. In the case of self-signing, digital certificates will lack the element of trust associated with the signature of a third-party certificate authority (CA).\\n\\nAdversaries may create self-signed SSL/TLS certificates that can be used to further their operations, such as encrypting C2 traffic (ex: [Asymmetric Cryptography](https://attack.mitre.org/techniques/T1573/002) with [Web Protocols](https://attack.mitre.org/techniques/T1071/001)) or even enabling [Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557) if added to the root of trust (i.e. [Install Root Certificate](https://attack.mitre.org/techniques/T1553/004)).\\n\\nAfter creating a digital certificate, an adversary may then install that certificate (see [Install Digital Certificate](https://attack.mitre.org/techniques/T1608/003)) on infrastructure under their control.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"resource-development\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1587/003\", \"external_id\": \"T1587.003\"}, {\"source_name\": \"Splunk Kovar Certificates 2017\", \"description\": \"Kovar, R. (2017, December 11). Tall Tales of Hunting with TLS/SSL Certificates. Retrieved October 16, 2020.\", \"url\": \"https://www.splunk.com/en_us/blog/security/tall-tales-of-hunting-with-tls-ssl-certificates.html\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Internet Scan: Response Content\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Consider use of services that may aid in the tracking of certificates in use on sites across the Internet. In some cases it may be possible to pivot on known pieces of certificate information to uncover other adversary infrastructure.(Citation: Splunk Kovar Certificates 2017)\\n\\nDetection efforts may be focused on related behaviors, such as [Web Protocols](https://attack.mitre.org/techniques/T1071/001), [Asymmetric Cryptography](https://attack.mitre.org/techniques/T1573/002), and/or [Install Root Certificate](https://attack.mitre.org/techniques/T1553/004).\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"PRE\"], \"x_mitre_version\": \"1.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--66e5238f-c1f7-4094-8c2e-e8e41a4c12f3\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-10-15T01:57:09.092Z\", \"modified\": \"2025-04-28T15:51:39.318Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has created self-signed digital certificates for use in HTTPS C2 traffic.(Citation: Talos Promethium June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--1cec9319-743b-4840-bb65-431547bce82a\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--9efb1ea7-c37b-4595-9640-b7680cd84279\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-01-23T22:02:48.566Z\", \"modified\": \"2025-04-15T19:58:54.099Z\", \"name\": \"Registry Run Keys / Startup Folder\", \"description\": \"Adversaries may achieve persistence by adding a program to a startup folder or referencing it with a Registry run key. Adding an entry to the \\\"run keys\\\" in the Registry or startup folder will cause the program referenced to be executed when a user logs in.(Citation: Microsoft Run Key) These programs will be executed under the context of the user and will have the account's associated permissions level.\\n\\nThe following run keys are created by default on Windows systems:\\n\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run</code>\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnce</code>\\n* <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run</code>\\n* <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnce</code>\\n\\nRun keys may exist under multiple hives.(Citation: Microsoft Wow6432Node 2018)(Citation: Malwarebytes Wow6432Node 2016) The <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx</code> is also available but is not created by default on Windows Vista and newer. Registry run key entries can reference programs directly or list them as a dependency.(Citation: Microsoft Run Key) For example, it is possible to load a DLL at logon using a \\\"Depend\\\" key with RunOnceEx: <code>reg add HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx\\\\0001\\\\Depend /v 1 /d \\\"C:\\\\temp\\\\evil[.]dll\\\"</code> (Citation: Oddvar Moe RunOnceEx Mar 2018)\\n\\nPlacing a program within a startup folder will also cause that program to execute when a user logs in. There is a startup folder location for individual user accounts as well as a system-wide startup folder that will be checked regardless of which user account logs in. The startup folder path for the current user is <code>C:\\\\Users\\\\\\\\[Username]\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup</code>. The startup folder path for all users is <code>C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\StartUp</code>.\\n\\nThe following Registry keys can be used to set startup folder items for persistence:\\n\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\User Shell Folders</code>\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Shell Folders</code>\\n* <code>HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Shell Folders</code>\\n* <code>HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\User Shell Folders</code>\\n\\nThe following Registry keys can control automatic startup of services during boot:\\n\\n* <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServicesOnce</code>\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServicesOnce</code>\\n* <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServices</code>\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServices</code>\\n\\nUsing policy settings to specify startup programs creates corresponding values in either of two Registry keys:\\n\\n* <code>HKEY_LOCAL_MACHINE\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Policies\\\\Explorer\\\\Run</code>\\n* <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Policies\\\\Explorer\\\\Run</code>\\n\\nPrograms listed in the load value of the registry key <code>HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Windows</code> run automatically for the currently logged-on user.\\n\\nBy default, the multistring <code>BootExecute</code> value of the registry key <code>HKEY_LOCAL_MACHINE\\\\System\\\\CurrentControlSet\\\\Control\\\\Session Manager</code> is set to <code>autocheck autochk *</code>. This value causes Windows, at startup, to check the file-system integrity of the hard disks if the system has been shut down abnormally. Adversaries can add other programs or processes to this registry value which will automatically launch at boot.\\n\\nAdversaries can use these configuration locations to execute malware, such as remote access tools, to maintain persistence through system reboots. Adversaries may also use [Masquerading](https://attack.mitre.org/techniques/T1036) to make the Registry entries look as if they are associated with legitimate programs.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"persistence\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"privilege-escalation\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1547/001\", \"external_id\": \"T1547.001\"}, {\"source_name\": \"Malwarebytes Wow6432Node 2016\", \"description\": \"Arntz, P. (2016, March 30). Hiding in Plain Sight. Retrieved August 3, 2020.\", \"url\": \"https://blog.malwarebytes.com/cybercrime/2013/10/hiding-in-plain-sight/\"}, {\"source_name\": \"Microsoft Wow6432Node 2018\", \"description\": \"Microsoft. (2018, May 31). 32-bit and 64-bit Application Data in the Registry. Retrieved August 3, 2020.\", \"url\": \"https://docs.microsoft.com/en-us/windows/win32/sysinfo/32-bit-and-64-bit-application-data-in-the-registry\"}, {\"source_name\": \"Microsoft Run Key\", \"description\": \"Microsoft. (n.d.). Run and RunOnce Registry Keys. Retrieved September 12, 2024.\", \"url\": \"https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys\"}, {\"source_name\": \"Oddvar Moe RunOnceEx Mar 2018\", \"description\": \"Moe, O. (2018, March 21). Persistence using RunOnceEx - Hidden from Autoruns.exe. Retrieved June 29, 2018.\", \"url\": \"https://oddvar.moe/2018/03/21/persistence-using-runonceex-hidden-from-autoruns-exe/\"}, {\"source_name\": \"TechNet Autoruns\", \"description\": \"Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.\", \"url\": \"https://technet.microsoft.com/en-us/sysinternals/bb963902\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Oddvar Moe, @oddvarmoe\", \"Dray Agha, @Purp1eW0lf, Huntress Labs\", \"Harun K\\u00fc\\u00dfner\"], \"x_mitre_data_sources\": [\"Command: Command Execution\", \"File: File Modification\", \"Process: Process Creation\", \"Windows Registry: Windows Registry Key Creation\", \"Windows Registry: Windows Registry Key Modification\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor Registry for changes to run keys that do not correlate with known software, patch cycles, etc. Monitor the start folder for additions or changes. Tools such as Sysinternals Autoruns may also be used to detect system changes that could be attempts at persistence, including listing the run keys' Registry locations and startup folders. (Citation: TechNet Autoruns) Suspicious program execution as startup programs may show up as outlier processes that have not been seen before when compared against historical data.\\n\\nChanges to these locations typically happen under normal conditions when legitimate software is installed. To increase confidence of malicious activity, data and events should not be viewed in isolation, but as part of a chain of behavior that could lead to other activities, such as network connections made for Command and Control, learning details about the environment through Discovery, and Lateral Movement.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"2.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--788d02cb-7a20-4115-9428-b55e598374ce\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T17:59:34.602Z\", \"modified\": \"2025-04-28T15:55:06.778Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has used Registry run keys to establish persistence.(Citation: Talos Promethium June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--9efb1ea7-c37b-4595-9640-b7680cd84279\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-01-17T19:13:50.402Z\", \"modified\": \"2025-04-15T19:58:16.076Z\", \"name\": \"Windows Service\", \"description\": \"Adversaries may create or modify Windows services to repeatedly execute malicious payloads as part of persistence. When Windows boots up, it starts programs or applications called services that perform background system functions.(Citation: TechNet Services) Windows service configuration information, including the file path to the service's executable or recovery programs/commands, is stored in the Windows Registry.\\n\\nAdversaries may install a new service or modify an existing service to execute at startup in order to persist on a system. Service configurations can be set or modified using system utilities (such as sc.exe), by directly modifying the Registry, or by interacting directly with the Windows API. \\n\\nAdversaries may also use services to install and execute malicious drivers. For example, after dropping a driver file (ex: `.sys`) to disk, the payload can be loaded and registered via [Native API](https://attack.mitre.org/techniques/T1106) functions such as `CreateServiceW()` (or manually via functions such as `ZwLoadDriver()` and `ZwSetValueKey()`), by creating the required service Registry values (i.e. [Modify Registry](https://attack.mitre.org/techniques/T1112)), or by using command-line utilities such as `PnPUtil.exe`.(Citation: Symantec W.32 Stuxnet Dossier)(Citation: Crowdstrike DriveSlayer February 2022)(Citation: Unit42 AcidBox June 2020) Adversaries may leverage these drivers as [Rootkit](https://attack.mitre.org/techniques/T1014)s to hide the presence of malicious activity on a system. Adversaries may also load a signed yet vulnerable driver onto a compromised machine (known as \\\"Bring Your Own Vulnerable Driver\\\" (BYOVD)) as part of [Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068).(Citation: ESET InvisiMole June 2020)(Citation: Unit42 AcidBox June 2020)\\n\\nServices may be created with administrator privileges but are executed under SYSTEM privileges, so an adversary may also use a service to escalate privileges. Adversaries may also directly start services through [Service Execution](https://attack.mitre.org/techniques/T1569/002).\\n\\nTo make detection analysis more challenging, malicious services may also incorporate [Masquerade Task or Service](https://attack.mitre.org/techniques/T1036/004) (ex: using a service and/or payload name related to a legitimate OS or benign software component). Adversaries may also create \\u2018hidden\\u2019 services (i.e., [Hide Artifacts](https://attack.mitre.org/techniques/T1564)), for example by using the `sc sdset` command to set service permissions via the Service Descriptor Definition Language (SDDL). This may hide a Windows service from the view of standard service enumeration methods such as `Get-Service`, `sc query`, and `services.exe`.(Citation: SANS 1)(Citation: SANS 2)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"persistence\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"privilege-escalation\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1543/003\", \"external_id\": \"T1543.003\"}, {\"source_name\": \"Microsoft Windows Event Forwarding FEB 2018\", \"description\": \"Hardy, T. & Hall, J. (2018, February 15). Use Windows Event Forwarding to help with intrusion detection. Retrieved August 7, 2018.\", \"url\": \"https://docs.microsoft.com/windows/security/threat-protection/use-windows-event-forwarding-to-assist-in-intrusion-detection\"}, {\"source_name\": \"ESET InvisiMole June 2020\", \"description\": \"Hromcova, Z. and Cherpanov, A. (2020, June). INVISIMOLE: THE HIDDEN PART OF THE STORY. Retrieved July 16, 2020.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2020/06/ESET_InvisiMole.pdf\"}, {\"source_name\": \"SANS 1\", \"description\": \"Joshua Wright. (2020, October 13). Retrieved March 22, 2024.\", \"url\": \"https://www.sans.org/blog/red-team-tactics-hiding-windows-services/\"}, {\"source_name\": \"SANS 2\", \"description\": \"Joshua Wright. (2020, October 14). Retrieved March 22, 2024.\", \"url\": \"https://www.sans.org/blog/defense-spotlight-finding-hidden-windows-services/\"}, {\"source_name\": \"TechNet Services\", \"description\": \"Microsoft. (n.d.). Services. Retrieved June 7, 2016.\", \"url\": \"https://technet.microsoft.com/en-us/library/cc772408.aspx\"}, {\"source_name\": \"Microsoft 4697 APR 2017\", \"description\": \"Miroshnikov, A. & Hall, J. (2017, April 18). 4697(S): A service was installed in the system. Retrieved August 7, 2018.\", \"url\": \"https://docs.microsoft.com/windows/security/threat-protection/auditing/event-4697\"}, {\"source_name\": \"Symantec W.32 Stuxnet Dossier\", \"description\": \"Nicolas Falliere, Liam O. Murchu, Eric Chien. (2011, February). W32.Stuxnet Dossier. Retrieved December 7, 2020.\", \"url\": \"https://www.wired.com/images_blogs/threatlevel/2010/11/w32_stuxnet_dossier.pdf\"}, {\"source_name\": \"Unit42 AcidBox June 2020\", \"description\": \"Reichel, D. and Idrizovic, E. (2020, June 17). AcidBox: Rare Malware Repurposing Turla Group Exploit Targeted Russian Organizations. Retrieved March 16, 2021.\", \"url\": \"https://unit42.paloaltonetworks.com/acidbox-rare-malware/\"}, {\"source_name\": \"TechNet Autoruns\", \"description\": \"Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.\", \"url\": \"https://technet.microsoft.com/en-us/sysinternals/bb963902\"}, {\"source_name\": \"Crowdstrike DriveSlayer February 2022\", \"description\": \"Thomas, W. et al. (2022, February 25). CrowdStrike Falcon Protects from New Wiper Malware Used in Ukraine Cyberattacks. Retrieved March 25, 2022.\", \"url\": \"https://www.crowdstrike.com/blog/how-crowdstrike-falcon-protects-against-wiper-malware-used-in-ukraine-attacks/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Matthew Demaske, Adaptforward\", \"Pedro Harrison\", \"Mayuresh Dani, Qualys\", \"Wietze Beukema, @wietze\", \"Akshat Pradhan, Qualys\", \"Wirapong Petshagun\"], \"x_mitre_data_sources\": [\"Windows Registry: Windows Registry Key Modification\", \"Process: Process Creation\", \"Network Traffic: Network Traffic Flow\", \"Service: Service Creation\", \"Command: Command Execution\", \"File: File Metadata\", \"Windows Registry: Windows Registry Key Creation\", \"Driver: Driver Load\", \"Service: Service Modification\", \"Process: OS API Execution\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor processes and command-line arguments for actions that could create or modify services. Command-line invocation of tools capable of adding or modifying services may be unusual, depending on how systems are typically used in a particular environment. Services may also be modified through Windows system management tools such as [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047) and [PowerShell](https://attack.mitre.org/techniques/T1059/001), so additional logging may need to be configured to gather the appropriate data. Remote access tools with built-in features may also interact directly with the Windows API to perform these functions outside of typical system utilities. Collect service utility execution and service binary path arguments used for analysis. Service binary paths may even be changed to execute commands or scripts.  \\n\\nLook for changes to service Registry entries that do not correlate with known software, patch cycles, etc. Service information is stored in the Registry at <code>HKLM\\\\SYSTEM\\\\CurrentControlSet\\\\Services</code>. Changes to the binary path and the service startup type changed from manual or disabled to automatic, if it does not typically do so, may be suspicious. Tools such as Sysinternals Autoruns may also be used to detect system service changes that could be attempts at persistence.(Citation: TechNet Autoruns)  \\n\\nCreation of new services may generate an alterable event (ex: Event ID 4697 and/or 7045 (Citation: Microsoft 4697 APR 2017)(Citation: Microsoft Windows Event Forwarding FEB 2018)). New, benign services may be created during installation of new software.\\n\\nSuspicious program execution through services may show up as outlier processes that have not been seen before when compared against historical data. Look for abnormal process call trees from known services and for execution of other commands that could relate to Discovery or other adversary techniques. Data and events should not be viewed in isolation, but as part of a chain of behavior that could lead to other activities, such as network connections made for Command and Control, learning details about the environment through Discovery, and Lateral Movement.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.6\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--875a622a-445e-46fe-8959-8d205c88c728\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-30T18:52:23.886Z\", \"modified\": \"2025-04-28T15:57:49.964Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has created new services and modified existing services for persistence.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-02-10T20:43:10.239Z\", \"modified\": \"2025-04-15T19:58:11.443Z\", \"name\": \"Match Legitimate Resource Name or Location\", \"description\": \"Adversaries may match or approximate the name or location of legitimate files, Registry keys, or other resources when naming/placing them. This is done for the sake of evading defenses and observation. \\n\\nThis may be done by placing an executable in a commonly trusted directory (ex: under System32) or giving it the name of a legitimate, trusted program (ex: `svchost.exe`). Alternatively, a Windows Registry key may be given a close approximation to a key used by a legitimate program. In containerized environments, a threat actor may create a resource in a trusted namespace or one that matches the naming convention of a container pod or cluster.(Citation: Aquasec Kubernetes Backdoor 2023)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1036/005\", \"external_id\": \"T1036.005\"}, {\"source_name\": \"Twitter ItsReallyNick Masquerading Update\", \"description\": \"Carr, N.. (2018, October 25). Nick Carr Status Update Masquerading. Retrieved September 12, 2024.\", \"url\": \"https://x.com/ItsReallyNick/status/1055321652777619457\"}, {\"source_name\": \"Docker Images\", \"description\": \"Docker. (n.d.). Docker Images. Retrieved April 6, 2021.\", \"url\": \"https://docs.docker.com/engine/reference/commandline/images/\"}, {\"source_name\": \"Elastic Masquerade Ball\", \"description\": \"Ewing, P. (2016, October 31). How to Hunt: The Masquerade Ball. Retrieved October 31, 2016.\", \"url\": \"https://www.elastic.co/blog/how-hunt-masquerade-ball\"}, {\"source_name\": \"Aquasec Kubernetes Backdoor 2023\", \"description\": \"Michael Katchinskiy and Assaf Morag. (2023, April 21). First-Ever Attack Leveraging Kubernetes RBAC to Backdoor Clusters. Retrieved March 24, 2025.\", \"url\": \"https://www.aquasec.com/blog/leveraging-kubernetes-rbac-to-backdoor-clusters/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Yossi Weizman, Azure Defender Research Team\", \"Vishwas Manral, McAfee\"], \"x_mitre_data_sources\": [\"File: File Metadata\", \"Image: Image Metadata\", \"Process: Process Metadata\", \"Process: Process Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Collect file hashes; file names that do not match their expected hash are suspect. Perform file monitoring; files with known names but in unusual locations are suspect. Likewise, files that are modified outside of an update or patch are suspect.\\n\\nIf file names are mismatched between the file name on disk and that of the binary's PE metadata, this is a likely indicator that a binary was renamed after it was compiled. Collecting and comparing disk and resource filenames for binaries by looking to see if the InternalName, OriginalFilename, and/or ProductName match what is expected could provide useful leads, but may not always be indicative of malicious activity. (Citation: Elastic Masquerade Ball) Do not focus on the possible names a file could have, but instead on the command-line arguments that are known to be used and are distinct because it will have a better rate of detection.(Citation: Twitter ItsReallyNick Masquerading Update)\\n\\nIn containerized environments, use image IDs and layer hashes to compare images instead of relying only on their names.(Citation: Docker Images) Monitor for the unexpected creation of new resources within your cluster in Kubernetes, especially those created by atypical users.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\", \"Containers\", \"ESXi\"], \"x_mitre_version\": \"2.0\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--92348457-3761-4298-aedc-14fa7fd4810c\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T17:59:34.643Z\", \"modified\": \"2025-04-28T15:59:54.610Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has disguised malicious installer files by bundling them with legitimate software installers.(Citation: Talos Promethium June 2020)(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--7bdca9d5-d500-4d7d-8c52-5fd47baf4c0c\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-02-10T20:30:07.426Z\", \"modified\": \"2025-04-15T22:48:29.215Z\", \"name\": \"Masquerade Task or Service\", \"description\": \"Adversaries may attempt to manipulate the name of a task or service to make it appear legitimate or benign. Tasks/services executed by the Task Scheduler or systemd will typically be given a name and/or description.(Citation: TechNet Schtasks)(Citation: Systemd Service Units) Windows services will have a service name as well as a display name. Many benign tasks and services exist that have commonly associated names. Adversaries may give tasks or services names that are similar or identical to those of legitimate ones.\\n\\nTasks or services contain other fields, such as a description, that adversaries may attempt to make appear legitimate.(Citation: Palo Alto Shamoon Nov 2016)(Citation: Fysbis Dr Web Analysis)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1036/004\", \"external_id\": \"T1036.004\"}, {\"source_name\": \"Fysbis Dr Web Analysis\", \"description\": \"Doctor Web. (2014, November 21). Linux.BackDoor.Fysbis.1. Retrieved December 7, 2017.\", \"url\": \"https://vms.drweb.com/virus/?i=4276269\"}, {\"source_name\": \"Palo Alto Shamoon Nov 2016\", \"description\": \"Falcone, R.. (2016, November 30). Shamoon 2: Return of the Disttrack Wiper. Retrieved January 11, 2017.\", \"url\": \"http://researchcenter.paloaltonetworks.com/2016/11/unit42-shamoon-2-return-disttrack-wiper/\"}, {\"source_name\": \"Systemd Service Units\", \"description\": \"Freedesktop.org. (n.d.). systemd.service \\u2014 Service unit configuration. Retrieved March 16, 2020.\", \"url\": \"https://www.freedesktop.org/software/systemd/man/systemd.service.html\"}, {\"source_name\": \"TechNet Schtasks\", \"description\": \"Microsoft. (n.d.). Schtasks. Retrieved April 28, 2016.\", \"url\": \"https://technet.microsoft.com/en-us/library/bb490996.aspx\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Scheduled Job: Scheduled Job Modification\", \"Service: Service Creation\", \"Command: Command Execution\", \"Service: Service Metadata\", \"Scheduled Job: Scheduled Job Metadata\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Look for changes to tasks and services that do not correlate with known software, patch cycles, etc. Suspicious program execution through scheduled tasks or services may show up as outlier processes that have not been seen before when compared against historical data. Monitor processes and command-line arguments for actions that could be taken to create tasks or services. Data and events should not be viewed in isolation, but as part of a chain of behavior that could lead to other activities, such as network connections made for Command and Control, learning details about the environment through Discovery, and Lateral Movement.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\", \"Linux\", \"macOS\"], \"x_mitre_version\": \"1.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--a5b0b3ae-737a-4f2b-bbe9-23ca214eb733\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-30T13:32:16.170Z\", \"modified\": \"2025-04-28T16:03:35.016Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has named services to appear legitimate.(Citation: Talos Promethium June 2020)(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--7bdca9d5-d500-4d7d-8c52-5fd47baf4c0c\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--32901740-b42c-4fdd-bc02-345b5dc57082\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-02-05T16:27:37.784Z\", \"modified\": \"2025-04-16T20:37:16.240Z\", \"name\": \"Code Signing\", \"description\": \"Adversaries may create, acquire, or steal code signing materials to sign their malware or tools. Code signing provides a level of authenticity on a binary from the developer and a guarantee that the binary has not been tampered with. (Citation: Wikipedia Code Signing) The certificates used during an operation may be created, acquired, or stolen by the adversary. (Citation: Securelist Digital Certificates) (Citation: Symantec Digital Certificates) Unlike [Invalid Code Signature](https://attack.mitre.org/techniques/T1036/001), this activity will result in a valid signature.\\n\\nCode signing to verify software on first run can be used on modern Windows and macOS systems. It is not used on Linux due to the decentralized nature of the platform. (Citation: Wikipedia Code Signing)(Citation: EclecticLightChecksonEXECodeSigning)\\n\\nCode signing certificates may be used to bypass security policies that require signed code to execute on a system. \", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1553/002\", \"external_id\": \"T1553.002\"}, {\"source_name\": \"EclecticLightChecksonEXECodeSigning\", \"description\": \"Howard Oakley. (2020, November 16). Checks on executable code in Catalina and Big Sur: a first draft. Retrieved September 21, 2022.\", \"url\": \"https://eclecticlight.co/2020/11/16/checks-on-executable-code-in-catalina-and-big-sur-a-first-draft/\"}, {\"source_name\": \"Securelist Digital Certificates\", \"description\": \"Ladikov, A. (2015, January 29). Why You Shouldn\\u2019t Completely Trust Files Signed with Digital Certificates. Retrieved March 31, 2016.\", \"url\": \"https://securelist.com/why-you-shouldnt-completely-trust-files-signed-with-digital-certificates/68593/\"}, {\"source_name\": \"Symantec Digital Certificates\", \"description\": \"Shinotsuka, H. (2013, February 22). How Attackers Steal Private Keys from Digital Certificates. Retrieved March 31, 2016.\", \"url\": \"http://www.symantec.com/connect/blogs/how-attackers-steal-private-keys-digital-certificates\"}, {\"source_name\": \"Wikipedia Code Signing\", \"description\": \"Wikipedia. (2015, November 10). Code Signing. Retrieved March 31, 2016.\", \"url\": \"https://en.wikipedia.org/wiki/Code_signing\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"File: File Metadata\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Collect and analyze signing certificate metadata on software that executes within the environment to look for unusual certificate characteristics and outliers.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"macOS\", \"Windows\"], \"x_mitre_version\": \"1.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--b2f7a2e7-5a72-4ace-b1de-121a8db809d8\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T17:59:34.605Z\", \"modified\": \"2025-04-28T16:05:59.356Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has signed code with self-signed certificates.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--32901740-b42c-4fdd-bc02-345b5dc57082\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-01T18:23:25.002Z\", \"modified\": \"2025-04-25T14:47:21.421Z\", \"name\": \"Port Knocking\", \"description\": \"Adversaries may use port knocking to hide open ports used for persistence or command and control. To enable a port, an adversary sends a series of attempted connections to a predefined sequence of closed ports. After the sequence is completed, opening a port is often accomplished by the host based firewall, but could also be implemented by custom software.\\n\\nThis technique has been observed both for the dynamic opening of a listening port as well as the initiating of a connection to a listening server on a different system.\\n\\nThe observation of the signal packets to trigger the communication can be conducted through different methods. One means, originally implemented by Cd00r (Citation: Hartrell cd00r 2002), is to use the libpcap libraries to sniff for the packets in question. Another method leverages raw sockets, which enables the malware to use ports that are already open for use by other programs.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"persistence\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"command-and-control\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1205/001\", \"external_id\": \"T1205.001\"}, {\"source_name\": \"Hartrell cd00r 2002\", \"description\": \"Hartrell, Greg. (2002, August). Get a handle on cd00r: The invisible backdoor. Retrieved October 13, 2018.\", \"url\": \"https://www.giac.org/paper/gcih/342/handle-cd00r-invisible-backdoor/103631\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Network Traffic: Network Connection Creation\", \"Network Traffic: Network Traffic Flow\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Record network packets sent to and from the system, looking for extraneous packets that do not belong to established flows.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\", \"Network Devices\"], \"x_mitre_version\": \"1.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--b92d6b45-e211-4168-ac32-80427bf1b9d2\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T18:16:41.733Z\", \"modified\": \"2025-04-28T16:07:00.340Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has used a script that configures the knockd service and firewall to only accept C2 connections from systems that use a specified sequence of knock ports.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2018-04-18T17:59:24.739Z\", \"modified\": \"2025-04-15T19:59:12.900Z\", \"name\": \"Drive-by Compromise\", \"description\": \"Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., [Drive-by Target](https://attack.mitre.org/techniques/T1608/004)), including:\\n\\n* A legitimate website is compromised, allowing adversaries to inject malicious code\\n* Script files served to a legitimate website from a publicly writeable cloud storage bucket are modified by an adversary\\n* Malicious ads are paid for and served through legitimate ad providers (i.e., [Malvertising](https://attack.mitre.org/techniques/T1583/008))\\n* Built-in web application interfaces that allow user-controllable content are leveraged for the insertion of malicious scripts or iFrames (e.g., cross-site scripting)\\n\\nBrowser push notifications may also be abused by adversaries and leveraged for malicious code injection via [User Execution](https://attack.mitre.org/techniques/T1204). By clicking \\\"allow\\\" on browser push notifications, users may be granting a website permission to run JavaScript code on their browser.(Citation: Push notifications - viruspositive)(Citation: push notification -mcafee)(Citation: push notifications - malwarebytes)\\n\\nOften the website used by an adversary is one visited by a specific community, such as government, a particular industry, or a particular region, where the goal is to compromise a specific user or set of users based on a shared interest. This kind of targeted campaign is often referred to a strategic web compromise or watering hole attack. There are several known examples of this occurring.(Citation: Shadowserver Strategic Web Compromise)\\n\\nTypical drive-by compromise process:\\n\\n1. A user visits a website that is used to host the adversary controlled content.\\n2. Scripts automatically execute, typically searching versions of the browser and plugins for a potentially vulnerable version. The user may be required to assist in this process by enabling scripting, notifications, or active website components and ignoring warning dialog boxes.\\n3. Upon finding a vulnerable version, exploit code is delivered to the browser.\\n4. If exploitation is successful, the adversary will gain code execution on the user's system unless other protections are in place. In some cases, a second visit to the website after the initial scan is required before exploit code is delivered.\\n\\nUnlike [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190), the focus of this technique is to exploit software on a client endpoint upon visiting a website. This will commonly give an adversary access to systems on the internal network instead of external systems that may be in a DMZ.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"initial-access\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1189\", \"external_id\": \"T1189\"}, {\"source_name\": \"Shadowserver Strategic Web Compromise\", \"description\": \"Adair, S., Moran, N. (2012, May 15). Cyber Espionage & Strategic Web Compromises \\u2013 Trusted Websites Serving Dangerous Results. Retrieved March 13, 2018.\", \"url\": \"http://blog.shadowserver.org/2012/05/15/cyber-espionage-strategic-web-compromises-trusted-websites-serving-dangerous-results/\"}, {\"source_name\": \"push notification -mcafee\", \"description\": \"Craig Schmugar. (2021, May 17). Scammers Impersonating Windows Defender to Push Malicious Windows Apps. Retrieved March 14, 2025.\", \"url\": \"https://www.mcafee.com/blogs/other-blogs/mcafee-labs/scammers-impersonating-windows-defender-to-push-malicious-windows-apps/\"}, {\"source_name\": \"Push notifications - viruspositive\", \"description\": \"Gaurav Sethi. (2021, December 14). The Dark Side of Web Push Notifications. Retrieved March 14, 2025.\", \"url\": \"https://viruspositive.com/resources/blogs/the-dark-side-of-web-push-notifications\"}, {\"source_name\": \"push notifications - malwarebytes\", \"description\": \"Pieter Arntz. (2019, January 22). Browser push notifications: a feature asking to be abused. Retrieved March 14, 2025.\", \"url\": \"https://www.malwarebytes.com/blog/news/2019/01/browser-push-notifications-feature-asking-abused\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Jeff Sakowicz, Microsoft Identity Developer Platform Services (IDPM Services)\", \"Saisha Agrawal, Microsoft Threat Intelligent Center (MSTIC)\", \"Frank Angiolelli\"], \"x_mitre_data_sources\": [\"Application Log: Application Log Content\", \"Network Traffic: Network Traffic Content\", \"Process: Process Creation\", \"File: File Creation\", \"Network Traffic: Network Connection Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Firewalls and proxies can inspect URLs for potentially known-bad domains or parameters. They can also do reputation-based analytics on websites and their requested resources such as how old a domain is, who it's registered to, if it's on a known bad list, or how many other users have connected to it before.\\n\\nNetwork intrusion detection systems, sometimes with SSL/TLS inspection, can be used to look for known malicious scripts (recon, heap spray, and browser identification scripts have been frequently reused), common script obfuscation, and exploit code.\\n\\nDetecting compromise based on the drive-by exploit from a legitimate website may be difficult. Also look for behavior on the endpoint system that might indicate successful compromise, such as abnormal behavior of browser processes. This could include suspicious files written to disk, evidence of [Process Injection](https://attack.mitre.org/techniques/T1055) for attempts to hide execution, evidence of Discovery, or other unusual network traffic that may indicate additional tools transferred to the system.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\", \"Linux\", \"macOS\", \"Identity Provider\"], \"x_mitre_version\": \"1.7\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--e898946c-2c9d-4bf4-9253-67acfadc5b0a\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T17:59:34.589Z\", \"modified\": \"2025-04-28T16:15:23.659Z\", \"relationship_type\": \"uses\", \"description\": \"[PROMETHIUM](https://attack.mitre.org/groups/G0056) has used watering hole attacks to deliver malicious versions of legitimate installers.(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    }
+  ],
+  "software": [
+    {
+      "object": "{\"type\": \"malware\", \"id\": \"malware--691c60e2-273d-4d56-9ce6-b67e0f8719ad\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2018-01-16T16:13:52.465Z\", \"modified\": \"2025-04-25T14:43:39.011Z\", \"name\": \"Truvasys\", \"description\": \"[Truvasys](https://attack.mitre.org/software/S0178) is first-stage malware that has been used by [PROMETHIUM](https://attack.mitre.org/groups/G0056). It is a collection of modules written in the Delphi programming language. (Citation: Microsoft Win Defender Truvasys Sep 2017) (Citation: Microsoft NEODYMIUM Dec 2016) (Citation: Microsoft SIR Vol 21)\", \"labels\": [\"malware\"], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/software/S0178\", \"external_id\": \"S0178\"}, {\"source_name\": \"Truvasys\", \"description\": \"(Citation: Microsoft Win Defender Truvasys Sep 2017) (Citation: Microsoft NEODYMIUM Dec 2016) (Citation: Microsoft SIR Vol 21)\"}, {\"source_name\": \"Microsoft Win Defender Truvasys Sep 2017\", \"description\": \"Microsoft. (2017, September 15). Backdoor:Win32/Truvasys.A!dha. Retrieved November 30, 2017.\", \"url\": \"https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Backdoor:Win32/Truvasys.A!dha\"}, {\"source_name\": \"Microsoft NEODYMIUM Dec 2016\", \"description\": \"Microsoft. (2016, December 14). Twin zero-day attacks: PROMETHIUM and NEODYMIUM target individuals in Europe. Retrieved November 27, 2017.\", \"url\": \"https://blogs.technet.microsoft.com/mmpc/2016/12/14/twin-zero-day-attacks-promethium-and-neodymium-target-individuals-in-europe/\"}, {\"source_name\": \"Microsoft SIR Vol 21\", \"description\": \"Anthe, C. et al. (2016, December 14). Microsoft Security Intelligence Report Volume 21. Retrieved November 27, 2017.\", \"url\": \"http://download.microsoft.com/download/E/B/0/EB0F50CC-989C-4B66-B7F6-68CD3DC90DE3/Microsoft_Security_Intelligence_Report_Volume_21_English.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_aliases\": [\"Truvasys\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--34ebfdf4-ef2c-4a6c-8bfa-69704d8f7694\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2018-01-16T16:13:52.465Z\", \"modified\": \"2025-04-28T15:42:27.841Z\", \"relationship_type\": \"uses\", \"description\": \"(Citation: Microsoft NEODYMIUM Dec 2016)(Citation: Microsoft SIR Vol 21)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"malware--691c60e2-273d-4d56-9ce6-b67e0f8719ad\", \"external_references\": [{\"source_name\": \"Microsoft NEODYMIUM Dec 2016\", \"description\": \"Microsoft. (2016, December 14). Twin zero-day attacks: PROMETHIUM and NEODYMIUM target individuals in Europe. Retrieved November 27, 2017.\", \"url\": \"https://blogs.technet.microsoft.com/mmpc/2016/12/14/twin-zero-day-attacks-promethium-and-neodymium-target-individuals-in-europe/\"}, {\"source_name\": \"Microsoft SIR Vol 21\", \"description\": \"Anthe, C. et al. (2016, December 14). Microsoft Security Intelligence Report Volume 21. Retrieved November 27, 2017.\", \"url\": \"http://download.microsoft.com/download/E/B/0/EB0F50CC-989C-4B66-B7F6-68CD3DC90DE3/Microsoft_Security_Intelligence_Report_Volume_21_English.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"malware\", \"id\": \"malware--20945359-3b39-4542-85ef-08ecb4e1c174\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-20T17:41:19.690Z\", \"modified\": \"2024-04-10T23:47:16.416Z\", \"name\": \"StrongPity\", \"description\": \"[StrongPity](https://attack.mitre.org/software/S0491) is an information stealing malware used by [PROMETHIUM](https://attack.mitre.org/groups/G0056).(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)\", \"labels\": [\"malware\"], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/software/S0491\", \"external_id\": \"S0491\"}, {\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_aliases\": [\"StrongPity\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--bc4252e5-6a2a-443e-9a31-16d86f4f069b\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-28T18:20:56.624Z\", \"modified\": \"2025-04-28T16:07:30.014Z\", \"relationship_type\": \"uses\", \"description\": \"(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)\", \"source_ref\": \"intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c\", \"target_ref\": \"malware--20945359-3b39-4542-85ef-08ecb4e1c174\", \"external_references\": [{\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}, {\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"malware\", \"id\": \"malware--20945359-3b39-4542-85ef-08ecb4e1c174\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-07-20T17:41:19.690Z\", \"modified\": \"2024-04-10T23:47:16.416Z\", \"name\": \"StrongPity\", \"description\": \"[StrongPity](https://attack.mitre.org/software/S0491) is an information stealing malware used by [PROMETHIUM](https://attack.mitre.org/groups/G0056).(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)\", \"labels\": [\"malware\"], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/software/S0491\", \"external_id\": \"S0491\"}, {\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_aliases\": [\"StrongPity\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--6e6c72b6-ed92-4574-af75-c5115836e3ec\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2024-03-28T18:01:19.641Z\", \"modified\": \"2025-04-16T22:22:31.997Z\", \"relationship_type\": \"uses\", \"description\": \"(Citation: Talos Promethium June 2020)(Citation: Bitdefender StrongPity June 2020)\", \"source_ref\": \"campaign--a82bc5ad-5f95-4c6a-9f25-aaf6f476a3c4\", \"target_ref\": \"malware--20945359-3b39-4542-85ef-08ecb4e1c174\", \"external_references\": [{\"source_name\": \"Talos Promethium June 2020\", \"description\": \"Mercer, W. et al. (2020, June 29). PROMETHIUM extends global reach with StrongPity3 APT. Retrieved July 20, 2020.\", \"url\": \"https://blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html\"}, {\"source_name\": \"Bitdefender StrongPity June 2020\", \"description\": \"Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.\", \"url\": \"https://www.bitdefender.com/files/News/CaseStudies/study/353/Bitdefender-Whitepaper-StrongPity-APT.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    }
+  ],
+  "actor_techniques_software_map": {
+    "attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e": [
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174"
+    ],
+    "attack-pattern--34b3f738-bd64-40e5-a112-29b0542bc8bf": [],
+    "attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2": [],
+    "attack-pattern--1cec9319-743b-4840-bb65-431547bce82a": [],
+    "attack-pattern--9efb1ea7-c37b-4595-9640-b7680cd84279": [
+      "malware--691c60e2-273d-4d56-9ce6-b67e0f8719ad",
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174"
+    ],
+    "attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32": [
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174"
+    ],
+    "attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2": [
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174"
+    ],
+    "attack-pattern--7bdca9d5-d500-4d7d-8c52-5fd47baf4c0c": [
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174",
+      "malware--691c60e2-273d-4d56-9ce6-b67e0f8719ad"
+    ],
+    "attack-pattern--32901740-b42c-4fdd-bc02-345b5dc57082": [
+      "malware--20945359-3b39-4542-85ef-08ecb4e1c174"
+    ],
+    "attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd": [],
+    "attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6": []
+  },
+  "actor_techniques_to_tactics_map": {
+    "TA0042": [
+      "attack-pattern--34b3f738-bd64-40e5-a112-29b0542bc8bf",
+      "attack-pattern--1cec9319-743b-4840-bb65-431547bce82a"
+    ],
+    "TA0001": [
+      "attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2",
+      "attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6"
+    ],
+    "TA0002": [
+      "attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e"
+    ],
+    "TA0003": [
+      "attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2",
+      "attack-pattern--9efb1ea7-c37b-4595-9640-b7680cd84279",
+      "attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32",
+      "attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd"
+    ],
+    "TA0004": [
+      "attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2",
+      "attack-pattern--9efb1ea7-c37b-4595-9640-b7680cd84279",
+      "attack-pattern--2959d63f-73fd-46a1-abd2-109d7dcede32"
+    ],
+    "TA0005": [
+      "attack-pattern--fdc47f44-dd32-4b99-af5f-209f556f63c2",
+      "attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2",
+      "attack-pattern--7bdca9d5-d500-4d7d-8c52-5fd47baf4c0c",
+      "attack-pattern--32901740-b42c-4fdd-bc02-345b5dc57082",
+      "attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd"
+    ],
+    "TA0011": [
+      "attack-pattern--8868cb5b-d575-4a60-acb2-07d37389a2fd"
+    ]
+  },
+  "indicators": {
+    "intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c": [
+      {"type": "bundle",
+  "id": "bundle--6a3c1c6d-3d4b-4c93-9c4f-e2f0703a6b1a",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--d4b6159c-7c5a-4658-bef6-0b53a9c0b301",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 7146eff8308a6a9fb2ebb83c2377fb1e",
+      "description": "MD5 hash of a malicious StrongPity installer",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '7146eff8308a6a9fb2ebb83c2377fb1e']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--5fa106a4-5c28-4cfd-b29d-31ea06f81ce1",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 897ee05e7ec8053ec5a1bf4d047abfac",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '897ee05e7ec8053ec5a1bf4d047abfac']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--b9ddd9a4-65dd-44b4-b552-4d61d03e5fe6",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 efdba4cc90f118766fe78b60e92d56c9",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = 'efdba4cc90f118766fe78b60e92d56c9']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--8d347aa8-5e6e-4b7a-9eaa-12d18dca16dc",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 f6d57949803a65ca1ed6f9544e1a2796",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = 'f6d57949803a65ca1ed6f9544e1a2796']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--40990a94-c4c8-4d7c-88c5-196bfcc4ae50",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 454ad5b7a1f9e7e36dc7742b8fb5c62a",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '454ad5b7a1f9e7e36dc7742b8fb5c62a']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--8e507596-4211-4c97-bdaf-db40302a4d8d",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 79b11e614fe7922ab24044315cc2782a",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '79b11e614fe7922ab24044315cc2782a']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c2e7ed93-6018-4a11-82f4-633b82bfc0b3",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 d84443aea0cc4ddfe1386e4653649cab",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = 'd84443aea0cc4ddfe1386e4653649cab']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--fe787f0e-a745-4e3d-8c67-5e5ad2409c19",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 6189d3e23fd46225df49808af04acb93",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '6189d3e23fd46225df49808af04acb93']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--9f648433-9dc0-49aa-b4c1-0bff4b8e6e42",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 68a7ec5cbc1d9829af68d049694e98d8",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = '68a7ec5cbc1d9829af68d049694e98d8']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c040662f-6ae4-4afe-868c-e6eabd883134",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity trojanized installer MD5 fb1891e4b5960bfbbe837456c142c474",
+      "indicator_types": ["file-hash-watchlist"],
+      "pattern": "[file:hashes.MD5 = 'fb1891e4b5960bfbbe837456c142c474']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--9cba8209-50eb-4bef-a4e5-80faee8a6b66",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity administration VPN domain secureconnect.me",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'secureconnect.me']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--b6f4a2e8-3245-4371-8a9a-07a085216d3f",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity administration VPN domain torguardvpnaccess.com",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'torguardvpnaccess.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--1d4b1c63-7e09-4ddc-91b8-97a75576e0be",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity HTTPS C2 on unusual TCP port 1402",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[network-traffic:dst_port = 1402 AND network-traffic:protocols[*] = 'https']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--a46b2669-5479-4062-9c5e-02c945b492ee",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity first-layer PHP proxy scripts",
+      "description": "Requests ending in StrongPity proxy upload / command scripts",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[url:value MATCHES '.*/(info\\.php|phpinfo\\.php|ini\\.php|parse_ini_file\\.php|goN9Z2In7mYQmN92dzX11CQL\\.php|p5Pss34GvX21pxO0bz25vLqU\\.php)$']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    }
+
+  ]
+}
+,
+      {
+        "type": "bundle",
+        "id": "bundle--0c2f5da5-3b79-4588-9f9b-0ae7bb8b6d9a",
+        "objects": [
+          {
+            "type": "indicator",
+            "id": "indicator--f3e3bb0a-6e67-4d35-b168-3c127c0df88a",
+            "created": "2025-07-26T00:00:00Z",
+            "modified": "2025-07-26T00:00:00Z",
+            "name": "Exploit of Adobe Flash vulnerability CVE-2016-4117",
+            "description": "Both PROMETHIUM and NEODYMIUM used a zero-day exploit for CVE-2016-4117 to deliver their payloads .",
+            "pattern": "[vulnerability:name = 'CVE-2016-4117']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T00:00:00Z",
+            "labels": [
+              "exploit",
+              "cve"
+            ]
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--5d55e885-1f5b-4657-8ef8-f3e1b3d3059c",
+            "created": "2025-07-26T00:00:00Z",
+            "modified": "2025-07-26T00:00:00Z",
+            "name": "Presence of malware Backdoor:Win32/Truvasys.A!dha",
+            "description": "PROMETHIUM\u2019s first-stage malware is detected as Backdoor:Win32/Truvasys.A!dha .",
+            "pattern": "[malware:name = 'Backdoor:Win32/Truvasys.A!dha']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T00:00:00Z",
+            "labels": [
+              "malware"
+            ]
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--9c2844b2-1e86-4f7b-9e64-bf8cb4e8d1d5",
+            "created": "2025-07-26T00:00:00Z",
+            "modified": "2025-07-26T00:00:00Z",
+            "name": "Presence of malware Backdoor:Win32/Wingbird.A!dha",
+            "description": "NEODYMIUM installs a back-door detected as Backdoor:Win32/Wingbird.A!dha .",
+            "pattern": "[malware:name = 'Backdoor:Win32/Wingbird.A!dha']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T00:00:00Z",
+            "labels": [
+              "malware"
+            ]
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--6f2ea6eb-1c10-4275-9b59-6f6873e39d7e",
+            "created": "2025-07-26T00:00:00Z",
+            "modified": "2025-07-26T00:00:00Z",
+            "name": "Truvasys masquerading as common utilities",
+            "description": "Truvasys often poses as popular utilities such as WinUtils, TrueCrypt, WinRAR or SanDisk .",
+            "pattern": "[file:name IN ('WinUtils.exe', 'TrueCrypt.exe', 'WinRAR.exe', 'SanDisk.exe')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T00:00:00Z",
+            "labels": [
+              "masquerade",
+              "file-name"
+            ]
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--2fe6ba1f-842b-4bae-9e0e-7fb29c7d9fa2",
+            "created": "2025-07-26T00:00:00Z",
+            "modified": "2025-07-26T00:00:00Z",
+            "name": "Abuse of lsass.exe for malicious DLL side-loading",
+            "description": "Wingbird abuses the legitimate system file lsass.exe to load a malicious DLL .",
+            "pattern": "[process:name = 'lsass.exe']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T00:00:00Z",
+            "labels": [
+              "dll-sideloading",
+              "process-name"
+            ]
+          }
+        ]
+      },
+      {
+  "type": "bundle",
+  "id": "bundle--6b9e4f4a-2293-49d3-9fb9-2472b5c2e6a2",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c1bc9a70-64a8-4fcf-8f62-8b66093b8e01",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Malicious document SHA-1 21a3862dfe21d6b216359c6baa3d3c2beb50c7a3",
+      "description": "Malicious document used in PROMETHIUM / NEODYMIUM campaign",
+      "labels": ["malicious-activity", "document"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '21a3862dfe21d6b216359c6baa3d3c2beb50c7a3']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--cf0c28e5-4250-4c43-92ad-8e553dfaf199",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Malicious document SHA-1 0b16135d008f6952df0caca104449c33d736e5fc",
+      "description": "Malicious document used in PROMETHIUM / NEODYMIUM campaign",
+      "labels": ["malicious-activity", "document"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '0b16135d008f6952df0caca104449c33d736e5fc']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--3e3824a4-2d1a-48e6-8a70-6ea2b9f95d1e",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Malicious document SHA-1 0852aa6b8df78069d75fa2f09b53d4476cdd252b",
+      "description": "Malicious document used in PROMETHIUM / NEODYMIUM campaign",
+      "labels": ["malicious-activity", "document"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '0852aa6b8df78069d75fa2f09b53d4476cdd252b']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b4aae0e7-0dc0-4c45-ad28-b9f9866c7e70",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Wingbird SHA-1 05dbe59a7690e28ca295e0f939a0c1213cb42eb0",
+      "description": "Wingbird malware sample",
+      "labels": ["malicious-activity", "malware", "wingbird"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '05dbe59a7690e28ca295e0f939a0c1213cb42eb0']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--a12479d2-4eb9-43f7-93d3-49c5f9f4e2e2",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Wingbird SHA-1 3c2c7ac8fddbc3ee25ce0f73f01e668855ccdb80",
+      "description": "Wingbird malware sample",
+      "labels": ["malicious-activity", "malware", "wingbird"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '3c2c7ac8fddbc3ee25ce0f73f01e668855ccdb80']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9d12f313-786f-4966-9e4d-9e767b6aa537",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Wingbird SHA-1 211a111586cb5914876adb929ccae736928d8363",
+      "description": "Wingbird malware sample",
+      "labels": ["malicious-activity", "malware", "wingbird"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '211a111586cb5914876adb929ccae736928d8363']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--af7223d2-d851-45db-8a8b-3cc7c29bb0b5",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Wingbird C2 domain srv601.ddns.net",
+      "description": "Wingbird command-and-control server",
+      "labels": ["malicious-activity", "c2", "wingbird"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'srv601.ddns.net']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--6a2756a4-8e6e-4e07-9e6f-00e7e2cb47ca",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Wingbird C2 domain srv602.ddns.net",
+      "description": "Wingbird command-and-control server",
+      "labels": ["malicious-activity", "c2", "wingbird"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'srv602.ddns.net']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--6433ab14-4552-433e-8b77-6aba7ef5ade9",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Truvasys SHA-1 980d96d83f0bae8132fd13eb7d0e799999141492",
+      "description": "Truvasys malware sample",
+      "labels": ["malicious-activity", "malware", "truvasys"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '980d96d83f0bae8132fd13eb7d0e799999141492']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e6bf9f34-50f6-4828-87e0-0f722e9f7830",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Truvasys SHA-1 7ab2d32b2603c2b12e814264230572584e157d42",
+      "description": "Truvasys malware sample",
+      "labels": ["malicious-activity", "malware", "truvasys"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = '7ab2d32b2603c2b12e814264230572584e157d42']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--5f260fb4-2c8f-4a35-b4fd-63808903b4c6",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Truvasys SHA-1 a4f72ee3d337e5a0db78f33fd31958b41e9e9d4f",
+      "description": "Truvasys malware sample",
+      "labels": ["malicious-activity", "malware", "truvasys"],
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-1' = 'a4f72ee3d337e5a0db78f33fd31958b41e9e9d4f']",
+      "valid_from": "2025-07-26T12:00:00Z"
+    }
+  ]
+},
+      {
+  "type": "bundle",
+  "id": "bundle--c7b1d57b-334d-4ec5-96d6-0f18b0d9c111",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--11111111-1111-4111-8111-111111111111",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity3 C2 Domains",
+      "description": "C2 infrastructure used by PROMETHIUM / StrongPity3",
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'upd-ncx4-server.com' OR domain-name:value = 'upd3-srv-system-app.com' OR domain-name:value = 'syse-update-app4.com' OR domain-name:value = 'upd32-secure-serv4.com' OR domain-name:value = 'system2-cdn5-mx8.com' OR domain-name:value = 'secure-upd21-app2.com' OR domain-name:value = 'ms21-app3-upload.com' OR domain-name:value = 'apt5-secure3-state.com' OR domain-name:value = 'upd8-sys2-apt.com' OR domain-name:value = 'update5-sec3-system.com' OR domain-name:value = 'state-awe3-apt.com' OR domain-name:value = 'app-system2-update.com' OR domain-name:value = 'awe232-service-app.com' OR domain-name:value = 'ms6-upload-serv3.com' OR domain-name:value = 'updt-servc-app2.com' OR domain-name:value = 'cdn2-system3-secrv.com' OR domain-name:value = 'file3-netwk-system.com' OR domain-name:value = 'service-net2-file.com' OR domain-name:value = 'system2-access-sec43.com' OR domain-name:value = 'ms-sys-security.com' OR domain-name:value = 'mailtransfersagents.com' OR domain-name:value = 'hostoperationsystems.com' OR domain-name:value = 'inhousesoftwaredevelopment.com' OR domain-name:value = 'mentiononecommon.com' OR domain-name:value = 'safecopydisk.com' OR domain-name:value = 'fileservingpro.com' OR domain-name:value = 'network-msx-system33.com' OR domain-name:value = 'mx3-rewc-state.com']",
+      "valid_from": "2025-07-26T12:00:00Z",
+      "labels": ["c2", "malicious-activity"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--22222222-2222-4222-8222-222222222222",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "StrongPity3 Malicious File Hashes (SHA-256)",
+      "description": "Known malicious payloads and installers",
+      "pattern_type": "stix",
+      "pattern": "[file:hashes.'SHA-256' = '5cb8f86e03a544531d972e132c81d6785b66dd1b15b6c35a0a04fd83a8bed695' OR file:hashes.'SHA-256' = 'ea4b507c3236b56ef4ea44f5ac9a531a175d643d184e356ae8833d36c1957372' OR file:hashes.'SHA-256' = 'fad11a279c6fe195f8110702f962c5296015344da17919b361f73f7f504063ca' OR file:hashes.'SHA-256' = 'f8c953a9b737c5fe69ab9cfb5b20d576f15396a40de10ea6c3216042a97132f4' OR file:hashes.'SHA-256' = 'bdbc514e274d70e260620d9b7dcfc3ee4cf4eb321474dfbd1eb81d2f17cebc23' OR file:hashes.'SHA-256' = '3ce08ada9cf964789ce70fd2637ded197ac5b154e0b71e9cdb4d99de7ab52267' OR file:hashes.'SHA-256' = 'b75fbe3b21d83e2000928349d1610f292e1a4c072fd0454309fe1c6c7d85ff46' OR file:hashes.'SHA-256' = 'bac8489de573f614d988097e9eae53ffc2eb4e7dcb0e68c349f549a26d2130a8' OR file:hashes.'SHA-256' = '835a545fe93bfa75931079ef36169bfc56906f74b9b9862848ff79534b33f416' OR file:hashes.'SHA-256' = '55e83292bd9a1f843639bfb98648a40b931a9829d62e6b23904034c417ffa430' OR file:hashes.'SHA-256' = 'e2cd8fd988a9a08f4bd73d7343ae54e68ee2a0a4728277792115edc86900e899']",
+      "valid_from": "2025-07-26T12:00:00Z",
+      "labels": ["malware", "payload"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--33333333-3333-4333-8333-333333333333",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Persistence registry key used by StrongPity2",
+      "pattern_type": "stix",
+      "pattern": "[windows-registry-key:key = 'HKCU\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run']",
+      "valid_from": "2025-07-26T12:00:00Z",
+      "labels": ["persistence", "registry-key"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--44444444-4444-4444-8444-444444444444",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "Mutex created by winprint32.exe",
+      "pattern_type": "stix",
+      "pattern": "[mutex:name = 'YeucqCcpgapiZISEdRSNiL']",
+      "valid_from": "2025-07-26T12:00:00Z",
+      "labels": ["mutex", "execution"]
+    }
+
+  ]
+},{
+  "type": "bundle",
+  "id": "bundle--e1c1e5c5-4d8a-4b60-b4c5-a3a825d4b001",
+  "spec_version": "2.0",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0001",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 21a3862dfe21d6b216359c6baa3d3c2beb50c7a3",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '21a3862dfe21d6b216359c6baa3d3c2beb50c7a3']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0002",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 0b16135d008f6952df0caca104449c33d736e5fc",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '0b16135d008f6952df0caca104449c33d736e5fc']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0003",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 0852aa6b8df78069d75fa2f09b53d4476cdd252b",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '0852aa6b8df78069d75fa2f09b53d4476cdd252b']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0004",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 05dbe59a7690e28ca295e0f939a0c1213cb42eb0",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '05dbe59a7690e28ca295e0f939a0c1213cb42eb0']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0005",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 3c2c7ac8fddbc3ee25ce0f73f01e668855ccdb80",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '3c2c7ac8fddbc3ee25ce0f73f01e668855ccdb80']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0006",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 211a111586cb5914876adb929ccae736928d8363",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '211a111586cb5914876adb929ccae736928d8363']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0007",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 c972bf5751438c99fe3e02ecacf6fa759388c40e",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'c972bf5751438c99fe3e02ecacf6fa759388c40e']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0008",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 72722073f0adba1919dc31ffa26638555ad5867f",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '72722073f0adba1919dc31ffa26638555ad5867f']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0009",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 2fb49455d65ad8baf18e3c604cd1b992b7ebbefa",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '2fb49455d65ad8baf18e3c604cd1b992b7ebbefa']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0010",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 f41b999f41312f2a0fe4eaf08e90824f73e0e186",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'f41b999f41312f2a0fe4eaf08e90824f73e0e186']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0011",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 d8d54574a082162220c3c2f3d3f4c1b1bd4d6255",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'd8d54574a082162220c3c2f3d3f4c1b1bd4d6255']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0012",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 86580603f5e1d817af87e8bf3ba4dc4ea9e3069d",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '86580603f5e1d817af87e8bf3ba4dc4ea9e3069d']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0013",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 cb5d0d1d557a1266f77357a951358c78196e97ff",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'cb5d0d1d557a1266f77357a951358c78196e97ff']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0014",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 d75d12d250e7a36f9ef1173d630a0059b8ea5349",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'd75d12d250e7a36f9ef1173d630a0059b8ea5349']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0015",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 a77db6e89d604eabf29a6114a30345a705b05107",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'a77db6e89d604eabf29a6114a30345a705b05107']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0016",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 b32b0d52fff7c09c60bb64bc396dc7522a457399",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'b32b0d52fff7c09c60bb64bc396dc7522a457399']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0017",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 ade19bde9716770bef84ce4414a45c0462c2eba2",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'ade19bde9716770bef84ce4414a45c0462c2eba2']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0018",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 e4d82ab117b86fd44c02ff3289976d15a9d9ced4",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'e4d82ab117b86fd44c02ff3289976d15a9d9ced4']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0019",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 88cb78d99fa0275db8123c17a2bd3b3d58f541da",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '88cb78d99fa0275db8123c17a2bd3b3d58f541da']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0020",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 a248f9ad5d757d589a06a253dc46637f4128eea9",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'a248f9ad5d757d589a06a253dc46637f4128eea9']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0021",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 532b0d52fff7c09c60bb64bc396dc7522a457399",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '532b0d52fff7c09c60bb64bc396dc7522a457399']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0022",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 980d96d83f0bae8132fd13eb7d0e799999141492",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '980d96d83f0bae8132fd13eb7d0e799999141492']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0023",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 7ab2d32b2603c2b12e814264230572584e157d42",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = '7ab2d32b2603c2b12e814264230572584e157d42']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0024",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "SHA-1 a4f72ee3d337e5a0db78f33fd31958b41e9e9d4f",
+      "labels": ["malware"],
+      "pattern": "[file:hashes.'SHA-1' = 'a4f72ee3d337e5a0db78f33fd31958b41e9e9d4f']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0101",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "C2 domain srv601.ddns.net",
+      "labels": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'srv601.ddns.net']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4c13a0d7-85d1-4988-9dd7-0e07f64c0102",
+      "created": "2025-07-26T12:00:00Z",
+      "modified": "2025-07-26T12:00:00Z",
+      "name": "C2 domain srv602.ddns.net",
+      "labels": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'srv602.ddns.net']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-26T12:00:00Z"
+    }
+
+  ]
+}],
+    "malware--691c60e2-273d-4d56-9ce6-b67e0f8719ad": [
+      {
+        "type": "bundle",
+        "id": "bundle--d2b6b8e9-c9d5-4d70-878d-0c4a60141b7f",
+        "spec_version": "2.1",
+        "objects": [
+          {
+            "type": "indicator",
+            "id": "indicator--0d17b0f3-1b4b-4872-8f3e-4b5fa9a756c9",
+            "created": "2024-07-26T00:00:00Z",
+            "modified": "2024-07-26T00:00:00Z",
+            "name": "Exploit targeting Adobe Flash vulnerability CVE-2016-4117",
+            "description": "Observed use of CVE-2016-4117 in the PROMETHIUM and NEODYMIUM campaigns.",
+            "indicator_types": [
+              "vulnerability"
+            ],
+            "pattern": "[vulnerability:name = 'CVE-2016-4117']",
+            "pattern_type": "stix",
+            "valid_from": "2016-05-01T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--e8a66e61-6f62-4565-9a0b-6df6793a9aaf",
+            "created": "2024-07-26T00:00:00Z",
+            "modified": "2024-07-26T00:00:00Z",
+            "name": "Presence of Truvasys malware",
+            "description": "First-stage malware delivered by PROMETHIUM (Backdoor:Win32/Truvasys.A!dha).",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[file:name = 'Truvasys.exe' OR file:name = 'WinUtils.exe' OR file:name = 'TrueCrypt.exe' OR file:name = 'WinRAR.exe' OR file:name = 'SanDisk.exe']",
+            "pattern_type": "stix",
+            "valid_from": "2012-01-01T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--2c9de821-b49f-4f26-ae3e-0b4e7bd170cf",
+            "created": "2024-07-26T00:00:00Z",
+            "modified": "2024-07-26T00:00:00Z",
+            "name": "Wingbird back-door DLL side-loaded by lsass.exe",
+            "description": "Wingbird (Backdoor:Win32/Wingbird.A!dha) is side-loaded via lsass.exe to establish persistence.",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[process:name = 'lsass.exe' AND process:child_refs[*].name MATCHES '.+\\.dll']",
+            "pattern_type": "stix",
+            "valid_from": "2016-05-01T00:00:00Z"
+          }
+        ]
+      }
+    ],
+    "malware--20945359-3b39-4542-85ef-08ecb4e1c174": [
+      {
+        "type": "bundle",
+        "id": "bundle--c1e5e3a4-e4b1-4ef6-9cfa-9cdf9147dcfa",
+        "objects": [
+          {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--fe4b66c7-689e-4b27-837e-1e9b4a706e25",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Cisco Talos (source report)",
+            "identity_class": "organization",
+            "description": "Source of the IOC information extracted from the StrongPity3 / PROMETHIUM report "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b8b5b25a-9feb-4b9e-9167-1a6d8a75c0d1",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "StrongPity3 malicious SHA-256 hashes",
+            "description": "Hashes listed in the Talos report ",
+            "indicator_types": [
+              "file-hash-watchlist",
+              "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-256' IN ('5cb8f86e03a544531d972e132c81d6785b66dd1b15b6c35a0a04fd83a8bed695', 'ea4b507c3236b56ef4ea44f5ac9a531a175d643d184e356ae8833d36c1957372', 'fad11a279c6fe195f8110702f962c5296015344da17919b361f73f7f504063ca', 'f8c953a9b737c5fe69ab9cfb5b20d576f15396a40de10ea6c3216042a97132f4', 'bdbc514e274d70e260620d9b7dcfc3ee4cf4eb321474dfbd1eb81d2f17cebc23', '3ce08ada9cf964789ce70fd2637ded197ac5b154e0b71e9cdb4d99de7ab52267', 'b75fbe3b21d83e2000928349d1610f292e1a4c072fd0454309fe1c6c7d85ff46', 'bac8489de573f614d988097e9eae53ffc2eb4e7dcb0e68c349f549a26d2130a8', '835a545fe93bfa75931079ef36169bfc56906f74b9b9862848ff79534b33f416', '55e83292bd9a1f843639bfb98648a40b931a9829d62e6b23904034c417ffa430', 'e2cd8fd988a9a08f4bd73d7343ae54e68ee2a0a4728277792115edc86900e899', 'c2c333a5f46eb5894f05f3323ab8aea87b3c2e9ba0221c28dcf46b0842592ac6', '91e20fb663b1809279666fb1e7ef7bd8da42ae51e0c05b51515ba851e2a991ac', '4235f33576b503faacbafb1b612f5fdf91fb406e73964f61064f232bd2b9c21c', 'f1a3c2bd241e09f4e98ca15c0d3d804297086c84883d81bb8b74960c6e986555', '1af0958f8590b626bedfcd1972cd3ea49d9576db86f1e768e5520f9615d01a19', 'e26a76def39740596843a57c3edcfe9f5000af5f5b538215a5799db58f41fe33', '40e99d0dfc27c66170ed57610a1c3cc9a0b6e87a0d544d739f828f10faf2758b', 'fcfd34f99b0a5f4bb91c0d6eaa9b2fdcc3bf9b3dd594213a389a056828a537c1', '84942df440c892c1e63aff41d9fe4694ea4b8a9102c62faf07c4510671abef13', 'e80034618538abc1c86a7021ab869c4ce63429d35adbaf8c07ce25f297a61bd2')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T12:00:00Z",
+            "created_by_ref": "identity--fe4b66c7-689e-4b27-837e-1e9b4a706e25"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5c72caf4-2ec3-4864-8e9b-9c2d14215d6a",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "StrongPity3 C2 / malicious domains",
+            "description": "Hard-coded C2 domains extracted from the Talos report ",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[domain-name:value IN ('upd-ncx4-server.com','upd3-srv-system-app.com','syse-update-app4.com','upd32-secure-serv4.com','system2-cdn5-mx8.com','secure-upd21-app2.com','ms21-app3-upload.com','apt5-secure3-state.com','upd8-sys2-apt.com','update5-sec3-system.com','state-awe3-apt.com','app-system2-update.com','awe232-service-app.com','ms6-upload-serv3.com','updt-servc-app2.com','cdn2-system3-secrv.com','file3-netwk-system.com','service-net2-file.com','system2-access-sec43.com','ms-sys-security.com','mailtransfersagents.com','hostoperationsystems.com','inhousesoftwaredevelopment.com','mentiononecommon.com','safecopydisk.com','fileservingpro.com','network-msx-system33.com','mx3-rewc-state.com')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T12:00:00Z",
+            "created_by_ref": "identity--fe4b66c7-689e-4b27-837e-1e9b4a706e25"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d0518f4a-985e-4f3e-8ca6-811f2d2caada",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "StrongPity3 mutex",
+            "description": "Mutex used by winprint32.exe ",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[mutex:name = 'YeucqCcpgapiZISEdRSNiL']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T12:00:00Z",
+            "created_by_ref": "identity--fe4b66c7-689e-4b27-837e-1e9b4a706e25"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--11e4d0a4-9c9e-4eb2-9c96-02b12e5e3f16",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Persistence registry key previously used by StrongPity2",
+            "description": "Registry key mentioned as legacy persistence mechanism ",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[windows-registry-key:key = 'HKCU\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-26T12:00:00Z",
+            "created_by_ref": "identity--fe4b66c7-689e-4b27-837e-1e9b4a706e25"
+          }
+        ]
+      }
+    ]
+  }
+}

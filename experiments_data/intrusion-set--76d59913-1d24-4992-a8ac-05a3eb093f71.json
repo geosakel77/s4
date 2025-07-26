@@ -1,0 +1,739 @@
+{
+  "actor": {
+    "id": "intrusion-set--76d59913-1d24-4992-a8ac-05a3eb093f71",
+    "name": "Dragonfly 2.0",
+    "created": "2018-10-17T00:14:20.652Z",
+    "modified": "2022-05-11T14:00:00.188Z",
+    "x_mitre_version": "2.1",
+    "type": "intrusion-set",
+    "aliases": [
+      "Dragonfly 2.0",
+      "IRON LIBERTY",
+      "DYMALLOY",
+      "Berserk Bear"
+    ],
+    "x_mitre_contributors": [],
+    "revoked": true,
+    "description": "[Dragonfly 2.0](https://attack.mitre.org/groups/G0074) is a suspected Russian group that has targeted government entities and multiple U.S. critical infrastructure sectors since at least December 2015. (Citation: US-CERT TA18-074A) (Citation: Symantec Dragonfly Sept 2017) There is debate over the extent of overlap between [Dragonfly 2.0](https://attack.mitre.org/groups/G0074) and [Dragonfly](https://attack.mitre.org/groups/G0035), but there is sufficient evidence to lead to these being tracked as two separate groups. (Citation: Fortune Dragonfly 2.0 Sept 2017)(Citation: Dragos DYMALLOY )",
+    "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_deprecated": false,
+    "x_mitre_attack_spec_version": "2.1.0",
+    "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_domains": [
+      "ics-attack",
+      "enterprise-attack"
+    ],
+    "object_marking_refs": [
+      "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+    ],
+    "external_references": [
+      {
+        "source_name": "DYMALLOY",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Dragos DYMALLOY )"
+      },
+      {
+        "source_name": "Berserk Bear",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Fortune Dragonfly 2.0 Sept 2017)"
+      },
+      {
+        "source_name": "IRON LIBERTY",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Secureworks MCMD July 2019)(Citation: Secureworks IRON LIBERTY)"
+      },
+      {
+        "source_name": "Dragonfly 2.0",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: US-CERT TA18-074A) (Citation: Symantec Dragonfly Sept 2017) (Citation: Fortune Dragonfly 2.0 Sept 2017)"
+      },
+      {
+        "source_name": "Dragos DYMALLOY ",
+        "url": "https://www.dragos.com/threat/dymalloy/",
+        "external_id": "",
+        "description": "Dragos. (n.d.). DYMALLOY. Retrieved August 20, 2020."
+      },
+      {
+        "source_name": "Fortune Dragonfly 2.0 Sept 2017",
+        "url": "http://fortune.com/2017/09/06/hack-energy-grid-symantec/",
+        "external_id": "",
+        "description": "Hackett, R. (2017, September 6). Hackers Have Penetrated Energy Grid, Symantec Warns. Retrieved June 6, 2018."
+      },
+      {
+        "source_name": "Secureworks MCMD July 2019",
+        "url": "https://www.secureworks.com/research/mcmd-malware-analysis",
+        "external_id": "",
+        "description": "Secureworks. (2019, July 24). MCMD Malware Analysis. Retrieved August 13, 2020."
+      },
+      {
+        "source_name": "Secureworks IRON LIBERTY",
+        "url": "https://www.secureworks.com/research/threat-profiles/iron-liberty",
+        "external_id": "",
+        "description": "Secureworks. (n.d.). IRON LIBERTY. Retrieved October 15, 2020."
+      },
+      {
+        "source_name": "Symantec Dragonfly Sept 2017",
+        "url": "https://www.symantec.com/connect/blogs/dragonfly-western-energy-sector-targeted-sophisticated-attack-group",
+        "external_id": "",
+        "description": "Symantec Security Response. (2017, September 6). Dragonfly: Western energy sector targeted by sophisticated attack group. Retrieved September 9, 2017."
+      },
+      {
+        "source_name": "US-CERT TA18-074A",
+        "url": "https://www.us-cert.gov/ncas/alerts/TA18-074A",
+        "external_id": "",
+        "description": "US-CERT. (2018, March 16). Alert (TA18-074A): Russian Government Cyber Activity Targeting Energy and Other Critical Infrastructure Sectors. Retrieved June 6, 2018."
+      }
+    ],
+    "names": [],
+    "external_tools": [],
+    "country": [],
+    "operations": [],
+    "links": [],
+    "targets": [],
+    "external_description": [],
+    "attck_id": "",
+    "comment": ""
+  },
+  "techniques": [],
+  "software": [],
+  "actor_techniques_software_map": {},
+  "actor_techniques_to_tactics_map": {},
+  "indicators": {
+    "intrusion-set--76d59913-1d24-4992-a8ac-05a3eb093f71": [
+      {
+  "type": "bundle",
+  "id": "bundle--ffb8a84e-3c5b-4e63-8794-2efb28e28083",
+  "objects": [
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "Secureworks Counter Threat Unit",
+      "identity_class": "organization",
+      "sectors": ["energy"],
+      "contact_information": "https://www.secureworks.com"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0bce1fae-b845-4096-9e6e-0b4e11c01326",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-256 hash",
+      "description": "MCMD RAT executable (SHA-256)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-256' = '172be9ebd26946bdfe19150e304c8abd59d43a7bf92afa270f028c9a4a29fd99']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0584c504-57c4-4ac2-bdb3-8f9a84c5909a",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-1 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-1' = '425346c68fa8e113c4e243d1193c050548839c86']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c02abb60-8287-4a9e-9b19-f86e4fd6c5f5",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT MD5 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.MD5 = '8b8b33a14f7be027fdb1aec1555fa8a8']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--5b92cdf2-425c-4a8e-a620-3e39fb8bcbac",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-256 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-256' = '5179d5874383b3c6a45350f77e86098ae7be606df490afbd57d98bed8e3bc2cd']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9c8e09ab-799c-4d1d-9c22-430e8079b111",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-1 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-1' = '3019f121e6cc3a955c1a8005fd78328ab7c1d479']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--295f9e8e-73af-4d15-a4ff-5b062eeb8000",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT MD5 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.MD5 = '6cd47d4c2fd8997683baa1f278d2dd94']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e9840405-0e40-4ff4-8fab-f72de508d292",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-256 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-256' = '7aa8cd8a2669537631b8ac7b892f51d4c74056c1369007c474277ebdf82fb74e']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d2f6c0bd-761c-43db-a2e0-ce06b6ade24b",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-1 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-1' = 'da6f24b1bf61ad233ac9bf6709951db57c59ad2e']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--67b322e9-d399-4e9a-9c73-e6d29ca1234e",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT MD5 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.MD5 = '336b6f0108a23b95f3141afc787a31dd']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e98d91c8-4640-4042-9e37-d36fb0a0e0e1",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-256 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-256' = '4877050e41f269bab1013649f747f1bd2a1f53e07825c21778f4b1a9a882c7bb']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c6d3bbfe-1608-4a7e-baae-5be2293d1f36",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT SHA-1 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-1' = '94a1ec29f5d55edc67eee98ea086e4dbc98e5a56']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9c0a0dd1-9320-4681-9a3e-e1fed658dacc",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD RAT MD5 hash",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.MD5 = '2dbdeef42699730635abdc657775e4af']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--f4e0b996-0ea3-4bb1-bf64-f6b8be3a3e2f",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD C2 URL",
+      "indicator_types": ["command-and-control", "malicious-activity"],
+      "pattern": "[url:value = 'https://vr-bangers.com/wp-content/cache/keep-alive/alive.php']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--05c19f2c-7fa4-4c67-8a9d-69427b18e8a4",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD C2 URL",
+      "indicator_types": ["command-and-control", "malicious-activity"],
+      "pattern": "[url:value = 'https://ecco0.b13x.org/ajax/base/include/list.php']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0e356f60-1160-4d28-9491-4a015135c8db",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD C2 URL",
+      "indicator_types": ["command-and-control", "malicious-activity"],
+      "pattern": "[url:value = 'https://smarttoys.com.ua/bitrix/services/ajax/refresh/refresh.php']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--95397e1e-ad7a-4e2d-bc97-1d2a8d8a7109",
+      "created": "2019-07-24T00:00:00Z",
+      "modified": "2019-07-24T00:00:00Z",
+      "created_by_ref": "identity--4b25d210-4f94-49af-92e2-b4e6e420d3d1",
+      "name": "MCMD C2 URL",
+      "indicator_types": ["command-and-control", "malicious-activity"],
+      "pattern": "[url:value = 'https://kanri.rbridal.net/json/renew.php']",
+      "pattern_type": "stix",
+      "valid_from": "2019-07-24T00:00:00Z"
+    }
+  ]
+},
+      {
+  "type": "bundle",
+  "id": "bundle--2eca7d66-4d96-46ae-9e2c-6ba8e3b7ae01",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--a1f6d0d9-51d4-44e8-9c3c-671a5f0c0201",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malicious IP 62.8.193.206",
+      "description": "IP observed in LNK-file icon path and watering-hole code",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '62.8.193.206']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9f12ef24-2a20-4b54-aee3-0d774710c9a8",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malicious IP 184.154.150.66",
+      "description": "IP delivering ame_icon.png credential-harvest request",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '184.154.150.66']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--6d7ae20b-8ba7-4c06-9c6a-64f691e8b46c",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malicious IP 91.183.104.150",
+      "description": "Host serving downloader files (INST.txt → INST.exe)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '91.183.104.150']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--59febde5-9983-49d4-9f45-8e8d67121c70",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malicious IP 5.153.58.45",
+      "description": "IP used in remote icon path inside malicious .LNK files",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '5.153.58.45']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d6bee302-9e06-4e6d-b5e7-346ee244f2dd",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malicious domain imageliners.com",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'imageliners.com']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 70,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--f6c97f52-83f9-47bb-b9fa-33f40f744f3d",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Redirector URL bit.ly/2m0x8IH",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[url:value = 'http://bit.ly/2m0x8IH']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 70,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7be986c7-2b9b-42aa-8f7c-8804aa7eb2f5",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Redirector URL tinyurl.com/h3sdqck",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[url:value = 'http://tinyurl.com/h3sdqck']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 70,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d1fda0dd-d5f1-4c0c-8d5e-77856be76e9a",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Credential-harvest page imageliners.com/nitel",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[url:value = 'http://imageliners.com/nitel']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 70,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--afbe5d3e-1e9d-4b7c-9b39-9c2fe8bf0d14",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Beacon URI /aspnet_client/system_web/4_0_30319/update/",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[network-traffic:extensions.'http-request-ext'.request_uri = '/aspnet_client/system_web/4_0_30319/update/']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 60,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--fcb15c70-986f-46d6-b2f4-a5e4b4a4c5e1",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Callback URI /A56WY",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[network-traffic:extensions.'http-request-ext'.request_uri = '/A56WY']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 60,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--88f6b2e1-9fce-4b71-afa8-0e2f7bf0900b",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malware fetch URI /img/bson021.dat",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[network-traffic:extensions.'http-request-ext'.request_uri = '/img/bson021.dat']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 60,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--52adf38e-4c77-4ed1-a9c1-f1e519ef0797",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Credential-harvest URI /ame_icon.png",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[network-traffic:extensions.'http-request-ext'.request_uri = '/ame_icon.png']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 60,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b0d11b60-6db5-4fc6-9343-887e2b662a63",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malware sample 61C909D2F625223DB2FB858BBDF42A76",
+      "indicator_types": ["malicious-code"],
+      "pattern": "[file:hashes.'MD5' = '61C909D2F625223DB2FB858BBDF42A76']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--f2d2b8f6-a4f9-4d03-8cdf-6e1eabe0aad8",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malware sample A07AA521E7CAFB360294E56969EDA5D6",
+      "indicator_types": ["malicious-code"],
+      "pattern": "[file:hashes.'MD5' = 'A07AA521E7CAFB360294E56969EDA5D6']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--dfe96df3-a46e-4b07-8c6e-54eabfb3d276",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Malware sample BA756DD64C1147515BA2298B6A760260",
+      "indicator_types": ["malicious-code"],
+      "pattern": "[file:hashes.'MD5' = 'BA756DD64C1147515BA2298B6A760260']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e6cbf9b4-523e-49d3-b8f3-ffbf7297c74c",
+      "created": "2025-07-26T00:00:00Z",
+      "modified": "2025-07-26T00:00:00Z",
+      "name": "Web-shell sample 2C9095C965A55EFC46E16B86F9B7D6C6",
+      "indicator_types": ["malicious-code"],
+      "pattern": "[file:hashes.'MD5' = '2C9095C965A55EFC46E16B86F9B7D6C6']",
+      "pattern_type": "stix",
+      "valid_from": "2018-03-15T00:00:00Z",
+      "confidence": 80,
+      "external_references": [
+        {
+          "source_name": "CISA TA18-074A",
+          "url": "https://www.cisa.gov/uscert/ncas/alerts/TA18-074A"
+        }
+      ]
+    }
+
+  ]
+},
+      null,
+      {
+        "type": "bundle",
+        "id": "bundle--d1e2c8d2-0f9f-4af1-9c1b-e9e5b0eab000",
+        "spec_version": "2.1",
+        "objects": [
+          {
+            "type": "indicator",
+            "id": "indicator--f17f8d1b-b2e9-46ed-9ee4-6fb70b356001",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Domain \u2013 secureworks.com",
+            "description": "Domain observed in the IRON LIBERTY PDF report.",
+            "pattern": "[domain-name:value = 'secureworks.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--5a6c7e02-4cf3-4ac3-9d39-2e3e2dcb6002",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Sub-domain \u2013 pages.secureworks.com",
+            "description": "Sub-domain hosting unsubscribe page referenced in the report.",
+            "pattern": "[domain-name:value = 'pages.secureworks.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--30eb07fa-60cf-4e73-a754-90d7332d6003",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Sub-domain \u2013 portal.secureworks.com",
+            "description": "Login portal referenced in the report.",
+            "pattern": "[domain-name:value = 'portal.secureworks.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--2e8fbbbe-46a2-47de-8db6-46e914516004",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Domain \u2013 linkedin.com",
+            "description": "Social-media domain cited in the report.",
+            "pattern": "[domain-name:value = 'linkedin.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--73d45d2b-a1a4-4e4b-abe0-87e0852f6005",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Domain \u2013 x.com",
+            "description": "Social-media domain cited in the report.",
+            "pattern": "[domain-name:value = 'x.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--b2f5b9c1-2c9a-4933-8dcb-2238d3f36006",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Domain \u2013 facebook.com",
+            "description": "Social-media domain cited in the report.",
+            "pattern": "[domain-name:value = 'facebook.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--fb8de2c3-56df-403b-b22b-96af3e5d6007",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Domain \u2013 github.com",
+            "description": "Source-code hosting domain cited in the report.",
+            "pattern": "[domain-name:value = 'github.com']",
+            "pattern_type": "stix"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--a0c2e7b6-1f3b-4ddd-92f1-0912cf456008",
+            "created": "2025-07-26T12:00:00Z",
+            "modified": "2025-07-26T12:00:00Z",
+            "name": "Generic NTLM-stealing LNK file",
+            "description": "IRON LIBERTY is reported to use malicious .LNK files for NTLM hash theft.",
+            "pattern": "[file:name MATCHES '^.*\\\\.lnk$']",
+            "pattern_type": "stix"
+          }
+        ]
+      },
+      null,
+      null
+    ]
+  }
+}

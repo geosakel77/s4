@@ -170,11 +170,14 @@ class AttackerAgent(Agent):
             if url.endswith('pdf'):
                 generated_indicators=self._query_ai_for_indicators(response.content,suffix=".pdf")
             else:
-                configwk = pdfkit.configuration(wkhtmltopdf=os.path.abspath(self.config['wkhtmltopdf_path']))
-                pdf_bytes = pdfkit.from_url(url, output_path=False, configuration=configwk)
-                pdf_buffer = BytesIO(pdf_bytes)
-                pdf_buffer.seek(0)
-                generated_indicators = self._query_ai_for_indicators(pdf_buffer.getvalue(), suffix=".pdf")
+                try:
+                    configwk = pdfkit.configuration(wkhtmltopdf=os.path.abspath(self.config['wkhtmltopdf_path']))
+                    pdf_bytes = pdfkit.from_url(url, output_path=False, configuration=configwk)
+                    pdf_buffer = BytesIO(pdf_bytes)
+                    pdf_buffer.seek(0)
+                    generated_indicators = self._query_ai_for_indicators(pdf_buffer.getvalue(), suffix=".pdf")
+                except OSError as e:
+                    print(e)
         except requests.exceptions.RequestException as e:
             print(e)
         return generated_indicators

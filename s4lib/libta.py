@@ -110,10 +110,12 @@ class TA(AttackerAgent):
 if __name__ == "__main__":
 
     for i in range(1,100):
-        ta=TA()
-        time.sleep(random.randint(30,60))
-        print(ta.actor_name)
-
+        try:
+            ta=TA()
+            time.sleep(random.randint(30,60))
+            print(ta.actor_name)
+        except Exception as e:
+            print(e)
 
 
 

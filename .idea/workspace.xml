@@ -4,12 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="Indicators extraction">
-      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--76565741-3452-4069-ab08-80c0ea95bbeb.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4lib/libexperiments.py" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="extraction of indicators and TA">
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--18854f55-ac7c-4634-bd9a-352dd07613b7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--269e8108-68c6-4f99-b911-14b2e765dec2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--32bca8ff-d900-4877-aa65-d70baa041b74.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--3753cc21-2dae-4dfb-8481-d004e74502cc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--4283ae19-69c7-4347-a35e-b56f08eb660b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--44102191-3a31-45f8-acbe-34bdb441d5ad.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--68ba94ab-78b8-43e7-83e2-aed3466882c6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--73a80fab-2aa3-48e0-a4d0-3a4828200aee.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--76d59913-1d24-4992-a8ac-05a3eb093f71.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--88489675-d216-4884-a98f-49a89fcc1643.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--93f52415-0fe4-4d3d-896c-fc9b8e88ab90.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--9559ecaf-2e75-48a7-aee8-9974020bc772.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--bfc5ddb3-4dfb-4278-8928-020e1b3feddd.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--c4d50cdf-87ce-407d-86d8-862883485842.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--d0b3393b-3bec-4ba3-bda9-199d30db47b6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--d69e568e-9ac8-4c08-b32c-d93b43ba9172.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--dd2d9ca6-505b-4860-a604-233685b802c7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--df71bb3b-813c-45eb-a8bc-f2a419837411.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--efed95ba-d7e8-47ff-8c53-99c42426ee7c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--f40eb8ce-2a74-4e56-89a1-227021410142.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/temp.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/libagcti.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/libdm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/libis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/libconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/libconfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments_data/intrusion-set--00f67a77-86a4-4adf-be26-1a54fc713340.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/s4lib/libbase.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libbase.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4lib/libta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libta.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
@@ -81,7 +101,7 @@
       <recent name="C:\Users\geosa\PycharmProjects\s4\s4targets\metasploitable3" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.libta">
+  <component name="RunManager" selected="Python.test">
     <configuration name="libta" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
@@ -182,8 +202,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.libta" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.libta" />
         <item itemvalue="Python.setup" />
         <item itemvalue="Python.main" />
       </list>
@@ -214,7 +234,7 @@
       <workItem from="1752862182944" duration="35855000" />
       <workItem from="1753008474467" duration="44841000" />
       <workItem from="1753295776235" duration="18937000" />
-      <workItem from="1753393484394" duration="10845000" />
+      <workItem from="1753393484394" duration="37471000" />
     </task>
     <task id="LOCAL-00001" summary="Initial TA development">
       <option name="closed" value="true" />
@@ -248,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753135998450</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="extraction of indicators and TA">
+      <option name="closed" value="true" />
+      <created>1753476988431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753476988431</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,13 +290,14 @@
     <MESSAGE value="Setup and TA development" />
     <MESSAGE value="Setup and TA development cont" />
     <MESSAGE value="Indicators extraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Indicators extraction" />
+    <MESSAGE value="extraction of indicators and TA" />
+    <option name="LAST_COMMIT_MESSAGE" value="extraction of indicators and TA" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1752863370272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$setup.coverage" NAME="setup Coverage Results" MODIFIED="1753032396225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1753466651119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1753555254320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libta__1_.coverage" NAME="libta (1) Coverage Results" MODIFIED="1752958667180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
-    <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1753472448178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
+    <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1753541106027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
   </component>
 </project>
