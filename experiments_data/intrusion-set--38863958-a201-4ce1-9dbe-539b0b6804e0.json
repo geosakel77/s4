@@ -1,0 +1,1204 @@
+{
+  "actor": {
+    "id": "intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0",
+    "name": "Machete",
+    "created": "2019-09-13T12:37:10.394Z",
+    "modified": "2021-10-06T19:26:47.988Z",
+    "x_mitre_version": "2.0",
+    "type": "intrusion-set",
+    "aliases": [
+      "Machete",
+      "APT-C-43",
+      "El Machete"
+    ],
+    "x_mitre_contributors": [
+      "Matias Nicolas Porolli, ESET"
+    ],
+    "revoked": false,
+    "description": "[Machete](https://attack.mitre.org/groups/G0095) is a suspected Spanish-speaking cyber espionage group that has been active since at least 2010. It has primarily focused its operations within Latin America, with a particular emphasis on Venezuela, but also in the US, Europe, Russia, and parts of Asia. [Machete](https://attack.mitre.org/groups/G0095) generally targets high-profile organizations such as government institutions, intelligence services, and military units, as well as telecommunications and power companies.(Citation: Cylance Machete Mar 2017)(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)(Citation: 360 Machete Sep 2020)",
+    "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_deprecated": false,
+    "x_mitre_attack_spec_version": "",
+    "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+    "x_mitre_domains": [
+      "enterprise-attack"
+    ],
+    "object_marking_refs": [
+      "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+    ],
+    "external_references": [
+      {
+        "source_name": "Machete",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)("
+      },
+      {
+        "source_name": "APT-C-43",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: 360 Machete Sep 2020)"
+      },
+      {
+        "source_name": "El Machete",
+        "url": "",
+        "external_id": "",
+        "description": "(Citation: Cylance Machete Mar 2017)"
+      },
+      {
+        "source_name": "Cylance Machete Mar 2017",
+        "url": "https://threatvector.cylance.com/en_us/home/el-machete-malware-attacks-cut-through-latam.html",
+        "external_id": "",
+        "description": "The Cylance Threat Research Team. (2017, March 22). El Machete's Malware Attacks Cut Through LATAM. Retrieved September 13, 2019."
+      },
+      {
+        "source_name": "Securelist Machete Aug 2014",
+        "url": "https://securelist.com/el-machete/66108/",
+        "external_id": "",
+        "description": "Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019."
+      },
+      {
+        "source_name": "ESET Machete July 2019",
+        "url": "https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf",
+        "external_id": "",
+        "description": "ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019."
+      },
+      {
+        "source_name": "360 Machete Sep 2020",
+        "url": "https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/",
+        "external_id": "",
+        "description": "kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \u2014 HpReact campaign. Retrieved November 20, 2020."
+      }
+    ],
+    "names": [],
+    "external_tools": [],
+    "country": [],
+    "operations": [],
+    "links": [],
+    "targets": [],
+    "external_description": [],
+    "attck_id": "",
+    "comment": ""
+  },
+  "techniques": [
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-11T14:49:36.954Z\", \"modified\": \"2025-04-15T19:58:13.883Z\", \"name\": \"Malicious File\", \"description\": \"An adversary may rely upon a user opening a malicious file in order to gain execution. Users may be subjected to social engineering to get them to open a file that will lead to code execution. This user action will typically be observed as follow-on behavior from [Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001). Adversaries may use several types of files that require a user to execute them, including .doc, .pdf, .xls, .rtf, .scr, .exe, .lnk, .pif, .cpl, and .reg.\\n\\nAdversaries may employ various forms of [Masquerading](https://attack.mitre.org/techniques/T1036) and [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to increase the likelihood that a user will open and successfully execute a malicious file. These methods may include using a familiar naming convention and/or password protecting the file and supplying instructions to a user on how to open it.(Citation: Password Protected Word Docs) \\n\\nWhile [Malicious File](https://attack.mitre.org/techniques/T1204/002) frequently occurs shortly after Initial Access it may occur at other phases of an intrusion, such as when an adversary places a file in a shared directory or on a user's desktop hoping that a user will click on it. This activity may also be seen shortly after [Internal Spearphishing](https://attack.mitre.org/techniques/T1534).\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1204/002\", \"external_id\": \"T1204.002\"}, {\"source_name\": \"Password Protected Word Docs\", \"description\": \"Lawrence Abrams. (2017, July 12). PSA: Don't Open SPAM Containing Password Protected Word Docs. Retrieved January 5, 2022.\", \"url\": \"https://www.bleepingcomputer.com/news/security/psa-dont-open-spam-containing-password-protected-word-docs/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"TruKno\"], \"x_mitre_data_sources\": [\"Process: Process Creation\", \"File: File Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor the execution of and command-line arguments for applications that may be used by an adversary to gain initial access that require user interaction. This includes compression applications, such as those for zip files, that can be used to [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140) in payloads.\\n\\nAnti-virus can potentially detect malicious documents and files that are downloaded and executed on the user's computer. Endpoint sensing or network sensing can potentially detect malicious events once the file is opened (such as a Microsoft Word document or PDF reaching out to the internet or spawning powershell.exe).\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\"], \"x_mitre_version\": \"1.5\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--0f880e99-efaa-4e85-91c3-cac3d81d6b9a\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-10-15T22:28:40.394Z\", \"modified\": \"2025-04-28T15:34:53.444Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has relied on users opening malicious attachments delivered through spearphishing to execute malware.(Citation: Cylance Machete Mar 2017)(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e\", \"external_references\": [{\"source_name\": \"Cylance Machete Mar 2017\", \"description\": \"The Cylance Threat Research Team. (2017, March 22). El Machete's Malware Attacks Cut Through LATAM. Retrieved September 13, 2019.\", \"url\": \"https://threatvector.cylance.com/en_us/home/el-machete-malware-attacks-cut-through-latam.html\"}, {\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}, {\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-02T19:15:44.182Z\", \"modified\": \"2025-04-15T23:10:41.326Z\", \"name\": \"Spearphishing Link\", \"description\": \"Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself, to avoid defenses that may inspect email attachments. Spearphishing may also involve social engineering techniques, such as posing as a trusted source.\\n\\nAll forms of spearphishing are electronically delivered social engineering targeted at a specific individual, company, or industry. In this case, the malicious emails contain links. Generally, the links will be accompanied by social engineering text and require the user to actively click or copy and paste a URL into a browser, leveraging [User Execution](https://attack.mitre.org/techniques/T1204). The visited website may compromise the web browser using an exploit, or the user will be prompted to download applications, documents, zip files, or even executables depending on the pretext for the email in the first place.\\n\\nAdversaries may also include links that are intended to interact directly with an email reader, including embedded images intended to exploit the end system directly. Additionally, adversaries may use seemingly benign links that abuse special characters to mimic legitimate websites (known as an \\\"IDN homograph attack\\\").(Citation: CISA IDN ST05-016) URLs may also be obfuscated by taking advantage of quirks in the URL schema, such as the acceptance of integer- or hexadecimal-based hostname formats and the automatic discarding of text before an \\u201c@\\u201d symbol: for example, `hxxp://google.com@1157586937`.(Citation: Mandiant URL Obfuscation 2023)\\n\\nAdversaries may also utilize links to perform consent phishing, typically with OAuth 2.0 request URLs that when accepted by the user provide permissions/access for malicious applications, allowing adversaries to  [Steal Application Access Token](https://attack.mitre.org/techniques/T1528)s.(Citation: Trend Micro Pawn Storm OAuth 2017) These stolen access tokens allow the adversary to perform various actions on behalf of the user via API calls. (Citation: Microsoft OAuth 2.0 Consent Phishing 2021)\\n\\nAdversaries may also utilize spearphishing links to [Steal Application Access Token](https://attack.mitre.org/techniques/T1528)s that grant immediate access to the victim environment. For example, a user may be lured through \\u201cconsent phishing\\u201d into granting adversaries permissions/access via a malicious OAuth 2.0 request URL .(Citation: Trend Micro Pawn Storm OAuth 2017)(Citation: Microsoft OAuth 2.0 Consent Phishing 2021)\\n\\nSimilarly, malicious links may also target device-based authorization, such as OAuth 2.0 device authorization grant flow which is typically used to authenticate devices without UIs/browsers. Known as \\u201cdevice code phishing,\\u201d an adversary may send a link that directs the victim to a malicious authorization page where the user is tricked into entering a code/credentials that produces a device token.(Citation: SecureWorks Device Code Phishing 2021)(Citation: Netskope Device Code Phishing 2021)(Citation: Optiv Device Code Phishing 2021)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"initial-access\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1566/002\", \"external_id\": \"T1566.002\"}, {\"source_name\": \"ACSC Email Spoofing\", \"description\": \"Australian Cyber Security Centre. (2012, December). Mitigating Spoofed Emails Using Sender Policy Framework. Retrieved November 17, 2024.\", \"url\": \"https://web.archive.org/web/20210708014107/https://www.cyber.gov.au/sites/default/files/2019-03/spoof_email_sender_policy_framework.pdf\"}, {\"source_name\": \"CISA IDN ST05-016\", \"description\": \"CISA. (2019, September 27). Security Tip (ST05-016): Understanding Internationalized Domain Names. Retrieved October 20, 2020.\", \"url\": \"https://us-cert.cisa.gov/ncas/tips/ST05-016\"}, {\"source_name\": \"Trend Micro Pawn Storm OAuth 2017\", \"description\": \"Hacquebord, F.. (2017, April 25). Pawn Storm Abuses Open Authentication in Advanced Social Engineering Attacks. Retrieved October 4, 2019.\", \"url\": \"https://blog.trendmicro.com/trendlabs-security-intelligence/pawn-storm-abuses-open-authentication-advanced-social-engineering-attacks\"}, {\"source_name\": \"Netskope Device Code Phishing 2021\", \"description\": \"Jenko Hwong. (2021, August 10). New Phishing Attacks Exploiting OAuth Authorization Flows (Part 1). Retrieved March 19, 2024.\", \"url\": \"https://www.netskope.com/blog/new-phishing-attacks-exploiting-oauth-authorization-flows-part-1\"}, {\"source_name\": \"Microsoft OAuth 2.0 Consent Phishing 2021\", \"description\": \"Microsoft 365 Defender Threat Intelligence Team. (2021, June 14). Microsoft delivers comprehensive solution to battle rise in consent phishing emails. Retrieved December 13, 2021.\", \"url\": \"https://www.microsoft.com/security/blog/2021/07/14/microsoft-delivers-comprehensive-solution-to-battle-rise-in-consent-phishing-emails/\"}, {\"source_name\": \"Microsoft Anti Spoofing\", \"description\": \"Microsoft. (2020, October 13). Anti-spoofing protection in EOP. Retrieved October 19, 2020.\", \"url\": \"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-spoofing-protection?view=o365-worldwide\"}, {\"source_name\": \"Mandiant URL Obfuscation 2023\", \"description\": \"Nick Simonian. (2023, May 22). Don't @ Me: URL Obfuscation Through Schema Abuse. Retrieved August 4, 2023.\", \"url\": \"https://www.mandiant.com/resources/blog/url-obfuscation-schema-abuse\"}, {\"source_name\": \"Optiv Device Code Phishing 2021\", \"description\": \"Optiv. (2021, August 17). Microsoft 365 OAuth Device Code Flow and Phishing. Retrieved March 19, 2024.\", \"url\": \"https://www.optiv.com/insights/source-zero/blog/microsoft-365-oauth-device-code-flow-and-phishing\"}, {\"source_name\": \"SecureWorks Device Code Phishing 2021\", \"description\": \"SecureWorks Counter Threat Unit Research Team. (2021, June 3). OAuth\\u2019S Device Code Flow Abused in Phishing Attacks. Retrieved March 19, 2024.\", \"url\": \"https://www.secureworks.com/blog/oauths-device-code-flow-abused-in-phishing-attacks\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Philip Winther\", \"Shailesh Tiwary (Indian Army)\", \"Mark Wee\", \"Jeff Sakowicz, Microsoft Identity Developer Platform Services (IDPM Services)\", \"Saisha Agrawal, Microsoft Threat Intelligent Center (MSTIC)\", \"Kobi Haimovich, CardinalOps\", \"Menachem Goldstein\"], \"x_mitre_data_sources\": [\"Network Traffic: Network Traffic Flow\", \"Application Log: Application Log Content\", \"Network Traffic: Network Traffic Content\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"URL inspection within email (including expanding shortened links) can help detect links leading to known malicious sites as well as links redirecting to adversary infrastructure based by upon suspicious OAuth patterns with unusual TLDs.(Citation: Microsoft OAuth 2.0 Consent Phishing 2021). Detonation chambers can be used to detect these links and either automatically go to these sites to determine if they're potentially malicious, or wait and capture the content if a user visits the link.\\n\\nFiltering based on DKIM+SPF or header analysis can help detect when the email sender is spoofed.(Citation: Microsoft Anti Spoofing)(Citation: ACSC Email Spoofing)\\n\\nBecause this technique usually involves user interaction on the endpoint, many of the possible detections take place once [User Execution](https://attack.mitre.org/techniques/T1204) occurs.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\", \"SaaS\", \"Identity Provider\", \"Office Suite\"], \"x_mitre_version\": \"2.7\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--2dde02b3-20b9-4709-96b4-02dbb9150577\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-09-13T12:51:46.258Z\", \"modified\": \"2025-04-28T15:41:04.645Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has sent phishing emails that contain a link to an external server with ZIP and RAR archives.(Citation: Cylance Machete Mar 2017)(Citation: ESET Machete July 2019)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7\", \"external_references\": [{\"source_name\": \"Cylance Machete Mar 2017\", \"description\": \"The Cylance Threat Research Team. (2017, March 22). El Machete's Malware Attacks Cut Through LATAM. Retrieved September 13, 2019.\", \"url\": \"https://threatvector.cylance.com/en_us/home/el-machete-malware-attacks-cut-through-latam.html\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--d1fcf083-a721-4223-aedf-bf8960798d62\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-09T14:12:31.196Z\", \"modified\": \"2025-04-15T19:59:10.209Z\", \"name\": \"Windows Command Shell\", \"description\": \"Adversaries may abuse the Windows command shell for execution. The Windows command shell ([cmd](https://attack.mitre.org/software/S0106)) is the primary command prompt on Windows systems. The Windows command prompt can be used to control almost any aspect of a system, with various permission levels required for different subsets of commands. The command prompt can be invoked remotely via [Remote Services](https://attack.mitre.org/techniques/T1021) such as [SSH](https://attack.mitre.org/techniques/T1021/004).(Citation: SSH in Windows)\\n\\nBatch files (ex: .bat or .cmd) also provide the shell with a list of sequential commands to run, as well as normal scripting operations such as conditionals and loops. Common uses of batch files include long or repetitive tasks, or the need to run the same set of commands on multiple systems.\\n\\nAdversaries may leverage [cmd](https://attack.mitre.org/software/S0106) to execute various commands and payloads. Common uses include [cmd](https://attack.mitre.org/software/S0106) to execute a single command, or abusing [cmd](https://attack.mitre.org/software/S0106) interactively with input and output forwarded over a command and control channel.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1059/003\", \"external_id\": \"T1059.003\"}, {\"source_name\": \"SSH in Windows\", \"description\": \"Microsoft. (2020, May 19). Tutorial: SSH in Windows Terminal. Retrieved July 26, 2021.\", \"url\": \"https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Command: Command Execution\", \"Process: Process Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Usage of the Windows command shell may be common on administrator, developer, or power user systems depending on job function. If scripting is restricted for normal users, then any attempt to enable scripts running on a system would be considered suspicious. If scripts are not commonly used on a system, but enabled, scripts running out of cycle from patching or other administrator functions are suspicious. Scripts should be captured from the file system when possible to determine their actions and intent.\\n\\nScripts are likely to perform actions with various effects on a system that may generate events, depending on the types of monitoring used. Monitor processes and command-line arguments for script execution and subsequent behavior. Actions may be related to network and system information Discovery, Collection, or other scriptable post-compromise behaviors and could be used as indicators of detection leading back to the source script.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.5\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--3a01d374-1a49-4443-b7b5-453ebe5671ea\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-11-23T22:19:46.853Z\", \"modified\": \"2025-04-28T15:43:24.919Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has used batch files to initiate additional downloads of malicious files.(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--d1fcf083-a721-4223-aedf-bf8960798d62\", \"external_references\": [{\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-09T14:29:51.508Z\", \"modified\": \"2025-04-15T19:59:14.314Z\", \"name\": \"Visual Basic\", \"description\": \"Adversaries may abuse Visual Basic (VB) for execution. VB is a programming language created by Microsoft with interoperability with many Windows technologies such as [Component Object Model](https://attack.mitre.org/techniques/T1559/001) and the [Native API](https://attack.mitre.org/techniques/T1106) through the Windows API. Although tagged as legacy with no planned future evolutions, VB is integrated and supported in the .NET Framework and cross-platform .NET Core.(Citation: VB .NET Mar 2020)(Citation: VB Microsoft)\\n\\nDerivative languages based on VB have also been created, such as Visual Basic for Applications (VBA) and VBScript. VBA is an event-driven programming language built into Microsoft Office, as well as several third-party applications.(Citation: Microsoft VBA)(Citation: Wikipedia VBA) VBA enables documents to contain macros used to automate the execution of tasks and other functionality on the host. VBScript is a default scripting language on Windows hosts and can also be used in place of [JavaScript](https://attack.mitre.org/techniques/T1059/007) on HTML Application (HTA) webpages served to Internet Explorer (though most modern browsers do not come with VBScript support).(Citation: Microsoft VBScript)\\n\\nAdversaries may use VB payloads to execute malicious commands. Common malicious usage includes automating execution of behaviors with VBScript or embedding VBA content into [Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001) payloads (which may also involve [Mark-of-the-Web Bypass](https://attack.mitre.org/techniques/T1553/005) to enable execution).(Citation: Default VBS macros Blocking )\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1059/005\", \"external_id\": \"T1059.005\"}, {\"source_name\": \"VB .NET Mar 2020\", \"description\": \".NET Team. (2020, March 11). Visual Basic support planned for .NET 5.0. Retrieved June 23, 2020.\", \"url\": \"https://devblogs.microsoft.com/vbteam/visual-basic-support-planned-for-net-5-0/\"}, {\"source_name\": \"Default VBS macros Blocking \", \"description\": \"Kellie Eickmeyer. (2022, February 7). Helping users stay safe: Blocking internet macros by default in Office. Retrieved February 7, 2022.\", \"url\": \"https://techcommunity.microsoft.com/t5/microsoft-365-blog/helping-users-stay-safe-blocking-internet-macros-by-default-in/ba-p/3071805\"}, {\"source_name\": \"Microsoft VBScript\", \"description\": \"Microsoft. (2011, April 19). What Is VBScript?. Retrieved March 28, 2020.\", \"url\": \"https://docs.microsoft.com/previous-versions//1kw29xwf(v=vs.85)\"}, {\"source_name\": \"Microsoft VBA\", \"description\": \"Microsoft. (2019, June 11). Office VBA Reference. Retrieved June 23, 2020.\", \"url\": \"https://docs.microsoft.com/office/vba/api/overview/\"}, {\"source_name\": \"VB Microsoft\", \"description\": \"Microsoft. (n.d.). Visual Basic documentation. Retrieved June 23, 2020.\", \"url\": \"https://docs.microsoft.com/dotnet/visual-basic/\"}, {\"source_name\": \"Wikipedia VBA\", \"description\": \"Wikipedia. (n.d.). Visual Basic for Applications. Retrieved August 13, 2020.\", \"url\": \"https://en.wikipedia.org/wiki/Visual_Basic_for_Applications\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Module: Module Load\", \"Command: Command Execution\", \"Process: Process Creation\", \"Script: Script Execution\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor for events associated with VB execution, such as Office applications spawning processes, usage of the Windows Script Host (typically cscript.exe or wscript.exe), file activity involving VB payloads or scripts, or loading of modules associated with VB languages (ex: vbscript.dll). VB execution is likely to perform actions with various effects on a system that may generate events, depending on the types of monitoring used. Monitor processes and command-line arguments for execution and subsequent behavior. Actions may be related to network and system information [Discovery](https://attack.mitre.org/tactics/TA0007), [Collection](https://attack.mitre.org/tactics/TA0009), or other programable post-compromise behaviors and could be used as indicators of detection leading back to the source.\\n\\nUnderstanding standard usage patterns is important to avoid a high number of false positives. If VB execution is restricted for normal users, then any attempts to enable related components running on a system would be considered suspicious. If VB execution is not commonly used on a system, but enabled, execution running out of cycle from patching or other administrator functions is suspicious. Payloads and scripts should be captured from the file system when possible to determine their actions and intent.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\", \"macOS\", \"Linux\"], \"x_mitre_version\": \"1.5\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--472878d3-3a6a-4ad2-8fcf-e73a74fd48b6\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-11-23T22:19:46.857Z\", \"modified\": \"2025-04-28T15:45:51.417Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has embedded malicious macros within spearphishing attachments to download additional files.(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67\", \"external_references\": [{\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-09T14:38:24.334Z\", \"modified\": \"2025-04-15T19:59:08.245Z\", \"name\": \"Python\", \"description\": \"Adversaries may abuse Python commands and scripts for execution. Python is a very popular scripting/programming language, with capabilities to perform many functions. Python can be executed interactively from the command-line (via the <code>python.exe</code> interpreter) or via scripts (.py) that can be written and distributed to different systems. Python code can also be compiled into binary executables.(Citation: Zscaler APT31 Covid-19 October 2020)\\n\\nPython comes with many built-in packages to interact with the underlying system, such as file operations and device I/O. Adversaries can use these libraries to download and execute commands or other scripts as well as perform various malicious behaviors.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1059/006\", \"external_id\": \"T1059.006\"}, {\"source_name\": \"Zscaler APT31 Covid-19 October 2020\", \"description\": \"Singh, S. and Antil, S. (2020, October 27). APT-31 Leverages COVID-19 Vaccine Theme and Abuses Legitimate Online Services. Retrieved March 24, 2021.\", \"url\": \"https://www.zscaler.com/blogs/security-research/apt-31-leverages-covid-19-vaccine-theme-and-abuses-legitimate-online\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"Process: Process Creation\", \"Command: Command Execution\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor systems for abnormal Python usage and python.exe behavior, which could be an indicator of malicious activity. Understanding standard usage patterns is important to avoid a high number of false positives. If scripting is restricted for normal users, then any attempts to enable scripts running on a system would be considered suspicious. If scripts are not commonly used on a system, but enabled, scripts running out of cycle from patching or other administrator functions are suspicious. Scripts should be captured from the file system when possible to determine their actions and intent.\\n\\nScripts are likely to perform actions with various effects on a system that may generate events, depending on the types of monitoring used. Monitor processes and command-line arguments for script execution and subsequent behavior. Actions may be related to network and system information Discovery, Collection, or other scriptable post-compromise behaviors and could be used as indicators of detection leading back to the source script.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"Windows\", \"macOS\", \"ESXi\"], \"x_mitre_version\": \"1.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--532feb00-b2ba-4cf6-81e8-57750d30b039\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-09-13T12:51:46.273Z\", \"modified\": \"2025-04-28T15:48:02.388Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) used multiple compiled Python scripts on the victim\\u2019s system. [Machete](https://attack.mitre.org/groups/G0095)'s main backdoor [Machete](https://attack.mitre.org/software/S0409) is also written in Python.(Citation: Cylance Machete Mar 2017)(Citation: ESET Machete July 2019)(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1\", \"external_references\": [{\"source_name\": \"Cylance Machete Mar 2017\", \"description\": \"The Cylance Threat Research Team. (2017, March 22). El Machete's Malware Attacks Cut Through LATAM. Retrieved September 13, 2019.\", \"url\": \"https://threatvector.cylance.com/en_us/home/el-machete-malware-attacks-cut-through-latam.html\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}, {\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-11-27T14:58:00.429Z\", \"modified\": \"2025-04-15T19:58:01.010Z\", \"name\": \"Scheduled Task\", \"description\": \"Adversaries may abuse the Windows Task Scheduler to perform task scheduling for initial or recurring execution of malicious code. There are multiple ways to access the Task Scheduler in Windows. The [schtasks](https://attack.mitre.org/software/S0111) utility can be run directly on the command line, or the Task Scheduler can be opened through the GUI within the Administrator Tools section of the Control Panel.(Citation: Stack Overflow) In some cases, adversaries have used a .NET wrapper for the Windows Task Scheduler, and alternatively, adversaries have used the Windows netapi32 library and [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047) (WMI) to create a scheduled task. Adversaries may also utilize the Powershell Cmdlet `Invoke-CimMethod`, which leverages WMI class `PS_ScheduledTask` to create a scheduled task via an XML path.(Citation: Red Canary - Atomic Red Team)\\n\\nAn adversary may use Windows Task Scheduler to execute programs at system startup or on a scheduled basis for persistence. The Windows Task Scheduler can also be abused to conduct remote Execution as part of Lateral Movement and/or to run a process under the context of a specified account (such as SYSTEM). Similar to [System Binary Proxy Execution](https://attack.mitre.org/techniques/T1218), adversaries have also abused the Windows Task Scheduler to potentially mask one-time execution under signed/trusted system processes.(Citation: ProofPoint Serpent)\\n\\nAdversaries may also create \\\"hidden\\\" scheduled tasks (i.e. [Hide Artifacts](https://attack.mitre.org/techniques/T1564)) that may not be visible to defender tools and manual queries used to enumerate tasks. Specifically, an adversary may hide a task from `schtasks /query` and the Task Scheduler by deleting the associated Security Descriptor (SD) registry value (where deletion of this value must be completed using SYSTEM permissions).(Citation: SigmaHQ)(Citation: Tarrask scheduled task) Adversaries may also employ alternate methods to hide tasks, such as altering the metadata (e.g., `Index` value) within associated registry keys.(Citation: Defending Against Scheduled Task Attacks in Windows Environments) \", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"persistence\"}, {\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"privilege-escalation\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1053/005\", \"external_id\": \"T1053.005\"}, {\"source_name\": \"ProofPoint Serpent\", \"description\": \"Campbell, B. et al. (2022, March 21). Serpent, No Swiping! New Backdoor Targets French Entities with Unique Attack Chain. Retrieved April 11, 2022.\", \"url\": \"https://www.proofpoint.com/us/blog/threat-insight/serpent-no-swiping-new-backdoor-targets-french-entities-unique-attack-chain\"}, {\"source_name\": \"Defending Against Scheduled Task Attacks in Windows Environments\", \"description\": \"Harshal Tupsamudre. (2022, June 20). Defending Against Scheduled Tasks. Retrieved July 5, 2022.\", \"url\": \"https://blog.qualys.com/vulnerabilities-threat-research/2022/06/20/defending-against-scheduled-task-attacks-in-windows-environments\"}, {\"source_name\": \"Twitter Leoloobeek Scheduled Task\", \"description\": \"Loobeek, L. (2017, December 8). leoloobeek Status. Retrieved September 12, 2024.\", \"url\": \"https://x.com/leoloobeek/status/939248813465853953\"}, {\"source_name\": \"Tarrask scheduled task\", \"description\": \"Microsoft Threat Intelligence Team & Detection and Response Team . (2022, April 12). Tarrask malware uses scheduled tasks for defense evasion. Retrieved June 1, 2022.\", \"url\": \"https://www.microsoft.com/security/blog/2022/04/12/tarrask-malware-uses-scheduled-tasks-for-defense-evasion/\"}, {\"source_name\": \"Microsoft Scheduled Task Events Win10\", \"description\": \"Microsoft. (2017, May 28). Audit Other Object Access Events. Retrieved June 27, 2019.\", \"url\": \"https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/audit-other-object-access-events\"}, {\"source_name\": \"TechNet Scheduled Task Events\", \"description\": \"Microsoft. (n.d.). General Task Registration. Retrieved December 12, 2017.\", \"url\": \"https://technet.microsoft.com/library/dd315590.aspx\"}, {\"source_name\": \"Red Canary - Atomic Red Team\", \"description\": \"Red Canary - Atomic Red Team. (n.d.). T1053.005 - Scheduled Task/Job: Scheduled Task. Retrieved June 19, 2024.\", \"url\": \"https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1053.005/T1053.005.md\"}, {\"source_name\": \"TechNet Autoruns\", \"description\": \"Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.\", \"url\": \"https://technet.microsoft.com/en-us/sysinternals/bb963902\"}, {\"source_name\": \"TechNet Forum Scheduled Task Operational Setting\", \"description\": \"Satyajit321. (2015, November 3). Scheduled Tasks History Retention settings. Retrieved December 12, 2017.\", \"url\": \"https://social.technet.microsoft.com/Forums/en-US/e5bca729-52e7-4fcb-ba12-3225c564674c/scheduled-tasks-history-retention-settings?forum=winserver8gen\"}, {\"source_name\": \"SigmaHQ\", \"description\": \"Sittikorn S. (2022, April 15). Removal Of SD Value to Hide Schedule Task - Registry. Retrieved June 1, 2022.\", \"url\": \"https://github.com/SigmaHQ/sigma/blob/master/rules/windows/registry/registry_delete/registry_delete_schtasks_hide_task_via_sd_value_removal.yml\"}, {\"source_name\": \"Stack Overflow\", \"description\": \"Stack Overflow. (n.d.). How to find the location of the Scheduled Tasks folder. Retrieved June 19, 2024.\", \"url\": \"https://stackoverflow.com/questions/2913816/how-to-find-the-location-of-the-scheduled-tasks-folder\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Andrew Northern, @ex_raritas\", \"Bryan Campbell, @bry_campbell\", \"Zachary Abzug, @ZackDoesML\", \"Selena Larson, @selenalarson\", \"Sittikorn Sangrattanapitak\"], \"x_mitre_data_sources\": [\"Windows Registry: Windows Registry Key Creation\", \"File: File Modification\", \"File: File Creation\", \"Process: Process Creation\", \"Command: Command Execution\", \"Network Traffic: Network Traffic Flow\", \"Scheduled Job: Scheduled Job Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Monitor process execution from the <code>svchost.exe</code> in Windows 10 and the Windows Task Scheduler <code>taskeng.exe</code> for older versions of Windows. (Citation: Twitter Leoloobeek Scheduled Task) If scheduled tasks are not used for persistence, then the adversary is likely to remove the task when the action is complete. Monitor Windows Task Scheduler stores in %systemroot%\\\\System32\\\\Tasks for change entries related to scheduled tasks that do not correlate with known software, patch cycles, etc.\\n\\nConfigure event logging for scheduled task creation and changes by enabling the \\\"Microsoft-Windows-TaskScheduler/Operational\\\" setting within the event logging service. (Citation: TechNet Forum Scheduled Task Operational Setting) Several events will then be logged on scheduled task activity, including: (Citation: TechNet Scheduled Task Events)(Citation: Microsoft Scheduled Task Events Win10)\\n\\n* Event ID 106 on Windows 7, Server 2008 R2 - Scheduled task registered\\n* Event ID 140 on Windows 7, Server 2008 R2 / 4702 on Windows 10, Server 2016 - Scheduled task updated\\n* Event ID 141 on Windows 7, Server 2008 R2 / 4699 on Windows 10, Server 2016 - Scheduled task deleted\\n* Event ID 4698 on Windows 10, Server 2016 - Scheduled task created\\n* Event ID 4700 on Windows 10, Server 2016 - Scheduled task enabled\\n* Event ID 4701 on Windows 10, Server 2016 - Scheduled task disabled\\n\\nTools such as Sysinternals Autoruns may also be used to detect system changes that could be attempts at persistence, including listing current scheduled tasks. (Citation: TechNet Autoruns)\\n\\nRemote access tools with built-in features may interact directly with the Windows API to perform these functions outside of typical system utilities. Tasks may also be created through Windows system management tools such as Windows Management Instrumentation and PowerShell, so additional logging may need to be configured to gather the appropriate data.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"1.7\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--818dc2b8-bc95-4e1e-a25a-8c659b9a141d\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-11-23T22:19:46.797Z\", \"modified\": \"2025-04-28T15:56:49.391Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has created scheduled tasks to maintain [Machete](https://attack.mitre.org/software/S0409)'s persistence.(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9\", \"external_references\": [{\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-02-10T20:43:10.239Z\", \"modified\": \"2025-04-15T19:58:11.443Z\", \"name\": \"Match Legitimate Resource Name or Location\", \"description\": \"Adversaries may match or approximate the name or location of legitimate files, Registry keys, or other resources when naming/placing them. This is done for the sake of evading defenses and observation. \\n\\nThis may be done by placing an executable in a commonly trusted directory (ex: under System32) or giving it the name of a legitimate, trusted program (ex: `svchost.exe`). Alternatively, a Windows Registry key may be given a close approximation to a key used by a legitimate program. In containerized environments, a threat actor may create a resource in a trusted namespace or one that matches the naming convention of a container pod or cluster.(Citation: Aquasec Kubernetes Backdoor 2023)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1036/005\", \"external_id\": \"T1036.005\"}, {\"source_name\": \"Twitter ItsReallyNick Masquerading Update\", \"description\": \"Carr, N.. (2018, October 25). Nick Carr Status Update Masquerading. Retrieved September 12, 2024.\", \"url\": \"https://x.com/ItsReallyNick/status/1055321652777619457\"}, {\"source_name\": \"Docker Images\", \"description\": \"Docker. (n.d.). Docker Images. Retrieved April 6, 2021.\", \"url\": \"https://docs.docker.com/engine/reference/commandline/images/\"}, {\"source_name\": \"Elastic Masquerade Ball\", \"description\": \"Ewing, P. (2016, October 31). How to Hunt: The Masquerade Ball. Retrieved October 31, 2016.\", \"url\": \"https://www.elastic.co/blog/how-hunt-masquerade-ball\"}, {\"source_name\": \"Aquasec Kubernetes Backdoor 2023\", \"description\": \"Michael Katchinskiy and Assaf Morag. (2023, April 21). First-Ever Attack Leveraging Kubernetes RBAC to Backdoor Clusters. Retrieved March 24, 2025.\", \"url\": \"https://www.aquasec.com/blog/leveraging-kubernetes-rbac-to-backdoor-clusters/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Yossi Weizman, Azure Defender Research Team\", \"Vishwas Manral, McAfee\"], \"x_mitre_data_sources\": [\"File: File Metadata\", \"Image: Image Metadata\", \"Process: Process Metadata\", \"Process: Process Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Collect file hashes; file names that do not match their expected hash are suspect. Perform file monitoring; files with known names but in unusual locations are suspect. Likewise, files that are modified outside of an update or patch are suspect.\\n\\nIf file names are mismatched between the file name on disk and that of the binary's PE metadata, this is a likely indicator that a binary was renamed after it was compiled. Collecting and comparing disk and resource filenames for binaries by looking to see if the InternalName, OriginalFilename, and/or ProductName match what is expected could provide useful leads, but may not always be indicative of malicious activity. (Citation: Elastic Masquerade Ball) Do not focus on the possible names a file could have, but instead on the command-line arguments that are known to be used and are distinct because it will have a better rate of detection.(Citation: Twitter ItsReallyNick Masquerading Update)\\n\\nIn containerized environments, use image IDs and layer hashes to compare images instead of relying only on their names.(Citation: Docker Images) Monitor for the unexpected creation of new resources within your cluster in Kubernetes, especially those created by atypical users.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\", \"Containers\", \"ESXi\"], \"x_mitre_version\": \"2.0\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--b19ae2dc-9cbe-45b8-8b9c-ce0cd9add29a\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-11-23T22:19:46.820Z\", \"modified\": \"2025-04-28T16:05:45.852Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095)'s [Machete](https://attack.mitre.org/software/S0409) MSI installer has masqueraded as a legitimate Adobe Acrobat Reader installer.(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2\", \"external_references\": [{\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--ef67e13e-5598-4adc-bdb2-998225874fa9\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-11T14:43:31.706Z\", \"modified\": \"2025-04-15T19:59:20.108Z\", \"name\": \"Malicious Link\", \"description\": \"An adversary may rely upon a user clicking a malicious link in order to gain execution. Users may be subjected to social engineering to get them to click on a link that will lead to code execution. This user action will typically be observed as follow-on behavior from [Spearphishing Link](https://attack.mitre.org/techniques/T1566/002). Clicking on a link may also lead to other execution techniques such as exploitation of a browser or application vulnerability via [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203). Links may also lead users to download files that require execution via [Malicious File](https://attack.mitre.org/techniques/T1204/002).\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"execution\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1204/001\", \"external_id\": \"T1204.001\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_data_sources\": [\"File: File Creation\", \"Network Traffic: Network Traffic Content\", \"Network Traffic: Network Connection Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Inspect network traffic for indications that a user visited a malicious site, such as links included in phishing campaigns directed at your organization.\\n\\nAnti-virus can potentially detect malicious documents and files that are downloaded from a link and executed on the user's computer.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Linux\", \"macOS\", \"Windows\"], \"x_mitre_version\": \"1.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--ba84c2c2-e5bf-432e-9827-6d622490ba2d\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-17T14:46:40.015Z\", \"modified\": \"2025-04-28T16:07:12.541Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has has relied on users opening malicious links delivered through spearphishing to execute malware.(Citation: Cylance Machete Mar 2017)(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--ef67e13e-5598-4adc-bdb2-998225874fa9\", \"external_references\": [{\"source_name\": \"Cylance Machete Mar 2017\", \"description\": \"The Cylance Threat Research Team. (2017, March 22). El Machete's Malware Attacks Cut Through LATAM. Retrieved September 13, 2019.\", \"url\": \"https://threatvector.cylance.com/en_us/home/el-machete-malware-attacks-cut-through-latam.html\"}, {\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2018-04-18T17:59:24.739Z\", \"modified\": \"2025-04-15T19:59:12.900Z\", \"name\": \"Drive-by Compromise\", \"description\": \"Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., [Drive-by Target](https://attack.mitre.org/techniques/T1608/004)), including:\\n\\n* A legitimate website is compromised, allowing adversaries to inject malicious code\\n* Script files served to a legitimate website from a publicly writeable cloud storage bucket are modified by an adversary\\n* Malicious ads are paid for and served through legitimate ad providers (i.e., [Malvertising](https://attack.mitre.org/techniques/T1583/008))\\n* Built-in web application interfaces that allow user-controllable content are leveraged for the insertion of malicious scripts or iFrames (e.g., cross-site scripting)\\n\\nBrowser push notifications may also be abused by adversaries and leveraged for malicious code injection via [User Execution](https://attack.mitre.org/techniques/T1204). By clicking \\\"allow\\\" on browser push notifications, users may be granting a website permission to run JavaScript code on their browser.(Citation: Push notifications - viruspositive)(Citation: push notification -mcafee)(Citation: push notifications - malwarebytes)\\n\\nOften the website used by an adversary is one visited by a specific community, such as government, a particular industry, or a particular region, where the goal is to compromise a specific user or set of users based on a shared interest. This kind of targeted campaign is often referred to a strategic web compromise or watering hole attack. There are several known examples of this occurring.(Citation: Shadowserver Strategic Web Compromise)\\n\\nTypical drive-by compromise process:\\n\\n1. A user visits a website that is used to host the adversary controlled content.\\n2. Scripts automatically execute, typically searching versions of the browser and plugins for a potentially vulnerable version. The user may be required to assist in this process by enabling scripting, notifications, or active website components and ignoring warning dialog boxes.\\n3. Upon finding a vulnerable version, exploit code is delivered to the browser.\\n4. If exploitation is successful, the adversary will gain code execution on the user's system unless other protections are in place. In some cases, a second visit to the website after the initial scan is required before exploit code is delivered.\\n\\nUnlike [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190), the focus of this technique is to exploit software on a client endpoint upon visiting a website. This will commonly give an adversary access to systems on the internal network instead of external systems that may be in a DMZ.\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"initial-access\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1189\", \"external_id\": \"T1189\"}, {\"source_name\": \"Shadowserver Strategic Web Compromise\", \"description\": \"Adair, S., Moran, N. (2012, May 15). Cyber Espionage & Strategic Web Compromises \\u2013 Trusted Websites Serving Dangerous Results. Retrieved March 13, 2018.\", \"url\": \"http://blog.shadowserver.org/2012/05/15/cyber-espionage-strategic-web-compromises-trusted-websites-serving-dangerous-results/\"}, {\"source_name\": \"push notification -mcafee\", \"description\": \"Craig Schmugar. (2021, May 17). Scammers Impersonating Windows Defender to Push Malicious Windows Apps. Retrieved March 14, 2025.\", \"url\": \"https://www.mcafee.com/blogs/other-blogs/mcafee-labs/scammers-impersonating-windows-defender-to-push-malicious-windows-apps/\"}, {\"source_name\": \"Push notifications - viruspositive\", \"description\": \"Gaurav Sethi. (2021, December 14). The Dark Side of Web Push Notifications. Retrieved March 14, 2025.\", \"url\": \"https://viruspositive.com/resources/blogs/the-dark-side-of-web-push-notifications\"}, {\"source_name\": \"push notifications - malwarebytes\", \"description\": \"Pieter Arntz. (2019, January 22). Browser push notifications: a feature asking to be abused. Retrieved March 14, 2025.\", \"url\": \"https://www.malwarebytes.com/blog/news/2019/01/browser-push-notifications-feature-asking-abused\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Jeff Sakowicz, Microsoft Identity Developer Platform Services (IDPM Services)\", \"Saisha Agrawal, Microsoft Threat Intelligent Center (MSTIC)\", \"Frank Angiolelli\"], \"x_mitre_data_sources\": [\"Application Log: Application Log Content\", \"Network Traffic: Network Traffic Content\", \"Process: Process Creation\", \"File: File Creation\", \"Network Traffic: Network Connection Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Firewalls and proxies can inspect URLs for potentially known-bad domains or parameters. They can also do reputation-based analytics on websites and their requested resources such as how old a domain is, who it's registered to, if it's on a known bad list, or how many other users have connected to it before.\\n\\nNetwork intrusion detection systems, sometimes with SSL/TLS inspection, can be used to look for known malicious scripts (recon, heap spray, and browser identification scripts have been frequently reused), common script obfuscation, and exploit code.\\n\\nDetecting compromise based on the drive-by exploit from a legitimate website may be difficult. Also look for behavior on the endpoint system that might indicate successful compromise, such as abnormal behavior of browser processes. This could include suspicious files written to disk, evidence of [Process Injection](https://attack.mitre.org/techniques/T1055) for attempts to hide execution, evidence of Discovery, or other unusual network traffic that may indicate additional tools transferred to the system.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\", \"Linux\", \"macOS\", \"Identity Provider\"], \"x_mitre_version\": \"1.7\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--bb2be1f4-f2fc-4029-8ee6-e89f52210dfd\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2021-03-04T19:51:08.302Z\", \"modified\": \"2025-04-28T16:07:20.714Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has distributed [Machete](https://attack.mitre.org/software/S0409) through a fake blog website.(Citation: Securelist Machete Aug 2014)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6\", \"external_references\": [{\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--2e34237d-8574-43f6-aace-ae2915de8597\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-03-02T19:05:18.137Z\", \"modified\": \"2025-04-15T23:10:26.686Z\", \"name\": \"Spearphishing Attachment\", \"description\": \"Adversaries may send spearphishing emails with a malicious attachment in an attempt to gain access to victim systems. Spearphishing attachment is a specific variant of spearphishing. Spearphishing attachment is different from other forms of spearphishing in that it employs the use of malware attached to an email. All forms of spearphishing are electronically delivered social engineering targeted at a specific individual, company, or industry. In this scenario, adversaries attach a file to the spearphishing email and usually rely upon [User Execution](https://attack.mitre.org/techniques/T1204) to gain execution.(Citation: Unit 42 DarkHydrus July 2018) Spearphishing may also involve social engineering techniques, such as posing as a trusted source.\\n\\nThere are many options for the attachment such as Microsoft Office documents, executables, PDFs, or archived files. Upon opening the attachment (and potentially clicking past protections), the adversary's payload exploits a vulnerability or directly executes on the user's system. The text of the spearphishing email usually tries to give a plausible reason why the file should be opened, and may explain how to bypass system protections in order to do so. The email may also contain instructions on how to decrypt an attachment, such as a zip file password, in order to evade email boundary defenses. Adversaries frequently manipulate file extensions and icons in order to make attached executables appear to be document files, or files exploiting one application appear to be a file for a different one. \", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"initial-access\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1566/001\", \"external_id\": \"T1566.001\"}, {\"source_name\": \"ACSC Email Spoofing\", \"description\": \"Australian Cyber Security Centre. (2012, December). Mitigating Spoofed Emails Using Sender Policy Framework. Retrieved November 17, 2024.\", \"url\": \"https://web.archive.org/web/20210708014107/https://www.cyber.gov.au/sites/default/files/2019-03/spoof_email_sender_policy_framework.pdf\"}, {\"source_name\": \"Unit 42 DarkHydrus July 2018\", \"description\": \"Falcone, R., et al. (2018, July 27). New Threat Actor Group DarkHydrus Targets Middle East Government. Retrieved August 2, 2018.\", \"url\": \"https://researchcenter.paloaltonetworks.com/2018/07/unit42-new-threat-actor-group-darkhydrus-targets-middle-east-government/\"}, {\"source_name\": \"Microsoft Anti Spoofing\", \"description\": \"Microsoft. (2020, October 13). Anti-spoofing protection in EOP. Retrieved October 19, 2020.\", \"url\": \"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-spoofing-protection?view=o365-worldwide\"}, {\"source_name\": \"Elastic - Koadiac Detection with EQL\", \"description\": \"Stepanic, D.. (2020, January 13). Embracing offensive tooling: Building detections against Koadic using EQL. Retrieved November 17, 2024.\", \"url\": \"https://www.elastic.co/security-labs/embracing-offensive-tooling-building-detections-against-koadic-using-eql\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Philip Winther\"], \"x_mitre_data_sources\": [\"Network Traffic: Network Traffic Content\", \"Network Traffic: Network Traffic Flow\", \"Application Log: Application Log Content\", \"File: File Creation\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Network intrusion detection systems and email gateways can be used to detect spearphishing with malicious attachments in transit. Detonation chambers may also be used to identify malicious attachments. Solutions can be signature and behavior based, but adversaries may construct attachments in a way to avoid these systems.\\n\\nFiltering based on DKIM+SPF or header analysis can help detect when the email sender is spoofed.(Citation: Microsoft Anti Spoofing)(Citation: ACSC Email Spoofing)\\n\\nAnti-virus can potentially detect malicious documents and attachments as they're scanned to be stored on the email server or on the user's computer. Endpoint sensing or network sensing can potentially detect malicious events once the attachment is opened (such as a Microsoft Word document or PDF reaching out to the internet or spawning Powershell.exe) for techniques such as [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203) or usage of malicious scripts.\\n\\nMonitor for suspicious descendant process spawning from Microsoft Office and other productivity software.(Citation: Elastic - Koadiac Detection with EQL)\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"macOS\", \"Windows\", \"Linux\"], \"x_mitre_version\": \"2.2\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--bd3926e9-9c91-43f2-913d-16a7e94cc0ae\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-09-13T12:51:46.241Z\", \"modified\": \"2025-04-28T16:07:42.268Z\", \"relationship_type\": \"uses\", \"description\": \" [Machete](https://attack.mitre.org/groups/G0095) has delivered spearphishing emails that contain a zipped file with malicious contents.(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--2e34237d-8574-43f6-aace-ae2915de8597\", \"external_references\": [{\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}, {\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    },
+    {
+      "object": "{\"type\": \"attack-pattern\", \"id\": \"attack-pattern--365be77f-fc0e-42ee-bac8-4faf806d9336\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-01-24T14:38:49.266Z\", \"modified\": \"2025-04-16T20:37:16.547Z\", \"name\": \"Msiexec\", \"description\": \"Adversaries may abuse msiexec.exe to proxy execution of malicious payloads. Msiexec.exe is the command-line utility for the Windows Installer and is thus commonly associated with executing installation packages (.msi).(Citation: Microsoft msiexec) The Msiexec.exe binary may also be digitally signed by Microsoft.\\n\\nAdversaries may abuse msiexec.exe to launch local or network accessible MSI files. Msiexec.exe can also execute DLLs.(Citation: LOLBAS Msiexec)(Citation: TrendMicro Msiexec Feb 2018) Since it may be signed and native on Windows systems, msiexec.exe can be used to bypass application control solutions that do not account for its potential abuse. Msiexec.exe execution may also be elevated to SYSTEM privileges if the <code>AlwaysInstallElevated</code> policy is enabled.(Citation: Microsoft AlwaysInstallElevated 2018)\", \"kill_chain_phases\": [{\"kill_chain_name\": \"mitre-attack\", \"phase_name\": \"defense-evasion\"}], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/techniques/T1218/007\", \"external_id\": \"T1218.007\"}, {\"source_name\": \"TrendMicro Msiexec Feb 2018\", \"description\": \"Co, M. and Sison, G. (2018, February 8). Attack Using Windows Installer msiexec.exe leads to LokiBot. Retrieved April 18, 2019.\", \"url\": \"https://blog.trendmicro.com/trendlabs-security-intelligence/attack-using-windows-installer-msiexec-exe-leads-lokibot/\"}, {\"source_name\": \"LOLBAS Msiexec\", \"description\": \"LOLBAS. (n.d.). Msiexec.exe. Retrieved April 18, 2019.\", \"url\": \"https://lolbas-project.github.io/lolbas/Binaries/Msiexec/\"}, {\"source_name\": \"Microsoft msiexec\", \"description\": \"Microsoft. (2017, October 15). msiexec. Retrieved January 24, 2020.\", \"url\": \"https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msiexec\"}, {\"source_name\": \"Microsoft AlwaysInstallElevated 2018\", \"description\": \"Microsoft. (2018, May 31). AlwaysInstallElevated. Retrieved December 14, 2020.\", \"url\": \"https://docs.microsoft.com/en-us/windows/win32/msi/alwaysinstallelevated\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Ziv Kaspersky, Cymptom\", \"Alexandros Pappas\"], \"x_mitre_data_sources\": [\"Module: Module Load\", \"Network Traffic: Network Connection Creation\", \"Process: Process Creation\", \"Command: Command Execution\"], \"x_mitre_deprecated\": false, \"x_mitre_detection\": \"Use process monitoring to monitor the execution and arguments of msiexec.exe. Compare recent invocations of msiexec.exe with prior history of known good arguments and executed MSI files or DLLs to determine anomalous and potentially adversarial activity. Command arguments used before and after the invocation of msiexec.exe may also be useful in determining the origin and purpose of the MSI files or DLLs being executed.\", \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_is_subtechnique\": true, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"2.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--d3e2ba96-28bb-48be-b46b-3c2349f4d0cd\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2020-11-23T22:19:46.847Z\", \"modified\": \"2025-04-28T16:11:52.240Z\", \"relationship_type\": \"uses\", \"description\": \"[Machete](https://attack.mitre.org/groups/G0095) has used msiexec to install the [Machete](https://attack.mitre.org/software/S0409) malware.(Citation: 360 Machete Sep 2020)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"attack-pattern--365be77f-fc0e-42ee-bac8-4faf806d9336\", \"external_references\": [{\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    }
+  ],
+  "software": [
+    {
+      "object": "{\"type\": \"malware\", \"id\": \"malware--35cd1d01-1ede-44d2-b073-a264d727bc04\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-09-13T13:17:25.718Z\", \"modified\": \"2025-04-16T20:38:02.252Z\", \"name\": \"Machete\", \"description\": \"[Machete](https://attack.mitre.org/software/S0409) is a cyber espionage toolset used by [Machete](https://attack.mitre.org/groups/G0095). It is a Python-based backdoor targeting Windows machines that was first observed in 2010.(Citation: ESET Machete July 2019)(Citation: Securelist Machete Aug 2014)(Citation: 360 Machete Sep 2020)\", \"labels\": [\"malware\"], \"external_references\": [{\"source_name\": \"mitre-attack\", \"url\": \"https://attack.mitre.org/software/S0409\", \"external_id\": \"S0409\"}, {\"source_name\": \"Pyark\", \"description\": \"(Citation: 360 Machete Sep 2020)\"}, {\"source_name\": \"Machete\", \"description\": \"(Citation: Securelist Machete Aug 2014)\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}, {\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}, {\"source_name\": \"360 Machete Sep 2020\", \"description\": \"kate. (2020, September 25). APT-C-43 steals Venezuelan military secrets to provide intelligence support for the reactionaries \\u2014 HpReact campaign. Retrieved November 20, 2020.\", \"url\": \"https://blog.360totalsecurity.com/en/apt-c-43-steals-venezuelan-military-secrets-to-provide-intelligence-support-for-the-reactionaries-hpreact-campaign/\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_aliases\": [\"Machete\", \"Pyark\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_contributors\": [\"Matias Nicolas Porolli, ESET\"], \"x_mitre_deprecated\": false, \"x_mitre_domains\": [\"enterprise-attack\"], \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"x_mitre_platforms\": [\"Windows\"], \"x_mitre_version\": \"2.1\"}",
+      "relationship": "{\"type\": \"relationship\", \"id\": \"relationship--f33b1a88-1c1c-4ea4-a1b3-f1198012e728\", \"created_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\", \"created\": \"2019-09-13T16:48:01.331Z\", \"modified\": \"2025-04-28T16:17:10.229Z\", \"relationship_type\": \"uses\", \"description\": \"(Citation: Securelist Machete Aug 2014)(Citation: ESET Machete July 2019)\", \"source_ref\": \"intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0\", \"target_ref\": \"malware--35cd1d01-1ede-44d2-b073-a264d727bc04\", \"external_references\": [{\"source_name\": \"Securelist Machete Aug 2014\", \"description\": \"Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.\", \"url\": \"https://securelist.com/el-machete/66108/\"}, {\"source_name\": \"ESET Machete July 2019\", \"description\": \"ESET. (2019, July). MACHETE JUST GOT SHARPER Venezuelan government institutions under attack. Retrieved September 13, 2019.\", \"url\": \"https://www.welivesecurity.com/wp-content/uploads/2019/08/ESET_Machete.pdf\"}], \"object_marking_refs\": [\"marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168\"], \"x_mitre_attack_spec_version\": \"3.2.0\", \"x_mitre_deprecated\": false, \"x_mitre_modified_by_ref\": \"identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5\"}"
+    }
+  ],
+  "actor_techniques_software_map": {
+    "attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e": [],
+    "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7": [],
+    "attack-pattern--d1fcf083-a721-4223-aedf-bf8960798d62": [],
+    "attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67": [],
+    "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1": [
+      "malware--35cd1d01-1ede-44d2-b073-a264d727bc04"
+    ],
+    "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9": [
+      "malware--35cd1d01-1ede-44d2-b073-a264d727bc04"
+    ],
+    "attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2": [
+      "malware--35cd1d01-1ede-44d2-b073-a264d727bc04"
+    ],
+    "attack-pattern--ef67e13e-5598-4adc-bdb2-998225874fa9": [],
+    "attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6": [],
+    "attack-pattern--2e34237d-8574-43f6-aace-ae2915de8597": [],
+    "attack-pattern--365be77f-fc0e-42ee-bac8-4faf806d9336": []
+  },
+  "actor_techniques_to_tactics_map": {
+    "TA0001": [
+      "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7",
+      "attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6",
+      "attack-pattern--2e34237d-8574-43f6-aace-ae2915de8597"
+    ],
+    "TA0002": [
+      "attack-pattern--232b7f21-adf9-4b42-b936-b9d6f7df856e",
+      "attack-pattern--d1fcf083-a721-4223-aedf-bf8960798d62",
+      "attack-pattern--dfd7cc1d-e1d8-4394-a198-97c4cab8aa67",
+      "attack-pattern--cc3502b5-30cc-4473-ad48-42d51a6ef6d1",
+      "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+      "attack-pattern--ef67e13e-5598-4adc-bdb2-998225874fa9"
+    ],
+    "TA0003": [
+      "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9"
+    ],
+    "TA0004": [
+      "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9"
+    ],
+    "TA0005": [
+      "attack-pattern--1c4e5d32-1fe9-4116-9d9d-59e3925bd6a2",
+      "attack-pattern--365be77f-fc0e-42ee-bac8-4faf806d9336"
+    ]
+  },
+  "indicators": {
+    "intrusion-set--38863958-a201-4ce1-9dbe-539b0b6804e0": [
+      {
+        "type": "bundle",
+        "id": "bundle--8c9267cd-7d1f-4e33-9e1d-b3452f5930e7",
+        "spec_version": "2.1",
+        "objects": [
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--201a268f-36c1-4d6e-a9e2-8bd7f1d0e001",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "El Machete \u2013 command-and-control domains",
+            "description": "Dynamic-DNS and other domains observed in continued El Machete operations.",
+            "pattern": "[domain-name:value IN ('derte.ddns.net', 'idrt.gotdns.ch', 'jristr.hopto.org', 'wbgs.3utilities.com', 'java.serveblog.net')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5e7c4b10-2c30-4d79-80aa-6a8ee7d1f6c8",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "El Machete \u2013 C2 IPv4 addresses",
+            "description": "IP addresses tied to the El Machete infrastructure.",
+            "pattern": "[ipv4-addr:value IN ('176.9.3.184', '213.239.232.149', '69.64.43.33', '181.50.98.50')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f0c72ae5-7d2d-4e23-9e04-77440fc7ab4f",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "El Machete \u2013 phishing / payload delivery URLs",
+            "description": "URLs used in spear-phishing emails to deliver El Machete payloads.",
+            "pattern": "[url:value IN ('http://actualizacion.esy.es/Mision_Secreta_de_la_DINA_en_Washigton.rar', 'http://almuerzowordaula3.16mb.com/ORDENES_GENERALES.rar', 'http://carolinaz25.esy.es/DECRETO_No_18_Duelo_Virgilio_Godoy_.rar', 'http://carolinaz25.esy.es/RDGMA_07_4432.rar', 'http://cristianoo.esy.es/Padrino_Lopez_Hay_un_golpe_de_Estado_en_desarrollo.zip', 'http://cristianoo.esy.es/ROSARIO_EN_MULTINOTICIAS_13_ABRIL_2016.zip', 'http://flipjbl.esy.es/Suport/Articulo%20sobre%20funcionarias%20de%20Nicaragua%20docx.rar', 'http://flipjbl.esy.es/Suport/Debes%20utilizar%20una%20computadora%20para%20extraer%20el%20contenido.rar', 'http://informesanddocumentos.esy.es/semanario_en_marcha_1758_1.zip')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2710d2b3-a441-4465-bb11-6f8592b59818",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "El Machete \u2013 malicious file hashes (SHA-256)",
+            "description": "Aggregated SHA-256 hashes of archives, decoys and primary droppers linked to El Machete campaigns.",
+            "pattern": "[file:hashes.'SHA-256' IN ('048d43882bd7e55a245f11931f577e7ec706f2d64ba37c3372bc73f6971dc233', '6d73387c8c132c8bfbc7a644524b4995cdb3b4c8700a8f12921bcb0f9b573ede', '601587809f2da4b6bdfa8fdab087209bfe9555e68f34d9c0ba18a2a76eecfdb3', '2265ad57ec790a239eea12af5398819cab744fe167142346055b36a32482e06e', '27443b0e1864cee5ad787ec6dcdd4521186163b090278ddb4f75c35d0f52864e', 'a8f0a470d5365c58e8cdfe8b62d5b11e4fc0197731695868c583fc89b19ef130', '6ba72f5c88f3253c196fc4e5c0b41c2b5dfba9456ce7e8393c4a36fdfc1c6add', '3e08e7f85c1185a1583955f9efa247addef11991beb36eb8b3f89c555707575e', 'f7107b9fdba48cefeff824f45b7268dd083accc847836f16dae740ce3d3d6543', '55ac70ec30269428626ba3c9433b4c9421712ec1a960b4590247447f45f26ac4', '06ae08f9628f40a75a01c266caaa440ec664c3138f9fd39b273e6d8c9ec50f17', '0970e43cf5458b0cf77e2232f724a651e9f37513f5cb3c58b51d357c21e18e4c', '0ebdf2390584d1c66dc908bd8b95c96673428c1c22fb495075b4c79e2f54f796', '1661fb2e2b4f701203bf22b3cf339cc12f5779999ee1ced6818e5087714b074c', '17236e97e665a0766be612e57a90332e86e44d18f31ccd2beb7487cfdfd2bb8f', '1a5dcc6e43aac2f1fdf0928d817ef5358ba5420fc578f5ec3fa4fbd304d02f36', '1d1dc7fe128330558f071aebdd9a6ee76ac24fd0009661f90ae8dc9ce8ec10d1', '495aa2ac2c666e82c7244a74ac025006c3476f348105253adef7a225f98aeba1', '4c14f7e1323a26d00cc9bf516ae1137a97e84691e4c2f525b16828e217ff037c', '58207b19c327b3590c92279006458356249f929c71cdb18791b498dd08f36cc8', '6b8a536740e8e5af9b472f90925856eb44e272f88a90ecaad1714576dae83f88', '6bc30bd07cfbf20051057483b9883925bd4eda545376a793286e2d5315389181', '6c60ff5e52c5b77012de3e43a1ba88b6c952e51b98d9651ddd6791c4af4a6607', '7567935a0e3882278455f4b6e434021d6bdee51be56d455ce1a13e13fe28cdcd', '82ee78877adeb3db055d924cc08148db03f7b6d4734b7deb2f59ab37269ffeb4', '8434227d1db2679a36d767e7b0ffa5934496d947f4dcd765961d539108534df8', '89e2bf8e057e5e5c1d99e5c533cc0352f4f86dd9bea03aae01b8c02454eed7a7', '9641553bfdffbeb4e786f36ed9fc6545d6b8c624eddb576cc234ab43d4afff2a', 'acb60ec5dc7778fd4ab1f21bd9a406c04455f8d28b1e01e97bd0ac036d1e72e2', 'bba13073badce1669d858955613c4e10adf6d4577a517a618009bde93639d47a', 'c5278dabf24ecf9207ad8ee4ac3a4dd087ed3d671983c84c0babfc94a52da182', 'eab46451c053b6a606655a69c381a56a9afca4bf1bd2882c7c030ae69f892da7', 'ec2ac42b822de3ef7ec5c980075fd32ef134bf2fd31bfd368c563faee5702b60', 'f258d903d23e34b6109294e4ca3d18078652dea23eea13f77f496303d6798995', 'fa97b9f4d1f5f401f8bdb4c989d10e1c4d7f76e65a31a3b9ac34c10c17653a64', 'ffba9c46c2b991dabfa3b1e3d91dc4b4126086ba288b594836936145e9a8454b', 'd21d981bc5efba11e8abf17cd369045d3eefa5268d7457bce5136e399bedb241', '0972e075b70ea6f43b4a6f2c5e7f9329c3f4b382d7327b556131587142a3751f', '14e3053393d9b3845cec621cd79b0c5d7cd7cf656be0f5a78bb16fd0439c9917', '1c0f253b91b651e8cb61ea5dc6f0bf077bec3ab9612e78f9a30c3026e39bf8a8', '28131cea5009f680064a7962279ebdff7728463a6d0a30ef2077999abe27bee7', '282651843b51a1c81fb4c2d94f319439c66101d2a0d10552940ede5c382dc995', '2f878a3043d8f506fa53265afcea40b622e82806d1438cf4a07f92fb01d9962f', '3b326f99ce3f4d8fa86135a567ba236fcc0eb308cd5bbfc74404a5fe3737682a', '52cec92c27d99c397e6104e89923aa126b94d3b1cf3afa1c49b353494219162e', '5fed1bda348468eddbdd3cdefd03b6add327ff4d9cf5d2300201e08724b24c9a', '613351824cabdb3932ab0709138de1fcff63f3f8926d51b23291ebf345df4471', '6917db24c61e6de8be08d02febe764fe7e63218b37e4a22e9d7e8691eee38dcb', '732ceaf2ce6f233bb4a305edc8d2bb59587a92bd6f03ea748bef6dd13bf38499', '76af6661f95bf45537c961d4446d924a70b9b053ddbf02c8bfda2918d5ac90f5', '93348d6dffd45a4c01b10fc90501c666f7a5360547e2a025d5980f235e815cc9', '9d124733378333e556d29684eb05060e8c88eb476a5803d0879c41f4344f6bd9', 'b8341d72c3b2ecd90a18d428a7ea81a267eb105a36692042fe8904b0b0ea6b07', 'bc3cedfa6a2c05717116b29c2b387a985a504a97ce0e0a43212b3bc89ac9cf95', 'c634f10a475df833c55610e38e947dda278b474b6650bb8570ab3801be43739f', 'd2b81d32ceb61640c72d2af241527e942218e2067c7a0ae4ff5b6eabe659255e', 'f98ef639797013d6eddfcc00f7d208510ac02ca49bed1eb9250156081d5ed0ab')]",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "type": "bundle",
+        "id": "bundle--0e1f947a-4ef1-4a6d-9c9b-a11c29f7f6b4",
+        "spec_version": "2.1",
+        "objects": [
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1c5b2d81-4a68-4b15-90d4-05d6925830a1",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain java.serveblog.net",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'java.serveblog.net']",
+            "description": "C2 domain observed in the El Machete campaign "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4113e787-3ef7-4b9a-a2de-7e0f6e1e4863",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain agaliarept.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'agaliarept.com']",
+            "description": "C2 domain observed in the El Machete campaign "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--26a0e1de-2e35-4ff2-a3d8-f5f8c8c9cd53",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain frejabe.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'frejabe.com']",
+            "description": "C2 domain observed in the El Machete campaign "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--69e1b8a4-9e27-4db6-90f2-2ec2f22ac4a0",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain grannegral.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'grannegral.com']",
+            "description": "C2 domain observed in the El Machete campaign (also reported sink-holed) "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a3c3626c-1fd1-4e55-a842-30c8b3fbc23b",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain plushbr.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'plushbr.com']",
+            "description": "C2 domain observed in the El Machete campaign "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3e5e0e6e-8d42-445c-94f0-d08ef0e9a2a1",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete C2 domain xmailliwx.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'xmailliwx.com']",
+            "description": "C2 domain observed in the El Machete campaign "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b6853613-7cb1-4972-9b4c-1f5f8e07c7d4",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete sink-holed domain blogwhereyou.com",
+            "pattern_type": "stix",
+            "pattern": "[domain-name:value = 'blogwhereyou.com']",
+            "description": "Domain sink-holed by Kaspersky to block El Machete traffic "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f1a019ad-efaa-4d4f-9c1f-9a956f4841b4",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete infection URL",
+            "pattern_type": "stix",
+            "pattern": "[url:value = 'http://name.domain.org/nickname/set/Signed_Update.jar']",
+            "description": "Malicious JAR downloaded by victims "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--843bddb3-5020-402a-a948-7a1482eeb8b4",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash 61d33dc5b257a18eb6514e473c1495fe (AwgXuBV31pGV.eXe)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = '61d33dc5b257a18eb6514e473c1495fe']",
+            "description": "Installer carrying the malware "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c418af6c-24ff-4c31-9d9e-676f2a2e6f6b",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash b5ada760476ba9a815ca56f12a11d557 (EL ARTE DE LA GUERRA.exe)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'b5ada760476ba9a815ca56f12a11d557']",
+            "description": "Malicious executable attached in spear-phishing "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9eb7c76c-2bed-4997-8034-858e77561e55",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash d6c112d951cb48cab37e5d7ebed2420b (Hermosa XXX.rar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'd6c112d951cb48cab37e5d7ebed2420b']",
+            "description": "Malicious RAR archive "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--40af5c6e-6b7e-4d05-8b47-74c450c6cae3",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash df2889df7ac209e7b696733aa6b52af5 (Hermosa XXX.pps.rar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'df2889df7ac209e7b696733aa6b52af5']",
+            "description": "Malicious PPS-RAR archive "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c9bee5e6-3edd-40c2-9fa0-12d36e4cb319",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash e486eddffd13bed33e68d6d8d4052270 (Hermosa XXX.pps.rar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'e486eddffd13bed33e68d6d8d4052270']",
+            "description": "Alternate hash of Hermosa XXX.pps.rar "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2d3cb307-173a-4cb6-9b15-9feafa5eada8",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash e9b2499b92279669a09fef798af7f45b (Suntzu.rar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'e9b2499b92279669a09fef798af7f45b']",
+            "description": "Malicious RAR archive "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0fa8847b-8b8f-4dd8-8cd9-6a28f3d4d7aa",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash f7e23b876fc887052ac8e2558f0d6c38 (Hot Brazilian XXX.rar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'f7e23b876fc887052ac8e2558f0d6c38']",
+            "description": "Malicious RAR archive "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fb3dff27-971b-41bd-910c-a5467713c5b2",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "El Machete file hash b26d1aec219ce45b2e80769368310471 (Signed_Update.jar)",
+            "pattern_type": "stix",
+            "pattern": "[file:hashes.'MD5' = 'b26d1aec219ce45b2e80769368310471']",
+            "description": "Malicious JAR downloader "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--349a9078-7823-44ca-b298-5191c6c4b124",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "Presence of Java Update.lnk (El Machete persistence)",
+            "pattern_type": "stix",
+            "pattern": "[file:name = 'Java Update.lnk']",
+            "description": "Shortcut associated with the malware in %APPDATA%/Jre6/java.exe "
+          },
+          {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b0f23d26-67a1-47e6-ad9d-b0bc29d4f89d",
+            "created": "2025-07-27T12:00:00.000Z",
+            "modified": "2025-07-27T12:00:00.000Z",
+            "name": "Installation directory %APPDATA%/MicroDes (El Machete)",
+            "pattern_type": "stix",
+            "pattern": "[directory:path MATCHES '.+AppData.+MicroDes']",
+            "description": "Folder where the malware is installed "
+          }
+        ]
+      },
+      {
+  "type": "bundle",
+  "id": "bundle--2d07160f-082e-4db6-9335-43c8a208f1f1",
+  "spec_version": "2.1",
+  "objects": [
+
+    {
+      "type": "identity",
+      "id": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Generated-IOC-Bundle",
+      "identity_class": "system"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--37c1177b-3d9a-4a1d-8baf-5ef6e28d89b7",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 fbe5b66db57fb52b231c5374ac2ac805",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = 'fbe5b66db57fb52b231c5374ac2ac805']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--a5090e3e-3542-4274-9b35-b2f8a417aa5d",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 6b33fa0c52ca413d4214dcde007f89c1",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = '6b33fa0c52ca413d4214dcde007f89c1']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--f0f7619d-0958-4d86-ba8c-5c3e04ea1b77",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 f85489c1d1ff3374f92ccb7267032016",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = 'f85489c1d1ff3374f92ccb7267032016']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--2f5f23bd-bdd1-4a82-a6ce-5f4377e655c7",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Command-and-control IP 92.249.44.53",
+      "description": "IP address used by the attackers (Appendix 3)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '92.249.44.53']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--36a68122-2860-4fc0-b6e7-0fd2548739e6",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Command-and-control IP 185.70.105.33",
+      "description": "IP address used by the attackers (Appendix 3)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '185.70.105.33']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--8ee3275c-7d6a-49fc-8593-59797078bff0",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Drop-stage script NisSrv.bat",
+      "description": "Batch file downloaded by the malicious macro",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'NisSrv.bat']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--ac69253a-49ab-46e6-a9fe-7d8ae3f5e28b",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Installer setupXOX.msi",
+      "description": "Windows Installer that deploys the Pyark backdoor",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'setupXOX.msi']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--da8f62af-f92e-46f4-98e5-07672f2694b3",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Backdoor loader svchostt.exe",
+      "description": "Executable launched after installation to run the Pyark modules",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'svchostt.exe']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    }
+
+  ]
+}
+,
+      {
+  "type": "bundle",
+  "id": "bundle--0c43c0fa-5258-4d19-9bd1-dc31dc32b923",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--5b6d862e-4b24-44aa-8ddb-c86aa2e19430",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain java.serveblog.net",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'java.serveblog.net']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--21e06122-c0c2-4d4d-87d1-2a1baf7e625d",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain agaliarept.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'agaliarept.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--156f86bb-45b8-4d2a-bf0a-61fb3872a1e9",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain frejabe.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'frejabe.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8ceb52e9-e7f2-4c79-b191-1618bd42f2f7",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain grannegral.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'grannegral.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b2f1ce3a-6dd4-42cb-91fe-ec028c5505a2",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain plushbr.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'plushbr.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--1260725c-9c8f-4d77-8b0f-5d84335a6a44",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain xmailliwx.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'xmailliwx.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9a1f1fa7-c7b7-4a25-9941-d1f5805e8053",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Sinkholed domain blogwhereyou.com",
+      "description": "Domain observed in the Machete campaign, later sinkholed.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'blogwhereyou.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--be0b5ff4-5ff5-4e05-b81d-7dc1f304de7b",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious URL Signed_Update.jar",
+      "description": "URL delivering the Signed_Update.jar malware.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[url:value = 'http://name.domain.org/nickname/set/Signed_Update.jar']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e9314e74-ba32-4a11-9551-fcf4dd006510",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "AwgXuBV31pGV.eXe",
+      "description": "MD5 61d33dc5b257a18eb6514e473c1495fe",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'AwgXuBV31pGV.eXe' AND file:hashes.MD5 = '61d33dc5b257a18eb6514e473c1495fe']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9e4a9ab1-f1e3-4846-8a3d-39bbd1cdb2f0",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "EL ARTE DE LA GUERRA.exe",
+      "description": "MD5 b5ada760476ba9a815ca56f12a11d557",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'EL ARTE DE LA GUERRA.exe' AND file:hashes.MD5 = 'b5ada760476ba9a815ca56f12a11d557']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0815c8d5-1f21-4be0-9dd1-6e0a732a89dc",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.rar (d6c112…)",
+      "description": "MD5 d6c112d951cb48cab37e5d7ebed2420b",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.rar' AND file:hashes.MD5 = 'd6c112d951cb48cab37e5d7ebed2420b']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c0b554ce-d39c-43ec-818b-2d57e7379b55",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.pps.rar (df2889…)",
+      "description": "MD5 df2889df7ac209e7b696733aa6b52af5",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.pps.rar' AND file:hashes.MD5 = 'df2889df7ac209e7b696733aa6b52af5']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7e39b4e7-afec-4b9c-9e68-2f90858d839d",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.pps.rar (e486ed…)",
+      "description": "MD5 e486eddffd13bed33e68d6d8d4052270",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.pps.rar' AND file:hashes.MD5 = 'e486eddffd13bed33e68d6d8d4052270']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--332e7e7e-61d4-407c-bc17-2d94a6115f18",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Suntzu.rar",
+      "description": "MD5 e9b2499b92279669a09fef798af7f45b",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Suntzu.rar' AND file:hashes.MD5 = 'e9b2499b92279669a09fef798af7f45b']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d15dfbd3-2f19-4b09-88ae-5c0fdba58b7c",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hot Brazilian XXX.rar",
+      "description": "MD5 f7e23b876fc887052ac8e2558f0d6c38",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hot Brazilian XXX.rar' AND file:hashes.MD5 = 'f7e23b876fc887052ac8e2558f0d6c38']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--33b960ad-5876-4ff2-8dbd-6b83552c52dd",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Signed_Update.jar",
+      "description": "MD5 b26d1aec219ce45b2e80769368310471",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Signed_Update.jar' AND file:hashes.MD5 = 'b26d1aec219ce45b2e80769368310471']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    }
+  ]
+}
+    ],
+    "malware--35cd1d01-1ede-44d2-b073-a264d727bc04": [{
+  "type": "bundle",
+  "id": "bundle--0c43c0fa-5258-4d19-9bd1-dc31dc32b923",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--5b6d862e-4b24-44aa-8ddb-c86aa2e19430",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain java.serveblog.net",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'java.serveblog.net']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--21e06122-c0c2-4d4d-87d1-2a1baf7e625d",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain agaliarept.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'agaliarept.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--156f86bb-45b8-4d2a-bf0a-61fb3872a1e9",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain frejabe.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'frejabe.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8ceb52e9-e7f2-4c79-b191-1618bd42f2f7",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain grannegral.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'grannegral.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--b2f1ce3a-6dd4-42cb-91fe-ec028c5505a2",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain plushbr.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'plushbr.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--1260725c-9c8f-4d77-8b0f-5d84335a6a44",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Machete C2 domain xmailliwx.com",
+      "description": "Domain used by the Machete APT campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'xmailliwx.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9a1f1fa7-c7b7-4a25-9941-d1f5805e8053",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Sinkholed domain blogwhereyou.com",
+      "description": "Domain observed in the Machete campaign, later sinkholed.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'blogwhereyou.com']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--be0b5ff4-5ff5-4e05-b81d-7dc1f304de7b",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious URL Signed_Update.jar",
+      "description": "URL delivering the Signed_Update.jar malware.",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[url:value = 'http://name.domain.org/nickname/set/Signed_Update.jar']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--e9314e74-ba32-4a11-9551-fcf4dd006510",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "AwgXuBV31pGV.eXe",
+      "description": "MD5 61d33dc5b257a18eb6514e473c1495fe",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'AwgXuBV31pGV.eXe' AND file:hashes.MD5 = '61d33dc5b257a18eb6514e473c1495fe']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9e4a9ab1-f1e3-4846-8a3d-39bbd1cdb2f0",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "EL ARTE DE LA GUERRA.exe",
+      "description": "MD5 b5ada760476ba9a815ca56f12a11d557",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'EL ARTE DE LA GUERRA.exe' AND file:hashes.MD5 = 'b5ada760476ba9a815ca56f12a11d557']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0815c8d5-1f21-4be0-9dd1-6e0a732a89dc",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.rar (d6c112…)",
+      "description": "MD5 d6c112d951cb48cab37e5d7ebed2420b",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.rar' AND file:hashes.MD5 = 'd6c112d951cb48cab37e5d7ebed2420b']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c0b554ce-d39c-43ec-818b-2d57e7379b55",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.pps.rar (df2889…)",
+      "description": "MD5 df2889df7ac209e7b696733aa6b52af5",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.pps.rar' AND file:hashes.MD5 = 'df2889df7ac209e7b696733aa6b52af5']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7e39b4e7-afec-4b9c-9e68-2f90858d839d",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hermosa XXX.pps.rar (e486ed…)",
+      "description": "MD5 e486eddffd13bed33e68d6d8d4052270",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hermosa XXX.pps.rar' AND file:hashes.MD5 = 'e486eddffd13bed33e68d6d8d4052270']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--332e7e7e-61d4-407c-bc17-2d94a6115f18",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Suntzu.rar",
+      "description": "MD5 e9b2499b92279669a09fef798af7f45b",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Suntzu.rar' AND file:hashes.MD5 = 'e9b2499b92279669a09fef798af7f45b']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d15dfbd3-2f19-4b09-88ae-5c0fdba58b7c",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Hot Brazilian XXX.rar",
+      "description": "MD5 f7e23b876fc887052ac8e2558f0d6c38",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Hot Brazilian XXX.rar' AND file:hashes.MD5 = 'f7e23b876fc887052ac8e2558f0d6c38']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--33b960ad-5876-4ff2-8dbd-6b83552c52dd",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Signed_Update.jar",
+      "description": "MD5 b26d1aec219ce45b2e80769368310471",
+      "indicator_types": ["malware"],
+      "pattern_type": "stix",
+      "pattern": "[file:name = 'Signed_Update.jar' AND file:hashes.MD5 = 'b26d1aec219ce45b2e80769368310471']",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["apt", "machete"]
+    }
+  ]
+},{
+  "type": "bundle",
+  "id": "bundle--2d07160f-082e-4db6-9335-43c8a208f1f1",
+  "spec_version": "2.1",
+  "objects": [
+
+    {
+      "type": "identity",
+      "id": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Generated-IOC-Bundle",
+      "identity_class": "system"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--37c1177b-3d9a-4a1d-8baf-5ef6e28d89b7",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 fbe5b66db57fb52b231c5374ac2ac805",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = 'fbe5b66db57fb52b231c5374ac2ac805']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--a5090e3e-3542-4274-9b35-b2f8a417aa5d",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 6b33fa0c52ca413d4214dcde007f89c1",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = '6b33fa0c52ca413d4214dcde007f89c1']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--f0f7619d-0958-4d86-ba8c-5c3e04ea1b77",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Malicious file - MD5 f85489c1d1ff3374f92ccb7267032016",
+      "description": "MD5 hash listed in Appendix 3 of the report",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'MD5' = 'f85489c1d1ff3374f92ccb7267032016']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--2f5f23bd-bdd1-4a82-a6ce-5f4377e655c7",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Command-and-control IP 92.249.44.53",
+      "description": "IP address used by the attackers (Appendix 3)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '92.249.44.53']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--36a68122-2860-4fc0-b6e7-0fd2548739e6",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Command-and-control IP 185.70.105.33",
+      "description": "IP address used by the attackers (Appendix 3)",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[ipv4-addr:value = '185.70.105.33']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--8ee3275c-7d6a-49fc-8593-59797078bff0",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Drop-stage script NisSrv.bat",
+      "description": "Batch file downloaded by the malicious macro",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'NisSrv.bat']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--ac69253a-49ab-46e6-a9fe-7d8ae3f5e28b",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Installer setupXOX.msi",
+      "description": "Windows Installer that deploys the Pyark backdoor",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'setupXOX.msi']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--da8f62af-f92e-46f4-98e5-07672f2694b3",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Backdoor loader svchostt.exe",
+      "description": "Executable launched after installation to run the Pyark modules",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:name = 'svchostt.exe']",
+      "pattern_type": "stix",
+      "valid_from": "2020-09-25T00:00:00Z",
+      "created_by_ref": "identity--f1c5af1b-6bc6-4d57-b937-c1e756570eab"
+    }
+
+  ]
+}
+,
+      {
+        "type": "bundle",
+        "id": "bundle--3d405ad9-29d5-4e20-9f36-5e3846e5af5b",
+        "spec_version": "2.1",
+        "objects": [
+          {
+            "type": "indicator",
+            "id": "indicator--d1888c5d-5f6b-4f56-9d18-4d5d7cf80a50",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "Machete \u2013 C2 IPv4 addresses",
+            "description": "IPv4 addresses used by the Machete backdoor infrastructure (FTP/HTTP servers).",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '185.224.137.63' OR ipv4-addr:value = '156.67.222.88' OR ipv4-addr:value = '158.69.9.209' OR ipv4-addr:value = '142.44.236.215' OR ipv4-addr:value = '199.79.63.188' OR ipv4-addr:value = '109.61.164.33']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--0f2380e0-cb5e-4123-bb25-7ad4925845d1",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "Machete \u2013 C2 & phishing domains",
+            "description": "Domain names observed in Machete configuration files, C&C traffic or spear-phishing campaigns.",
+            "indicator_types": [
+              "malicious-activity"
+            ],
+            "pattern": "[domain-name:value = 'tobabean.expert' OR domain-name:value = 'koliast.com' OR domain-name:value = 'u929489355.hostingerapp.com' OR domain-name:value = 'u154611594.hostingerapp.com' OR domain-name:value = '6e24a5fb.ngrok.io' OR domain-name:value = 'f9527d03.ngrok.io' OR domain-name:value = 'adtiomtardecessd.zapto.org' OR domain-name:value = 'mcsi.gotdns.ch' OR domain-name:value = 'djcaps.gotdns.ch' OR domain-name:value = 'tokeiss.ddns.net' OR domain-name:value = 'artyomt.com' OR domain-name:value = 'lawyersofficial.mipropia.com' OR domain-name:value = 'ceofanb18.mipropia.com']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          },
+          {
+            "type": "indicator",
+            "id": "indicator--c43d39fa-861a-47bf-9e49-7b3b5f0e178f",
+            "created": "2025-07-27T00:00:00Z",
+            "modified": "2025-07-27T00:00:00Z",
+            "name": "Machete \u2013 malicious file hashes (SHA-1)",
+            "description": "SHA-1 hashes of Python components (_mssi.pyw, _multiproccessing.pyw, etc.) belonging to Machete.",
+            "indicator_types": [
+              "file-hash-watchlist"
+            ],
+            "pattern": "[file:hashes.'SHA-1' = '3B6F5CB20FF3AC0EE3813A68A937AAE92EBC46D3' OR file:hashes.'SHA-1' = '56765B7511372A8E9BE017F48A764D141F485474' OR file:hashes.'SHA-1' = 'CF2DC40926D8747AEC572DFD711BBFD766AADB10' OR file:hashes.'SHA-1' = '6B42091CA2F89A59F4E27E30ACDACF32EB83F824' OR file:hashes.'SHA-1' = '708F159F2CFE22FF0C4464F2FEDAA0501868BDD8' OR file:hashes.'SHA-1' = 'DE639618B550DBE9071E999AAA5B4FC81F63A5A6' OR file:hashes.'SHA-1' = '0B6F61AF3E2C6551F15E0F888177EEC91F20BA99' OR file:hashes.'SHA-1' = '76AABC0AF5D487A80BCBA19555191B46766139FA' OR file:hashes.'SHA-1' = '7FF87649CA1D9178A02CD9942856D1B590652C6E' OR file:hashes.'SHA-1' = '8692EB1E620F2BCDDAF28F0CB726CEC2AA1C230D' OR file:hashes.'SHA-1' = '8AF19AA3F18CB35F12EE3966931E11799C3AC5A4' OR file:hashes.'SHA-1' = 'E1BC4EC7F82FA06924DC4B43FBBB485D8C86D9CD']",
+            "pattern_type": "stix",
+            "valid_from": "2025-07-27T00:00:00Z"
+          }
+        ]
+      }
+    ]
+  }
+}

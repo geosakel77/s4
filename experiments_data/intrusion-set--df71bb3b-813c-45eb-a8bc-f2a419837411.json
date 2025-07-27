@@ -3910,6 +3910,617 @@
 }],
     "malware--b42378e0-f147-496f-992a-26a49705395b": [{
   "type": "bundle",
+  "id": "bundle--c3ba6438-9f5a-4d69-b1fa-30ad8fe7e5b8",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--1d2cd7ca-b50a-4d23-8a2e-0d062b30c1d1",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Elderwood C2 domains",
+      "description": "Command-and-control domains used by the Elderwood threat actor",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value IN ('qwby.gownsman.com','wwwcnas.org','gate-usa.com','3dvideo.ru','wt.ikwb.com','svr01.passport.serveuser.com','zfcay1751.chinaw3.com','web.cyut.edu.tw','srv001.proxydns.com','help.2012hi.hk','0207.gm.jetos.com','javaupdate.freeddns.com','yours.microtrendsoft.com','cpu.edu.tw','glogin.ddns.us','download.msdnblog.com','dd.pst.qpoe.com')]",
+      "valid_from": "2025-07-27T12:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--2251a2b8-98ec-41ed-8257-aaf0c8228a69",
+      "created": "2025-07-27T12:00:00Z",
+      "modified": "2025-07-27T12:00:00Z",
+      "name": "Elderwood C2 IPv4 address",
+      "description": "Hard-coded command-and-control IPv4 address observed in Elderwood operations",
+      "indicator_types": ["malicious-activity"],
+      "pattern_type": "stix",
+      "pattern": "[ipv4-addr:value = '71.6.217.131']",
+      "valid_from": "2025-07-27T12:00:00Z"
+    },
+    {
+      "type": "malware",
+      "id": "malware--0be41084-e368-4ec9-8b25-3d9c7e818301",
+      "name": "Backdoor.Briba",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--5e6d7c77-db0b-4393-bc9c-83b4caaf6b2e",
+      "name": "Trojan.Hydraq",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--a140efd5-5689-45db-9892-0b49bf5c8b6a",
+      "name": "Trojan.Naid",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--4e9f84a2-4a2c-4cf2-b2e5-f6e761b182f5",
+      "name": "Backdoor.Wiarp",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--24e80a3c-0d98-4b88-9c10-4d8c41f6c815",
+      "name": "Backdoor.Vasport",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--c7f1d4a6-69ad-4c77-bff6-441e43bfeb93",
+      "name": "Trojan.Pasam",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--63c4e6a2-97a9-468d-b05d-2f7f4576e9db",
+      "name": "Backdoor.Darkmoon",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--3d9482b2-8f99-4f8d-8a89-3b1615ec7d1a",
+      "name": "Packed.Generic.379",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--2cda4d83-b1d7-4ec7-9c6f-2c1dbc0c337e",
+      "name": "Packed.Generic.374",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--f31b084d-0dd0-4c60-9a18-e6d9b3fdc99e",
+      "name": "Backdoor.Ritsol",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--b4d2e7b3-8120-4d33-9f53-0bb2ef99ae12",
+      "name": "Backdoor.Nerex",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--66bec2ee-6331-482c-a875-4fe48f736d37",
+      "name": "Backdoor.Linfo",
+      "is_family": true
+    },
+    {
+      "type": "malware",
+      "id": "malware--0fe18b42-7ed8-4f49-afe4-6bdc72aa7e21",
+      "name": "Trojan.MDropper",
+      "is_family": true
+    },
+
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--c1f1ef86-77a2-470b-83bd-6d585daa7e3c",
+      "name": "CVE-2012-0779"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--c9a23b37-245c-4513-92ac-cc61d6f1f18c",
+      "name": "CVE-2012-1875"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--3b8d1e1e-91f6-4607-88cf-1000c75060ee",
+      "name": "CVE-2012-1889"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--6f4d8d9d-bd58-4b2f-8d73-65a2f6e457bb",
+      "name": "CVE-2012-1535"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--d4f13c4c-0fdc-4612-8bba-555337699571",
+      "name": "CVE-2011-0609"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--7b3b91f6-b4d9-4dcd-91e8-13d3da945e40",
+      "name": "CVE-2011-0611"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--2585ac95-1f14-4a24-9a12-9f3e771ffaea",
+      "name": "CVE-2011-2110"
+    },
+    {
+      "type": "vulnerability",
+      "id": "vulnerability--e6bcefea-5822-499f-9623-f3a1ea1e80f2",
+      "name": "CVE-2010-0249"
+    }
+  ]
+},{
+  "type": "bundle",
+  "id": "bundle--a5d7e2d8-d2ba-46cf-9c46-7a0b3f774001",
+  "spec_version": "2.1",
+  "objects": [
+
+    {
+      "type": "indicator",
+      "id": "indicator--6c9150d4-205c-4143-9af8-3e9a3bb00301",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious IPv4 address used by Elderwood C2",
+      "description": "IPv4 address observed in Elderwood command-and-control infrastructure.",
+      "pattern": "[ipv4-addr:value = '71.6.217.131']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--d2b21c9a-82c5-49a3-bad1-69a7fdf90302",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: qwby.gownsman.com",
+      "pattern": "[domain-name:value = 'qwby.gownsman.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--828ce05b-0a21-44af-bf49-2a5e333b0303",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: wwwcnas.org",
+      "pattern": "[domain-name:value = 'wwwcnas.org']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--b596eeb0-6c85-4908-ad91-060fe6c80304",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: gate-usa.com",
+      "pattern": "[domain-name:value = 'gate-usa.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--4bf4f9f7-3dc3-47f4-9007-8e82ab6f0305",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: 3dvideo.ru",
+      "pattern": "[domain-name:value = '3dvideo.ru']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--9e75e95f-1e0c-4c4c-b5af-2091c7190306",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: wt.ikwb.com",
+      "pattern": "[domain-name:value = 'wt.ikwb.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--a3871690-8ec0-4ef2-a572-1598ba4e0307",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: svr01.passport.serveuser.com",
+      "pattern": "[domain-name:value = 'svr01.passport.serveuser.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--3903fce2-52f1-48ec-aade-79237ff60308",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: zfcay1751.chinaw3.com",
+      "pattern": "[domain-name:value = 'zfcay1751.chinaw3.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--cbeffa6e-30ae-4e3b-85c4-25277c820309",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: web.cyut.edu.tw",
+      "pattern": "[domain-name:value = 'web.cyut.edu.tw']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--f2cb2e1c-fd08-41a6-841e-1aceb99d0310",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: srv001.proxydns.com",
+      "pattern": "[domain-name:value = 'srv001.proxydns.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--3d874d7b-6142-4c1b-90d9-5aa36cbc0311",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: help.2012hi.hk",
+      "pattern": "[domain-name:value = 'help.2012hi.hk']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c7b6a683-060d-438d-b416-3cc9703b0312",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: 0207.gm.jetos.com",
+      "pattern": "[domain-name:value = '0207.gm.jetos.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c53037c5-8a46-41e6-ae6a-327fdc9e0313",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: javaupdate.freeddns.com",
+      "pattern": "[domain-name:value = 'javaupdate.freeddns.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c8c71de9-543f-4f27-ae03-be3264550314",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: yours.microtrendsoft.com",
+      "pattern": "[domain-name:value = 'yours.microtrendsoft.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--88ca7df0-5709-4206-a86e-7b363dd00315",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: cpu.edu.tw",
+      "pattern": "[domain-name:value = 'cpu.edu.tw']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--b083bee7-303e-4427-b700-4695f8a00316",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: glogin.ddns.us",
+      "pattern": "[domain-name:value = 'glogin.ddns.us']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--bdddfeb7-f724-418a-9ea0-5af5d81b0317",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: download.msdnblog.com",
+      "pattern": "[domain-name:value = 'download.msdnblog.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--50a38d25-9557-40c6-99f1-06e70ccf0318",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious domain: dd.pst.qpoe.com",
+      "pattern": "[domain-name:value = 'dd.pst.qpoe.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["malicious-activity","c2"]
+    },
+
+    {
+      "type": "indicator",
+      "id": "indicator--94908417-e70b-4e3c-87cb-204cf7af0401",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2012-0779 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2012-0779']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--cd26a58d-92c0-48e0-b3f2-91e06e1a0402",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2012-1875 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2012-1875']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--31c73ec9-d8c7-4968-9bd8-f20ef5540403",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2012-1889 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2012-1889']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--002e2cbd-30ef-4f1c-956e-24b275e50404",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2012-1535 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2012-1535']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--7057c8ad-9ee9-4c07-a5b9-34f47d750405",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2011-0609 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2011-0609']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--cbe4180e-8303-4aab-9400-d79e67420406",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2011-0611 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2011-0611']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--b6ab75f9-4dce-440b-b38f-e91f4e8f0407",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2011-2110 used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2011-2110']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--c4d8cd6d-4b2b-4d37-9bea-218092560408",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Exploit CVE-2010-0249 (Aurora/IE) used by Elderwood",
+      "pattern": "[vulnerability:name = 'CVE-2010-0249']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z",
+      "labels": ["exploited-vulnerability"]
+    }
+
+  ]
+}
+,{
+  "type": "bundle",
+  "id": "bundle--5be3b6d3-939f-46dd-bff0-0b2c28d32c54",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--6d4a0c84-4d34-5bc3-ad5d-61abcbe0c599",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Axiom / PlugX C2 domain: www.0716che.com",
+      "description": "Domain observed in Axiom-related PlugX malware",
+      "pattern": "[domain-name:value = 'www.0716che.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--8a2d2c37-3b9d-4d35-90f6-e3523b7c5c30",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Axiom / PlugX C2 domain: www.6541601.com",
+      "description": "Domain observed in Axiom-related PlugX malware",
+      "pattern": "[domain-name:value = 'www.6541601.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--3b9157b4-9d7a-41d8-83b6-174fd74ade83",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Axiom / PlugX C2 domain: www.6794945.com",
+      "description": "Domain observed in Axiom-related PlugX malware",
+      "pattern": "[domain-name:value = 'www.6794945.com']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--1f4f1b04-a82e-47a7-b9e8-f9cb3b09ae1a",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: QQ6.3_6.3.12382.exe.P2P",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'QQ6.3_6.3.12382.exe.P2P']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c83707c3-3626-44cb-9862-b34616816a46",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: baofeng.exe.td",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'baofeng.exe.td']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--42ba0c6a-13bd-4c02-8759-217d2c1f59ab",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: CODOL_Formal_1.2.2.10_1.2.2.12_1550_1D.exe.ttd",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'CODOL_Formal_1.2.2.10_1.2.2.12_1550_1D.exe.ttd']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--99fe24d6-18d9-4f09-b514-57c46f9f7e3f",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: LOL_V3132_1151_8D.exe.ttd",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'LOL_V3132_1151_8D.exe.ttd']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--84e4b71f-847e-41f1-a225-2e20c4102b33",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: install_flash_player_ax_KB370237.exe.P2P",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'install_flash_player_ax_KB370237.exe.P2P']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--fbe55ad2-d7e8-451b-a770-b4f7df3308d1",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: BDWebAdapterZip.dll.bdl",
+      "description": "Filename of Hikit sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'BDWebAdapterZip.dll.bdl']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--d20e6133-7d99-46ad-93c9-6ae3be329617",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: QQsetup.exe",
+      "description": "Filename of PlugX sample seen in Axiom campaigns",
+      "pattern": "[file:name = 'QQsetup.exe']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--2b03e420-6dfa-449b-a2f5-38e6ddee8212",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious archive: ARP扫描.rar",
+      "description": "Filename of ZXShell tool observed in Axiom operations",
+      "pattern": "[file:name = 'ARP扫描.rar']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--0e50d1a2-7820-44ac-86a2-9c1162f9b9a4",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious archive: 各大0day.zip",
+      "description": "Filename of ZXShell tool observed in Axiom operations",
+      "pattern": "[file:name = '各大0day.zip']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--ca1c4aae-4e34-40ae-9d7e-7cd21a31470b",
+      "created": "2025-07-27T00:00:00Z",
+      "modified": "2025-07-27T00:00:00Z",
+      "name": "Malicious file: 兄弟网络三版1433.exe",
+      "description": "Filename of ZXShell tool observed in Axiom operations",
+      "pattern": "[file:name = '兄弟网络三版1433.exe']",
+      "pattern_type": "stix",
+      "valid_from": "2025-07-27T00:00:00Z"
+    }
+  ]
+}
+,{
+  "type": "bundle",
   "id": "bundle--af107ac4-b911-4b9e-b167-d1b5e7fcd508",
   "spec_version": "2.0",
   "objects": [
