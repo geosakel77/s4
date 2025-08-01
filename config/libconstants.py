@@ -14,6 +14,6 @@ MAP_TECHNIQUES_TO_TACTICS = {
 "TA0011":["T1071","T1092","T1659","T1132","T1001","T1568","T1573","T1008","T1665","T1105","T1104","T1095","T1571","T1572","T1090","T1219","T1205","T1102"],
 "TA0040":["T1531","T1485","T1486","T1565","T1491","T1561","T1667","T1499","T1657","T1495","T1490","T1498","T1496","T1489","T1529"],
 }
-
-
 MAP_TACTICS_TO_NAMES={"TA0043":"reconnaissance","TA0042":"resource-development","TA0001":"initial-access","TA0002":"execution","TA0003":"persistence","TA0004":"privilege-escalation","TA0005":"defense-evasion","TA0006":"credential-access","TA0007":"discovery","TA0008":"lateral-movement","TA0009":"collection","TA0011":"command-and-control","TA0010":"exfiltration","TA0040":"impact"}
+CONFIG_PATH='C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'
+AGENT_TYPES={1:"TA",2:"DM",3:"CTI",4:"IS"}

@@ -9,7 +9,7 @@ import json,re,tempfile
 
 
 if __name__=="__main__":
-    check_url="https://go.recordedfuture.com/hubfs/reports/cta-2021-0228.pdf"
+    check_url="https://securelist.com/el-machete/66108/"
     config_file = 'C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'
     config = read_config(config_file)
     actors = read_from_json(config['actors_path'])

@@ -36,6 +36,9 @@ def read_config(filepath="config.ini"):
     openai_model = config.get('openai', 'model')
     experiments_data_path = config.get('experiments', 'experiments_data_path')
     coordinator_port=config.get('experiments', 'coordinator_port')
+    coordinator_host=config.get('experiments', 'coordinator_host')
+    generic_host=config.get('experiments', 'generic_host')
+    templates_path = config.get('experiments', 'templates_path')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -65,7 +68,10 @@ def read_config(filepath="config.ini"):
         'openai_project_id': openai_project_id,
         'openai_model': openai_model,
         'experiments_data_path': experiments_data_path,
-        'coordinator_port': coordinator_port
+        'coordinator_port': coordinator_port,
+        'coordinator_host': coordinator_host,
+        'generic_host': generic_host,
+        'templates_path': templates_path
     }
 
     return config_values

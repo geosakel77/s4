@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coordinator Status Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #444; }
+        table { border-collapse: collapse; width: 50%; }
+        td, th { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Coordinator Details</h1>
+    <br>
+    <table><tr>
+        <th><b>Coordinator ID</b></th>
+        <td>{{data["id"]}}</td>
+
+    </tr>
+    <tr>
+        <th><b>Used Ports</b></th>
+        <td>{{data["ports"]}}</td>
+    </tr>
+    </table>
+    <br>
+    <h2>Registered Agents</h2>
+    <table>
+     {% for key, value in data["registered"].items() %}
+        <tr>
+            <th>Agent ID</th>
+            <td>{{key}}</td>
+            <th>URL</th>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>Threat Actor Agents</h2>
+    <table>
+     {% for key, value in data["TA"].items() %}
+        <tr>
+            <th>Agent ID</th>
+            <td>{{key}}</td>
+            <th>Agent Host</th>
+            <td>{{ value["host"] }}</td>
+            <th>Agent Port</th>
+            <td>{{ value["port"] }}</td>
+            <th>Agent Type</th>
+            <td>{{ value["agent_type"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <h2>Defense Mechanisms Agents</h2>
+    <table>
+     {% for key, value in data["DM"].items() %}
+        <tr>
+            <th>Agent ID</th>
+            <td>{{key}}</td>
+            <th>Agent Host</th>
+            <td>{{ value["host"] }}</td>
+            <th>Agent Port</th>
+            <td>{{ value["port"] }}</td>
+            <th>Agent Type</th>
+            <td>{{ value["agent_type"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <h2>Information System Agents</h2>
+    <table>
+     {% for key, value in data["IS"].items() %}
+        <tr>
+            <th>Agent ID</th>
+            <td>{{key}}</td>
+            <th>Agent Host</th>
+            <td>{{ value["host"] }}</td>
+            <th>Agent Port</th>
+            <td>{{ value["port"] }}</td>
+            <th>Agent Type</th>
+            <td>{{ value["agent_type"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>CTI Agents</h2>
+    <table>
+     {% for key, value in data["CTI"].items() %}
+        <tr>
+            <th>Agent ID</th>
+            <td>{{key}}</td>
+            <th>Agent Host</th>
+            <td>{{ value["host"] }}</td>
+            <th>Agent Port</th>
+            <td>{{ value["port"] }}</td>
+            <th>Agent Type</th>
+            <td>{{ value["agent_type"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

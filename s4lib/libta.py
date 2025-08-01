@@ -8,8 +8,8 @@ import random,os,json,re,time
 
 class TA(AttackerAgent):
 
-    def __init__(self,agent_type="TA",actor_name=None):
-        super().__init__(agent_type=agent_type)
+    def __init__(self,agent_uuid,agent_type="TA",actor_name=None):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
         actors = read_from_json(self.config['actors_path'])
         if actor_name is None:
             self.actor_id=random.choice(list(actors.keys()))

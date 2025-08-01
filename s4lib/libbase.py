@@ -1,14 +1,12 @@
-import json,uvicorn,httpx, uuid,openai,requests,re,tempfile,pprint,pdfkit,os,time,random
+import json, openai,requests,re,tempfile,pdfkit,os,time,random
 from io import BytesIO
 from config.libconfig import read_config
 from pyattck import Attck
 from typing import  Any,List
 from openai import OpenAI
 from stix2 import FileSystemStore,Filter
-from config.libconstants import MAP_TACTICS_TO_NAMES
-from fastapi import FastAPI, Request
-from typing import Dict
-from contextlib import asynccontextmanager
+from config.libconstants import MAP_TACTICS_TO_NAMES,CONFIG_PATH
+
 
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
@@ -19,81 +17,37 @@ def read_from_json(json_file):
         json_data = json.load(infile)
         return json_data
 
+def validate_schema(data, schema):
+    if not isinstance(data, dict):
+        return False
+    for key, expected_type in schema.items():
+        if key not in data or not isinstance(data[key], expected_type):
+            return False
+    return True
 
-class APIServer:
-    """
-    Async HTTP server that exposes two endpoints:
-      GET  /health    → {"status":"ok"}
-      POST /echo      → {"received": <your JSON>}
-    """
-
-    def __init__(self, host: str = "0.0.0.0", port: int = 8000) -> None:
-        self.host = host
-        self.port = port
-        self.app = FastAPI(title="Async Echo API")
-        self._register_routes()
-
-    def _register_routes(self) -> None:
-        @self.app.get("/health")
-        async def health() -> Dict[str, str]:
-            return {"status": "ok"}
-
-        @self.app.post("/echo")
-        async def echo(req: Request) -> Dict[str, Any]:
-            data = await req.json()
-            return {"received": data}
-
-    def run(self) -> None:
-        """Block forever and serve HTTP until Ctrl‑C."""
-        uvicorn.run(self.app, host=self.host, port=self.port, log_level="info")
-
-
-class APIClient:
-    """Async client for APIServer."""
-
-    def __init__(self, base_url: str = "http://127.0.0.1:8000") -> None:
-        self.base_url = base_url
-        self._client: httpx.AsyncClient | None = None
-
-    async def __aenter__(self) -> "APIClient":
-        self._client = httpx.AsyncClient(base_url=self.base_url, timeout=10)
-        return self
-
-    async def __aexit__(self, exc_type, exc, tb) -> None:
-        if self._client:
-            await self._client.aclose()
-
-    async def health(self) -> Dict[str, Any]:
-        """GET /health"""
-        async with self._ensure_client() as cli:
-            r = await cli.get("/health")
-            r.raise_for_status()
-            return r.json()
-
-    async def echo(self, payload: Dict[str, Any]) -> Dict[str, Any]:
-        """POST /echo with arbitrary JSON"""
-        async with self._ensure_client() as cli:
-            r = await cli.post("/echo", json=payload)
-            r.raise_for_status()
-            return r.json()
-
-    @asynccontextmanager
-    async def _ensure_client(self):
-        """Use existing client if inside __aenter__, else create temp one."""
-        if self._client:  # already in a with‑block
-            yield self._client
-        else:             # standalone call
-            async with httpx.AsyncClient(base_url=self.base_url, timeout=10) as cli:
-                yield cli
 
 class Agent:
-    def __init__(self,agent_type,config_file='C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'):
-        self.uuid=uuid.uuid4()
+    def __init__(self,agent_uuid,agent_type,config):
+        self.uuid=agent_uuid
         self.agent_type=agent_type
-        self.config=read_config(config_file)
-        self.server=APIServer()
-        self.client=APIClient()
+        self.config=config
+        self.connection_data_ta = {}
+        self.connection_data_dm = {}
+        self.connection_data_cti = {}
+        self.connection_data_is = {}
+        self.client=None
 
+    def update_connection_data(self,data):
+        try:
+            self.connection_data_ta = data["TA"]
+            self.connection_data_dm = data["DM"]
+            self.connection_data_cti = data["CTI"]
+            self.connection_data_is = data["IS"]
+            update_status = {"status":"Success"}
+        except KeyError as e:
+            print(e)
+            update_status = {"status":"Error"}
+        return update_status
 
 class OpenAIClient:
     def __init__(self, config):
@@ -121,8 +75,8 @@ class OpenAIClient:
 
 
 class AttackerAgent(Agent):
-    def __init__(self, agent_type):
-        super().__init__(agent_type=agent_type)
+    def __init__(self,agent_uuid, agent_type):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
         self.actor=None
         self.actor_id=None
         self.actor_tactics=None
@@ -246,8 +200,8 @@ class AttackerAgent(Agent):
 
 class AttackerAgentDA(Agent):
 
-    def __init__(self,agent_type,custom=False):
-        super().__init__(agent_type=agent_type)
+    def __init__(self,agent_uuid,agent_type,custom=False):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
         self.mitre_attack_da = FileSystemStore(self.config['mitre_enterprise_path'])
         self.custom=custom
         self.mitre_attack = Attck(nested_techniques=True, use_config=True,
@@ -557,8 +511,8 @@ class AttackerAgentDA(Agent):
 
 class MITREATTCKConfig(AttackerAgentDA):
 
-    def __init__(self,agent_type="MITREATTCK"):
-        super().__init__(agent_type=agent_type)
+    def __init__(self,agent_uuid="00000000",agent_type="MITREATTCK"):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
         self.openai_client = OpenAIClient(config=self.config)
         self.actors= self._get_actors()
         self.controls= self._get_controls()
