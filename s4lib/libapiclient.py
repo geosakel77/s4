@@ -23,7 +23,6 @@ class APIClient:
         """GET /health"""
         async with self._ensure_client(base_url) as cli:
             r = await cli.get("/health")
-            print(r.status_code)
             r.raise_for_status()
             return r.json()
 
@@ -31,8 +30,6 @@ class APIClient:
         """POST /echo with arbitrary JSON"""
         async with self._ensure_client(base_url) as cli:
             r = await cli.post("/echo", json=payload)
-            print(r.status_code)
-
             r.raise_for_status()
             return r.json()
 
@@ -57,7 +54,6 @@ class APIRegistrationClient(APIClient):
         """POST /register with registration data JSON"""
         async with self._ensure_client(self.coordinator_url) as cli:
             response = await cli.post("/register", json=record)
-            print(response.status_code)
             response.raise_for_status()
             return response.json()
 
@@ -73,7 +69,6 @@ class APIClientCoordinator(APIClient):
         """POST /register with registration data JSON"""
         async with self._ensure_client(server_url) as cli:
             response = await cli.post("/update_agent", json=connection_data)
-            print(response.status_code)
             response.raise_for_status()
             return response.json()
 
@@ -81,6 +76,5 @@ class APIClientCoordinator(APIClient):
         """GET /register with registration data JSON"""
         async with self._ensure_client(server_url) as cli:
             response = await cli.get("/health")
-            print(response.status_code)
             response.raise_for_status()
             return response.json()

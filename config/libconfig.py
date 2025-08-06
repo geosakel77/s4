@@ -39,6 +39,8 @@ def read_config(filepath="config.ini"):
     coordinator_host=config.get('experiments', 'coordinator_host')
     generic_host=config.get('experiments', 'generic_host')
     templates_path = config.get('experiments', 'templates_path')
+    heartbeat_rate=config.getint('experiments', 'heartbeat_rate')
+    time_steps=config.getint('experiments', 'time_steps')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -71,7 +73,9 @@ def read_config(filepath="config.ini"):
         'coordinator_port': coordinator_port,
         'coordinator_host': coordinator_host,
         'generic_host': generic_host,
-        'templates_path': templates_path
+        'templates_path': templates_path,
+        'heartbeat_rate': heartbeat_rate,
+        'time_steps': time_steps,
     }
 
     return config_values

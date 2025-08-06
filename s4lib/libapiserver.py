@@ -1,15 +1,13 @@
 import socket,time,os
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from typing import Dict,Any
-
 from pygments.lexers import templates
 from s4lib.libbase import Agent
-from s4lib.libexperiments import Coordinator,registration_id_schema
+from s4lib.libcoordinator import Coordinator,registration_id_schema
 import uvicorn,uuid,asyncio
 from config.libconstants import CONFIG_PATH
 from config.libconfig import read_config
@@ -38,18 +36,13 @@ class APIServer:
             self.app = FastAPI(title=title,lifespan=lifespan)
         else:
             self.app = FastAPI(title=title)
-        print(self.config['templates_path'])
         self.templates = Jinja2Templates(directory=os.path.abspath(self.config['templates_path']))
         self._register_default_routes()
-
-
 
     def _register_default_routes(self) -> None:
         @self.app.get("/health")
         async def health() -> Dict[str, str]:
             return {"status": "ok","ID":str(self.agent_uuid)}
-
-
 
     def _register_routes(self) -> None:
         pass
@@ -72,7 +65,6 @@ class APIBaseServer(APIServer):
         self.agent=Agent(agent_uuid=self.agent_uuid,agent_type=self.agent_type,config=self.config)
         self._register_routes()
         print(f"The server will run on {self.host}:{self.port}")
-
 
     def _register_routes(self) -> None:
         @self.app.post("/update_agent")
@@ -97,13 +89,20 @@ class APIServerCoordinator(APIServer):
             for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
                 try:
                     response = await self.coordinator_agent.client.check_health(agent_url)
-                    #TODO update the coordinator database.
+
                     self.coordinator_agent.update_agents(agent_uuid,response)
-                    #TODO inform the agents about the change
                     print(response)
                 except Exception as e:
                     print(e)
-            await asyncio.sleep(5)
+            # TODO inform the agents about the change
+            conn_info = self.coordinator_agent.get_connection_info()
+            for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
+                try:
+                    update_response = await self.coordinator_agent.client.update_agent(agent_url,conn_info)
+                    print(update_response)
+                except Exception as e:
+                    print(e)
+            await asyncio.sleep(int(self.config['heartbeat_rate']))
 
     def _register_routes(self) -> None:
 

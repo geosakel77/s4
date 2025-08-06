@@ -35,6 +35,7 @@ class Agent:
         self.connection_data_dm = {}
         self.connection_data_cti = {}
         self.connection_data_is = {}
+        self.registered_agents=[]
         self.client=None
 
     def update_connection_data(self,data):
@@ -43,6 +44,7 @@ class Agent:
             self.connection_data_dm = data["DM"]
             self.connection_data_cti = data["CTI"]
             self.connection_data_is = data["IS"]
+            self.registered_agents = data["RA"]
             update_status = {"status":"Success"}
         except KeyError as e:
             print(e)

@@ -60,10 +60,6 @@ class TA(AttackerAgent):
             actors_config['indicators']=self.indicators
             write_to_json(os.path.join(self.config['experiments_data_path'],self.actor_conf_file),actors_config)
 
-
-
-
-
     def _map_actor_techniques_to_software(self):
             actor_techniques_map={}
             actor_techniques_ids=[]
@@ -101,6 +97,15 @@ class TA(AttackerAgent):
             if len(list_of_techniques)>0:
                 actor_techniques_to_tactics_map[tactic] = list_of_techniques
         return actor_techniques_to_tactics_map
+
+    def create_plan(self):
+        #TODO  create plan for execution
+        pass
+
+    def action_attack(self):
+        pass
+
+
 
 
 

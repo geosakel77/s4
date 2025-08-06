@@ -1,0 +1,123 @@
+
+from s4lib.libapiclient import APIClientCoordinator
+import random,uuid,asyncio
+from config.libconfig import read_config
+
+registration_id_schema={
+    "uuid":str,
+    "agent_type":str,
+    "host":str
+}
+
+class ConnectionString:
+    host:str
+    port:int
+    agent_type:str
+    uuid:str
+
+    def get_connection_string(self):
+        return {'host':self.host,'port':self.port,'agent_type':self.agent_type,'uuid':self.uuid}
+
+
+class Coordinator:
+
+    def __init__(self,configuration):
+        self.id=uuid.uuid4()
+        self.config = configuration
+        self.connection_data_ta = {}
+        self.connection_data_dm = {}
+        self.connection_data_cti = {}
+        self.connection_data_is = {}
+        self.time_steps=self.config["time_steps"]
+        self.registered_agents={}
+        self.client=APIClientCoordinator()
+        self.used_ports=[8000]
+        self.status_data={'id':str(self.id),"ports":self.used_ports,"registered":self.registered_agents,"DM":self.connection_data_dm,"TA":self.connection_data_ta,"IS":self.connection_data_is,"CTI":self.connection_data_cti}
+
+    def get_time(self):
+        return self.time_steps
+
+    def update_time(self):
+        self.time_steps-=1
+
+    def _update_status(self):
+        self.status_data = {'id': str(self.id), "ports": self.used_ports, "registered": self.registered_agents,
+                            "DM": self.connection_data_dm, "TA": self.connection_data_ta, "IS": self.connection_data_is,
+                            "CTI": self.connection_data_cti}
+
+    def register_agent(self, reg_id):
+        port = self._select_port()
+        while port in self.used_ports:
+            port = self._select_port()
+        connection_string = ConnectionString()
+        connection_string.host = reg_id['host']
+        print(f"Host:{connection_string.host}")
+        connection_string.port = port
+        connection_string.agent_type = reg_id['agent_type']
+        connection_string.uuid = reg_id['uuid']
+        if reg_id['agent_type'] == "TA":
+            self.connection_data_ta[reg_id['uuid']] = connection_string.get_connection_string()
+        elif reg_id['agent_type'] == "CTI":
+            self.connection_data_cti[reg_id['uuid']] = connection_string.get_connection_string()
+        elif reg_id['agent_type'] == "DM":
+            self.connection_data_dm[reg_id['uuid']] = connection_string.get_connection_string()
+        elif reg_id['agent_type'] == "IS":
+            self.connection_data_is[reg_id['uuid']] = connection_string.get_connection_string()
+        else:
+            raise Exception("Unknown agent type")
+        self.used_ports.append(port)
+        if connection_string.host == "0.0.0.0":
+            self.registered_agents[reg_id['uuid']] = f"http://127.0.0.1:{connection_string.port}"
+        else:
+            self.registered_agents[reg_id['uuid']] = f"http://{connection_string.host}:{connection_string.port}"
+        self._update_status()
+        return connection_string.get_connection_string()
+
+    def update_agents(self,agent_uuid,response):
+        try:
+            status_code = response['status']
+        except KeyError as e:
+            status_code = None
+        if status_code is None:
+            conn_string= self.connection_data_ta.pop(agent_uuid,None)
+            if conn_string is None:
+                conn_string=self.connection_data_dm.pop(agent_uuid,None)
+            if conn_string is None:
+                conn_string=self.connection_data_cti.pop(agent_uuid,None)
+            if conn_string is None:
+                conn_string=self.connection_data_is.pop(agent_uuid,None)
+            self.registered_agents.pop(agent_uuid,None)
+            if conn_string is not None:
+                self.used_ports.remove(conn_string['port'])
+            self._update_status()
+
+    def get_connection_info(self):
+        conn_info = {"DM": self.connection_data_dm, "TA": self.connection_data_ta, "IS": self.connection_data_is,
+                     "CTI": self.connection_data_cti,"RA":self.registered_agents}
+        return conn_info
+        #for agent_id in self.registered_agents.keys():
+        #            #    self.client.update_agent(self.registered_agents[agent_id],conn_info)
+
+    def _select_port(self):
+        random_port = random.randint(8000,8100)
+        while random_port in self.used_ports:
+            random_port = random.randint(8000,8100)
+        return random_port
+
+
+
+if __name__ == "__main__":
+    import uuid
+    from config.libconstants import CONFIG_PATH
+    config =read_config(CONFIG_PATH)
+    coordinator = Coordinator(config)
+
+    registration_id={'uuid': str(uuid.uuid4()), 'agent_type': 'TA'}
+    registration_id1 = {'uuid': str(uuid.uuid4()), 'agent_type': 'CTI'}
+    registration_id2= {'uuid': str(uuid.uuid4()), 'agent_type': 'DM'}
+    registration_id3 = {'uuid': str(uuid.uuid4()), 'agent_type': 'IS'}
+
+    print(coordinator.register_agent(registration_id))
+    print(coordinator.register_agent(registration_id1))
+    print(coordinator.register_agent(registration_id2))
+    print(coordinator.register_agent(registration_id3))
