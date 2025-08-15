@@ -6,7 +6,7 @@ from typing import  Any,List
 from openai import OpenAI
 from stix2 import FileSystemStore,Filter
 from config.libconstants import MAP_TACTICS_TO_NAMES,CONFIG_PATH
-
+from colorama import Fore,Style
 
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
@@ -25,6 +25,41 @@ def validate_schema(data, schema):
             return False
     return True
 
+def determine_color_impact(data):
+    color= None
+    if data[1]==1:
+        color= Fore.GREEN
+    elif data[1]==2:
+        color=Fore.YELLOW
+    elif data[1]==3:
+        color=Fore.RED
+    return color
+
+def determine_color_classification(classification_key):
+    color= None
+    if classification_key==1:
+        color= Fore.BLUE
+    elif classification_key==2:
+        color=Fore.CYAN
+    elif classification_key==3:
+        color=Fore.GREEN
+    elif classification_key==4:
+        color=Fore.YELLOW
+    elif classification_key==5:
+        color =Fore.RED
+    return color
+
+def print_security_characteristics(security_category,confidentiality,integrity,availability,classification,classification_key):
+        c=determine_color_impact(security_category[0])
+        ic=determine_color_impact(security_category[1])
+        a=determine_color_impact(security_category[2])
+        cls = determine_color_classification(classification_key)
+        print(f"{c}Confidentiality: {confidentiality}{Style.RESET_ALL} - {ic}Integrity: {integrity}{Style.RESET_ALL} - {a}Availability: {availability}{Style.RESET_ALL} - {cls}Classification: {classification}{Style.RESET_ALL} ")
+
+
+
+
+
 
 class Agent:
     def __init__(self,agent_uuid,agent_type,config):
@@ -37,6 +72,7 @@ class Agent:
         self.connection_data_is = {}
         self.registered_agents=[]
         self.client=None
+        self.clock:int=0
 
     def update_connection_data(self,data):
         try:
@@ -50,6 +86,23 @@ class Agent:
             print(e)
             update_status = {"status":"Error"}
         return update_status
+
+    def update_time(self,data):
+        try:
+            self.clock = int(data["current"])
+            self._update_time_actions()
+            update_status = {"Time":"Synced"}
+        except KeyError as e:
+            print(e)
+            update_status = {"Time":"Asynced"}
+        return update_status
+
+    def get_html_status_data(self):
+        pass
+
+    def _update_time_actions(self):
+        pass
+
 
 class OpenAIClient:
     def __init__(self, config):
@@ -77,8 +130,8 @@ class OpenAIClient:
 
 
 class AttackerAgent(Agent):
-    def __init__(self,agent_uuid, agent_type):
-        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
+    def __init__(self,agent_uuid, agent_type,config):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type,config=config)
         self.actor=None
         self.actor_id=None
         self.actor_tactics=None

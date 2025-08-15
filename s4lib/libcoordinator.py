@@ -28,6 +28,7 @@ class Coordinator:
         self.connection_data_dm = {}
         self.connection_data_cti = {}
         self.connection_data_is = {}
+
         self.time_steps=self.config["time_steps"]
         self.registered_agents={}
         self.client=APIClientCoordinator()
@@ -39,6 +40,9 @@ class Coordinator:
 
     def update_time(self):
         self.time_steps-=1
+
+    def reset_time(self):
+        self.time_steps=self.config["time_steps"]
 
     def _update_status(self):
         self.status_data = {'id': str(self.id), "ports": self.used_ports, "registered": self.registered_agents,
@@ -104,6 +108,11 @@ class Coordinator:
             random_port = random.randint(8000,8100)
         return random_port
 
+    def get_html_status_data(self):
+        html_status_data = self.status_data
+        html_status_data['time_steps'] = self.time_steps
+        html_status_data['current_time'] = self.config['time_steps'] - self.time_steps
+        return html_status_data
 
 
 if __name__ == "__main__":

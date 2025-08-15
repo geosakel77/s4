@@ -1,0 +1,233 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a2b;
+  --text: #e8ecf1;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --border: #22304a;
+  --radius: 14px;
+  --pad: 1rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+
+.site-header, .site-footer {
+  text-align: center;
+  padding: 1.25rem;
+  background: #0f172a;
+  border-bottom: 1px solid var(--border);
+}
+.site-footer { border-top: 1px solid var(--border); border-bottom: none; }
+
+.container {
+  max-width: 880px;
+  margin: 2rem auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: calc(var(--pad) * 1.25);
+}
+
+.pill-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.pill-list li {
+  padding: .4rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: #0b1426;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .6rem 1rem;
+  text-decoration: none;
+  color: white;
+  background: var(--accent);
+  border-radius: 10px;
+}
+.btn:hover { filter: brightness(1.05); }
+
+/* Responsive wrapper */
+.table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
+}
+
+/* Base table */
+table.table{
+  width:100%;
+  min-width:560px;            /* so columns don’t crush on small screens */
+  border-collapse:separate;
+  border-spacing:0;
+  color:var(--text);
+}
+
+/* Caption */
+.table caption{
+  caption-side:top;
+  padding:.75rem .9rem;
+  color:var(--muted);
+  text-align:left;
+}
+
+/* Cells */
+.table th,
+.table td{
+  padding:.7rem .9rem;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.table tbody tr:last-child td{ border-bottom:0; }
+
+/* Header */
+.table thead th{
+  background:#0f172a;        /* header bar */
+  font-weight:600;
+  text-align:left;
+  position:relative;
+  top:0;
+  z-index:1;
+  white-space:nowrap;
+}
+
+/* Sticky header (opt-in) */
+.table--sticky thead th{
+  position:sticky;
+  top:0;
+}
+
+/* Stripes & hover */
+.table--striped tbody tr:nth-child(odd){
+  background:#0b1426;        /* subtle row stripe */
+}
+.table--hover tbody tr:hover{
+  background:#16213a;        /* hover highlight */
+}
+
+/* Compact mode */
+.table--compact th,
+.table--compact td{
+  padding:.45rem .6rem;
+}
+
+/* First/last cell padding nicety */
+.table thead th:first-child,
+.table tbody td:first-child{ padding-left:1rem; }
+.table thead th:last-child,
+.table tbody td:last-child{ padding-right:1rem; }
+
+/* Links & muted text */
+.table a{ color:var(--accent); text-decoration:none; }
+.table a:hover{ text-decoration:underline; }
+.table .muted{ color:var(--muted); }
+
+/* Numeric columns */
+.table .num{
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Sortable header hint (optional) */
+.table th.sortable{ cursor:pointer; }
+.table th.sortable::after{
+  content:"⇅";
+  opacity:.6;
+  margin-left:.35rem;
+  font-size:.85em;
+}
+.table th.sortable[data-sort="asc"]::after{ content:"▴"; }
+.table th.sortable[data-sort="desc"]::after{ content:"▾"; }
+
+/* Base list container */
+ul.list, ol.list{
+  list-style:none;
+  margin:0; padding:0;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  color:var(--text);
+}
+
+/* Items */
+.list > li{
+  display:flex;
+  align-items:flex-start;
+  gap:.75rem;
+  padding:.7rem .9rem;
+  border-bottom:1px solid var(--border);
+}
+.list > li:last-child{ border-bottom:0; }
+
+/* Title/meta/right-aligned helpers */
+.list .title{ font-weight:600; }
+.list .meta{ color:var(--muted); font-size:.9em; }
+.list .spacer{ margin-left:auto; }     /* pushes following content to the right */
+
+/* Stripes & hover */
+.list--striped > li:nth-child(odd){ background:#0b1426; }
+.list--hover   > li:hover{ background:#16213a; }
+
+/* Compact variant */
+.list--compact > li{ padding:.45rem .6rem; }
+
+/* Bulleted accent dots (for ul) */
+.list--bulleted > li::before{
+  content:"";
+  width:.45rem; height:.45rem; margin-top:.55rem;
+  border-radius:50%; background:var(--accent);
+  flex:none;
+}
+
+/* Numbered variant (custom counters) */
+ol.list.list--numbered{ counter-reset:item; }
+ol.list.list--numbered > li{
+  counter-increment:item;
+  padding-left:0;               /* we’ll add our own number cell */
+}
+ol.list.list--numbered > li::before{
+  content: counter(item) ".";
+  width:2.5ch; text-align:right; flex:none;
+  color:var(--muted);
+  margin-top:.1rem;
+}
+
+/* Badges / pills */
+.badge{
+  padding:.2rem .55rem;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#0b1426;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+
+/* Links inside list items */
+.list a{ color:var(--text); text-decoration:none; }
+.list a:hover{ color:var(--accent); }
+
+/* Definition list (key:value grid) */
+dl.dlist{
+  margin:0;
+  display:grid;
+  grid-template-columns: max-content 1fr;
+  gap:.35rem .75rem;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:.75rem .9rem;
+  color:var(--text);
+}
+dl.dlist dt{ color:var(--muted); }
+dl.dlist dd{ margin:0; }

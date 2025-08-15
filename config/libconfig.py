@@ -39,8 +39,11 @@ def read_config(filepath="config.ini"):
     coordinator_host=config.get('experiments', 'coordinator_host')
     generic_host=config.get('experiments', 'generic_host')
     templates_path = config.get('experiments', 'templates_path')
+    static_path = config.get('experiments', 'static_path')
     heartbeat_rate=config.getint('experiments', 'heartbeat_rate')
     time_steps=config.getint('experiments', 'time_steps')
+    max_number_of_assets=config.getint('experiments', 'max_number_of_assets')
+    step_duration=config.getint('experiments', 'step_duration')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -74,8 +77,11 @@ def read_config(filepath="config.ini"):
         'coordinator_host': coordinator_host,
         'generic_host': generic_host,
         'templates_path': templates_path,
+        'static_path': static_path,
         'heartbeat_rate': heartbeat_rate,
         'time_steps': time_steps,
+        'max_number_of_assets': max_number_of_assets,
+        'step_duration': step_duration,
     }
 
     return config_values

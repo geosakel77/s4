@@ -72,6 +72,13 @@ class APIClientCoordinator(APIClient):
             response.raise_for_status()
             return response.json()
 
+    async def update_time(self, server_url,time_data: Dict[str, Any]) -> Dict[str, Any]:
+        """POST /update time JSON"""
+        async with self._ensure_client(server_url) as cli:
+            response = await cli.post("/update_time", json=time_data)
+            response.raise_for_status()
+            return response.json()
+
     async def check_health(self,server_url) -> Dict[str, Any]:
         """GET /register with registration data JSON"""
         async with self._ensure_client(server_url) as cli:

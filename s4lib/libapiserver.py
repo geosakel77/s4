@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from typing import Dict,Any
+
+from numpy.ma.core import absolute
 from pygments.lexers import templates
 from s4lib.libbase import Agent
 from s4lib.libcoordinator import Coordinator,registration_id_schema
@@ -13,6 +15,9 @@ from config.libconstants import CONFIG_PATH
 from config.libconfig import read_config
 from s4lib.libapiclient import APIRegistrationClient
 from s4lib.libbase import validate_schema
+from s4lib.libis import IS
+from s4lib.libta import TA
+
 
 class APIServer:
     """
@@ -36,6 +41,7 @@ class APIServer:
             self.app = FastAPI(title=title,lifespan=lifespan)
         else:
             self.app = FastAPI(title=title)
+        self.app.mount("/static",StaticFiles(directory=os.path.abspath(self.config['static_path'])),name="static")
         self.templates = Jinja2Templates(directory=os.path.abspath(self.config['templates_path']))
         self._register_default_routes()
 
@@ -54,7 +60,7 @@ class APIServer:
 
 class APIBaseServer(APIServer):
 
-    def __init__(self,agent_type,port,title) -> None:
+    def __init__(self,agent_type,title) -> None:
         super().__init__(agent_type=agent_type,title=title)
         self.coordinator_url = f"{self.config['coordinator_host']}:{self.config['coordinator_port']}"
         self.registration_client = APIRegistrationClient(coordinator_url=self.coordinator_url)
@@ -73,14 +79,61 @@ class APIBaseServer(APIServer):
             response=self.agent.update_connection_data(update_data)
             return response
 
+        @self.app.post("/update_time")
+        async def update_time(req: Request) -> Dict[str, Any]:
+            update_data = await req.json()
+            response = self.agent.update_time(update_data)
+            return response
+
+
+class APIISServer(APIBaseServer):
+
+    def __init__(self,agent_type="IS",title="") -> None:
+        super().__init__(agent_type,title)
+        self.agent=IS(agent_uuid=self.agent_uuid,agent_type=self.agent_type,config=self.config)
+        self._register_is_routes()
+
+    def _register_is_routes(self) -> None:
+
+        @self.app.get("/status",response_class=HTMLResponse)
+        async def status(request: Request):
+            return self.templates.TemplateResponse("is_status.html",{"request": request,"data":self.agent.get_html_status_data()})
+
+class APITAServer(APIBaseServer):
+    def __init__(self,agent_type="TA",title="TA API Server") -> None:
+        super().__init__(agent_type,title)
+        self.agent=TA(agent_uuid=self.agent_uuid,agent_type=self.agent_type,config=self.config)
+        self._register_ta_routes()
+
+    def _register_ta_routes(self) -> None:
+
+        @self.app.get("/status",response_class=HTMLResponse)
+        async def status(request: Request):
+            return self.templates.TemplateResponse("ta_status.html",{"request": request,"data":self.agent.get_html_status_data()})
 
 class APIServerCoordinator(APIServer):
 
     def __init__(self, agent_type) -> None:
         super().__init__(agent_type,lifespan=self.lifespan)
+        self._clock_task = None
         self._heartbeat_task = None
         self.coordinator_agent=Coordinator(configuration=self.config)
         self._register_routes()
+
+
+    async def clock(self)-> None:
+        while self.coordinator_agent.get_time()>0:
+            absolute_time=self.coordinator_agent.config["time_steps"]-self.coordinator_agent.get_time()
+            print(f"Clock Time: {absolute_time}")
+            time_data={"current":absolute_time}
+            for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
+                try:
+                    update_time = await self.coordinator_agent.client.update_time(agent_url, time_data)
+                    print(update_time)
+                except Exception as e:
+                    print(e)
+            self.coordinator_agent.update_time()
+            await asyncio.sleep(int(self.config['step_duration']))
 
     async def heartbeat(self) -> None:
         while True:
@@ -94,7 +147,6 @@ class APIServerCoordinator(APIServer):
                     print(response)
                 except Exception as e:
                     print(e)
-            # TODO inform the agents about the change
             conn_info = self.coordinator_agent.get_connection_info()
             for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
                 try:
@@ -104,11 +156,12 @@ class APIServerCoordinator(APIServer):
                     print(e)
             await asyncio.sleep(int(self.config['heartbeat_rate']))
 
+
     def _register_routes(self) -> None:
 
         @self.app.get("/status",response_class=HTMLResponse)
         async def status(request: Request):
-            return self.templates.TemplateResponse("status.html",{"request": request,"data":self.coordinator_agent.status_data})
+            return self.templates.TemplateResponse("status.html",{"request": request,"data":self.coordinator_agent.get_html_status_data()})
 
         @self.app.post("/register")
         async def register(req: Request) -> Dict[str, Any]:
@@ -122,16 +175,19 @@ class APIServerCoordinator(APIServer):
     @asynccontextmanager
     async def lifespan(self,app: FastAPI):
         self._heartbeat_task = asyncio.create_task(self.heartbeat())
-        print("Heartbeat task started")
+        self._clock_task = asyncio.create_task(self.clock())
+        print("Heartbeat and Clock task started")
         try:
             yield
         finally:
             print("Heartbeat task finished")
             self._heartbeat_task.cancel()
+            self._clock_task.cancel()
             try:
                 await self._heartbeat_task
+                await self._clock_task
             except asyncio.CancelledError:
-                print("Heartbeat stopped cleanly")
+                print("Heartbeat and Clock stopped cleanly")
 
 
 

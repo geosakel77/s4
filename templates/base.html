@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title or "App" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>{{ title }}</h1>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <small>© {{ 2025 }}</small>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>IS Agent Details</h1>
+    <ul class="list list--bulleted list--compact">
+      <li><b>IS ID</b>: {{data["id"]}}</li>
+        <li><b>Total Value</b>: {{data["total_value"]}}</li>
+        <li><b>Confidentiality </b>: {{data["confidentiality"]}} <b>Integrity </b>: {{data["integrity"]}}<b>Availability </b>: {{data["availability"]}}<b>Classification </b>: {{data["classification"]}}</li>
+        <li><b>Security Category</b>: {{data["security_category"]}}</li>
+    </ul>
+    <h2>Assets</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+     {% for value in data["assets"] %}
+        <tr>
+            <th class="btn">
+                Asset {{data["assets"].index(value)+1}}
+            </th>
+            <td>
+                <ul class="list  list--compact">
+                    <li><b>Data Type</b>: {{ value["data_type"] }}<b>Expired</b>: {{ value["expired"] }}</li>
+                    <li><b>Confidentiality </b>: {{value["confidentiality"]}} <b>Integrity </b>: {{value["integrity"]}}<b>Availability </b>: {{value["availability"]}}<b>Classification </b>: {{value["classification"]}}</li>
+                    <li><b>Security Category</b>: {{data["security_category"]}}</li>
+                    <li><b>Lifespan</b>: {{ value["lifespan"] }}</li>
+
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    <br>
+{% endblock %}
