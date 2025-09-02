@@ -11,8 +11,8 @@ from pygments.lexers import templates
 from s4lib.libbase import Agent
 from s4lib.libcoordinator import Coordinator,registration_id_schema
 import uvicorn,uuid,asyncio
-from config.libconstants import CONFIG_PATH
-from config.libconfig import read_config
+from s4config.libconstants import CONFIG_PATH
+from s4config.libconfig import read_config
 from s4lib.libapiclient import APIRegistrationClient
 from s4lib.libbase import validate_schema
 from s4lib.libis import IS
@@ -100,9 +100,9 @@ class APIISServer(APIBaseServer):
             return self.templates.TemplateResponse("is_status.html",{"request": request,"data":self.agent.get_html_status_data()})
 
 class APITAServer(APIBaseServer):
-    def __init__(self,agent_type="TA",title="TA API Server") -> None:
+    def __init__(self,agent_type="TA",title="TA API Server",actor_name=None) -> None:
         super().__init__(agent_type,title)
-        self.agent=TA(agent_uuid=self.agent_uuid,agent_type=self.agent_type,config=self.config)
+        self.agent=TA(ta_agent_uuid=self.agent_uuid,agent_type=self.agent_type,ta_config=self.config,actor_name=actor_name)
         self._register_ta_routes()
 
     def _register_ta_routes(self) -> None:

@@ -2,7 +2,7 @@ import random
 
 import numpy
 import numpy as np
-from config.libconstants import IMPACT_LEVELS,CLASSIFICATION_LABELS,TYPES_OF_DATA
+from s4config.libconstants import IMPACT_LEVELS,CLASSIFICATION_LABELS,TYPES_OF_DATA
 
 from s4lib.libbase import print_security_characteristics
 

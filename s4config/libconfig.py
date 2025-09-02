@@ -30,6 +30,8 @@ def read_config(filepath="config.ini"):
     software_used_by_groups = config.get('ta', 'software_used_by_groups')
     techniques_used_by_groups = config.get('ta', 'techniques_used_by_groups')
     software_using_technique = config.get('ta', 'software_using_technique')
+    ta_plan_threshold=config.get('ta', 'ta_plan_threshold')
+    ta_actor_max_plans = config.get('ta', 'ta_actor_max_plans')
     openai_api_key = config.get('openai', 'openai_api_key')
     openai_organization_id = config.get('openai', 'organization_id')
     openai_project_id = config.get('openai', 'project_id')
@@ -44,6 +46,7 @@ def read_config(filepath="config.ini"):
     time_steps=config.getint('experiments', 'time_steps')
     max_number_of_assets=config.getint('experiments', 'max_number_of_assets')
     step_duration=config.getint('experiments', 'step_duration')
+    d3fend_path=config.get('dm', 'd3fend_path')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -73,6 +76,8 @@ def read_config(filepath="config.ini"):
         'openai_project_id': openai_project_id,
         'openai_model': openai_model,
         'experiments_data_path': experiments_data_path,
+        'ta_plan_threshold': ta_plan_threshold,
+        'ta_actor_max_plans': ta_actor_max_plans,
         'coordinator_port': coordinator_port,
         'coordinator_host': coordinator_host,
         'generic_host': generic_host,
@@ -82,6 +87,7 @@ def read_config(filepath="config.ini"):
         'time_steps': time_steps,
         'max_number_of_assets': max_number_of_assets,
         'step_duration': step_duration,
+        'd3fend_path': d3fend_path,
     }
 
     return config_values

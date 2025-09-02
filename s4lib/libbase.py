@@ -1,12 +1,14 @@
-import json, openai,requests,re,tempfile,pdfkit,os,time,random
+import json, openai,requests,re,tempfile,pdfkit,os,time,random,nvdlib
 from io import BytesIO
-from config.libconfig import read_config
+from s4config.libconfig import read_config
+from rdflib.plugins.sparql import prepareQuery
 from pyattck import Attck
 from typing import  Any,List
 from openai import OpenAI
 from stix2 import FileSystemStore,Filter
-from config.libconstants import MAP_TACTICS_TO_NAMES,CONFIG_PATH
+from s4config.libconstants import MAP_TACTICS_TO_NAMES,CONFIG_PATH
 from colorama import Fore,Style
+from rdflib import Graph,Namespace, URIRef
 
 def write_to_json(json_file,json_data):
     with open(json_file,'w') as outfile:
@@ -56,11 +58,6 @@ def print_security_characteristics(security_category,confidentiality,integrity,a
         cls = determine_color_classification(classification_key)
         print(f"{c}Confidentiality: {confidentiality}{Style.RESET_ALL} - {ic}Integrity: {integrity}{Style.RESET_ALL} - {a}Availability: {availability}{Style.RESET_ALL} - {cls}Classification: {classification}{Style.RESET_ALL} ")
 
-
-
-
-
-
 class Agent:
     def __init__(self,agent_uuid,agent_type,config):
         self.uuid=agent_uuid
@@ -103,7 +100,6 @@ class Agent:
     def _update_time_actions(self):
         pass
 
-
 class OpenAIClient:
     def __init__(self, config):
         self.config=config
@@ -127,7 +123,6 @@ class OpenAIClient:
         #return self.client.ChatCompletion.create(messages=messages_list, model=self.config['openai_model'],
         #                                          temperature=0).choices[
         #    0].message.content
-
 
 class AttackerAgent(Agent):
     def __init__(self,agent_uuid, agent_type,config):
@@ -251,12 +246,10 @@ class AttackerAgent(Agent):
         pattern = r"```(?:[^\n]*\n)?(.*?)```"   # non‑greedy, DOTALL by default
         return re.findall(pattern, markdown, flags=re.DOTALL)
 
-
-
 class AttackerAgentDA(Agent):
 
-    def __init__(self,agent_uuid,agent_type,custom=False):
-        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
+    def __init__(self,agent_uuid,agent_type,config,custom=False):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type,config=config)
         self.mitre_attack_da = FileSystemStore(self.config['mitre_enterprise_path'])
         self.custom=custom
         self.mitre_attack = Attck(nested_techniques=True, use_config=True,
@@ -566,8 +559,8 @@ class AttackerAgentDA(Agent):
 
 class MITREATTCKConfig(AttackerAgentDA):
 
-    def __init__(self,agent_uuid="00000000",agent_type="MITREATTCK"):
-        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type)
+    def __init__(self,config,agent_uuid="00000000",agent_type="MITREATTCK"):
+        super().__init__(agent_uuid=agent_uuid,agent_type=agent_type,config=config)
         self.openai_client = OpenAIClient(config=self.config)
         self.actors= self._get_actors()
         self.controls= self._get_controls()
@@ -666,4 +659,58 @@ class MITREATTCKConfig(AttackerAgentDA):
         return serialized_data
 
 
+class MITRED3FENDConfig:
 
+    def __init__(self,config):
+        self.config=config
+        self.vulnerabilities=[]
+        self.graph=Graph()
+        self.graph.parse(source=f"file:///{self.config['d3fend_path']}",format='xml')
+        self.skos=Namespace("http://www.w3.org/2004/02/skos/core#")
+        self.d3fend=Namespace("http://d3fend.mitre.org/ontologies/d3fend.owl#")
+        self.dcterms=Namespace("http://purl.org/dc/terms/")
+        self.initNS={"d3f":self.d3fend,"dcterms":self.dcterms}
+        self.d3fend_kb=self.create_d3fend_knowledge_base()
+
+    def get_vulnerabilities(self):
+        high_severity_vulnerabilities=nvdlib.searchCVE(cvssV3Severity="HIGH",limit=5)
+        print(high_severity_vulnerabilities)
+        self.vulnerabilities=high_severity_vulnerabilities
+
+    def create_d3fend_knowledge_base(self):
+        tactics = self.get_d3fend_tactics()
+        techniques_categories={}
+        techniques={}
+        for key, tactic in tactics.items():
+            techniques_categories[key] = self.get_d3fend_techniques_categories(key)
+            for key1, technique_cat in techniques_categories[key].items():
+                techniques[key1]=self.get_d3fend_techniques(key1)
+        d3fend_kb={"tactics":tactics,"techniques_categories":techniques_categories,"techniques":techniques}
+        return d3fend_kb
+
+
+    def get_d3fend_tactics(self):
+        tactics={}
+        sparql_query = prepareQuery(
+            "SELECT ?name ?label ?definition ?ida WHERE { ?name a d3f:DefensiveTactic; rdfs:label ?label ;d3f:definition ?definition;.}",
+            initNs=self.initNS)
+        query_result = self.graph.query(sparql_query, )
+        for row in query_result:
+            tactics[row.name]=row.label
+        return tactics
+
+    def get_d3fend_techniques_categories(self,tactic):
+        techniques_cat={}
+        sparql_query = prepareQuery("SELECT ?name ?label ?definition ?ida WHERE { ?name a ?name ; rdfs:label ?label ;d3f:definition ?definition; d3f:d3fend-id ?ida ;d3f:enables ?tactic.}",initNs=self.initNS)
+        query_result = self.graph.query(sparql_query,initBindings={"tactic":tactic} )
+        for row in query_result:
+            techniques_cat[row.name]=row.label
+        return techniques_cat
+
+    def get_d3fend_techniques(self,technique_cat):
+        techniques_cat={}
+        sparql_query = prepareQuery("SELECT ?name ?label ?definition ?ida WHERE { ?name a ?name ; rdfs:label ?label ;d3f:definition ?definition; d3f:d3fend-id ?ida ;rdfs:subClassOf ?technique_cat .}",initNs=self.initNS)
+        query_result = self.graph.query(sparql_query,initBindings={"technique_cat":technique_cat} )
+        for row in query_result:
+            techniques_cat[row.name]=row.label
+        return techniques_cat

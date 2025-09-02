@@ -15,8 +15,9 @@ MAP_TECHNIQUES_TO_TACTICS = {
 "TA0040":["T1531","T1485","T1486","T1565","T1491","T1561","T1667","T1499","T1657","T1495","T1490","T1498","T1496","T1489","T1529"],
 }
 MAP_TACTICS_TO_NAMES={"TA0043":"reconnaissance","TA0042":"resource-development","TA0001":"initial-access","TA0002":"execution","TA0003":"persistence","TA0004":"privilege-escalation","TA0005":"defense-evasion","TA0006":"credential-access","TA0007":"discovery","TA0008":"lateral-movement","TA0009":"collection","TA0011":"command-and-control","TA0010":"exfiltration","TA0040":"impact"}
-CONFIG_PATH='C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'
+CONFIG_PATH='C:\\Users\\geosa\\PycharmProjects\\s4\\s4config\\config.ini'
 AGENT_TYPES={1:"TA",2:"DM",3:"CTI",4:"IS"}
+DM_TYPES={1:"Preventive",2:"Detective",3:"Responsive"}
 IMPACT_LEVELS={1:"L",2:"M",3:"H"}
 TYPES_OF_DATA={1:"Reference Data",2:"Master Data",3:"Metadata",4:"Transactional Data"}
 CLASSIFICATION_LABELS={5:"S",4:"C",3:"Pri",2:"Pro",1:"Pu"}

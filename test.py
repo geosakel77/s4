@@ -1,6 +1,6 @@
 import os.path,pprint
 from pickle import FALSE
-from config.libconfig import read_config
+from s4config.libconfig import read_config
 from s4lib.libbase import read_from_json
 from mitreattack.stix20 import MitreAttackData
 from stix2 import FileSystemStore
@@ -10,7 +10,7 @@ import json,re,tempfile
 
 if __name__=="__main__":
     check_url="https://securelist.com/el-machete/66108/"
-    config_file = 'C:\\Users\\geosa\\PycharmProjects\\s4\\config\\config.ini'
+    config_file = '/s4config\\config.ini'
     config = read_config(config_file)
     actors = read_from_json(config['actors_path'])
     for actor_key in actors.keys():

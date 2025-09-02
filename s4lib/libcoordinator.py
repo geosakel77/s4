@@ -1,7 +1,7 @@
 
 from s4lib.libapiclient import APIClientCoordinator
 import random,uuid,asyncio
-from config.libconfig import read_config
+from s4config.libconfig import read_config
 
 registration_id_schema={
     "uuid":str,
@@ -117,7 +117,7 @@ class Coordinator:
 
 if __name__ == "__main__":
     import uuid
-    from config.libconstants import CONFIG_PATH
+    from s4config.libconstants import CONFIG_PATH
     config =read_config(CONFIG_PATH)
     coordinator = Coordinator(config)
 

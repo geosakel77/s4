@@ -1,6 +1,6 @@
 import os,json
-from config.libconfig import read_config
-from config.libconstants import CONFIG_PATH
+from s4config.libconfig import read_config
+from s4config.libconstants import CONFIG_PATH
 
 
 if __name__ == "__main__":

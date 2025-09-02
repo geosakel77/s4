@@ -1,10 +1,14 @@
+from traceback import print_tb
+
 from s4lib.libbase import write_to_json,read_from_json
-from s4lib.libbase import MITREATTCKConfig
+from s4lib.libbase import MITREATTCKConfig,MITRED3FENDConfig
+from s4config.libconstants import CONFIG_PATH
+from s4config.libconfig import read_config
 from pprint import pprint
 
-def run():
-    print("Preparing Configuration for S4")
-    mitreattackconfig = MITREATTCKConfig()
+def attack_run(config):
+    print("Preparing Attackers Configuration for S4")
+    mitreattackconfig = MITREATTCKConfig(config)
     print("...extracting and writing controls")
     write_to_json(mitreattackconfig.config['actors_path'],mitreattackconfig.actors)
     print("...extracting and writing controls")
@@ -26,10 +30,27 @@ def run():
     print("...extracting and writing software using technique")
     write_to_json(mitreattackconfig.config['software_using_technique'],mitreattackconfig.get_data_serialized(mitreattackconfig.software_using_technique()))
 
-    print("... end of S4 setup")
+    print("... end of S4 Attackers setup")
 
+def defend_run(config):
+    print("Preparing Defenders Configuration for S4")
+    defenderconfig = MITRED3FENDConfig(config)
+    for key,value in defenderconfig.d3fend_kb['tactics'].items():
+        tech_c=defenderconfig.d3fend_kb['techniques_categories'][key]
+        print(f"---{value}")
+        for key1,value1 in tech_c.items():
+            print(f"-----{value1}")
+            tech=defenderconfig.d3fend_kb['techniques'][key1]
+            for key2,value2 in tech.items():
+                print(f"--------{value2}")
+
+    print("...extracting and writing controls")
 
 if __name__=='__main__':
-    run()
+    print("Preparing Configuration for S4")
+    config = read_config(CONFIG_PATH)
+    #attack_run(config)
+    defend_run(config)
+    print("... end of S4 setup")
 
 

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>TA Agent Details</h1>
+    <ul class="list list--bulleted list--compact">
+      <li><b>TA ID</b>: {{data["id"]}}</li>
+        <li><b>Actor Name</b>: {{data["name"]}}</li>
+    </ul>
+    <h2>Plan</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Tactic</b></th><th><b>Technique</b></th><th><b>Technique Name</b></th><th><b>Tool/Software</b></th>
+        </tr>
+        {% for key in data["plan"].keys() %}
+
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                <ul class="list  list--compact">
+                    {% for d in data["plan"][key][0] %}
+                    <li>{{ d[0] }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul class="list  list--compact">
+                    {% for d in data["plan"][key][0] %}
+                    <li>{{ d[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul class="list  list--compact">
+                    {% for d,v in data["plan"][key][1].items() %}
+                    <li><b>{{ d }}</b>:<b>{{ v }}</b></li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+<br>
+<h2>Plan Indicators</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Tactic</b></th><th><b>Tactic Indicators</b></th>
+        </tr>
+        {% for key in data["plan_indicators"].keys() %}
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                <ul class="list  list--bulleted list--compact">
+                    {% for d in data["plan_indicators"][key] %}
+                    <li>{{ d }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+<br>
+{% endblock %}

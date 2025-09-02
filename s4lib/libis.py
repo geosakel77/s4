@@ -3,7 +3,7 @@ from openpyxl.styles.builtins import total
 from s4lib.libbase import Agent,print_security_characteristics
 import random
 from s4lib.libia import IA
-from config.libconstants import IMPACT_LEVELS,CLASSIFICATION_LABELS
+from s4config.libconstants import IMPACT_LEVELS,CLASSIFICATION_LABELS
 from typing import Dict
 import numpy as np
 
@@ -92,8 +92,8 @@ class IS(Agent):
 
 if __name__=="__main__":
     import uuid
-    from config.libconfig import read_config
-    from config.libconstants import CONFIG_PATH
+    from s4config.libconfig import read_config
+    from s4config.libconstants import CONFIG_PATH
     config_data = read_config(CONFIG_PATH)
     is_agent=IS(str(uuid.uuid4()),config_data,agent_type="IS")
     for i in range(0,10000):
