@@ -47,6 +47,17 @@ def read_config(filepath="config.ini"):
     max_number_of_assets=config.getint('experiments', 'max_number_of_assets')
     step_duration=config.getint('experiments', 'step_duration')
     d3fend_path=config.get('dm', 'd3fend_path')
+    pulsedive_key=config.get('src', 'pulsedive_key')
+    discovery_url=config.get('src', 'discovery_url')
+    indicators_collection=config.get('src', 'indicators_collection')
+    threat_collection=config.get('src', 'threat_collection')
+    pulse_cti_store_data=config.get('src', 'pulse_cti_store_data')
+    otx_cti_store_data = config.get('src', 'otx_cti_store_data')
+    otx_discovery = config.get('src', 'otx_discovery')
+    otx_key = config.get('src', 'otx_key')
+    electiciq_cti_store_data = config.get('src', 'electiciq_cti_store_data')
+    electiciq_discovery = config.get('src', 'electiciq_discovery')
+    cti_data_pool =config.get('src', 'cti_data_pool')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -88,9 +99,21 @@ def read_config(filepath="config.ini"):
         'max_number_of_assets': max_number_of_assets,
         'step_duration': step_duration,
         'd3fend_path': d3fend_path,
+        'pulsedive_key': pulsedive_key,
+        'discovery_url': discovery_url,
+        'indicators_collection': indicators_collection,
+        'threat_collection': threat_collection,
+        'pulse_cti_store_data':pulse_cti_store_data,
+        'otx_cti_store_data': otx_cti_store_data,
+        'otx_discovery': otx_discovery,
+        'otx_key': otx_key,
+        'electiciq_cti_store_data': electiciq_cti_store_data,
+        'electiciq_discovery': electiciq_discovery,
+        'cti_data_pool': cti_data_pool
     }
 
     return config_values
+
 
 
 

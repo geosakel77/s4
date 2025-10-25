@@ -1,12 +1,16 @@
 import json, openai,requests,re,tempfile,pdfkit,os,time,random,nvdlib
 from io import BytesIO
-from s4config.libconfig import read_config
+from cabby import create_client
+
+from taxii2client.v21 import Server,as_pages
+from requests.auth import HTTPBasicAuth
 from rdflib.plugins.sparql import prepareQuery
 from pyattck import Attck
 from typing import  Any,List
 from openai import OpenAI
-from stix2 import FileSystemStore,Filter
-from s4config.libconstants import MAP_TACTICS_TO_NAMES,CONFIG_PATH
+from stix2 import FileSystemStore,Filter,parse
+
+from s4config.libconstants import MAP_TACTICS_TO_NAMES
 from colorama import Fore,Style
 from rdflib import Graph,Namespace, URIRef
 
@@ -15,7 +19,7 @@ def write_to_json(json_file,json_data):
         json.dump(json_data,outfile)
 
 def read_from_json(json_file):
-    with open(json_file,'r') as infile:
+    with open(json_file,'r',encoding="utf-8") as infile:
         json_data = json.load(infile)
         return json_data
 
@@ -658,7 +662,6 @@ class MITREATTCKConfig(AttackerAgentDA):
             serialized_data[key]=serialized_list_of_dicts
         return serialized_data
 
-
 class MITRED3FENDConfig:
 
     def __init__(self,config):
@@ -714,3 +717,115 @@ class MITRED3FENDConfig:
         for row in query_result:
             techniques_cat[row.name]=row.label
         return techniques_cat
+
+
+class CTISourceConfig:
+
+    def __init__(self,config):
+        self.config=config
+
+    def get_pulsedive_data(self):
+        auth = HTTPBasicAuth("taxii2", self.config['pulsedive_key'])
+        srv = Server(self.config['discovery_url'], user=auth.username, password=self.config['pulsedive_key'])
+        root = srv.api_roots[0]
+        for c in root.collections:
+            print(c.id, c.title)
+        cti_data={}
+        dict_key=0
+        restricted_use=[self.config['indicators_collection'],self.config['threat_collection']]
+        for col in root.collections:
+            if col.id not in restricted_use:
+                for page in as_pages(col.get_objects, per_request=200):
+                    for obj in page.get("objects", []):
+                        cti_data[f"{dict_key}-{col.id}"]=obj
+                        print(obj)
+                        print("-----------------------------------------")
+
+        write_to_json(self.config['pulse_cti_store_data'],cti_data)
+
+    def get_otx_data(self):
+        auth = HTTPBasicAuth(self.config['otx_key'],"")
+        srv = Server(self.config['otx_discovery'], user=auth.username, password=auth.password)
+        root = srv.api_roots[0]
+        col = root.collections[0]
+        cti_data={}
+        dict_key=0
+        count = 0
+        try:
+            for page in as_pages(col.get_objects, per_request=200):
+                for obj in page.get("objects", []):
+                    count += 1
+                    if count % 1000 == 0:
+                        print(obj)
+                    if count <= 3:
+                        try:
+                            typed = parse(obj, allow_custom=True)
+                            print("Parsed:", getattr(typed, "type", obj.get("type")), getattr(typed, "name", ""))
+                        except Exception:
+                            pass
+                    else:
+                        cti_data[dict_key]=obj
+                        dict_key+=1
+        except Exception:
+            pass
+        write_to_json(self.config['otx_cti_store_data'],cti_data)
+
+    def get_electiciq_data(self):
+        client = create_client(discovery_path=self.config['electiciq_discovery'], use_https=True)
+        collections = client.get_collections()
+        print("Available collections:")
+        for c in collections:
+            print(f" - {c.name} (available={c.available})")
+        collection_name = collections[1].name
+        blocks = client.poll(collection_name=collection_name)
+        cti_data={}
+        dict_key=0
+        for i, block in enumerate(blocks, start=1):
+            content = block.content
+            if not content:
+                continue
+            else:
+                cti_data[dict_key]=content.decode("utf-8",errors="ignore")
+                dict_key+=1
+
+        print(f"Number of bundles: {dict_key}")
+        write_to_json(self.config['electiciq_cti_store_data'],cti_data)
+
+    def create_cti_source_pool(self):
+        pulsedive_data=read_from_json(self.config['pulse_cti_store_data'])
+        otx_cti_data=read_from_json(self.config['otx_cti_store_data'])
+        electiciq_data=read_from_json(self.config['electiciq_cti_store_data'])
+
+
+        cti_data_pool={}
+        dict_key=0
+        for key,value in pulsedive_data.items():
+            cti_data_pool[dict_key]=value
+            dict_key+=1
+
+        for key,value in otx_cti_data.items():
+            cti_data_pool[dict_key]=value
+            dict_key+=1
+
+        for key,value in electiciq_data.items():
+            value_dict = json.loads(value)
+            if "objects" in value_dict.keys():
+                objs = value_dict["objects"]
+                for obj in objs:
+                    if "indicator" in obj["type"]:
+                        cti_data_pool[dict_key]=obj
+                        dict_key+=1
+        print(f"CTI data pool size without attacker's data: {len(cti_data_pool.keys())}")
+        for filename in os.listdir(self.config['experiments_data_path']):
+            file_path = os.path.join(self.config['experiments_data_path'], filename)
+            data = read_from_json(file_path)
+            for key, value in data['indicators'].items():
+                for item in value:
+                    if item is not None:
+                        for obj in item['objects']:
+                            if "indicator" in obj['type']:
+                                cti_data_pool[dict_key]=obj
+                                dict_key+=1
+
+        print(f"CTI data pool size: {len(cti_data_pool.keys())}")
+        write_to_json(self.config['cti_data_pool'],cti_data_pool)
