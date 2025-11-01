@@ -71,6 +71,7 @@ class Agent:
         self.connection_data_dm = {}
         self.connection_data_cti = {}
         self.connection_data_is = {}
+        self.connection_data_src = {}
         self.registered_agents=[]
         self.client=None
         self.clock:int=0
@@ -81,6 +82,7 @@ class Agent:
             self.connection_data_dm = data["DM"]
             self.connection_data_cti = data["CTI"]
             self.connection_data_is = data["IS"]
+            self.connection_data_src = data["SRC"]
             self.registered_agents = data["RA"]
             update_status = {"status":"Success"}
         except KeyError as e:

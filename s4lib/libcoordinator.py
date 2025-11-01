@@ -28,12 +28,13 @@ class Coordinator:
         self.connection_data_dm = {}
         self.connection_data_cti = {}
         self.connection_data_is = {}
+        self.connection_data_src={}
 
         self.time_steps=self.config["time_steps"]
         self.registered_agents={}
         self.client=APIClientCoordinator()
         self.used_ports=[8000]
-        self.status_data={'id':str(self.id),"ports":self.used_ports,"registered":self.registered_agents,"DM":self.connection_data_dm,"TA":self.connection_data_ta,"IS":self.connection_data_is,"CTI":self.connection_data_cti}
+        self.status_data={'id':str(self.id),"ports":self.used_ports,"registered":self.registered_agents,"DM":self.connection_data_dm,"TA":self.connection_data_ta,"IS":self.connection_data_is,"CTI":self.connection_data_cti,"SRC":self.connection_data_src}
 
     def get_time(self):
         return self.time_steps
@@ -47,7 +48,7 @@ class Coordinator:
     def _update_status(self):
         self.status_data = {'id': str(self.id), "ports": self.used_ports, "registered": self.registered_agents,
                             "DM": self.connection_data_dm, "TA": self.connection_data_ta, "IS": self.connection_data_is,
-                            "CTI": self.connection_data_cti}
+                            "CTI": self.connection_data_cti,"SRC":self.connection_data_src}
 
     def register_agent(self, reg_id):
         port = self._select_port()
@@ -67,6 +68,8 @@ class Coordinator:
             self.connection_data_dm[reg_id['uuid']] = connection_string.get_connection_string()
         elif reg_id['agent_type'] == "IS":
             self.connection_data_is[reg_id['uuid']] = connection_string.get_connection_string()
+        elif reg_id['agent_type'] == "SRC":
+            self.connection_data_src[reg_id['uuid']] = connection_string.get_connection_string()
         else:
             raise Exception("Unknown agent type")
         self.used_ports.append(port)
@@ -90,6 +93,8 @@ class Coordinator:
                 conn_string=self.connection_data_cti.pop(agent_uuid,None)
             if conn_string is None:
                 conn_string=self.connection_data_is.pop(agent_uuid,None)
+            if conn_string is None:
+                conn_string=self.connection_data_src.pop(agent_uuid,None)
             self.registered_agents.pop(agent_uuid,None)
             if conn_string is not None:
                 self.used_ports.remove(conn_string['port'])
@@ -97,7 +102,7 @@ class Coordinator:
 
     def get_connection_info(self):
         conn_info = {"DM": self.connection_data_dm, "TA": self.connection_data_ta, "IS": self.connection_data_is,
-                     "CTI": self.connection_data_cti,"RA":self.registered_agents}
+                     "CTI": self.connection_data_cti,"SRC":self.connection_data_src,"RA":self.registered_agents}
         return conn_info
         #for agent_id in self.registered_agents.keys():
         #            #    self.client.update_agent(self.registered_agents[agent_id],conn_info)
