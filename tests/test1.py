@@ -8,7 +8,7 @@ if __name__ == "__main__":
     file_paths = os.listdir(config['experiments_data_path'])
     indicators=[]
     for file_path in file_paths:
-        with open(os.path.join(".\experiments_data",file_path), 'r',encoding='utf-8') as f:
+        with open(os.path.join("../experiments_data", file_path), 'r', encoding='utf-8') as f:
             data = json.load(f)
             indicators.append(data['indicators'])
     pure_indicators={}
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     #print(len(set(pattern_types_available)))
     techniques=[]
     for file_path in file_paths:
-        with open(os.path.join(".\experiments_data",file_path), 'r',encoding='utf-8') as f:
+        with open(os.path.join("../experiments_data", file_path), 'r', encoding='utf-8') as f:
             data = json.load(f)
             techniques.append(data['techniques'])
     keys_sets_a = []

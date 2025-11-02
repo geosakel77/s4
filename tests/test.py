@@ -10,7 +10,7 @@ import json,re,tempfile
 
 if __name__=="__main__":
     check_url="https://securelist.com/el-machete/66108/"
-    config_file = '/s4config\\config.ini'
+    config_file = '../s4config/config.ini'
     config = read_config(config_file)
     actors = read_from_json(config['actors_path'])
     for actor_key in actors.keys():

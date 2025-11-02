@@ -14,6 +14,7 @@ class IS(Agent):
     def __init__(self,agent_uuid,config,agent_type='IS'):
         super().__init__(agent_uuid=agent_uuid,agent_type=agent_type,config=config)
         self.assets:Dict[int,IA]={}
+        self.status='normal'
         self.confidentiality_key:int=0
         self.integrity_key:int=0
         self.availability_key:int=0
@@ -46,6 +47,7 @@ class IS(Agent):
                 self.assets[key].update_lifespan(time_step)
 
     def update_ia_status(self,status="normal"):
+        self.status=status
         for key,asset in self.assets.items():
             self.assets[key].receive_compromised_status(status=status)
 
@@ -89,6 +91,8 @@ class IS(Agent):
             html_status_data['assets'].append(asset.get_html_status_data())
         return html_status_data
 
+    def send_value_and_state(self):
+        return self.total_value,self.status,self.security_category,self.classification_key
 
 if __name__=="__main__":
     import uuid

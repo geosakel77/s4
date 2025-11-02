@@ -47,6 +47,13 @@ def read_config(filepath="config.ini"):
     max_number_of_assets=config.getint('experiments', 'max_number_of_assets')
     step_duration=config.getint('experiments', 'step_duration')
     d3fend_path=config.get('dm', 'd3fend_path')
+    l1=config.getfloat('dm', 'l1')
+    l2=config.getfloat('dm', 'l2')
+    l3=config.getfloat('dm', 'l3')
+    applicability_reward=config.getfloat('dm', 'applicability_reward')
+    hit_reward=config.getfloat('dm', 'hit_reward')
+    hardening_threshold=config.getfloat('dm', 'hardening_threshold')
+    harden_q_steps=config.getint('dm', 'harden_q_steps')
     pulsedive_key=config.get('src', 'pulsedive_key')
     discovery_url=config.get('src', 'discovery_url')
     indicators_collection=config.get('src', 'indicators_collection')
@@ -99,6 +106,13 @@ def read_config(filepath="config.ini"):
         'max_number_of_assets': max_number_of_assets,
         'step_duration': step_duration,
         'd3fend_path': d3fend_path,
+        'l1': l1,
+        'l2': l2,
+        'l3': l3,
+        'applicability_reward': applicability_reward,
+        'hit_reward': hit_reward,
+        'hardening_threshold': hardening_threshold,
+        'harden_q_steps': harden_q_steps,
         'pulsedive_key': pulsedive_key,
         'discovery_url': discovery_url,
         'indicators_collection': indicators_collection,
