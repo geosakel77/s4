@@ -4,16 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="AgCTI scorecard">
-      <change afterPath="$PROJECT_DIR$/tests/test2.py" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="dm and src development">
+      <change afterPath="$PROJECT_DIR$/s4lib/apicli/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/apisrv/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvagcti.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvsrc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/agcti_status.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dm_status.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/src_status.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4config/libconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/libconfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4config/libconstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/libconstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libagcti.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libagcti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libapiclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libapiserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapiserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libcoordinator.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libcoordinator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4lib/libdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libdm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4lib/libis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4lib/libsrc.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libsrc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/agent1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/agent1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/agent2.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/agent2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/coordinator.py" beforeDir="false" afterPath="$PROJECT_DIR$/coordinator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +85,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/geosa/PycharmProjects/s4&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/geosa/PycharmProjects/s4/templates&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -86,21 +98,44 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\geosa\PycharmProjects\s4\templates" />
       <recent name="C:\Users\geosa\PycharmProjects\s4" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\images" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\s4config" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\templates" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\geosa\PycharmProjects\s4\s4lib\apicli" />
+      <recent name="C:\Users\geosa\PycharmProjects\s4\s4lib\apisrv" />
+      <recent name="C:\Users\geosa\PycharmProjects\s4" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\tests" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\config\mitreattckdata" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\config" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\lib" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.libsrc">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="coordinator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="s4" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coordinator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="libis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
@@ -147,7 +182,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -161,30 +196,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="s4" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\geosa\PycharmProjects\s4\tests\test1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -217,19 +229,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.coordinator" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.libis" />
-      <item itemvalue="Python.test1" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.libsrc" />
-      <item itemvalue="Python.setup" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.coordinator" />
         <item itemvalue="Python.libsrc" />
         <item itemvalue="Python.libis" />
         <item itemvalue="Python.test2" />
-        <item itemvalue="Python.test1" />
-        <item itemvalue="Python.setup" />
       </list>
     </recent_temporary>
   </component>
@@ -284,7 +296,9 @@
       <workItem from="1761936227371" duration="186000" />
       <workItem from="1761976206696" duration="7863000" />
       <workItem from="1762030347192" duration="8263000" />
-      <workItem from="1762066972786" duration="23554000" />
+      <workItem from="1762066972786" duration="23630000" />
+      <workItem from="1762157047357" duration="17791000" />
+      <workItem from="1762591042050" duration="1050000" />
     </task>
     <task id="LOCAL-00001" summary="Initial TA development">
       <option name="closed" value="true" />
@@ -390,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761987628562</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="dm and src development">
+      <option name="closed" value="true" />
+      <created>1762117630745</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1762117630745</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +435,8 @@
     <MESSAGE value="dms and other updates" />
     <MESSAGE value="cti source data created" />
     <MESSAGE value="AgCTI scorecard" />
-    <option name="LAST_COMMIT_MESSAGE" value="AgCTI scorecard" />
+    <MESSAGE value="dm and src development" />
+    <option name="LAST_COMMIT_MESSAGE" value="dm and src development" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent1.coverage" NAME="agent1 Coverage Results" MODIFIED="1761411850076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -424,11 +447,11 @@
     <SUITE FILE_PATH="coverage/s4$libia.coverage" NAME="libia Coverage Results" MODIFIED="1755010520106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1755444150637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1762031365810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1752863370272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$libsrc.coverage" NAME="libsrc Coverage Results" MODIFIED="1762102174895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
+    <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1762591156044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1753640839650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/s4$coordinator.coverage" NAME="coordinator Coverage Results" MODIFIED="1761411601905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/s4$coordinator.coverage" NAME="coordinator Coverage Results" MODIFIED="1762591143139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libexperiments.coverage" NAME="libexperiments Coverage Results" MODIFIED="1754021873677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
   </component>
 </project>

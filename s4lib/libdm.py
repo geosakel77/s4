@@ -1,4 +1,4 @@
-from libbase import  Agent
+from s4lib.libbase import  Agent
 from dataclasses import dataclass
 from typing import List, Tuple, Dict
 import random

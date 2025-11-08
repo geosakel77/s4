@@ -1,6 +1,6 @@
 
-from s4lib.libapiclient import APIClientCoordinator
-import random,uuid,asyncio
+from s4lib.apicli.libapiclient import APIClientCoordinator
+import random,uuid
 from s4config.libconfig import read_config
 
 registration_id_schema={

@@ -5,18 +5,13 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from typing import Dict,Any
-
-from numpy.ma.core import absolute
 from pygments.lexers import templates
-from s4lib.libbase import Agent
+from s4lib.libbase import Agent,validate_schema
 from s4lib.libcoordinator import Coordinator,registration_id_schema
 import uvicorn,uuid,asyncio
 from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
-from s4lib.libapiclient import APIRegistrationClient
-from s4lib.libbase import validate_schema
-from s4lib.libis import IS
-from s4lib.libta import TA
+from s4lib.apicli.libapiclient import APIRegistrationClient
 
 
 class APIServer:
@@ -85,31 +80,6 @@ class APIBaseServer(APIServer):
             response = self.agent.update_time(update_data)
             return response
 
-
-class APIISServer(APIBaseServer):
-
-    def __init__(self,agent_type="IS",title="") -> None:
-        super().__init__(agent_type,title)
-        self.agent=IS(agent_uuid=self.agent_uuid,agent_type=self.agent_type,config=self.config)
-        self._register_is_routes()
-
-    def _register_is_routes(self) -> None:
-
-        @self.app.get("/status",response_class=HTMLResponse)
-        async def status(request: Request):
-            return self.templates.TemplateResponse("is_status.html",{"request": request,"data":self.agent.get_html_status_data()})
-
-class APITAServer(APIBaseServer):
-    def __init__(self,agent_type="TA",title="TA API Server",actor_name=None) -> None:
-        super().__init__(agent_type,title)
-        self.agent=TA(ta_agent_uuid=self.agent_uuid,agent_type=self.agent_type,ta_config=self.config,actor_name=actor_name)
-        self._register_ta_routes()
-
-    def _register_ta_routes(self) -> None:
-
-        @self.app.get("/status",response_class=HTMLResponse)
-        async def status(request: Request):
-            return self.templates.TemplateResponse("ta_status.html",{"request": request,"data":self.agent.get_html_status_data()})
 
 class APIServerCoordinator(APIServer):
 
@@ -188,8 +158,3 @@ class APIServerCoordinator(APIServer):
                 await self._clock_task
             except asyncio.CancelledError:
                 print("Heartbeat and Clock stopped cleanly")
-
-
-
-
-

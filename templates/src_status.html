@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>SRC Agent Details</h1>
+    <ul class="list list--bulleted list--compact">
+      <li><b>SRC ID</b>: {{data["id"]}}</li>
+        <li><b>Total Number of CTI Products </b>: {{data["total_num_cti"]}}</li>
+        <li><b>Current Number of CTI Products</b>: {{data["current_num_cti"]}}</li>
+    </ul>
+    <h2>Shared CTI Product</h2>
+    <ul class="list list--bulleted list--compact">
+      <li><b>Shared CTI Product ID</b>: {{data["shared_cti_product"]["id"]}}</li>
+        <li><b>Shared CTI Product Type</b>: {{data["shared_cti_product"]["type"]}}</li>
+        <li><b>Shared CTI Product Pattern</b>: {{data["shared_cti_product"]["pattern"]}}</li>
+    </ul>
+    <br>
+{% endblock %}

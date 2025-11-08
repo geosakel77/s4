@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>AgCTI Agent Details</h1>
+    <ul class="list list--bulleted list--compact">
+      <li><b>AgCTI ID</b>: {{data["id"]}}</li>
+        <li><b>Total Number of CTI Products Received </b>: {{data["total_received"]}}</li>
+        <li><b>Total Number of CTI Products Sent</b>: {{data["total_sent"]}}</li>
+    </ul>
+    <h2>Source Score Matrix</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Source</b></th><th><b>Score</b></th>
+        </tr>
+        {% for key in data["source_score"].keys() %}
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                {{data["source_score"][key]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    <br>
+    <h2>CTI Product Received</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Source</b></th><th><b>Number of Products</b></th>
+        </tr>
+        {% for key in data["cti_product_received"].keys() %}
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                {{data["cti_product_received"][key]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    <br>
+    <h2>CTI Product Sent</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Defence Mechanism</b></th><th><b>Number of Products</b></th>
+        </tr>
+        {% for key in data["cti_product_send"].keys() %}
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                {{data["cti_product_send"][key]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    <br>
+   <h2>Policies</h2>
+    <div class="table-wrap">
+    <table class="table table--striped table--hover table--sticky">
+        <tr>
+            <th><b>Defence Mechanism</b></th><th><b>Policy</b></th>
+        </tr>
+        {% for key in data["policies"].keys() %}
+        <tr>
+            <th class="btn">
+                {{key}}
+            </th>
+            <td>
+                {{data["policies"][key]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    <br>
+{% endblock %}
