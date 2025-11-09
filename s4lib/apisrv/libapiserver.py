@@ -77,7 +77,7 @@ class APIBaseServer(APIServer):
         @self.app.post("/update_time")
         async def update_time(req: Request) -> Dict[str, Any]:
             update_data = await req.json()
-            response = self.agent.update_time(update_data)
+            response = await self.agent.update_time(update_data)
             return response
 
 

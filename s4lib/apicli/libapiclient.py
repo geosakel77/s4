@@ -8,7 +8,7 @@ class APIClient:
     """Async client for APIServer."""
 
     def __init__(self, base_url: str = "http://127.0.0.1:8000") -> None:
-        self.coordinator_url = base_url
+        self.base_url = base_url
         self._client: httpx.AsyncClient | None = None
 
     async def __aenter__(self,base_url) -> "APIClient":
@@ -48,6 +48,7 @@ class APIClient:
 class APIRegistrationClient(APIClient):
     def __init__(self,coordinator_url: str = "http://127.0.0.1:8000") -> None:
        super().__init__(base_url=coordinator_url)
+       self.coordinator_url = self.base_url
 
 
     async def register(self, record: Dict[str, Any]) -> Dict[str, Any]:

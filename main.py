@@ -1,11 +1,12 @@
 import threading,time
 from s4lib.apisrv.libapisrvsrc import APISRCServer
 from s4lib.apisrv.libapisrvagcti import APIAGCTIServer
+import tracemalloc
 
 
 if __name__ == '__main__':
     print("Starting Experiment")
-
+    tracemalloc.start()
     srcagent1 = APISRCServer(agent_type="SRC",title="SRC Test Agent")
     ctiagent2 = APIAGCTIServer(agent_type="CTI", title="AgCTI Test Agent")
     #testagent3 = APIBaseServer(agent_type="IS", port=0, title="TA Test Agent")

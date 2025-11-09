@@ -6,9 +6,9 @@ from s4config.libconstants import DM_TYPES,IND_TYPES
 
 @dataclass(slots=True)
 class Record:
-    record_id: str
-    record_type: str
-    record_value: str
+    record_id : str
+    record_type : str
+    record_value : str
 
     def serialize(self):
         return {
@@ -16,6 +16,7 @@ class Record:
             "type":self.record_type,
             "pattern":self.record_value,
         }
+
 
 class Engine:
     def __init__(self):
@@ -67,7 +68,7 @@ class DM(Agent):
         if self.check_cti_product_applicability:
             a_r=self.config['applicability_reward']
         reward=h_r*self.config['l1']+ a_r*self.config['l2']+ r_is*self.config['l3']
-        return reward
+        return {str(self.uuid):reward}
 
     def _register_is(self,is_uuid,value,state,security_category,classification):
         self.reg_is[is_uuid]=[value,state,security_category,classification]
@@ -76,7 +77,7 @@ class DM(Agent):
     def get_html_status_data(self):
         pass
 
-    def _handle_indicator_from_agcti(self, indicator: Record):
+    def handle_indicator_from_agcti(self, indicator: Record):
         self.step_indicators.append({'agcti':indicator})
         if indicator.record_type in self.indicator_types:
             self.check_cti_product_applicability = True
@@ -88,13 +89,13 @@ class DM(Agent):
                     self.engine.update_knowledge_base(indicator)
                     break
 
-    def _handle_indicator_from_ta(self,indicator):
+    def handle_indicator_from_ta(self,indicator):
         self.indicator_types.append({'ta':indicator})
 
 
 class PreventionDM(DM):
-    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[1]):
-        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config)
+    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[1],dm_agent_type="DM"):
+        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.hardened_is={}
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
@@ -132,8 +133,8 @@ class PreventionDM(DM):
         return reward
 
 class DetectionDM(DM):
-    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[2]):
-        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config)
+    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[2],dm_agent_type="DM"):
+        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
         self.step_indicators.append({'is': indicator})
@@ -154,8 +155,8 @@ class DetectionDM(DM):
         return reward
 
 class ResponseDM(DM):
-    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[3]):
-        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config)
+    def __init__(self,agent_uuid,config,dm_type=DM_TYPES[3],dm_agent_type="DM"):
+        super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
         self.step_indicators.append({'is': indicator})

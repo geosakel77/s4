@@ -90,10 +90,13 @@ class Agent:
             update_status = {"status":"Error"}
         return update_status
 
-    def update_time(self,data):
+    async def update_time(self,data):
         try:
             self.clock = int(data["current"])
-            self._update_time_actions()
+            try:
+                await self._update_time_actions()
+            except Exception as e:
+                print(e,self.agent_type)
             update_status = {"Time":"Synced"}
         except KeyError as e:
             print(e)

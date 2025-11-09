@@ -1,4 +1,5 @@
 from s4lib.libbase import Agent,read_from_json
+from s4lib.apicli.libapiclientsrc import APIClientSRC
 from s4lib.libdm import Record
 import random
 
@@ -10,6 +11,7 @@ class CTISRC(Agent):
         self.total_number_of_cti_products=len(self.cti_data.keys())
         self.shared_cti_product =self.cti_data.popitem()[1]
         self.current_number_of_cti_products=len(self.cti_data.keys())
+        self.client=APIClientSRC()
 
     def _sample_cti_data(self):
         cti_data_pool=read_from_json(self.config['cti_data_pool'])
@@ -33,10 +35,10 @@ class CTISRC(Agent):
 
     def sharing_cti_data(self):
         if self.cti_data:
-            self.shared_cti_product=self.cti_data.popitem()
+            self.shared_cti_product=self.cti_data.popitem()[1]
         else:
             self.cti_data=self._sample_cti_data()
-            self.shared_cti_product=self.cti_data.popitem()
+            self.shared_cti_product=self.cti_data.popitem()[1]
         self.current_number_of_cti_products=len(self.cti_data.keys())
 
     def get_html_status_data(self):
@@ -44,9 +46,15 @@ class CTISRC(Agent):
                             'total_num_cti': self.total_number_of_cti_products,'current_num_cti': self.current_number_of_cti_products}
         return html_status_data
 
-    def _update_time_actions(self):
-
-        pass
+    async def _update_time_actions(self):
+        self.sharing_cti_data()
+        for agcti_uuid,connection_string in self.connection_data_cti.items():
+            if connection_string['host'] == "0.0.0.0":
+                agcti_url = f"http://127.0.0.1:{connection_string['port']}"
+            else:
+                agcti_url= f"http://{connection_string['host']}:{connection_string['port']}"
+            #print(f"Sharing CTI Data with {agcti_uuid} :{agcti_url}")
+            await self.client.share_cti_product(base_url=agcti_url,cti_product={str(agcti_uuid):self.shared_cti_product.serialize()})
 
 
 if __name__=='__main__':
