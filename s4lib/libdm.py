@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List, Tuple, Dict
 import random
 from s4config.libconstants import DM_TYPES,IND_TYPES
-
+from s4lib.apicli.libapiclientdm import APIClientAgDM
 @dataclass(slots=True)
 class Record:
     record_id : str
@@ -40,6 +40,12 @@ class Engine:
         else:
             print("Record value already exists in knowledge_base")
 
+    def get_knowledge_base(self):
+        serialized_knowledge_base = {}
+        for key, value in self.knowledge_base.items():
+            serialized_knowledge_base[key]=value.serialize()
+        return serialized_knowledge_base
+
 
 class DM(Agent):
     def __init__(self,dm_agent_uuid,dm_type,dm_config,dm_agent_type="DM"):
@@ -51,6 +57,7 @@ class DM(Agent):
         self.check_cti_product_applicability=True
         self.hit_status=False
         self.reg_is={}
+        self.client=APIClientAgDM()
 
     def rewards_cti_agent(self):
         r_is=0
@@ -70,11 +77,30 @@ class DM(Agent):
         reward=h_r*self.config['l1']+ a_r*self.config['l2']+ r_is*self.config['l3']
         return {str(self.uuid):reward}
 
+    async def send_reward(self):
+        reward=self.rewards_cti_agent()
+        print(f"Sending reward  {reward}")
+        response_msg = []
+        for agcti_uuid,connection_string in self.connection_data_cti.items():
+            if connection_string['host'] == "0.0.0.0":
+                agcti_url = f"http://127.0.0.1:{connection_string['port']}"
+            else:
+                agcti_url= f"http://{connection_string['host']}:{connection_string['port']}"
+            msg=await self.client.rewards_cti_agent(base_url=agcti_url,reward=reward)
+            response_msg.append(msg)
+        return {self.uuid:response_msg}
+
     def _register_is(self,is_uuid,value,state,security_category,classification):
         self.reg_is[is_uuid]=[value,state,security_category,classification]
 
 
+    def get_indicator_types(self):
+        return self.indicator_types
+
     def get_html_status_data(self):
+        pass
+
+    def _handle_indicator_from_is(self,is_uuid,indicator: Record):
         pass
 
     def handle_indicator_from_agcti(self, indicator: Record):
@@ -88,6 +114,7 @@ class DM(Agent):
                     self.check_cti_product_applicability = True
                     self.engine.update_knowledge_base(indicator)
                     break
+        return {str(self.uuid):f"Indicator received from AgCTI"}
 
     def handle_indicator_from_ta(self,indicator):
         self.indicator_types.append({'ta':indicator})
@@ -120,7 +147,7 @@ class PreventionDM(DM):
             for is_key in sampled_is:
                 self.hardened_is[is_key]=self.clock+self.config['harden_q_steps']
 
-    def _update_time_actions(self):
+    async def _update_time_actions(self):
         for is_key in self.hardened_is.keys():
             if self.hardened_is[is_key]-1>0:
                 self.hardened_is[is_key]=self.hardened_is[is_key]-1
@@ -130,11 +157,23 @@ class PreventionDM(DM):
         self.check_cti_product_applicability=False
         self.hit_status=False
         self.step_indicators=[]
-        return reward
+        response= await self.send_reward()
+        return response
+
+    def get_hardened_is(self):
+        return self.hardened_is
+
+    def get_html_status_data(self):
+        html_status_data = {'id': self.uuid, 'dm_type':self.dm_type,'hardened_is': self.get_hardened_is(),
+                            'indicator_types': self.get_indicator_types(),
+                            'knowledge_base': self.engine.get_knowledge_base()}
+        print(html_status_data)
+        return html_status_data
 
 class DetectionDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[2],dm_agent_type="DM"):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
+        self.detections={}
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
         self.step_indicators.append({'is': indicator})
@@ -145,18 +184,32 @@ class DetectionDM(DM):
                 compromised_status = False
             else:
                 compromised_status = True
+                self.detections[is_uuid]={"indicator":indicator.serialize(),"timestamp":self.clock}
         return compromised_status
 
-    def _update_time_actions(self):
+    def get_detections(self):
+        return self.detections
+
+    def get_html_status_data(self):
+        html_status_data = {'id': self.uuid, 'dm_type':self.dm_type,'detections': self.get_detections(),
+                            'indicator_types': self.get_indicator_types(),
+                            'knowledge_base': self.engine.get_knowledge_base()}
+        return html_status_data
+
+
+    async def _update_time_actions(self):
         reward = self.rewards_cti_agent()
         self.check_cti_product_applicability = False
         self.hit_status = False
         self.step_indicators = []
-        return reward
+        response = await self.send_reward()
+        return response
 
 class ResponseDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[3],dm_agent_type="DM"):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
+        self.responses={}
+
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
         self.step_indicators.append({'is': indicator})
@@ -167,11 +220,22 @@ class ResponseDM(DM):
                 compromised_status = False
             else:
                 compromised_status = True
-        return compromised_status
+                self.responses[is_uuid] = {"indicator": indicator.serialize(), "timestamp": self.clock}
+        return {is_uuid:compromised_status}
 
-    def _update_time_actions(self):
+    def get_responses(self):
+        return self.responses
+
+    def get_html_status_data(self):
+        html_status_data = {'id': self.uuid, 'dm_type': self.dm_type, 'responses': self.get_responses(),
+                            'indicator_types': self.get_indicator_types(),
+                            'knowledge_base': self.engine.get_knowledge_base()}
+        return html_status_data
+
+    async def _update_time_actions(self):
         reward = self.rewards_cti_agent()
         self.check_cti_product_applicability = False
         self.hit_status = False
         self.step_indicators = []
-        return reward
+        response = await self.send_reward()
+        return response

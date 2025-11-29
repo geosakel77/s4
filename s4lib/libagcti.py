@@ -1,3 +1,5 @@
+from time import process_time_ns
+
 from s4lib.libbase import Agent
 from s4lib.libdm import Record
 from s4lib.apicli.libapiclientagcti import APIClientAgCTI
@@ -24,12 +26,12 @@ class AgCTI(Agent):
         for dm_uuid in self.connection_data_dm.keys():
             if self._get_decision(dm_uuid,product):
                 destinations.append(dm_uuid)
-                self._cti_product_sent(src_uuid,dm_uuid,product)
+                self._cti_product_sent(dm_uuid,src_uuid,product)
         self._calculate_source_score()
         return destinations
 
     def _cti_product_sent(self,dm_uuid,src_uuid,product):
-        if src_uuid in self.cti_data_send.keys:
+        if src_uuid in self.cti_data_send.keys():
             if dm_uuid in self.cti_data_send[src_uuid].keys():
                 self.cti_data_send[src_uuid][dm_uuid].append(product)
             else:
@@ -48,7 +50,11 @@ class AgCTI(Agent):
 
     def _calculate_source_score(self):
         for src_uuid in self.cti_data_received.keys():
-            total = sum(len(v) for v in self.cti_data_send[src_uuid].values())
+            total=0
+            if src_uuid in self.cti_data_send.keys():
+                for v in self.cti_data_send[src_uuid].values():
+
+                    total+=len(v)
             self.source_score[src_uuid]=total/len(self.cti_data_received[src_uuid])
 
     def get_source_score(self):
@@ -65,7 +71,7 @@ class AgCTI(Agent):
             self.rewards[dm_uuid].append(reward)
         else:
             self.rewards[dm_uuid]=[reward]
-        return {str(self.uuid): f"Product received from {dm_uuid}"}
+        return {str(self.uuid): f"Reward received {reward}"}
 
 
     def get_cti_product_received(self):
@@ -105,8 +111,9 @@ class AgCTI(Agent):
     async def _update_time_actions(self):
         self.policy_maker()
         product=self._pick_product()
+        response_msg = []
         if product is not None:
-            src_uuid,record=product.items()[0]
+            src_uuid,record=next(iter(product.items()))
             destinations=self.sends_cti_product(src_uuid,record)
             for dm_uuid in destinations:
                 connection_string= self.connection_data_dm[dm_uuid]
@@ -114,9 +121,9 @@ class AgCTI(Agent):
                     dm_url = f"http://127.0.0.1:{connection_string['port']}"
                 else:
                     dm_url = f"http://{connection_string['host']}:{connection_string['port']}"
-                await self.client.send_cti_product(base_url=dm_url,cti_product={str(dm_uuid):record.serialize()})
-        else:
-            return {self.uuid:"Not ready yet"}
+                msg=await self.client.send_cti_product(base_url=dm_url,cti_product={str(dm_uuid):record.serialize()})
+                response_msg.append(msg)
+        return {self.uuid:response_msg}
 
     def _pick_product(self):
         product=None

@@ -1,4 +1,4 @@
-from s4lib.libdm import PreventionDM,DetectionDM,ResponseDM,DM
+from s4lib.libdm import PreventionDM, DetectionDM, ResponseDM, DM, Record
 from fastapi import Request
 from fastapi.responses import HTMLResponse
 from s4lib.apisrv.libapiserver import APIBaseServer
@@ -9,7 +9,7 @@ class APIDMServer(APIBaseServer):
 
     def __init__(self,agent_type="DM",title="") -> None:
         super().__init__(agent_type,title)
-        self.agent = DM(dm_agent_uuid=self.agent_uuid,dm_agent_type=self.agent_type,dm_config=self.config,dm_type=None)
+        self.agent = None #DM(dm_agent_uuid=self.agent_uuid,dm_agent_type=self.agent_type,dm_config=self.config,dm_type=None)
         self._register_dm_routes()
 
     def _register_dm_routes(self) -> None:
@@ -18,9 +18,8 @@ class APIDMServer(APIBaseServer):
         async def receives_cti_product(req: Request) -> Dict[str, Any]:
             update_data = await req.json()
             response = {str(self.agent.uuid):f"Product has not received yet."}
-            for key,value in update_data.items():
-                response = self.agent.handle_indicator_from_agcti(value)
-            print(response)
+            for key,product in update_data.items():
+                response = self.agent.handle_indicator_from_agcti(Record(product['id'],product['type'],product['pattern']))
             return response
 
         @self.app.post("/receives_ta_indicator")
@@ -29,7 +28,6 @@ class APIDMServer(APIBaseServer):
             response = {str(self.agent.uuid): f"Product has not received yet."}
             for key, value in update_data.items():
                 response = self.agent.handle_indicator_from_ta(value)
-            print(response)
             return response
 
 class APIPreventionDMServer(APIDMServer):
@@ -43,3 +41,30 @@ class APIPreventionDMServer(APIDMServer):
         async def status(request: Request):
             return self.templates.TemplateResponse("prevention_dm_status.html",
                                                    {"request": request, "data": self.agent.get_html_status_data()})
+
+class APIDetectionDMServer(APIDMServer):
+    def __init__(self,agent_type="DM",title="") -> None:
+        super().__init__(agent_type,title)
+        self.agent =DetectionDM(agent_uuid=self.agent_uuid,config=self.config)
+        self._register_detection_dm_routes()
+
+    def _register_detection_dm_routes(self) -> None:
+        @self.app.get("/status", response_class=HTMLResponse)
+        async def status(request: Request):
+            return self.templates.TemplateResponse("detection_dm_status.html",
+                                                   {"request": request, "data": self.agent.get_html_status_data()})
+
+
+class APIResponseDMServer(APIDMServer):
+    def __init__(self,agent_type="DM",title="") -> None:
+        super().__init__(agent_type,title)
+        self.agent =ResponseDM(agent_uuid=self.agent_uuid,config=self.config)
+        self._register_response_dm_routes()
+
+    def _register_response_dm_routes(self) -> None:
+        @self.app.get("/status", response_class=HTMLResponse)
+        async def status(request: Request):
+            return self.templates.TemplateResponse("response_dm_status.html",
+                                                   {"request": request, "data": self.agent.get_html_status_data()})
+
+
