@@ -1,11 +1,10 @@
-from openpyxl.styles.builtins import total
-
 from s4lib.libbase import Agent,print_security_characteristics
 import random
 from s4lib.libia import IA
 from s4config.libconstants import IMPACT_LEVELS,CLASSIFICATION_LABELS
 from typing import Dict
 import numpy as np
+from s4lib.apicli.libapiclientis import APIClientAgIS
 
 
 
@@ -24,20 +23,32 @@ class IS(Agent):
         self.integrity:str=""
         self.availability:str=""
         self.total_value:int=0
+        self.client=APIClientAgIS()
         self.security_category = (("C", self.confidentiality_key), ("I", self.integrity_key),
                                   ("A", self.availability_key))
         self.number_of_assets=random.randint(1,int(config['max_number_of_assets']))
         self._create_ia()
         self.determine_security_category()
+        self.received_indicators={}
 
-    def _update_time_actions(self):
-        self.update_ia_time(time_step=1)
+
+    def handle_indicator_from_ta(self,key,value):
+        self.received_indicators[key]=value
+
+
+
+
+    async def _update_time_actions(self):
         self.determine_security_category()
         self.calculate_is_value()
+        self.update_ia_time(time_step=1)
+
+
+
 
     def _create_ia(self):
-        for i in range(self.number_of_assets):
-            self.assets[i]=IA(self.config)
+        for ia in range(self.number_of_assets):
+            self.assets[ia]=IA(self.config)
 
     def update_ia_time(self,time_step):
         for key,asset in self.assets.items():

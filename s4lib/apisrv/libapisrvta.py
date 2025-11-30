@@ -3,8 +3,6 @@ from fastapi import Request
 from s4lib.apisrv.libapiserver import APIBaseServer
 from fastapi.responses import HTMLResponse
 
-
-
 class APITAServer(APIBaseServer):
     def __init__(self,agent_type="TA",title="TA API Server",actor_name=None) -> None:
         super().__init__(agent_type,title)

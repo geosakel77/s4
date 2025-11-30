@@ -3,7 +3,10 @@ from dataclasses import dataclass
 from typing import List, Tuple, Dict
 import random
 from s4config.libconstants import DM_TYPES,IND_TYPES
-from s4lib.apicli.libapiclientdm import APIClientAgDM
+from s4lib.apicli.libapiclientdm import APIClientAgDM,APIClientAgDetectionDM
+
+
+
 @dataclass(slots=True)
 class Record:
     record_id : str
@@ -174,6 +177,8 @@ class DetectionDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[2],dm_agent_type="DM"):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.detections={}
+        self.client=APIClientAgDetectionDM()
+
 
     def _handle_indicator_from_is(self,is_uuid,indicator):
         self.step_indicators.append({'is': indicator})
@@ -185,7 +190,7 @@ class DetectionDM(DM):
             else:
                 compromised_status = True
                 self.detections[is_uuid]={"indicator":indicator.serialize(),"timestamp":self.clock}
-        return compromised_status
+        return {is_uuid:compromised_status}
 
     def get_detections(self):
         return self.detections

@@ -30,6 +30,14 @@ class APIDMServer(APIBaseServer):
                 response = self.agent.handle_indicator_from_ta(value)
             return response
 
+        @self.app.post("/evaluate_is_indicator")
+        async def receives_ta_indicator(req: Request) -> Dict[str, Any]:
+            update_data = await req.json()
+            response = {str(self.agent.uuid): f"Product has not received yet."}
+            for key, value in update_data.items():
+                response = self.agent.handle_indicator_from_is(key,value)
+            return response
+
 class APIPreventionDMServer(APIDMServer):
     def __init__(self,agent_type="DM",title="") -> None:
         super().__init__(agent_type,title)
@@ -53,7 +61,6 @@ class APIDetectionDMServer(APIDMServer):
         async def status(request: Request):
             return self.templates.TemplateResponse("detection_dm_status.html",
                                                    {"request": request, "data": self.agent.get_html_status_data()})
-
 
 class APIResponseDMServer(APIDMServer):
     def __init__(self,agent_type="DM",title="") -> None:
