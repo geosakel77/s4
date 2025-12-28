@@ -31,12 +31,21 @@ class APIDMServer(APIBaseServer):
             return response
 
         @self.app.post("/evaluate_is_indicator")
-        async def receives_ta_indicator(req: Request) -> Dict[str, Any]:
+        async def evaluate_is_indicator(req: Request) -> Dict[str, Any]:
             update_data = await req.json()
             response = {str(self.agent.uuid): f"Product has not received yet."}
             for key, value in update_data.items():
-                response = self.agent.handle_indicator_from_is(key,value)
+                response = self.agent.handle_indicator_from_is(is_uuid=key,indicator=value)
             return response
+
+        @self.app.post("/receives_value_and_state")
+        async def receives_value_and_state(req: Request) -> Dict[str, Any]:
+            update_data = await req.json()
+            response = {str(self.agent.uuid): f"Value and state have not received yet."}
+            for key, value in update_data.items():
+                response = self.agent.receives_value_and_sate(is_uuid=key, value=value)
+            return response
+
 
 class APIPreventionDMServer(APIDMServer):
     def __init__(self,agent_type="DM",title="") -> None:

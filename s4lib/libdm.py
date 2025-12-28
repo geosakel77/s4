@@ -5,8 +5,6 @@ import random
 from s4config.libconstants import DM_TYPES,IND_TYPES
 from s4lib.apicli.libapiclientdm import APIClientAgDM,APIClientAgDetectionDM
 
-
-
 @dataclass(slots=True)
 class Record:
     record_id : str
@@ -34,7 +32,7 @@ class Engine:
                 answer=True
             else:
                 answer=False
-        return answer
+        return answer,indicator.record_id
 
     def update_knowledge_base(self,record: Record):
         if record.record_id not in self.knowledge_base.keys():
@@ -59,8 +57,11 @@ class DM(Agent):
         self.indicator_types=IND_TYPES[dm_type]
         self.check_cti_product_applicability=True
         self.hit_status=False
+        self.step_hit_status=[]
         self.reg_is={}
         self.client=APIClientAgDM()
+
+
 
     def rewards_cti_agent(self):
         r_is=0
@@ -80,8 +81,7 @@ class DM(Agent):
         reward=h_r*self.config['l1']+ a_r*self.config['l2']+ r_is*self.config['l3']
         return {str(self.uuid):reward}
 
-    async def send_reward(self):
-        reward=self.rewards_cti_agent()
+    async def send_reward(self,reward):
         print(f"Sending reward  {reward}")
         response_msg = []
         for agcti_uuid,connection_string in self.connection_data_cti.items():
@@ -96,6 +96,8 @@ class DM(Agent):
     def _register_is(self,is_uuid,value,state,security_category,classification):
         self.reg_is[is_uuid]=[value,state,security_category,classification]
 
+    def receives_value_and_state(self,is_uuid,value_state):
+        self._register_is(is_uuid,value=value_state[0],state=value_state[1],security_category=value_state[2],classification=value_state[3])
 
     def get_indicator_types(self):
         return self.indicator_types
@@ -122,45 +124,74 @@ class DM(Agent):
     def handle_indicator_from_ta(self,indicator):
         self.indicator_types.append({'ta':indicator})
 
+    async def detect_indicator(self, is_uuid, decision):
+        connection_string = self.connection_data_is[is_uuid]
+        if connection_string['host'] == "0.0.0.0":
+            dm_url = f"http://127.0.0.1:{connection_string['port']}"
+        else:
+            dm_url = f"http://{connection_string['host']}:{connection_string['port']}"
+        msg = await self.client.detect_indicator(base_url=dm_url,decision={str(self.uuid):{"decision":decision,"dm_type":self.dm_type}})
+        return msg
 
 class PreventionDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[1],dm_agent_type="DM"):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.hardened_is={}
 
-    def _handle_indicator_from_is(self,is_uuid,indicator):
-        self.step_indicators.append({'is':indicator})
-        compromised_status=True
-        if any(ind_type in indicator.record_type for ind_type in self.indicator_types) or any(ind_type in indicator.record_value for ind_type in self.indicator_types):
-            if any(ind_type in indicator.record_value for ind_type in [self.indicator_types[2],self.indicator_types[3]]):
+    async def _handle_indicator_from_is(self,is_uuid,indicators):
+        received_indicators = []
+        for key in indicators.keys():
+            for ind in indicators[key]:
+                received_indicators.append(Record(record_id=ind["id"],record_type=ind["type"],record_value=ind["pattern"]))
+        self.step_indicators.append({is_uuid: received_indicators})
+        check_result=[]
+        for indicator in received_indicators:
+            check_result.append(self._models_vulnerability(is_uuid,indicator)[is_uuid])
+        self.step_hit_status.extend(check_result)
+        msg = await self.detect_indicator(is_uuid, check_result)
+        return msg
+
+
+    def _models_vulnerability(self,is_uuid,indicator:Record):
+        hit_status=False
+        indicator_id = indicator.record_id
+        if any(ind_type in indicator.record_type for ind_type in self.indicator_types) or any(
+                ind_type in indicator.record_value for ind_type in self.indicator_types):
+            if any(ind_type in indicator.record_value for ind_type in
+                   [self.indicator_types[2], self.indicator_types[3]]):
                 if is_uuid in self.hardened_is.keys():
-                    self.hit_status=True
-                    compromised_status=False
+                    hit_status = True
                 else:
-                    self.hit_status=self.engine.reasoning(indicator)
-                    if self.hit_status:
-                        compromised_status=False
-                    else:
-                        compromised_status=True
-        return compromised_status
+                    hit_status,indicator_id = self.engine.reasoning(indicator)
+        decision = {is_uuid: (hit_status,indicator_id)}
+        return decision
 
     def harden_is(self):
+        for is_key in self.hardened_is.keys():
+            if self.hardened_is[is_key] - 1 > 0:
+                self.hardened_is[is_key] = self.hardened_is[is_key] - 1
+            else:
+                self.hardened_is.pop(is_key)
         if self.config['hardening_threshold']>random.random():
             sampled_is= random.sample(list(self.reg_is.keys()),random.randint(0,len(list(self.reg_is.keys()))-1))
             for is_key in sampled_is:
                 self.hardened_is[is_key]=self.clock+self.config['harden_q_steps']
 
     async def _update_time_actions(self):
-        for is_key in self.hardened_is.keys():
-            if self.hardened_is[is_key]-1>0:
-                self.hardened_is[is_key]=self.hardened_is[is_key]-1
-            else:
-                self.hardened_is.pop(is_key)
+        step_status=[]
+        for decision in self.step_hit_status:
+            step_status.append(decision[0])
+        if True in step_status:
+            self.hit_status=True
+        else:
+            self.hit_status=False
         reward=self.rewards_cti_agent()
         self.check_cti_product_applicability=False
         self.hit_status=False
+        self.step_hit_status=[]
         self.step_indicators=[]
-        response= await self.send_reward()
+        response= await self.send_reward(reward)
+        self.harden_is()
         return response
 
     def get_hardened_is(self):
@@ -177,20 +208,30 @@ class DetectionDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[2],dm_agent_type="DM"):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.detections={}
-        self.client=APIClientAgDetectionDM()
 
+    async def _handle_indicator_from_is(self,is_uuid,indicators):
+        received_indicators = []
+        for key in indicators.keys():
+            for ind in indicators[key]:
+                received_indicators.append(
+                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"]))
+        self.step_indicators.append({is_uuid: received_indicators})
+        check_result=[]
+        for indicator in received_indicators:
+            check_result.append(self._check_detection(is_uuid,indicator)[is_uuid])
+        self.step_hit_status.extend(check_result)
+        msg = await self.detect_indicator(is_uuid, check_result)
+        return msg
 
-    def _handle_indicator_from_is(self,is_uuid,indicator):
-        self.step_indicators.append({'is': indicator})
-        compromised_status = True
+    def _check_detection(self,is_uuid,indicator:Record):
+        hit_status=False
+        indicator_id = indicator.record_id
         if any(ind_type in indicator.record_value for ind_type in self.indicator_types):
-            self.hit_status = self.engine.reasoning(indicator)
-            if self.hit_status:
-                compromised_status = False
-            else:
-                compromised_status = True
-                self.detections[is_uuid]={"indicator":indicator.serialize(),"timestamp":self.clock}
-        return {is_uuid:compromised_status}
+            hit_status,indicator_id = self.engine.reasoning(indicator)
+            if hit_status:
+                self.detections[is_uuid] = {"indicator": indicator.serialize(), "timestamp": self.clock}
+        decision = {is_uuid: (hit_status,indicator_id)}
+        return decision
 
     def get_detections(self):
         return self.detections
@@ -201,14 +242,22 @@ class DetectionDM(DM):
                             'knowledge_base': self.engine.get_knowledge_base()}
         return html_status_data
 
-
     async def _update_time_actions(self):
+        step_status = []
+        for decision in self.step_hit_status:
+            step_status.append(decision[0])
+        if True in step_status:
+            self.hit_status = True
+        else:
+            self.hit_status = False
         reward = self.rewards_cti_agent()
         self.check_cti_product_applicability = False
         self.hit_status = False
+        self.step_hit_status=[]
         self.step_indicators = []
-        response = await self.send_reward()
+        response = await self.send_reward(reward)
         return response
+
 
 class ResponseDM(DM):
     def __init__(self,agent_uuid,config,dm_type=DM_TYPES[3],dm_agent_type="DM"):
@@ -216,17 +265,30 @@ class ResponseDM(DM):
         self.responses={}
 
 
-    def _handle_indicator_from_is(self,is_uuid,indicator):
-        self.step_indicators.append({'is': indicator})
-        compromised_status = True
+    async def _handle_indicator_from_is(self,is_uuid,indicators):
+        received_indicators = []
+        for key in indicators.keys():
+            for ind in indicators[key]:
+                received_indicators.append(
+                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"]))
+        self.step_indicators.append({is_uuid: received_indicators})
+        check_result = []
+        for indicator in received_indicators:
+            check_result.append(self._evict_isolate(is_uuid, indicator)[is_uuid])
+        self.step_hit_status.extend(check_result)
+        msg = await self.detect_indicator(is_uuid, check_result)
+        return msg
+
+
+    def _evict_isolate(self, is_uuid,indicator:Record):
+        hit_status = False
+        indicator_id = indicator.record_id
         if any(ind_type in indicator.record_value for ind_type in self.indicator_types):
-            self.hit_status = self.engine.reasoning(indicator)
-            if self.hit_status:
-                compromised_status = False
-            else:
-                compromised_status = True
+            hit_status,indicator_id = self.engine.reasoning(indicator)
+            if hit_status:
                 self.responses[is_uuid] = {"indicator": indicator.serialize(), "timestamp": self.clock}
-        return {is_uuid:compromised_status}
+        decision = {is_uuid: (hit_status,indicator_id)}
+        return decision
 
     def get_responses(self):
         return self.responses
@@ -238,9 +300,16 @@ class ResponseDM(DM):
         return html_status_data
 
     async def _update_time_actions(self):
+        step_status = []
+        for decision in self.step_hit_status:
+            step_status.append(decision[0])
+        if True in step_status:
+            self.hit_status = True
+        else:
+            self.hit_status = False
         reward = self.rewards_cti_agent()
         self.check_cti_product_applicability = False
         self.hit_status = False
         self.step_indicators = []
-        response = await self.send_reward()
+        response = await self.send_reward(reward)
         return response
