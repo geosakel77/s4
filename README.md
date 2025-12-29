@@ -85,9 +85,12 @@ The primary sources of data for the development of the datasets are the followin
 - #TODO
 - #TODO
 
+In general, the project uses two dataset of indicators; the one used by the threat actor agents (TA) and the other used by the CTI source agents. 
+The first one is 90% subset of the second. 
+
 ---
 
-## 1. Threat Actors Overview
+### Threat Actors Dataset Overview
 
 - **Total number of Threat Actors in MITRE ATT&CK:** 150
 - **Threat Actors used in experiments:** 33
@@ -102,7 +105,7 @@ This enables analysis of observable skew, actor representativeness, and CTI cove
 
 ---
 
-## 2. Threat Actors and Characteristics
+#### Threat Actors and Characteristics
 
 Each threat actor is characterized using four dimensions:
 
