@@ -17,6 +17,13 @@
 
 ---
 
+## **Introduction**
+
+S4 is the technical implementation of an infrastructure which experimentally integrates reinforcement learning in the qualitative assessment 
+and application of CTI in enterprise environments, and it is based on the proposed solution in a paper under development. 
+The goal of S4 is to implement the experimental infrastructure and to provide the means of reproducing the experimental results of the paper. 
+
+---
 ## **Objectives**
 
 - To develop the proposed architecture for the metric measurement.  
@@ -54,21 +61,29 @@ There are six types of agents interacting within the environment:
 The interactions between the agents within the experimental infrastructure are illustrated in the following image:
 ![Agents Interactions](https://github.com/geosakel77/s4/blob/master/images/all_intercations_diagram.png)
 
+### Utilization of MITRE D3FEND for DM agents Construction
+The project utilize the MITRE D3FEND knowledge base to contract the three types of DM agents, namely:
+
+- Preventive
+- Detective
+- Responsive
+
+The following image illustrates the utilization of MITRE D3FEND by the S4: 
+![Utilization of MITRE D3FEND](https://github.com/geosakel77/s4/blob/master/images/dm_d3fend_util.png)
+
+---
+
+## **Dataset**
 
 
 
+### Experimental Dataset Description – MITRE ATT&CK Threat Actors & CTI Pool
 
-
-## **Introduction**
-
-S4 is the technical implementation of an infrastructure which experimentally integrates reinforcement learning in the qualitative assessment 
-and application of CTI in enterprise environments, and it is based on the proposed solution in a paper under development. 
-The goal of S4 is to implement the experimental infrastructure and to provide the means of reproducing the experimental results of the paper. 
-
-
-# Experimental Dataset Description – MITRE ATT&CK Threat Actors & CTI Pool
-
-This repository documents the datasets and statistics used in the experimental evaluation of Cyber Threat Intelligence (CTI) quality metrics and system modeling, grounded on threat actors from the **MITRE ATT&CK** knowledge base and an external CTI pool.
+This repository documents the datasets and statistics used in the experimental evaluation.
+The primary sources of data for the development of the datasets are the following: 
+- **MITRE ATT&CK** knowledge base.
+- #TODO
+- #TODO
 
 ---
 
