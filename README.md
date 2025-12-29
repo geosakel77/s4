@@ -75,22 +75,19 @@ The following image illustrates the utilization of MITRE D3FEND by the S4:
 
 ## **Dataset**
 
-
-
-### Experimental Dataset Description – MITRE ATT&CK Threat Actors & CTI Pool
+### Experimental Dataset Description – TA Dataset & CTI Pool
 
 This repository documents the datasets and statistics used in the experimental evaluation.
 The primary sources of data for the development of the datasets are the following: 
 - **MITRE ATT&CK** knowledge base.
-- #TODO
-- #TODO
+- **Pulsedive** Community
+- **AlienVault OTX**
+- **ElecticIQ**
 
-In general, the project uses two dataset of indicators; the one used by the threat actor agents (TA) and the other used by the CTI source agents. 
+In general, the project uses two dataset of indicators; the one used by the threat actor agents (TA Dataset) and the other used by the CTI source agents (CTI Pool). 
 The first one is 90% subset of the second. 
 
----
-
-### Threat Actors Dataset Overview
+### TA Dataset Overview
 
 - **Total number of Threat Actors in MITRE ATT&CK:** 150
 - **Threat Actors used in experiments:** 33
@@ -102,8 +99,6 @@ The selected threat actors were chosen to ensure diversity in:
 - supported platforms
 
 This enables analysis of observable skew, actor representativeness, and CTI coverage limitations.
-
----
 
 #### Threat Actors and Characteristics
 
@@ -150,74 +145,44 @@ Each threat actor is characterized using four dimensions:
 | DragonOK | 120 | 0 | 6 | 0 |
 | Rancor | 0 | 9 | 0 | 5 |
 
----
-
-## 3. Repository-Level Statistics
-
-### Threat Actor Repository
+#### Repository-Level Statistics
 - **Total indicators:** 3,106  
 - **Total techniques:** 239  
 - **Total observable patterns:** 24  
 - **Total platforms:** 11  
 
-### CTI Pool Repository
+The distribution of the observable patterns within TA Dataset is illustrated the following pie chart: 
+
+![Observable Patterns within TA Dataset](https://github.com/geosakel77/s4/blob/master/images/pie_ta_patterns_data.png)
+
+### CTI Pool Overview
+The CTI Pool dataset is constructed by data collected form all four sources and provides a pool of indicators to the CTI sources agents. 
+
+
+#### Repository-Level Statistics
+
 - **Total indicators:** 10,227  
 - **Total observable patterns:** 26  
 
----
+- The distribution of the observable patterns within TA Dataset is illustrated the following pie chart: 
 
-## 4. Observable Pattern Distribution
+![Observable Patterns within CTI Pool Dataset](https://github.com/geosakel77/s4/blob/master/images/pie_src_patterns_data.png)
 
-The distribution of observable patterns is highly skewed, with a small number of patterns dominating the dataset.
 
-### Top-5 Patterns
-1. `file:hashes`
-2. `domain-name:value`
-3. `url:value`
-4. `ipv4-addr:value`
-5. `file:name`
-
----
-
-## 5. Visualizations
-
-### 5.1 Top-5 vs Others (Pie Chart)
-
-This pie chart highlights the dominance of the five most frequent observable patterns, while aggregating the remaining patterns as **Others**.
-
-![Top-5 Patterns vs Others – Pie Chart](images/top5_vs_others_pie.png)
-
----
-
-### 5.2 Top-5 Patterns (Bar Chart)
-
-The bar chart emphasizes the steep frequency drop between dominant and secondary observable types.
-
-![Top-5 Patterns – Bar Chart](images/top5_patterns_bar.png)
-
----
-
-## 6. Experimental Relevance
+### Experimental Relevance
 
 These datasets enable:
 - analysis of **observable dominance and bias**
-- evaluation of **CTI relevance and actionability**
+- evaluation of the **experimental CTI sources**
 - comparison between **actor-specific intelligence** and **generic CTI pools**
-- stress-testing of CTI quality metrics under skewed distributions
 
----
-
-## 7. Notes
+### Notes
 
 - Threat actors with zero indicators or patterns are intentionally preserved to reflect **real-world data sparsity**
 - Platform diversity is capped at 11 by the ATT&CK knowledge base
 - All statistics were extracted programmatically to ensure reproducibility
 
 ---
-
-## 8. Citation
-
-If you use this dataset or structure, please cite **MITRE ATT&CK** and reference this repository accordingly.
 
 ## **Dependencies**
 

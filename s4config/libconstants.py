@@ -1,3 +1,20 @@
+"""
+Qualitative Assessment and Application of CTI based on Reinforcement Learning.
+    Copyright (C) 2026  Georgios Sakellariou
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 MAP_TECHNIQUES_TO_TACTICS = {
 "TA0043":["T1595","T1596","T1597","T1598","T1599","T1600","T1601","T1602","T1603","T1604"],
 "TA0042":["T1650","T1583","T1586","T1584","T1587","T1585","T1588","T1608"],

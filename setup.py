@@ -1,10 +1,25 @@
-from traceback import print_tb
+"""
+Qualitative Assessment and Application of CTI based on Reinforcement Learning.
+    Copyright (C) 2026  Georgios Sakellariou
 
-from s4lib.libbase import write_to_json,read_from_json
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
+from s4lib.libbase import write_to_json
 from s4lib.libbase import MITREATTCKConfig,MITRED3FENDConfig,CTISourceConfig
 from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
-from pprint import pprint
 
 def attack_run(config):
     print("Preparing Attackers Configuration for S4")

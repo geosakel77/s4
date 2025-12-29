@@ -4,8 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="README updated">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="README update 1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coordinator.py" beforeDir="false" afterPath="$PROJECT_DIR$/coordinator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4config/libconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/libconfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4config/libconstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/libconstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientagcti.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientagcti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientdm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientsrc.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientsrc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapiserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapiserver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapisrvagcti.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvagcti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapisrvdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvdm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapisrvis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapisrvsrc.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvsrc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapisrvta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapisrvta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libagcti.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libagcti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libbase.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libbase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libcoordinator.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libcoordinator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libdm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libia.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libsrc.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libsrc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4statistics/s4datasetanalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s4datasetanalysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +325,7 @@
       <workItem from="1766331885363" duration="14341000" />
       <workItem from="1766648264410" duration="38976000" />
       <workItem from="1767025048942" duration="151000" />
-      <workItem from="1767033589668" duration="6557000" />
+      <workItem from="1767033589668" duration="8478000" />
     </task>
     <task id="LOCAL-00001" summary="Initial TA development">
       <option name="closed" value="true" />
@@ -476,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767039309502</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="README update 1">
+      <option name="closed" value="true" />
+      <created>1767040632107</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1767040632107</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +543,8 @@
     <MESSAGE value="data statistics and initial README.md" />
     <MESSAGE value="README update and licence" />
     <MESSAGE value="README updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="README updated" />
+    <MESSAGE value="README update 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="README update 1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
