@@ -143,15 +143,26 @@ def plot_pie_data_statistics(name,config_data,data,title):
     labels = top5_labels + ["Others"]
     values = top5_values + [others_value]
     # Plot
-    plt.figure()
-    plt.pie(
+
+    #plt.figure()
+    fig, ax = plt.subplots(figsize=(12, 6), subplot_kw=dict(aspect="equal"))
+
+    wedges, texts, autotexts = ax.pie(
         values,
-        labels=labels,
         autopct='%1.1f%%',
         startangle=140
     )
-    plt.title(f"{title} Indicators Distribution over Patterns")
-    plt.xticks(rotation=45, ha="right")
+
+    ax.legend(
+        handles=wedges,
+        labels=labels,
+        title="Observable Patterns",
+        loc='center left',
+        bbox_to_anchor=(1,0,0.5,1)
+    )
+    plt.setp(texts, size=8, weight='bold')
+    ax.set_title(f"{title} Indicators Distribution over Patterns")
+    #plt.xticks(rotation=45, ha="right")
     plt.savefig(filename)
     plt.tight_layout()
     plt.show()
