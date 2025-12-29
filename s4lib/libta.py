@@ -201,14 +201,8 @@ if __name__ == "__main__":
     config =read_config(CONFIG_PATH)
     agent_uuid = uuid.uuid4()
     ta_name='Gamaredon Group'
-    ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA",actor_name=ta_name)
-
-    for i in range(10000):
-        data={"current":i}
-        ta.update_time(data)
-        for key,value in ta.get_html_status_data().items():
-            print(f"{key}--{value}")
-        print("-----------------------------------------------")
+    ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA")
+    print(ta.actor_name)
 
 
 

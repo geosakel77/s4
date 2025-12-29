@@ -11,6 +11,7 @@ def read_config(filepath="config.ini"):
     debug_mode = config.getboolean('general', 'debug')
     log_level = config.get('general', 'log_level')
     wkhtmltopdf_path = config.get('general', 'wkhtmltopdf_path')
+    images_path = config.get('general', 'images_path')
     pyattck_path = config.get('ta', 'pyattck_path')
     pyattck_data=config.get('ta', 'pyattck_data')
     enterprise_attck_path=config.get('ta', 'enterprise_attck_path')
@@ -70,6 +71,7 @@ def read_config(filepath="config.ini"):
         'debug_mode': debug_mode,
         'log_level': log_level,
         'wkhtmltopdf_path': wkhtmltopdf_path,
+        'images_path': images_path,
         'pyattck_path': pyattck_path,
         'pyattck_data': pyattck_data,
         'enterprise_attck_path': enterprise_attck_path,

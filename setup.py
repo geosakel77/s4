@@ -50,17 +50,17 @@ def defend_run(config):
 def cti_run(config):
     print("Preparing CTI Source Configuration for S4")
     ctisourceconfig = CTISourceConfig(config)
-    #ctisourceconfig.get_pulsedive_data()
-    #ctisourceconfig.get_otx_data()
-    #ctisourceconfig.get_electiciq_data()
+    ctisourceconfig.get_pulsedive_data()
+    ctisourceconfig.get_otx_data()
+    ctisourceconfig.get_electiciq_data()
     ctisourceconfig.create_cti_source_pool()
     print("...extracting and writing cti data")
 
 if __name__=='__main__':
     print("Preparing Configuration for S4")
     config = read_config(CONFIG_PATH)
-    #attack_run(config)
-    #defend_run(config)
+    attack_run(config)
+    defend_run(config)
     cti_run(config)
     print("... end of S4 setup")
 
