@@ -1,6 +1,6 @@
 # 📘 **Qualitative Assessment and Application of CTI based on Reinforcement Learning**
 
-*This project is the implementation and experimental testing of the qualitative assessment and application of CTI based on the utilization of reinforcement learning in simulated enterprise environments.*
+*This project is the implementation and experimental testing of the qualitative assessment and application of CTI based on the utilization of reinforcement learning in simulated enterprise environments publication.*
 
 ---
 
@@ -82,7 +82,7 @@ The primary sources of data for the development of the datasets are the followin
 - **MITRE ATT&CK** knowledge base.
 - **Pulsedive** Community
 - **AlienVault OTX**
-- **ElecticIQ**
+- **EclecticIQ**
 
 In general, the project uses two dataset of indicators; the one used by the threat actor agents (TA Dataset) and the other used by the CTI source agents (CTI Pool). 
 The first one is 90% subset of the second. 

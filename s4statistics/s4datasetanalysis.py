@@ -179,23 +179,24 @@ def plot_pie_data_statistics(name,config_data,data,title):
     plt.tight_layout()
     plt.show()
 
-def generate_statistics(config_data):
+def generate_statistics(config_data,verbose_flag=False,plot=False):
     print("Generating statistics of the dataset utilized during the experiments of S4...\n")
     print("-------------------------------------------------------------------------------")
-    get_actors_statistics(config_data["actors_path"])
+    get_actors_statistics(config_data["actors_path"],verbose_flag)
     print("-------------------------------------------------------------------------------")
     print("-------------------------------------------------------------------------------")
-    ta_stat_data=get_ta_data_statistics(config_data['experiments_data_path'])
+    ta_stat_data=get_ta_data_statistics(config_data['experiments_data_path'],verbose_flag)
     print("-------------------------------------------------------------------------------")
     print("-------------------------------------------------------------------------------")
     src_stat_data=get_src_data_statistics(config_data['cti_data_pool'])
-    plot_bar_data_statistics("ta_patterns_data.png",config_data,ta_stat_data)
-    plot_bar_data_statistics("src_patterns_data.png",config_data,src_stat_data)
-    plot_pie_data_statistics("ta_patterns_data.png", config_data, ta_stat_data, "CTI SRC")
-    plot_pie_data_statistics("src_patterns_data.png", config_data, src_stat_data, "TA")
+    if plot:
+        plot_bar_data_statistics("ta_patterns_data.png",config_data,ta_stat_data)
+        plot_bar_data_statistics("src_patterns_data.png",config_data,src_stat_data)
+        plot_pie_data_statistics("ta_patterns_data.png", config_data, ta_stat_data, "CTI SRC")
+        plot_pie_data_statistics("src_patterns_data.png", config_data, src_stat_data, "TA")
 
     print("-------------------------------------------------------------------------------")
 
 if __name__ == "__main__":
     config = read_config(CONFIG_PATH)
-    generate_statistics(config)
+    generate_statistics(config,True)

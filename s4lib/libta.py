@@ -15,8 +15,8 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from s4lib.libbase import AttackerAgent,read_from_json,write_to_json,OpenAIClient
-from s4config.libconstants import MAP_TECHNIQUES_TO_TACTICS
+from s4lib.libbase import AttackerAgent,read_from_json,write_to_json
+from s4config.libconstants import MAP_TECHNIQUES_TO_TACTICS, EXPERIMENTS_ACTORS
 import random,os,json
 
 class TA(AttackerAgent):
@@ -28,14 +28,28 @@ class TA(AttackerAgent):
         self.plan_indicators=None
         self.ta_actor_max_plans=int(self.config['ta_actor_max_plans'])
         self.all_techniques=read_from_json(self.config['techniques_path'])
+        if actor_name is None:
+            actor_name=random.choice(EXPERIMENTS_ACTORS)
         self._initiate(actor_name=actor_name)
+        print(self.actor_name)
+        print(self.indicators)
+        num_ind=0
+        for key in self.indicators.keys():
+            num_ind+=len(self.indicators[key])
+        print(f"Number of Indicators: {num_ind} - Number of Techniques: {len(self.actor_techniques)}")
+        print(self.actor_techniques)
+        #print(self.actor_techniques_to_tactics_map)
+        #print(self.actor_techniques_software_map)
+        #print(self.actor_software)
         self.create_plan()
+        print(self.plan)
+        print(self.plan_indicators)
 
     def _initiate(self,actor_name=None):
         actors = read_from_json(self.config['actors_path'])
         if actor_name is None:
             self.actor_id=random.choice(list(actors.keys()))
-            self.actor_name=actors[self.actor_id]
+            self.actor_name=actors[self.actor_id]["name"]
         else:
             for key,value in actors.items():
                 if value['name'] == actor_name:
@@ -129,18 +143,20 @@ class TA(AttackerAgent):
                 k =random.randint(1,len(self.actor_techniques_to_tactics_map[tactic]))
                 plan_techniques_of_tactic_n=random.sample(self.actor_techniques_to_tactics_map[tactic],k)
                 plan_soft_tools_of_tactic_n = {}
-                for technique in plan_techniques_of_tactic_n:
-                    l = random.randint(0,len(self.actor_techniques_software_map[technique]))
-                    sample_tools=random.sample(self.actor_techniques_software_map[technique],l)
-                    if len(sample_tools)>0:
-                        plan_soft_tools_of_tactic_n[technique]=sample_tools
-                        plan[tactic]=(plan_techniques_of_tactic_n,plan_soft_tools_of_tactic_n)
+                if self.actor_techniques_software_map:
+                    for technique in plan_techniques_of_tactic_n:
+                        l = random.randint(0,len(self.actor_techniques_software_map[technique]))
+                        sample_tools=random.sample(self.actor_techniques_software_map[technique],l)
+                        if len(sample_tools)>0:
+                            plan_soft_tools_of_tactic_n[technique]=sample_tools
+                plan[tactic]=(plan_techniques_of_tactic_n,plan_soft_tools_of_tactic_n)
         indicators = []
-        for ref in self.indicators[self.actor_id]:
-            if ref:
-                for obj in ref['objects']:
-                    if 'pattern' in obj.keys():
-                        indicators.append(obj['pattern'])
+        if self.indicators:
+            for ref in self.indicators[self.actor_id]:
+                if ref:
+                    for obj in ref['objects']:
+                        if 'pattern' in obj.keys():
+                            indicators.append(obj['pattern'])
 
         for tactic_n in plan.keys():
             plan_indicators[tactic_n]=[]
@@ -155,6 +171,13 @@ class TA(AttackerAgent):
                         plan_indicators[tactic_n].extend([indicator['pattern'] for indicator in bundle['objects'] if 'pattern' in indicator.keys()])
         self.plan=plan
         self.plan_indicators=plan_indicators
+        if (not self.plan) and indicators:
+            #Special case that handles threat actors with no identified techniques or tactics which have indicators.
+            plan_indicators["T000N"]=[]
+            plan["T000N"]=(["TE000N"],{"TE000N":["TO000N"]})
+            m = random.randint(0, len(indicators))
+            indexes = sorted(random.sample(range(len(indicators)), m), reverse=True)
+            plan_indicators["T000N"].extend([indicators.pop(i) for i in indexes])
         return plan,plan_indicators
 
     def action_attack(self):
@@ -217,8 +240,8 @@ if __name__ == "__main__":
     from s4config.libconstants import CONFIG_PATH
     config =read_config(CONFIG_PATH)
     agent_uuid = uuid.uuid4()
-    ta_name='Gamaredon Group'
-    ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA")
+    ta_name=None#"Dragonfly 2.0"#None#"APT34"#'ZIRCONIUM'
+    ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA",actor_name=ta_name)
     print(ta.actor_name)
 
 
