@@ -199,7 +199,12 @@ These datasets enable:
    ```bash
    git clone https://github.com/geosakel77/s4.git
    cd s4
-2. Run the following scripts
+2. Rename and edit the configuration file. Complete the missing values in brackets.
+   ```bash
+   mv ./s4config/config_example.ini ./s4config/config.ini
+   vi config.ini
+   
+3. Run the following scripts
    - Run setup.py 
    - Run coordiantor.py
    - Run main.py

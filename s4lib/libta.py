@@ -16,6 +16,8 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from s4lib.libbase import AttackerAgent,read_from_json,write_to_json
+from s4lib.apicli.libapiclientta import APIClientAgTA
+from s4lib.libdm import Record
 from s4config.libconstants import MAP_TECHNIQUES_TO_TACTICS, EXPERIMENTS_ACTORS
 import random,os,json
 
@@ -31,19 +33,9 @@ class TA(AttackerAgent):
         if actor_name is None:
             actor_name=random.choice(EXPERIMENTS_ACTORS)
         self._initiate(actor_name=actor_name)
-        print(self.actor_name)
-        print(self.indicators)
-        num_ind=0
-        for key in self.indicators.keys():
-            num_ind+=len(self.indicators[key])
-        print(f"Number of Indicators: {num_ind} - Number of Techniques: {len(self.actor_techniques)}")
-        print(self.actor_techniques)
-        #print(self.actor_techniques_to_tactics_map)
-        #print(self.actor_techniques_software_map)
-        #print(self.actor_software)
         self.create_plan()
-        print(self.plan)
-        print(self.plan_indicators)
+        self.client=APIClientAgTA()
+
 
     def _initiate(self,actor_name=None):
         actors = read_from_json(self.config['actors_path'])
@@ -156,7 +148,7 @@ class TA(AttackerAgent):
                 if ref:
                     for obj in ref['objects']:
                         if 'pattern' in obj.keys():
-                            indicators.append(obj['pattern'])
+                            indicators.append({obj["id"]:obj['pattern']})
 
         for tactic_n in plan.keys():
             plan_indicators[tactic_n]=[]
@@ -168,7 +160,7 @@ class TA(AttackerAgent):
                 for tl in tool:
                     bundles=self.indicators[tl]
                     for bundle in bundles:
-                        plan_indicators[tactic_n].extend([indicator['pattern'] for indicator in bundle['objects'] if 'pattern' in indicator.keys()])
+                        plan_indicators[tactic_n].extend([{indicator['id']:indicator['pattern']} for indicator in bundle['objects'] if 'pattern' in indicator.keys()])
         self.plan=plan
         self.plan_indicators=plan_indicators
         if (not self.plan) and indicators:
@@ -195,6 +187,24 @@ class TA(AttackerAgent):
                 flag=False
 
         return selected_indicator
+
+    async def _execute_attack_step_is(self,is_uuid,selected_indicator:Record):
+        connection_string = self.connection_data_is[is_uuid]
+        if connection_string['host'] == "0.0.0.0":
+            is_url = f"http://127.0.0.1:{connection_string['port']}"
+        else:
+            is_url = f"http://{connection_string['host']}:{connection_string['port']}"
+        msg = await self.client.execute_attack_step(base_url=is_url,indicator={str(self.uuid):selected_indicator.serialize()})
+        return msg
+
+    async def _execute_attack_step_dm(self,dm_uuid,selected_indicator:Record):
+        connection_string = self.connection_data_dm[dm_uuid]
+        if connection_string['host'] == "0.0.0.0":
+            dm_url = f"http://127.0.0.1:{connection_string['port']}"
+        else:
+            dm_url = f"http://{connection_string['host']}:{connection_string['port']}"
+        msg = await self.client.execute_attack_step(base_url=dm_url,indicator={str(self.uuid):selected_indicator.serialize()})
+        return msg
 
     def get_html_status_data(self):
         translated_plan={}
@@ -229,9 +239,15 @@ class TA(AttackerAgent):
                 self.ta_actor_max_plans-=1
                 selected_indicator=self.action_attack()
             else:
-                self._initiate()
+                self.plan = None
+                self.plan_indicators = None
+                self.ta_actor_max_plans = int(self.config['ta_actor_max_plans'])
+                actor_name = random.choice(EXPERIMENTS_ACTORS)
+                self._initiate(actor_name=actor_name)
                 self.create_plan()
-                selected_indicator=self.action_attack()
+        else:
+            pass
+
         return selected_indicator
 
 if __name__ == "__main__":
@@ -240,7 +256,7 @@ if __name__ == "__main__":
     from s4config.libconstants import CONFIG_PATH
     config =read_config(CONFIG_PATH)
     agent_uuid = uuid.uuid4()
-    ta_name=None#"Dragonfly 2.0"#None#"APT34"#'ZIRCONIUM'
+    ta_name="GALLIUM"#"Dragonfly 2.0"#None#"APT34"#'ZIRCONIUM'
     ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA",actor_name=ta_name)
     print(ta.actor_name)
 

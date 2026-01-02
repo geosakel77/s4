@@ -144,10 +144,10 @@ class DM(Agent):
     async def detect_indicator(self, is_uuid, decision):
         connection_string = self.connection_data_is[is_uuid]
         if connection_string['host'] == "0.0.0.0":
-            dm_url = f"http://127.0.0.1:{connection_string['port']}"
+            is_url = f"http://127.0.0.1:{connection_string['port']}"
         else:
-            dm_url = f"http://{connection_string['host']}:{connection_string['port']}"
-        msg = await self.client.detect_indicator(base_url=dm_url,decision={str(self.uuid):{"decision":decision,"dm_type":self.dm_type}})
+            is_url = f"http://{connection_string['host']}:{connection_string['port']}"
+        msg = await self.client.detect_indicator(base_url=is_url,decision={str(self.uuid):{"decision":decision,"dm_type":self.dm_type}})
         return msg
 
 class PreventionDM(DM):

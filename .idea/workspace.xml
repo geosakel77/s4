@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="README updated  and licencing completed">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="Fix TA plan">
+      <change afterPath="$PROJECT_DIR$/ctidata/cti_data_pool.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--6a2e693f-24e5-451a-9f88-b36a108e5662.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments_data/intrusion-set--85403903-15e0-4f9f-9be4-a259ecad4022.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4config/actors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4config/config_example.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4config/libconstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/libconstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apicli/libapiclientta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apicli/libapiclientta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/libdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libdm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4lib/libta.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/libta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4statistics/s4datasetanalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s4datasetanalysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/ta_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ta_status.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,46 +55,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.agent1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.agent2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.coordinator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libexperiments.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libia.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libsrc.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libta (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.libta.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4datasetanalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/geosa/PycharmProjects/s4/images&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.agent1.executor": "Run",
+    "Python.agent2.executor": "Run",
+    "Python.coordinator.executor": "Run",
+    "Python.libexperiments.executor": "Run",
+    "Python.libia.executor": "Run",
+    "Python.libis.executor": "Run",
+    "Python.libsrc.executor": "Run",
+    "Python.libta (1).executor": "Run",
+    "Python.libta.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.s4datasetanalysis.executor": "Run",
+    "Python.setup.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test1.executor": "Run",
+    "Python.test2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/geosa/PycharmProjects/s4/s4config",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\geosa\PycharmProjects\s4\s4config" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\images" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\templates" />
       <recent name="C:\Users\geosa\PycharmProjects\s4" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\s4config" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -306,7 +311,8 @@
       <workItem from="1767033589668" duration="8860000" />
       <workItem from="1767080596597" duration="745000" />
       <workItem from="1767093262250" duration="41000" />
-      <workItem from="1767253072631" duration="4683000" />
+      <workItem from="1767253072631" duration="4720000" />
+      <workItem from="1767337582121" duration="7432000" />
     </task>
     <task id="LOCAL-00001" summary="Initial TA development">
       <option name="closed" value="true" />
@@ -500,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767042527548</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fix TA plan">
+      <option name="closed" value="true" />
+      <created>1767259865557</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1767259865558</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -534,7 +548,8 @@
     <MESSAGE value="README updated" />
     <MESSAGE value="README update 1" />
     <MESSAGE value="README updated  and licencing completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="README updated  and licencing completed" />
+    <MESSAGE value="Fix TA plan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix TA plan" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
@@ -551,6 +566,6 @@
     <SUITE FILE_PATH="coverage/s4$libta__1_.coverage" NAME="libta (1) Coverage Results" MODIFIED="1752958667180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$libia.coverage" NAME="libia Coverage Results" MODIFIED="1755010520106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1767259743725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
+    <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1767340292719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
   </component>
 </project>
