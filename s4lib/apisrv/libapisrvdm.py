@@ -44,7 +44,7 @@ class APIDMServer(APIBaseServer):
             update_data = await req.json()
             response = {str(self.agent.uuid): f"Product has not received yet."}
             for key, value in update_data.items():
-                response = self.agent.handle_indicator_from_ta(value)
+                response = self.agent.handle_indicator_from_ta(key,value)
             return response
 
         @self.app.post("/evaluate_is_indicator")

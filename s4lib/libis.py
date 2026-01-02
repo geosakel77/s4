@@ -51,7 +51,8 @@ class IS(Agent):
         self.platform_type=random.choice(PLATFORM_TYPES)
         self.step_decisions={}
 
-    def handle_indicator_from_ta(self,key,value:Record):
+    def handle_indicator_from_ta(self,key,ind):
+        value=Record(record_id=ind["id"],record_type=ind["type"],record_value=ind["pattern"])
         if (not value['platform_type']) or (value['platform_type']==self.platform_type):
             if key in self.received_indicators.keys():
                 self.received_indicators[key].append(value)

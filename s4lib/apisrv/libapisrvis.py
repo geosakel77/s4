@@ -38,7 +38,7 @@ class APIISServer(APIBaseServer):
         @self.app.post("/receives_ta_indicator")
         async def receives_ta_indicator(req: Request) -> Dict[str, Any]:
             update_data = await req.json()
-            response = {str(self.agent.uuid): f"Product has not received yet."}
+            response = {str(self.agent.uuid): f"Indicator has not received yet."}
             for key, value in update_data.items():
                 response = self.agent.handle_indicator_from_ta(key,value)
             return response

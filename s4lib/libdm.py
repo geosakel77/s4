@@ -71,6 +71,7 @@ class DM(Agent):
         self.dm_type=dm_type
         self.engine=Engine()
         self.step_indicators=[]
+        self.indicators_received_from_ta={}
         self.indicator_types=IND_TYPES[dm_type]
         self.check_cti_product_applicability=True
         self.hit_status=False
@@ -138,8 +139,12 @@ class DM(Agent):
                     break
         return {str(self.uuid):f"Indicator received from AgCTI"}
 
-    def handle_indicator_from_ta(self,indicator):
-        self.indicator_types.append({'ta':indicator})
+    def handle_indicator_from_ta(self,key,indicator):
+        value = Record(record_id=indicator["id"], record_type=indicator["type"], record_value=indicator["pattern"])
+        if key in self.indicators_received_from_ta.keys():
+            self.indicators_received_from_ta[key].append(value)
+        else:
+            self.indicators_received_from_ta[key]=[value]
 
     async def detect_indicator(self, is_uuid, decision):
         connection_string = self.connection_data_is[is_uuid]

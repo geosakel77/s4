@@ -185,7 +185,6 @@ class TA(AttackerAgent):
                     self.plan_indicators.pop(tactic)
             else:
                 flag=False
-
         return selected_indicator
 
     async def _execute_attack_step_is(self,is_uuid,selected_indicator:Record):
@@ -231,13 +230,13 @@ class TA(AttackerAgent):
 
         return html_status_data
 
-    def _update_time_actions(self):
+    async def _update_time_actions(self):
+        response_msg=[]
         selected_indicator=self.action_attack()
         if selected_indicator is None:
             if self.ta_actor_max_plans>0:
                 self.create_plan()
                 self.ta_actor_max_plans-=1
-                selected_indicator=self.action_attack()
             else:
                 self.plan = None
                 self.plan_indicators = None
@@ -246,20 +245,16 @@ class TA(AttackerAgent):
                 self._initiate(actor_name=actor_name)
                 self.create_plan()
         else:
-            pass
-
-        return selected_indicator
-
-if __name__ == "__main__":
-    import uuid,pprint
-    from s4config.libconfig import read_config
-    from s4config.libconstants import CONFIG_PATH
-    config =read_config(CONFIG_PATH)
-    agent_uuid = uuid.uuid4()
-    ta_name="GALLIUM"#"Dragonfly 2.0"#None#"APT34"#'ZIRCONIUM'
-    ta=TA(ta_agent_uuid=agent_uuid,ta_config=config,agent_type="TA",actor_name=ta_name)
-    print(ta.actor_name)
-
-
-
-
+            dm_uuids_number=random.randint(0,len(self.connection_data_dm.keys()))
+            dm_uuids=random.sample(list(self.connection_data_dm.keys()),dm_uuids_number)
+            is_uuids_number=random.randint(0,len(self.connection_data_is.keys()))
+            is_uuids=random.sample(list(self.connection_data_is.keys()),is_uuids_number)
+            key, value = next(iter(selected_indicator.items()))
+            record=Record(record_id=key,record_type="indicator",record_value=value.replace("'",'').replace('"',''))
+            for is_uuid in is_uuids:
+                msg= await self._execute_attack_step_is(is_uuid,record)
+                response_msg.append(msg)
+            for dm_uuid in dm_uuids:
+                msg= await self._execute_attack_step_dm(dm_uuid,record)
+                response_msg.append(msg)
+        return response_msg
