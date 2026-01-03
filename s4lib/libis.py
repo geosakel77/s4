@@ -61,7 +61,7 @@ class IS(Agent):
 
     def indicator_detected(self, dm_uuid,decision):
         self.step_decisions[dm_uuid]=decision
-
+        return {dm_uuid:"decision stored"}
 
     def _step_indicators_decision(self):
         evaluation, status={DM_TYPES[1]:[],DM_TYPES[2]:[],DM_TYPES[3]:[]},"normal"
@@ -139,13 +139,13 @@ class IS(Agent):
             self.update_ia_status(self.status)
             self.assets = {}
             self.calculate_is_value()
-            self.step_decisions=[]
+            self.step_decisions={}
         else:
             self.received_indicators = {}
             self.determine_security_category()
             self.calculate_is_value()
             self.update_ia_time(time_step=1)
-            self.step_decisions=[]
+            self.step_decisions={}
         msg1= await self.send_value_and_state()
         response_msg.append(msg1)
         return {self.uuid: response_msg}

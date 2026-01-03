@@ -32,7 +32,9 @@ class APIAGCTIServer(APIBaseServer):
 
         @self.app.get("/status",response_class=HTMLResponse)
         async def status(request: Request):
-            return self.templates.TemplateResponse("agcti_status.html",{"request": request,"data":self.agent.get_html_status_data()})
+            status_data = self.agent.get_html_status_data()
+            status_data['title'] = self.title
+            return self.templates.TemplateResponse("agcti_status.html",{"request": request,"data":status_data})
 
         @self.app.post("/receives_cti_product")
         async def receives_cti_product(req: Request) -> Dict[str, Any]:

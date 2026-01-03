@@ -15,7 +15,7 @@
             <th>Agent ID</th>
             <td>{{key}}</td>
             <th>URL</th>
-            <td>{{ value }}</td>
+            <td><a href="{{ value+'/status' }}"  target="_blank" rel="noopener noreferrer">{{ value+"/status" }}</a></td>
         </tr>
         {% endfor %}
     </table>

@@ -31,4 +31,6 @@ class APITAServer(APIBaseServer):
 
         @self.app.get("/status",response_class=HTMLResponse)
         async def status(request: Request):
-            return self.templates.TemplateResponse("ta_status.html",{"request": request,"data":self.agent.get_html_status_data()})
+            status_data = self.agent.get_html_status_data()
+            status_data['title'] = self.title
+            return self.templates.TemplateResponse("ta_status.html",{"request": request,"data":status_data})

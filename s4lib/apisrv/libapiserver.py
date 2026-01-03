@@ -49,6 +49,7 @@ class APIServer:
             self.host = socket.gethostbyname(socket.gethostname())
         self.port = port
         self.local = local
+        self.title = title
         if lifespan:
             self.app = FastAPI(title=title,lifespan=lifespan)
         else:
@@ -100,8 +101,8 @@ class APIBaseServer(APIServer):
 
 class APIServerCoordinator(APIServer):
 
-    def __init__(self, agent_type) -> None:
-        super().__init__(agent_type,lifespan=self.lifespan)
+    def __init__(self, agent_type,title) -> None:
+        super().__init__(agent_type,lifespan=self.lifespan,title=title)
         self._clock_task = None
         self._heartbeat_task = None
         self.coordinator_agent=Coordinator(configuration=self.config)
@@ -148,7 +149,9 @@ class APIServerCoordinator(APIServer):
 
         @self.app.get("/status",response_class=HTMLResponse)
         async def status(request: Request):
-            return self.templates.TemplateResponse("status.html",{"request": request,"data":self.coordinator_agent.get_html_status_data()})
+            status_data=self.coordinator_agent.get_html_status_data()
+            status_data['title']=self.title
+            return self.templates.TemplateResponse("status.html",{"request": request,"data":status_data})
 
         @self.app.post("/register")
         async def register(req: Request) -> Dict[str, Any]:

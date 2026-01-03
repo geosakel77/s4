@@ -71,7 +71,7 @@ class CTISRC(Agent):
             else:
                 agcti_url= f"http://{connection_string['host']}:{connection_string['port']}"
             #print(f"Sharing CTI Data with {agcti_uuid} :{agcti_url}")
-            await self.client.share_cti_product(base_url=agcti_url,cti_product={str(agcti_uuid):self.shared_cti_product.serialize()})
+            await self.client.share_cti_product(base_url=agcti_url,cti_product={str(self.uuid):self.shared_cti_product.serialize()})
 
 
 if __name__=='__main__':

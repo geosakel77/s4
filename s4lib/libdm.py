@@ -115,15 +115,16 @@ class DM(Agent):
         self.reg_is[is_uuid]=[value,state,security_category,classification]
 
     def receives_value_and_state(self,is_uuid,value_state):
-        self._register_is(is_uuid,value=value_state[0],state=value_state[1],security_category=value_state[2],classification=value_state[3])
-
+        if value_state is not None:
+            self._register_is(is_uuid,value=value_state[0],state=value_state[1],security_category=value_state[2],classification=value_state[3])
+        return {is_uuid:"Value and state stored."}
     def get_indicator_types(self):
         return self.indicator_types
 
     def get_html_status_data(self):
         pass
 
-    def _handle_indicator_from_is(self,is_uuid,indicator: Record):
+    def handle_indicator_from_is(self,is_uuid,indicator: Record):
         pass
 
     def handle_indicator_from_agcti(self, indicator: Record):
@@ -160,7 +161,7 @@ class PreventionDM(DM):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.hardened_is={}
 
-    async def _handle_indicator_from_is(self,is_uuid,indicators):
+    async def handle_indicator_from_is(self,is_uuid,indicators):
         received_indicators = []
         for key in indicators.keys():
             for ind in indicators[key]:
@@ -223,7 +224,6 @@ class PreventionDM(DM):
         html_status_data = {'id': self.uuid, 'dm_type':self.dm_type,'hardened_is': self.get_hardened_is(),
                             'indicator_types': self.get_indicator_types(),
                             'knowledge_base': self.engine.get_knowledge_base()}
-        print(html_status_data)
         return html_status_data
 
 class DetectionDM(DM):
@@ -231,7 +231,7 @@ class DetectionDM(DM):
         super().__init__(dm_agent_uuid=agent_uuid,dm_type=dm_type,dm_config=config,dm_agent_type=dm_agent_type)
         self.detections={}
 
-    async def _handle_indicator_from_is(self,is_uuid,indicators):
+    async def handle_indicator_from_is(self,is_uuid,indicators):
         received_indicators = []
         for key in indicators.keys():
             for ind in indicators[key]:
@@ -287,7 +287,7 @@ class ResponseDM(DM):
         self.responses={}
 
 
-    async def _handle_indicator_from_is(self,is_uuid,indicators):
+    async def handle_indicator_from_is(self,is_uuid,indicators):
         received_indicators = []
         for key in indicators.keys():
             for ind in indicators[key]:

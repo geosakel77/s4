@@ -106,7 +106,11 @@ class AgCTI(Agent):
     def get_cti_product_send(self):
         product_sent={}
         for key in self.cti_data_send.keys():
-            product_sent[key]=len(self.cti_data_send[key])
+            for dm_key in self.cti_data_send[key].keys():
+                if dm_key in product_sent.keys():
+                    product_sent[dm_key]+=len(self.cti_data_send[key][dm_key])
+                else:
+                    product_sent[dm_key]=len(self.cti_data_send[key][dm_key])
         return product_sent
 
     def get_total_cti_product_send(self):
