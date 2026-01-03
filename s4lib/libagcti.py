@@ -42,7 +42,7 @@ class AgCTI(Agent):
         for dm_uuid in self.connection_data_dm.keys():
             if self._get_decision(dm_uuid,product):
                 destinations.append(dm_uuid)
-                self._cti_product_sent(dm_uuid,src_uuid,product)
+                self._cti_product_sent(dm_uuid=dm_uuid,src_uuid=src_uuid,product=product)
         self._calculate_source_score()
         return destinations
 
@@ -65,13 +65,19 @@ class AgCTI(Agent):
         return {str(self.uuid):f"Product received from {src_uuid}"}
 
     def _calculate_source_score(self):
-        for src_uuid in self.cti_data_received.keys():
-            total=0
-            if src_uuid in self.cti_data_send.keys():
-                for v in self.cti_data_send[src_uuid].values():
+        try:
+            for src_uuid in self.cti_data_received.keys():
+                total=0
+                if src_uuid in self.cti_data_send.keys():
+                    data_send_from_source=self.cti_data_send[src_uuid]
+                    for k,v in data_send_from_source.items():
+                        total+=len(v)
+                score=total/len(self.cti_data_received[src_uuid])
+                print(f"Source score: {score}={total}/{len(self.cti_data_received[src_uuid])} for the {src_uuid}")
+                self.source_score[src_uuid]=score
+        except Exception as e:
+            print(e)
 
-                    total+=len(v)
-            self.source_score[src_uuid]=total/len(self.cti_data_received[src_uuid])
 
     def get_source_score(self):
         return self.source_score
@@ -148,7 +154,8 @@ class AgCTI(Agent):
     def _pick_product(self):
         product=None
         if self.cti_data_current_pool:
-            key,product=self.cti_data_current_pool.popitem()
+            k = random.choice(list(self.cti_data_current_pool.keys()))
+            product=self.cti_data_current_pool.pop(k)
         return product
 
     def get_html_status_data(self):

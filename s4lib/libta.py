@@ -148,7 +148,7 @@ class TA(AttackerAgent):
                 if ref:
                     for obj in ref['objects']:
                         if 'pattern' in obj.keys():
-                            indicators.append({obj["id"]:obj['pattern']})
+                            indicators.append({obj["id"]:{"pattern":obj['pattern'],"platform":["generic"]}})
 
         for tactic_n in plan.keys():
             plan_indicators[tactic_n]=[]
@@ -160,7 +160,12 @@ class TA(AttackerAgent):
                 for tl in tool:
                     bundles=self.indicators[tl]
                     for bundle in bundles:
-                        plan_indicators[tactic_n].extend([{indicator['id']:indicator['pattern']} for indicator in bundle['objects'] if 'pattern' in indicator.keys()])
+                        platform=[]
+                        for obj in self.actor_techniques:
+                            data = json.loads(obj['object'])
+                            if technique == data['id']:
+                                platform.extend(data['x_mitre_platforms'])
+                        plan_indicators[tactic_n].extend([{indicator['id']:{"pattern":indicator['pattern'],"platform":platform}} for indicator in bundle['objects'] if 'pattern' in indicator.keys()])
         self.plan=plan
         self.plan_indicators=plan_indicators
         if (not self.plan) and indicators:
@@ -187,22 +192,22 @@ class TA(AttackerAgent):
                 flag=False
         return selected_indicator
 
-    async def _execute_attack_step_is(self,is_uuid,selected_indicator:Record):
+    async def _execute_attack_step_is(self,is_uuid,selected_indicator:Record,platform):
         connection_string = self.connection_data_is[is_uuid]
         if connection_string['host'] == "0.0.0.0":
             is_url = f"http://127.0.0.1:{connection_string['port']}"
         else:
             is_url = f"http://{connection_string['host']}:{connection_string['port']}"
-        msg = await self.client.execute_attack_step(base_url=is_url,indicator={str(self.uuid):selected_indicator.serialize()})
+        msg = await self.client.execute_attack_step(base_url=is_url,indicator={str(self.uuid):{"indicator":selected_indicator.serialize(),"platform":platform}})
         return msg
 
-    async def _execute_attack_step_dm(self,dm_uuid,selected_indicator:Record):
+    async def _execute_attack_step_dm(self,dm_uuid,selected_indicator:Record,platform):
         connection_string = self.connection_data_dm[dm_uuid]
         if connection_string['host'] == "0.0.0.0":
             dm_url = f"http://127.0.0.1:{connection_string['port']}"
         else:
             dm_url = f"http://{connection_string['host']}:{connection_string['port']}"
-        msg = await self.client.execute_attack_step(base_url=dm_url,indicator={str(self.uuid):selected_indicator.serialize()})
+        msg = await self.client.execute_attack_step(base_url=dm_url,indicator={str(self.uuid):{"indicator":selected_indicator.serialize(),"platform":platform}})
         return msg
 
     def get_html_status_data(self):
@@ -224,9 +229,16 @@ class TA(AttackerAgent):
                     translated_soft[key2]=soft_of_phase[key2]
             translated_plan[key1]=(translated_phase,translated_soft)
 
+        plan_indicators_translated={}
+        for key1 in self.plan_indicators.keys():
+            plan_indicators_translated[key1]=[]
+            for obj in self.plan_indicators[key1]:
+                for key2, ind in obj.items():
+                    plan_indicators_translated[key1].append([key2,ind["pattern"]])
+
 
         html_status_data= {'id': self.actor_id, 'name': self.actor_name, 'plan': translated_plan,
-                           'plan_indicators': self.plan_indicators}
+                           'plan_indicators': plan_indicators_translated}
 
         return html_status_data
 
@@ -250,11 +262,12 @@ class TA(AttackerAgent):
             is_uuids_number=random.randint(0,len(self.connection_data_is.keys()))
             is_uuids=random.sample(list(self.connection_data_is.keys()),is_uuids_number)
             key, value = next(iter(selected_indicator.items()))
-            record=Record(record_id=key,record_type="indicator",record_value=value.replace("'",'').replace('"',''))
+            record=Record(record_id=key,record_type="indicator",record_value=value["pattern"].replace("'",'').replace('"',''))
+            platform=value["platform"]
             for is_uuid in is_uuids:
-                msg= await self._execute_attack_step_is(is_uuid,record)
+                msg= await self._execute_attack_step_is(is_uuid,record,platform)
                 response_msg.append(msg)
             for dm_uuid in dm_uuids:
-                msg= await self._execute_attack_step_dm(dm_uuid,record)
+                msg= await self._execute_attack_step_dm(dm_uuid,record,platform)
                 response_msg.append(msg)
         return response_msg

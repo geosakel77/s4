@@ -118,6 +118,7 @@ class DM(Agent):
         if value_state is not None:
             self._register_is(is_uuid,value=value_state[0],state=value_state[1],security_category=value_state[2],classification=value_state[3])
         return {is_uuid:"Value and state stored."}
+
     def get_indicator_types(self):
         return self.indicator_types
 
@@ -141,11 +142,13 @@ class DM(Agent):
         return {str(self.uuid):f"Indicator received from AgCTI"}
 
     def handle_indicator_from_ta(self,key,indicator):
-        value = Record(record_id=indicator["id"], record_type=indicator["type"], record_value=indicator["pattern"])
-        if key in self.indicators_received_from_ta.keys():
-            self.indicators_received_from_ta[key].append(value)
-        else:
-            self.indicators_received_from_ta[key]=[value]
+        if indicator is not None:
+            value = Record(record_id=indicator["indicator"]["id"], record_type=indicator["indicator"]["type"], record_value=indicator["indicator"]["pattern"])
+            if key in self.indicators_received_from_ta.keys():
+                self.indicators_received_from_ta[key].append(value)
+            else:
+                self.indicators_received_from_ta[key]=[value]
+        return {str(self.uuid):f"Indicator received from TA {key}"}
 
     async def detect_indicator(self, is_uuid, decision):
         connection_string = self.connection_data_is[is_uuid]

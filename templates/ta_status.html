@@ -56,8 +56,8 @@
             </th>
             <td>
                 <ul class="list  list--bulleted list--compact">
-                    {% for d,v in data["plan_indicators"][key].items() %}
-                    <li>{{ d }}: {{ v }}</li>
+                    {% for v in data["plan_indicators"][key] %}
+                    <li>{{ v[0] }}: {{ v[1] }}</li>
                     {% endfor %}
                 </ul>
             </td>

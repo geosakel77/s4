@@ -52,12 +52,15 @@ class IS(Agent):
         self.step_decisions={}
 
     def handle_indicator_from_ta(self,key,ind):
-        value=Record(record_id=ind["id"],record_type=ind["type"],record_value=ind["pattern"])
-        if (not value['platform_type']) or (value['platform_type']==self.platform_type):
-            if key in self.received_indicators.keys():
-                self.received_indicators[key].append(value)
-            else:
-                self.received_indicators[key]=[value]
+        if ind is not None:
+            platform=ind["platform"]
+            value=Record(record_id=ind["indicator"]["id"],record_type=ind["indicator"]["type"],record_value=ind["indicator"]["pattern"])
+            if ("generic" in platform) or (self.platform_type in platform):
+                if key in self.received_indicators.keys():
+                    self.received_indicators[key].append(value)
+                else:
+                    self.received_indicators[key]=[value]
+        return {str(self.uuid):f"Indicator received from TA {key}"}
 
     def indicator_detected(self, dm_uuid,decision):
         self.step_decisions[dm_uuid]=decision
