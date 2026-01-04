@@ -71,6 +71,11 @@ The project utilize the MITRE D3FEND knowledge base to contract the three types 
 The following image illustrates the utilization of MITRE D3FEND by the S4: 
 ![Utilization of MITRE D3FEND](https://github.com/geosakel77/s4/blob/master/images/dm_d3fend_util.png)
 
+
+### Generic Infrastructure Testing
+
+[![Demo Video](https://youtu.be/T92mEr7962k)]
+
 ---
 
 ## **Dataset**
