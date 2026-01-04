@@ -37,9 +37,12 @@ if __name__ == '__main__':
     redmagent3 = APIResponseDMServer(agent_type="DM", title="Response DM Agent")
     dedmagent4 = APIDetectionDMServer(agent_type="DM", title="Detection DM Agent")
     prdmagent5 = APIPreventionDMServer(agent_type="DM", title="Prevention DM Agent")
-    #IS Agents
 
-    isagent6 = APIISServer(agent_type="IS", title="IS Agent")
+    #IS Agents
+    isagent6 = APIISServer(agent_type="IS", title="IS Agent 1")
+    isagent61 = APIISServer(agent_type="IS", title="IS Agent 2")
+    isagent62 = APIISServer(agent_type="IS", title="IS Agent 3")
+
     # TA Agents
 
     taagent7 =APITAServer(agent_type="TA", title="TA Agent")
@@ -51,6 +54,8 @@ if __name__ == '__main__':
     t4 = threading.Thread(target=dedmagent4.run)
     t5 = threading.Thread(target=prdmagent5.run)
     t6 = threading.Thread(target=isagent6.run)
+    t61 = threading.Thread(target=isagent61.run)
+    t62 = threading.Thread(target=isagent62.run)
     t7 = threading.Thread(target=taagent7.run)
 
     t1.start()
@@ -58,7 +63,6 @@ if __name__ == '__main__':
     t11.start()
     time.sleep(4)
     t2.start()
-
     time.sleep(4)
     t3.start()
     time.sleep(4)
@@ -67,6 +71,10 @@ if __name__ == '__main__':
     t5.start()
     time.sleep(4)
     t6.start()
+    time.sleep(4)
+    t61.start()
+    time.sleep(4)
+    t62.start()
     time.sleep(4)
     t7.start()
     time.sleep(4)
