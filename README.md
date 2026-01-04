@@ -74,7 +74,7 @@ The following image illustrates the utilization of MITRE D3FEND by the S4:
 
 ### Generic Infrastructure Testing
 
-[![Demo Video](https://youtu.be/T92mEr7962k)]
+[![Demo Video](https://img.youtube.com/vi/T92mEr7962k/hqdefault.jpg)](https://youtu.be/T92mEr7962k)
 
 ---
 
