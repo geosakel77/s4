@@ -17,6 +17,7 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 """
 import configparser
 
+
 def read_config(filepath="config.ini"):
     # Create a ConfigParser object
     config = configparser.ConfigParser()
@@ -83,6 +84,10 @@ def read_config(filepath="config.ini"):
     electiciq_cti_store_data = config.get('src', 'electiciq_cti_store_data')
     electiciq_discovery = config.get('src', 'electiciq_discovery')
     cti_data_pool =config.get('src', 'cti_data_pool')
+    rl_server_port=config.getint('rl', 'rl_server_port')
+    rl_server_ip=config.get('rl', 'rl_server_ip')
+    worker_index=config.getint('rl', 'worker_index')
+
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
@@ -142,7 +147,10 @@ def read_config(filepath="config.ini"):
         'otx_key': otx_key,
         'electiciq_cti_store_data': electiciq_cti_store_data,
         'electiciq_discovery': electiciq_discovery,
-        'cti_data_pool': cti_data_pool
+        'cti_data_pool': cti_data_pool,
+        'rl_server_port': rl_server_port,
+        'rl_server_ip': rl_server_ip,
+        'worker_index': worker_index,
     }
 
     return config_values
