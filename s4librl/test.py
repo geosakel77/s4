@@ -7,7 +7,7 @@ from s4config.libconfig import read_config
 
 if __name__ == "__main__":
     config = read_config(CONFIG_PATH)
-    alg_conf = AgCTIAlgConf(algorithm_code=1)
+    alg_conf = AgCTIAlgConf(algorithm_code=0)
     base_config =alg_conf.get_env_config()
 
     parser = add_rllib_example_script_args(

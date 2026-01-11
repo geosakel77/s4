@@ -7,7 +7,7 @@
     "evaluation-num-env-runners": 0,
     "evaluation-interval":0,
     "evaluation-duration":10,
-    "evaluation_duration-unit":["episodes", "timesteps"],
+    "evaluation-duration-unit":["episodes", "timesteps"],
     "evaluation-parallel-to-training":false,
     "output":null,
     "log-level":["INFO", "DEBUG", "WARN", "ERROR"],

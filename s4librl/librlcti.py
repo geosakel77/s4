@@ -4,11 +4,13 @@ from ray.rllib.algorithms.dqn import DQNConfig
 from ray.rllib.algorithms.ppo import PPOConfig
 from s4librl.librlctisrv import CTIRLServer
 from ray.rllib.core.rl_module.default_model_config import DefaultModelConfig
+from ray.air.integrations.wandb import WANDB_ENV_VAR, WandbLoggerCallback
 import gymnasium as gym
 import numpy as np
 from s4lib.libbase import read_from_json
-import ray
+import ray,logging
 from ray.tune.result import TRAINING_ITERATION
+from ray.tune import CLIReporter
 
 from ray.rllib.utils.metrics import (
     ENV_RUNNER_RESULTS,
@@ -28,14 +30,15 @@ def initialize_ray(config):
 
 
 class AgCTIAlgConf:
-    def __init__(self,algorithm_code=1,rl_env_config_path=CONFIG_PATH,framework=2,log_level=0):
+    def __init__(self,algorithm_code=0,rl_env_config_path=CONFIG_PATH,framework=2,log_level=0,evaluation_duration_unit=0):
         self.s4config = read_config(rl_env_config_path)
         self.rl_config = read_from_json(self.s4config["rl_config_path"])
         self.rl_env_config = {"s4config": self.s4config}
         self.framework = self.rl_config["framework"][framework]
         self.old_api_stack=self.rl_config["old-api-stack"]
-        self.algorithm_code = self.rl_config["algo"][0]
+        self.algorithm_code = self.rl_config["algo"][algorithm_code]
         self.log_level = self.rl_config["log-level"][log_level]
+        self.evaluation_duration_unit = self.rl_config["evaluation-duration-unit"][evaluation_duration_unit]
         self.generated_config = None
         self.build_config()
 
@@ -97,11 +100,13 @@ class AgCTIAlgConf:
         if self.log_level is not None:
             self.generated_config.debugging(log_level=self.log_level)
 
-        #TODO Evaluation Setup
-
-
-
-
+        if self.rl_config['evaluation-interval'] >0:
+            self.generated_config.evaluation(
+                evaluation_num_env_runners=self.rl_config['evaluation-num-env-runners'],
+                evaluation_interval=self.rl_config['evaluation-interval'],
+            evaluation_duration=self.rl_config['evaluation-duration'],
+            evaluation_duration_unit=self.evaluation_duration_unit,
+            evaluation_parallel_to_training=self.rl_config['evaluation-parallel-to-training'],)
 
 
     def _build_ppo_config(self):
@@ -124,7 +129,21 @@ class AgCTIAlgConf:
         return base_config
 
     def _build_dqn_config(self):
-        base_config = ()
+        base_config = (
+            DQNConfig().
+            environment(
+                observation_space=gym.spaces.Box(
+                    float("-inf"), float("-inf"), (4,), np.float32
+                ),
+                action_space=gym.spaces.Discrete(2),
+                env_config=self.rl_env_config,
+            )
+            .env_runners(env_runner_cls=CTIRLServer, )
+            .training(
+                num_epochs=10,
+                vf_loss_coeff=0.01,
+            )
+            .rl_module(model_config=DefaultModelConfig(vf_share_layers=True)))
         return base_config
 
     def _build_expected_sarsa_config(self):
@@ -144,6 +163,130 @@ class AgCTIAlgConf:
         }
         return stop
 
+
+class AgCTIAlgRunner:
+    def __init__(self,rl_env_config_path=CONFIG_PATH,framework=2,log_level=1,evaluation_duration_unit=0):
+        self.s4config = read_config(rl_env_config_path)
+        self.rl_config = read_from_json(self.s4config["rl_config_path"])
+        initialize_ray(self.s4config)
+        self.algo_config=AgCTIAlgConf(rl_env_config_path=CONFIG_PATH,framework=framework,log_level=log_level,evaluation_duration_unit=evaluation_duration_unit)
+        self.base_config=self.algo_config.get_env_config()
+        self.stop=self.algo_config.get_stopping_criteria()
+        self.logger=logging.getLogger(__name__)
+
+
+    def run(self,keep_ray_up=False):
+        if self.rl_config['no_tune']:
+            assert  not self.rl_config['as-test'] and not self.rl_config['as-release-test']
+            algo = self.base_config.build()
+            for i in range(self.stop.get(TRAINING_ITERATION, self.rl_config["stop-iters"])):
+                results = algo.train()
+                if ENV_RUNNER_RESULTS in results:
+                    mean_return = results[ENV_RUNNER_RESULTS].get(EPISODE_RETURN_MEAN, np.nan)
+                    print(f"iter={i} R={mean_return}", end="")
+                    if (EVALUATION_RESULTS in results) and (ENV_RUNNER_RESULTS in results[EVALUATION_RESULTS]):
+                        Reval = results[EVALUATION_RESULTS][ENV_RUNNER_RESULTS][EPISODE_RETURN_MEAN]
+                        print(f" R(eval)={Reval}", end="")
+                    for key, threshold in self.stop.items():
+                        val = results
+                        for k in key.split("/"):
+                            try:
+                                val = val[k]
+                            except KeyError:
+                                val = None
+                                break
+                        if val is not None and not np.isnan(val) and val >= threshold:
+                            print(f"Stop criterium ({key}={threshold}) fulfilled!")
+                            if not keep_ray_up:
+                                ray.shutdown()
+                            return results
+                    if not keep_ray_up:
+                        ray.shutdown()
+                        return results
+
+    def run_on_tune(self,tune_callbacks,wandb_active=True,progress_reporter=None):
+        tune_callbacks = tune_callbacks or []
+        if wandb_active:
+            wandb_key = self.rl_config['wandb-key']
+            wandb_project = self.rl_config['wandb-project']
+            tune_callbacks.append(WandbLoggerCallback(api_key=wandb_key, project=wandb_project,upload_checkpoints=True,**({"name":self.rl_config['wandb-run-name'] if self.rl_config['wandb-run-name'] is not None else {}})))
+
+        # Auto-configure a CLIReporter (to log the results to the console).
+        # Use better ProgressReporter for multi-agent cases: List individual policy rewards.
+        if progress_reporter is None:
+            if self.rl_config['num_agents'] == 0:
+                progress_reporter = CLIReporter(
+                    metric_columns={
+                        TRAINING_ITERATION: "iter",
+                        "time_total_s": "total time (s)",
+                        NUM_ENV_STEPS_SAMPLED_LIFETIME: "ts",
+                        f"{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}": "episode return mean",
+                    },
+                    max_report_frequency=args.tune_max_report_freq,
+                )
+            else:
+                progress_reporter = CLIReporter(
+                    metric_columns={
+                        **{
+                            TRAINING_ITERATION: "iter",
+                            "time_total_s": "total time (s)",
+                            NUM_ENV_STEPS_SAMPLED_LIFETIME: "ts",
+                            f"{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}": "combined return",
+                        },
+                        **{
+                            (
+                                f"{ENV_RUNNER_RESULTS}/module_episode_returns_mean/{pid}"
+                            ): f"return {pid}"
+                            for pid in config.policies
+                        },
+                    },
+                    max_report_frequency=args.tune_max_report_freq,
+                )
+
+        # Force Tuner to use old progress output as the new one silently ignores our custom
+        # `CLIReporter`.
+        os.environ["RAY_AIR_NEW_OUTPUT"] = "0"
+
+        # Run the actual experiment (using Tune).
+        start_time = time.time()
+        results = tune.Tuner(
+            trainable or config.algo_class,
+            param_space=config,
+            run_config=tune.RunConfig(
+                stop=stop,
+                verbose=args.verbose,
+                callbacks=tune_callbacks,
+                checkpoint_config=tune.CheckpointConfig(
+                    checkpoint_frequency=args.checkpoint_freq,
+                    checkpoint_at_end=args.checkpoint_at_end,
+                ),
+                progress_reporter=progress_reporter,
+            ),
+            tune_config=tune.TuneConfig(
+                num_samples=args.num_samples,
+                max_concurrent_trials=args.max_concurrent_trials,
+                scheduler=scheduler,
+            ),
+        ).fit()
+        time_taken = time.time() - start_time
+
+        if not keep_ray_up:
+            ray.shutdown()
+
+        # Error out, if Tuner.fit() failed to run. Otherwise, erroneous examples might pass
+        # the CI tests w/o us knowing that they are broken (b/c some examples do not have
+        # a --as-test flag and/or any passing criteria).
+        if results.errors:
+            # Might cause an IndexError if the tuple is not long enough; in that case, use repr(e).
+            errors = [
+                e.args[0].args[2]
+                if e.args and hasattr(e.args[0], "args") and len(e.args[0].args) > 2
+                else repr(e)
+                for e in results.errors
+            ]
+            raise RuntimeError(
+                f"Running the example script resulted in one or more errors! {errors}"
+            )
 
 
 
