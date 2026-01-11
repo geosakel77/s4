@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="algconf v1">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="algrunner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4config/template_librlconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/template_librlconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4librl/librlcti.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4librl/librlcti.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4librl/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4librl/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,10 +222,10 @@
     </configuration>
     <list>
       <item itemvalue="Python.librlcti" />
+      <item itemvalue="Python.test" />
       <item itemvalue="Python.s4_generic_infrastructure_test" />
       <item itemvalue="Python.s4_generic_infrastructure_test_coordinator" />
       <item itemvalue="Python.test1" />
-      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
@@ -314,6 +312,8 @@
       <workItem from="1767777306542" duration="41696000" />
       <workItem from="1768138550343" duration="4863000" />
       <workItem from="1768155105651" duration="1967000" />
+      <workItem from="1768157104270" duration="40000" />
+      <workItem from="1768158448013" duration="1822000" />
     </task>
     <task id="LOCAL-00001" summary="Initial TA development">
       <option name="closed" value="true" />
@@ -587,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768048961193</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="algrunner">
+      <option name="closed" value="true" />
+      <created>1768157133577</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1768157133577</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +605,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="ia, is api server bind, status pages and coordinator clock implementation" />
     <MESSAGE value="dms and other updates" />
     <MESSAGE value="cti source data created" />
     <MESSAGE value="AgCTI scorecard" />
@@ -622,7 +629,8 @@
     <MESSAGE value="readme update 1" />
     <MESSAGE value="librl init" />
     <MESSAGE value="algconf v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="algconf v1" />
+    <MESSAGE value="algrunner" />
+    <option name="LAST_COMMIT_MESSAGE" value="algrunner" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />

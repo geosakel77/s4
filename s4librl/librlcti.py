@@ -8,9 +8,12 @@ from ray.air.integrations.wandb import WANDB_ENV_VAR, WandbLoggerCallback
 import gymnasium as gym
 import numpy as np
 from s4lib.libbase import read_from_json
-import ray,logging
+import ray,logging,os,time,json
 from ray.tune.result import TRAINING_ITERATION
 from ray.tune import CLIReporter
+from ray import tune
+from ray.rllib.utils.serialization import convert_numpy_to_python_primitives
+
 
 from ray.rllib.utils.metrics import (
     ENV_RUNNER_RESULTS,
@@ -204,15 +207,20 @@ class AgCTIAlgRunner:
                         ray.shutdown()
                         return results
 
-    def run_on_tune(self,tune_callbacks,wandb_active=True,progress_reporter=None):
+    def run_on_tune(self,tune_callbacks,wandb_active=True,progress_reporter=None, tune_max_report_freq=30,keep_ray_up=False,trainable=None,scheduler=None,success_metric=None):
+        if self.rl_config['as-release-test']:
+            self.rl_config['as-test'] = True
+
+        if self.rl_config['as-test']:
+            self.rl_config['verbose'] = 1
+            tune_max_report_freq = 30
+
         tune_callbacks = tune_callbacks or []
         if wandb_active:
             wandb_key = self.rl_config['wandb-key']
             wandb_project = self.rl_config['wandb-project']
             tune_callbacks.append(WandbLoggerCallback(api_key=wandb_key, project=wandb_project,upload_checkpoints=True,**({"name":self.rl_config['wandb-run-name'] if self.rl_config['wandb-run-name'] is not None else {}})))
 
-        # Auto-configure a CLIReporter (to log the results to the console).
-        # Use better ProgressReporter for multi-agent cases: List individual policy rewards.
         if progress_reporter is None:
             if self.rl_config['num_agents'] == 0:
                 progress_reporter = CLIReporter(
@@ -222,7 +230,7 @@ class AgCTIAlgRunner:
                         NUM_ENV_STEPS_SAMPLED_LIFETIME: "ts",
                         f"{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}": "episode return mean",
                     },
-                    max_report_frequency=args.tune_max_report_freq,
+                    max_report_frequency=tune_max_report_freq,
                 )
             else:
                 progress_reporter = CLIReporter(
@@ -237,34 +245,29 @@ class AgCTIAlgRunner:
                             (
                                 f"{ENV_RUNNER_RESULTS}/module_episode_returns_mean/{pid}"
                             ): f"return {pid}"
-                            for pid in config.policies
+                            for pid in self.base_config.policies
                         },
                     },
-                    max_report_frequency=args.tune_max_report_freq,
+                    max_report_frequency=tune_max_report_freq,
                 )
 
-        # Force Tuner to use old progress output as the new one silently ignores our custom
-        # `CLIReporter`.
-        os.environ["RAY_AIR_NEW_OUTPUT"] = "0"
 
-        # Run the actual experiment (using Tune).
+        os.environ["RAY_AIR_NEW_OUTPUT"] = "0"
         start_time = time.time()
-        results = tune.Tuner(
-            trainable or config.algo_class,
-            param_space=config,
+        results = tune.Tuner(trainable or base_config.algo_class,param_space=base_config,
             run_config=tune.RunConfig(
-                stop=stop,
-                verbose=args.verbose,
+                stop=self.stop,
+                verbose=self.rl_config["verbose"],
                 callbacks=tune_callbacks,
                 checkpoint_config=tune.CheckpointConfig(
-                    checkpoint_frequency=args.checkpoint_freq,
-                    checkpoint_at_end=args.checkpoint_at_end,
+                    checkpoint_frequency=self.rl_config['checkpoint-freq'],
+                    checkpoint_at_end=self.rl_config['checkpoint-at-end'],
                 ),
                 progress_reporter=progress_reporter,
             ),
             tune_config=tune.TuneConfig(
-                num_samples=args.num_samples,
-                max_concurrent_trials=args.max_concurrent_trials,
+                num_samples=self.rl_config['num-samples'],
+                max_concurrent_trials=self.rl_config['max-concurrent-trials'],
                 scheduler=scheduler,
             ),
         ).fit()
@@ -273,11 +276,7 @@ class AgCTIAlgRunner:
         if not keep_ray_up:
             ray.shutdown()
 
-        # Error out, if Tuner.fit() failed to run. Otherwise, erroneous examples might pass
-        # the CI tests w/o us knowing that they are broken (b/c some examples do not have
-        # a --as-test flag and/or any passing criteria).
         if results.errors:
-            # Might cause an IndexError if the tuple is not long enough; in that case, use repr(e).
             errors = [
                 e.args[0].args[2]
                 if e.args and hasattr(e.args[0], "args") and len(e.args[0].args) > 2
@@ -287,8 +286,58 @@ class AgCTIAlgRunner:
             raise RuntimeError(
                 f"Running the example script resulted in one or more errors! {errors}"
             )
+        if self.rl_config['as-test']:
+            results=self._testing_results(results=results,time_taken=time_taken,success_metric=success_metric)
+        return results
 
 
+    def _testing_results(self,results,time_taken,success_metric=None):
+
+        test_passed = False
+        if self.rl_config['as-test']:
+            if success_metric is None:
+                for try_it in [
+                    f"{EVALUATION_RESULTS}/{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}",
+                    f"{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}",
+                ]:
+                    if try_it in self.stop:
+                        success_metric = {try_it: self.stop[try_it]}
+                        break
+                if success_metric is None:
+                    success_metric = {
+                        f"{ENV_RUNNER_RESULTS}/{EPISODE_RETURN_MEAN}": self.rl_config['stop_reward'],
+                    }
+            success_metric_key, success_metric_value = next(iter(success_metric.items()))
+            best_value = max(
+                row[success_metric_key] for _, row in results.get_dataframe().iterrows()
+            )
+            if best_value >= success_metric_value:
+                test_passed = True
+                print(f"`{success_metric_key}` of {success_metric_value} reached! ok")
+
+            if self.rl_config['as-release-test']:
+                trial = results._experiment_analysis.trials[0]
+                stats = trial.last_result
+                stats.pop("config", None)
+                json_summary = {
+                    "time_taken": float(time_taken),
+                    "trial_states": [trial.status],
+                    "last_update": float(time.time()),
+                    "stats": convert_numpy_to_python_primitives(stats),
+                    "passed": [test_passed],
+                    "not_passed": [not test_passed],
+                    "failures": {str(trial): 1} if not test_passed else {},
+                }
+                filename = os.environ.get("TEST_OUTPUT_JSON", "/tmp/learning_test.json")
+                with open(filename, "wt") as f:
+                    json.dump(json_summary, f)
+
+            if not test_passed:
+                raise ValueError(
+                    f"`{success_metric_key}` of {success_metric_value} not reached!"
+                )
+
+        return results
 
 
 if __name__ == "__main__":
