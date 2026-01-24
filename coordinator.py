@@ -18,7 +18,7 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 from s4lib.apisrv.libapiserver import APIServerCoordinator
 
 if __name__ == "__main__":
-    coordinator = APIServerCoordinator("COORD")
+    coordinator = APIServerCoordinator("COORD",title="Coordinator")
     print(coordinator.agent_uuid)
 
     coordinator.run()

@@ -88,6 +88,7 @@ def read_config(filepath="config.ini"):
     rl_server_ip=config.get('rl', 'rl_server_ip')
     worker_index=config.getint('rl', 'worker_index')
     rl_config_path=config.get('rl', 'rl_config_path')
+    rl_config_path_simple=config.get('rl', 'rl_config_path_simple')
 
     # Return a dictionary with the retrieved values
     config_values = {
@@ -153,6 +154,7 @@ def read_config(filepath="config.ini"):
         'rl_server_ip': rl_server_ip,
         'worker_index': worker_index,
         'rl_config_path': rl_config_path,
+        'rl_config_path_simple': rl_config_path_simple,
     }
 
     return config_values

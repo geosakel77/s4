@@ -262,7 +262,7 @@ class TA(AttackerAgent):
             is_uuids_number=random.randint(0,len(self.connection_data_is.keys()))
             is_uuids=random.sample(list(self.connection_data_is.keys()),is_uuids_number)
             key, value = next(iter(selected_indicator.items()))
-            record=Record(record_id=key,record_type="indicator",record_value=value["pattern"].replace("'",'').replace('"',''))
+            record=Record(record_id=key,record_type="indicator",record_value=value["pattern"].replace("'",'').replace('"',''),record_confidence="",record_indicator_type=[""])
             platform=value["platform"]
             for is_uuid in is_uuids:
                 msg= await self._execute_attack_step_is(is_uuid,record,platform)

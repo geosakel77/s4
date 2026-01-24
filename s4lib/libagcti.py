@@ -57,11 +57,11 @@ class AgCTI(Agent):
 
     def receives_cti_product(self,src_uuid,product):
         if src_uuid in self.cti_data_received.keys():
-            self.cti_data_received[src_uuid].append(Record(product['id'],product['type'],product['pattern']))
-            self.cti_data_current_pool[_get_random_key()]={src_uuid:Record(product['id'], product['type'], product['pattern'])}
+            self.cti_data_received[src_uuid].append(Record(product['id'],product['type'],product['pattern'],product['confidence'],product['indicator_type']))
+            self.cti_data_current_pool[_get_random_key()]={src_uuid:Record(product['id'], product['type'], product['pattern'],product['confidence'],product['indicator_type'])}
         else:
-            self.cti_data_received[src_uuid]=[Record(product['id'],product['type'],product['pattern'])]
-            self.cti_data_current_pool[_get_random_key()] = {src_uuid: Record(product['id'], product['type'], product['pattern'])}
+            self.cti_data_received[src_uuid]=[Record(product['id'],product['type'],product['pattern'],product['confidence'],product['indicator_type'])]
+            self.cti_data_current_pool[_get_random_key()] = {src_uuid: Record(product['id'], product['type'], product['pattern'],product['confidence'],product['indicator_type'])}
         return {str(self.uuid):f"Product received from {src_uuid}"}
 
     def _calculate_source_score(self):

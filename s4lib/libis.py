@@ -54,7 +54,7 @@ class IS(Agent):
     def handle_indicator_from_ta(self,key,ind):
         if ind is not None:
             platform=ind["platform"]
-            value=Record(record_id=ind["indicator"]["id"],record_type=ind["indicator"]["type"],record_value=ind["indicator"]["pattern"])
+            value=Record(record_id=ind["indicator"]["id"],record_type=ind["indicator"]["type"],record_value=ind["indicator"]["pattern"],record_confidence=ind["indicator"]["confidence"],record_indicator_type=ind["indicator"]["indicator_type"])
             if ("generic" in platform) or (self.platform_type in platform):
                 if key in self.received_indicators.keys():
                     self.received_indicators[key].append(value)

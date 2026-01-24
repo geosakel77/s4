@@ -18,7 +18,33 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 from s4lib.libbase import Agent,read_from_json
 from s4lib.apicli.libapiclientsrc import APIClientSRC
 from s4lib.libdm import Record
+from s4config.libconstants import RL_FEATURES_DICT_TO_TYPES
 import random
+
+def _set_indicator_types(value):
+    if 'indicator_types' in value.keys():
+        selected_ind_types=value['indicator_types']
+        print(value['indicator_types'])
+    else:
+        ind_types = []
+        for key in RL_FEATURES_DICT_TO_TYPES.keys():
+            if key in value['pattern']:
+                ind_types.extend(RL_FEATURES_DICT_TO_TYPES[key])
+        selected_ind_types = random.sample(list(set(ind_types)), k=random.randint(1, len(set(ind_types))))
+    return selected_ind_types
+
+def _set_cti_confidence(value):
+    confidence ='low'
+    if 'confidence' in value.keys():
+        if value['confidence']>=66:
+            confidence='high'
+        elif value[confidence]>=33 and value['confidence']<66:
+            confidence='medium'
+        else:
+            confidence='low'
+    else:
+        confidence = random.choice(['low', 'medium', 'high'])
+    return confidence
 
 
 class CTISRC(Agent):
@@ -39,14 +65,18 @@ class CTISRC(Agent):
             if cti_data_pool[key]['type']=='indicator':
                 record_id = cti_data_pool[key]['id']
                 record_type = cti_data_pool[key]['type']
+                record_confidence = _set_cti_confidence(cti_data_pool[key])
+                record_indicator_type=_set_indicator_types(cti_data_pool[key])
                 value = cti_data_pool[key]['pattern'].replace("'",'').replace('"','')
-                new_record = Record(record_id, record_type, value)
+                new_record = Record(record_id, record_type, value,record_confidence,record_indicator_type)
                 cti_sample_data[key]=new_record
             elif cti_data_pool[key]['type']=='vulnerability':
                 record_id = cti_data_pool[key]['id']
                 record_type = cti_data_pool[key]['type']
                 value = cti_data_pool[key]['name'].replace("'",'').replace('"','')
-                new_record = Record(record_id, record_type, value)
+                record_confidence = _set_cti_confidence(cti_data_pool[key])
+                record_indicator_type=_set_indicator_types(cti_data_pool[key])
+                new_record = Record(record_id, record_type, value,record_confidence,record_indicator_type)
                 cti_sample_data[key]=new_record
         return cti_sample_data
 

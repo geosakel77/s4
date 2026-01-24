@@ -21,18 +21,23 @@ from typing import List, Tuple, Dict
 import random
 from s4config.libconstants import DM_TYPES,IND_TYPES
 from s4lib.apicli.libapiclientdm import APIClientAgDM,APIClientAgDetectionDM
+from typing import List
 
 @dataclass(slots=True)
 class Record:
     record_id : str
     record_type : str
     record_value : str
+    record_confidence: str
+    record_indicator_type: List[str]
 
     def serialize(self):
         return {
             "id":self.record_id,
             "type":self.record_type,
             "pattern":self.record_value,
+            "confidence":self.record_confidence,
+            "indicator_type":self.record_indicator_type,
         }
 
 
@@ -143,7 +148,7 @@ class DM(Agent):
 
     def handle_indicator_from_ta(self,key,indicator):
         if indicator is not None:
-            value = Record(record_id=indicator["indicator"]["id"], record_type=indicator["indicator"]["type"], record_value=indicator["indicator"]["pattern"])
+            value = Record(record_id=indicator["indicator"]["id"], record_type=indicator["indicator"]["type"], record_value=indicator["indicator"]["pattern"],record_confidence=indicator["indicator"]["confidence"],record_indicator_type=indicator["indicator"]["indicator_type"])
             if key in self.indicators_received_from_ta.keys():
                 self.indicators_received_from_ta[key].append(value)
             else:
@@ -168,7 +173,7 @@ class PreventionDM(DM):
         received_indicators = []
         for key in indicators.keys():
             for ind in indicators[key]:
-                received_indicators.append(Record(record_id=ind["id"],record_type=ind["type"],record_value=ind["pattern"]))
+                received_indicators.append(Record(record_id=ind["id"],record_type=ind["type"],record_value=ind["pattern"],record_confidence=ind["confidence"],record_indicator_type=ind["indicator_type"]))
         self.step_indicators.append({is_uuid: received_indicators})
         check_result=[]
         for indicator in received_indicators:
@@ -239,7 +244,7 @@ class DetectionDM(DM):
         for key in indicators.keys():
             for ind in indicators[key]:
                 received_indicators.append(
-                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"]))
+                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"],record_confidence=ind["confidence"],record_indicator_type=ind["indicator_type"]))
         self.step_indicators.append({is_uuid: received_indicators})
         check_result=[]
         for indicator in received_indicators:
@@ -295,7 +300,7 @@ class ResponseDM(DM):
         for key in indicators.keys():
             for ind in indicators[key]:
                 received_indicators.append(
-                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"]))
+                    Record(record_id=ind["id"], record_type=ind["type"], record_value=ind["pattern"],record_confidence=ind["confidence"],record_indicator_type=ind["indicator_type"]))
         self.step_indicators.append({is_uuid: received_indicators})
         check_result = []
         for indicator in received_indicators:

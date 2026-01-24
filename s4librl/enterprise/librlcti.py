@@ -2,9 +2,9 @@ from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
 from ray.rllib.algorithms.dqn import DQNConfig
 from ray.rllib.algorithms.ppo import PPOConfig
-from s4librl.librlctisrv import CTIRLServer
+from s4librl.enterprise.librlctisrv import CTIRLServer
 from ray.rllib.core.rl_module.default_model_config import DefaultModelConfig
-from ray.air.integrations.wandb import WANDB_ENV_VAR, WandbLoggerCallback
+from ray.air.integrations.wandb import WandbLoggerCallback
 import gymnasium as gym
 import numpy as np
 from s4lib.libbase import read_from_json
@@ -104,12 +104,16 @@ class AgCTIAlgConf:
             self.generated_config.debugging(log_level=self.log_level)
 
         if self.rl_config['evaluation-interval'] >0:
+            if self.rl_config['evaluation-num-env-runners']>0:
+                eval_paral_to_training = self.rl_config['evaluation-parallel-to-training']
+            else:
+                eval_paral_to_training = False
             self.generated_config.evaluation(
                 evaluation_num_env_runners=self.rl_config['evaluation-num-env-runners'],
                 evaluation_interval=self.rl_config['evaluation-interval'],
             evaluation_duration=self.rl_config['evaluation-duration'],
             evaluation_duration_unit=self.evaluation_duration_unit,
-            evaluation_parallel_to_training=self.rl_config['evaluation-parallel-to-training'],)
+            evaluation_parallel_to_training=eval_paral_to_training,)
 
 
     def _build_ppo_config(self):
@@ -169,6 +173,7 @@ class AgCTIAlgConf:
 
 class AgCTIAlgRunner:
     def __init__(self,rl_env_config_path=CONFIG_PATH,framework=2,log_level=1,evaluation_duration_unit=0):
+        os.environ["CUDA_VISIBLE_DEVICES"] = "1"
         self.s4config = read_config(rl_env_config_path)
         self.rl_config = read_from_json(self.s4config["rl_config_path"])
         initialize_ray(self.s4config)
@@ -181,7 +186,7 @@ class AgCTIAlgRunner:
     def run(self,keep_ray_up=False):
         if self.rl_config['no_tune']:
             assert  not self.rl_config['as-test'] and not self.rl_config['as-release-test']
-            algo = self.base_config.build()
+            algo = self.base_config.build_algo()
             for i in range(self.stop.get(TRAINING_ITERATION, self.rl_config["stop-iters"])):
                 results = algo.train()
                 if ENV_RUNNER_RESULTS in results:
@@ -206,6 +211,8 @@ class AgCTIAlgRunner:
                     if not keep_ray_up:
                         ray.shutdown()
                         return results
+        else:
+            return None
 
     def run_on_tune(self,tune_callbacks,wandb_active=True,progress_reporter=None, tune_max_report_freq=30,keep_ray_up=False,trainable=None,scheduler=None,success_metric=None):
         if self.rl_config['as-release-test']:
@@ -222,7 +229,7 @@ class AgCTIAlgRunner:
             tune_callbacks.append(WandbLoggerCallback(api_key=wandb_key, project=wandb_project,upload_checkpoints=True,**({"name":self.rl_config['wandb-run-name'] if self.rl_config['wandb-run-name'] is not None else {}})))
 
         if progress_reporter is None:
-            if self.rl_config['num_agents'] == 0:
+            if self.rl_config['num-agents'] == 0:
                 progress_reporter = CLIReporter(
                     metric_columns={
                         TRAINING_ITERATION: "iter",
@@ -254,7 +261,7 @@ class AgCTIAlgRunner:
 
         os.environ["RAY_AIR_NEW_OUTPUT"] = "0"
         start_time = time.time()
-        results = tune.Tuner(trainable or base_config.algo_class,param_space=base_config,
+        results = tune.Tuner(trainable or self.base_config.algo_class,param_space=self.base_config,
             run_config=tune.RunConfig(
                 stop=self.stop,
                 verbose=self.rl_config["verbose"],
