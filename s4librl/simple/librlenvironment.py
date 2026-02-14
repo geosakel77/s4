@@ -11,13 +11,13 @@ class CTIAgentRLEnvironment(BaseEnvironment):
         self.count=0
         self.max_steps=100
 
-
-
     def env_init(self, env_info=None):
         self.state = np.zeros(self.states_counter)
 
     def env_start(self, env_info=None):
         self.current_state = env_info
+        return self.current_state
+
 
     def env_step(self, action, reward, env_info=None):
         if self.max_steps>0:
@@ -29,7 +29,8 @@ class CTIAgentRLEnvironment(BaseEnvironment):
         return self.reward_obs_term
 
     def env_cleanup(self):
-        pass
+        self.state = None
+        self.current_state = None
 
     def env_message(self, message):
         pass

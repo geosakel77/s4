@@ -37,7 +37,7 @@ class StateEncoderXD:
         powers = (1 << np.arange(self.x, dtype=np.uint32))
         return int((b * powers).sum())
 
-    def validate_bits_x(self,state_x: np.ndarray) -> None:
+    def validate(self,state_x: np.ndarray) -> None:
         b = np.asarray(state_x).reshape(self.x, )
         if not np.all((b == 0) | (b == 1)):
             raise ValueError(f"State must be a {state_x}-D binary vector containing only 0/1.")

@@ -26,7 +26,8 @@ def run_environment_test():
     reward_generator = CTIAgentRewardsGenerator(timesteps=100)
     state_observation_generator = CTIAgentRLObservationsGenerator()
     cti_agent_environment.env_start(state_observation_generator.generate_state_observation())
-    agent_info={"num_actions":2}
+    print(cti_agent_environment.states_counter)
+    print(cti_agent_environment.env_step(0,reward_generator.next_step()))
 
 def run_reward_generator_test():
     reward_generator = CTIAgentRewardsGenerator(timesteps=100)
@@ -38,7 +39,7 @@ def run_state_observation_generator_test():
     for i in range(5):
         print(state_observation_generator.generate_state_observation())
 
-def run_state_discretizer_test():
+def run_state_state_encoder_test():
     state_observation_generator = CTIAgentRLObservationsGenerator()
     state_encoder = StateEncoderXD()
     for i in range(5):
@@ -46,8 +47,11 @@ def run_state_discretizer_test():
         print(state)
         print(state_encoder.encode(state))
 
+
+
 if __name__ == '__main__':
-    #run_environment_test()
-    #run_reward_generator_test()
-    #run_state_observation_generator_test()
-    run_state_discretizer_test()
+    run_reward_generator_test()
+    run_state_observation_generator_test()
+    run_state_state_encoder_test()
+    run_environment_test()
+

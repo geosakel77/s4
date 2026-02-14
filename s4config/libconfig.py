@@ -89,6 +89,7 @@ def read_config(filepath="config.ini"):
     worker_index=config.getint('rl', 'worker_index')
     rl_config_path=config.get('rl', 'rl_config_path')
     rl_config_path_simple=config.get('rl', 'rl_config_path_simple')
+    rl_num_episodes=config.getint('rl', 'rl_num_episodes')
 
     # Return a dictionary with the retrieved values
     config_values = {
@@ -155,6 +156,7 @@ def read_config(filepath="config.ini"):
         'worker_index': worker_index,
         'rl_config_path': rl_config_path,
         'rl_config_path_simple': rl_config_path_simple,
+        'rl_num_episodes': rl_num_episodes,
     }
 
     return config_values
