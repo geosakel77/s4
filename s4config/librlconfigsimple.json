@@ -1,1 +1,6 @@
-{}
+{"num_actions": 2,
+  "epsilon": 0.1,
+  "gamma": 0.99,
+  "alpha": 0.1,
+  "seed": 0
+}

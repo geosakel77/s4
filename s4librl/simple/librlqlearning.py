@@ -26,6 +26,9 @@
 """
 
 from s4librl.simple.librlbaseagent import BaseAgent
+from s4librl.simple.utils import StateEncoderXD
+from typing import Dict, Tuple, Any, Optional
+from dataclasses import field
 import numpy as np
 
 class QLearningAgent(BaseAgent):
@@ -141,3 +144,64 @@ class QLearningAgent(BaseAgent):
                 ties.append(i)
 
         return self.rand_generator.choice(ties)
+
+
+class QLearningAgentX(BaseAgent):
+
+    def __init__(self, agent_info):
+        super().__init__()
+        self.num_actions = None
+        self.epsilon = None
+        self.alpha = None
+        self.gamma = None
+        self.agent_info = agent_info
+        self.rand_generator = np.random
+        self.Q = Dict[Tuple[int, int], float] = field(default_factory=dict)
+        self.prev_state = None
+        self.prev_action = None
+
+
+    def _q(self,s:int,a:int) -> float:
+        return self.Q.get((s,a),0.0)
+
+    def _best_action(self,s:int) -> int:
+        qs = np.array([self._q(s, a) for a in range(self.num_actions)], dtype=float)
+        max_q = qs.max()
+        best = np.flatnonzero(qs == max_q)
+        return int(self.rng.choice(best))
+
+    def agent_init(self):
+        """Setup for the agent called when the experiment first starts.
+
+               Args:
+               agent_info (dict), the parameters used to initialize the agent. The dictionary contains:
+               {
+                   num_actions (int): The number of actions,
+                   epsilon (float): The epsilon parameter for exploration,
+                   alpha (float): The step-size,
+                   gamma (float): The discount factor,
+                   seed (int): The seed for the random generator
+               }
+
+               """
+        self.num_actions = self.agent_info["num_actions"]
+        self.epsilon = self.agent_info["epsilon"]
+        self.alpha = self.agent_info["alpha"]
+        self.gamma = self.agent_info["gamma"]
+        self.rand_generator.RandomState(self.agent_info["seed"])
+
+
+    def agent_start(self, observation):
+        pass
+
+    def agent_step(self, reward, observation):
+        pass
+
+    def agent_end(self, reward):
+        pass
+
+    def agent_cleanup(self):
+        pass
+
+    def agent_message(self, message):
+        pass

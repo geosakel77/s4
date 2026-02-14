@@ -66,12 +66,12 @@ class BaseEnvironment(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def env_step(self, action):
+    def env_step(self, action, reward,env_info=None):
         """A step taken by the environment.
 
         Args:
             action: The action taken by the agent
-
+            reward: The reward received by the agent
         Returns:
             (float, state, Boolean): a tuple of the reward, state observation,
                 and boolean indicating if it's terminal.

@@ -24,7 +24,6 @@ import random
 def _set_indicator_types(value):
     if 'indicator_types' in value.keys():
         selected_ind_types=value['indicator_types']
-        print(value['indicator_types'])
     else:
         ind_types = []
         for key in RL_FEATURES_DICT_TO_TYPES.keys():
