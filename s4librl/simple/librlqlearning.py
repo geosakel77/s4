@@ -83,7 +83,7 @@ class QLearningAgentX(BaseAgent):
         self.rand_generator.RandomState(self.agent_info["seed"])
 
 
-    def agent_start(self, observation):
+    def agent_start(self, observation:np.ndarray)->int:
         self.encoder.validate(observation)
         s=self.encoder.encode(observation)
         a = self._epsilon_greedy(s)
@@ -92,13 +92,12 @@ class QLearningAgentX(BaseAgent):
         self.obs_action_dict[self.prev_state] = self.prev_action
         return a
 
-    def agent_step(self, reward:float, observation:np.ndarray):
+    def agent_step(self, reward:float, observation:np.ndarray)->int:
         assert self.prev_state is not None and self.prev_action is not None
         s =self.prev_state
         a= self.prev_action
         sp = self.encoder.encode(observation)
         ap=self._epsilon_greedy(sp)
-
         #Q-learning target (off-policy)
         max_next = max(self._q(sp, a2) for a2 in range(self.num_actions))
         td_target = reward + self.gamma * max_next
@@ -109,7 +108,7 @@ class QLearningAgentX(BaseAgent):
         self.obs_action_dict[self.prev_state]=self.prev_action
         return ap
 
-    def agent_end(self, reward):
+    def agent_end(self, reward:float)->None:
         assert self.prev_state is not None and self.prev_action is not None
         s = self.prev_state
         a = self.prev_action

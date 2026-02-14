@@ -42,3 +42,16 @@ class StateEncoderXD:
         if not np.all((b == 0) | (b == 1)):
             raise ValueError(f"State must be a {state_x}-D binary vector containing only 0/1.")
 
+
+class StateEncoderXDSAC(StateEncoderXD):
+
+    def __init__(self,x_dimension=49):
+        super().__init__(x_dimension=x_dimension)
+
+    def encode_to_features(self,state_x: np.ndarray) -> np.ndarray:
+        """
+            x bits -> feature vector X of length x+1 (includes bias term at end)
+        """
+        self.validate(state_x)
+        b = np.asarray(state_x, dtype=np.float32).reshape(self.x, )
+        return np.concatenate([b, np.array([1.0], dtype=np.float32)])
