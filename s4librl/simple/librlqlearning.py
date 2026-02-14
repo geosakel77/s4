@@ -58,7 +58,7 @@ class QLearningAgentX(BaseAgent):
 
     def _epsilon_greedy(self,s:int) -> int:
         if self.rand_generator.random() < self.epsilon:
-            return int(self.rand_generator.random_integers(0, self.num_actions))
+            return int(self.rand_generator.randint(0, self.num_actions))
         else:
             return self._best_action(s)
 

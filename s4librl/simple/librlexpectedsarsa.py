@@ -26,127 +26,126 @@
 """
 
 from s4librl.simple.librlbaseagent import BaseAgent
+from s4librl.simple.utils import StateEncoderXD
+from typing import Dict, Tuple, Any
 import numpy as np
 
-class ExpectedSarsaAgent(BaseAgent):
+class ExpectedSarsaAgentX(BaseAgent):
 
     def __init__(self, agent_info):
         super().__init__()
         self.num_actions = None
-        self.num_states = None
         self.epsilon = None
-        self.step_size = None
-        self.discount = None
-        self.rand_generator = None
-        self.q=None
+        self.alpha = None
+        self.gamma = None
+        self.agent_info = agent_info
+        self.rand_generator = np.random
+        self.Q: Dict[Tuple[int, int], float] = {}
         self.prev_state = None
         self.prev_action = None
-        self.agent_info = agent_info
+        self.encoder = StateEncoderXD(x_dimension=self.agent_info["state_vector_size"])
+        self.obs_action_dict: Dict[int, int] = {}
 
+    def _q(self, s: int, a: int) -> float:
+        return self.Q.get((s, a), 0.0)
 
-    def agent_message(self, message):
-        pass
+    def _q_vec(self, s: int) -> np.ndarray:
+        return np.array([self._q(s, a) for a in range(self.num_actions)], dtype=float)
 
-    def agent_cleanup(self):
-        pass
+    def _best_actions(self, s: int) -> np.ndarray:
+        qs = self._q_vec(s)
+        max_q = qs.max()
+        return np.flatnonzero(qs == max_q)
+
+    def _epsilon_greedy(self, s: int) -> int:
+        if self.rand_generator.random() < self.epsilon:
+            return int(self.rand_generator.randint(0, self.num_actions))
+        best = self._best_actions(s)
+        return int(self.rand_generator.choice(best))
+
+    def _expected_q_under_eps_greedy(self, s: int) -> float:
+        """
+        Computes E_{a~pi}[Q(s,a)] exactly for epsilon-greedy with random tie-breaking:
+          pi(a|s) = (1-eps)/|A*| + eps/num_actions  for a in A*
+                    eps/num_actions              otherwise
+        """
+        qs = self._q_vec(s)
+        best = self._best_actions(s)
+        n_best = len(best)
+
+        # base exploration prob for every action
+        pi = np.full(self.num_actions, self.epsilon / self.num_actions, dtype=float)
+        # add exploitation mass spread across best actions
+        pi[best] += (1.0 - self.epsilon) / n_best
+        return float(np.dot(pi, qs))
 
     def agent_init(self):
         """Setup for the agent called when the experiment first starts.
 
-        Args:
-        agent_info (dict), the parameters used to initialize the agent. The dictionary contains:
-        {
-            num_states (int): The number of states,
-            num_actions (int): The number of actions,
-            epsilon (float): The epsilon parameter for exploration,
-            step_size (float): The step-size,
-            discount (float): The discount factor,
-        }
+               Args:
+               agent_info (dict), the parameters used to initialize the agent. The dictionary contains:
+               {
+                   num_actions (int): The number of actions,
+                   epsilon (float): The epsilon parameter for exploration,
+                   alpha (float): The step-size,
+                   gamma (float): The discount factor,
+                   seed (int): The seed for the random generator
+               }
 
-        """
-        # Store the parameters provided in agent_init_info.
+               """
         self.num_actions = self.agent_info["num_actions"]
-        self.num_states = self.agent_info["num_states"]
         self.epsilon = self.agent_info["epsilon"]
-        self.step_size = self.agent_info["step_size"]
-        self.discount = self.agent_info["discount"]
-        self.rand_generator = np.random.RandomState(self.agent_info["seed"])
+        self.alpha = self.agent_info["alpha"]
+        self.gamma = self.agent_info["gamma"]
+        self.rand_generator.RandomState(self.agent_info["seed"])
 
-        # Create an array for action-value estimates and initialize it to zero.
-        self.q = np.zeros((self.num_states, self.num_actions))  # The array of action-value estimates.
 
-    def agent_start(self, state):
-        """The first method called when the episode starts, called after
-        the environment starts.
-        Args:
-            state (int): the state from the
-                environment's evn_start function.
-        Returns:
-            action (int): the first action the agent takes.
-        """
+    def agent_start(self, observation:np.ndarray):
+        self.encoder.validate(observation)
+        s= self.encoder.encode(observation)
+        a = self._epsilon_greedy(s)
+        self.prev_state=s
+        self.prev_action=a
+        self.obs_action_dict[self.prev_state] = self.prev_action
+        return a
 
-        # Choose action using epsilon greedy.
-        current_q = self.q[state, :]
-        if self.rand_generator.rand() < self.epsilon:
-            action = self.rand_generator.randint(self.num_actions)
+    def agent_step(self, reward:float, observation:np.ndarray)->int:
+        assert self.prev_state is not None and self.prev_action is not None
+        s = self.prev_state
+        a = self.prev_action
+        sp = self.encoder.encode(observation)
+        ap = self._epsilon_greedy(sp)
+        # Expected SARSA target: r + gamma * E_pi[Q(sp, a')]
+        expected_next = self._expected_q_under_eps_greedy(sp)
+        td_target = reward + self.gamma * expected_next
+        td_error = td_target - self._q(s, a)
+        self.Q[(s, a)] = self._q(s, a) + self.alpha * td_error
+        self.prev_state = sp
+        self.prev_action = ap
+        self.obs_action_dict[self.prev_state] = self.prev_action
+        return ap
+
+    def agent_end(self, reward)->None:
+        assert self.prev_state is not None and self.prev_action is not None
+        s=self.prev_state
+        a = self.prev_action
+        td_target = reward
+        td_error = td_target - self._q(s, a)
+        self.Q[(s, a)] = self._q(s, a) + self.alpha * td_error
+
+        self.prev_state=None
+        self.prev_action=None
+
+    def agent_message(self, message)->Any:
+        if message == "get_num_q_entries":
+            return str(len(self.Q))
+        elif message == "get_q":
+            return self.Q
+        elif message == "get_obs_action":
+            return self.obs_action_dict
         else:
-            action = self.argmax(current_q)
-        self.prev_state = state
-        self.prev_action = action
-        return action
+            return f"Unknown message:{message}"
 
-    def agent_step(self, reward, state):
-        """A step taken by the agent.
-        Args:
-            reward (float): the reward received for taking the last action taken
-            state (int): the state from the
-                environment's step based on where the agent ended up after the
-                last step.
-        Returns:
-            action (int): the action the agent is taking.
-        """
-
-        # Choose action using epsilon greedy.
-        current_q = self.q[state, :]
-        if self.rand_generator.rand() < self.epsilon:
-            action = self.rand_generator.randint(self.num_actions)
-        else:
-            action = self.argmax(current_q)
-        q_max = np.max(current_q)
-        pi = np.ones(self.num_actions) * (self.epsilon / self.num_actions)
-        pi += (current_q == q_max) * ((1 - self.epsilon) / np.sum(current_q == q_max))
-        expectation = np.sum(current_q * pi)
-        self.q[self.prev_state, self.prev_action] += self.step_size * (
-                    reward + self.discount * expectation - self.q[self.prev_state, self.prev_action])
-        self.prev_state = state
-        self.prev_action = action
-        return action
-
-    def agent_end(self, reward):
-        """Run when the agent terminates.
-        Args:
-            reward (float): the reward the agent received for entering the
-                terminal state.
-        """
-        self.q[self.prev_state, self.prev_action] += self.step_size * (
-                    reward - self.q[self.prev_state, self.prev_action])
-
-    def argmax(self, q_values):
-        """argmax with random tie-breaking
-        Args:
-            q_values (Numpy array): the array of action-values
-        Returns:
-            action (int): an action with the highest value
-        """
-        top = float("-inf")
-        ties = []
-
-        for i in range(len(q_values)):
-            if q_values[i] > top:
-                top = q_values[i]
-                ties = []
-
-            if q_values[i] == top:
-                ties.append(i)
-
-        return self.rand_generator.choice(ties)
+    def agent_cleanup(self)->None:
+        self.prev_state = None
+        self.prev_action = None
