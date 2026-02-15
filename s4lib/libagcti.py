@@ -16,15 +16,38 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from s4lib.libbase import Agent
+from s4lib.libbase import Agent,read_from_json
 from s4lib.libdm import Record
 from s4lib.apicli.libapiclientagcti import APIClientAgCTI
 import random,string
-
+import numpy as np
+from s4config.libconstants import RL_FEATURES_DICT_1,RL_FEATURES_DICT_2
 
 def _get_random_key():
     return ''.join(random.choices(string.ascii_lowercase, k=6))
 
+def record_encoder(record:Record,dm_type=0,state_vector_size=49):
+    encoded_record=np.zeros(state_vector_size)
+    for key in RL_FEATURES_DICT_1.keys():
+        if key in record.record_value:
+            encoded_record[RL_FEATURES_DICT_1[key]]=1
+    for key1 in RL_FEATURES_DICT_2.keys():
+        if key1 in record.record_indicator_type:
+            encoded_record[RL_FEATURES_DICT_2[key1]+len(RL_FEATURES_DICT_1.keys())]=1
+    if record.record_confidence=="low":
+        encoded_record[len(RL_FEATURES_DICT_2.keys())+len(RL_FEATURES_DICT_1.keys())]=1
+    elif record.record_confidence=="medium":
+        encoded_record[len(RL_FEATURES_DICT_2.keys()) + len(RL_FEATURES_DICT_1.keys())+1] = 1
+    elif record.record_confidence=="high":
+        encoded_record[len(RL_FEATURES_DICT_2.keys()) + len(RL_FEATURES_DICT_1.keys())+2] = 1
+
+    if dm_type==0:
+        encoded_record[len(RL_FEATURES_DICT_2.keys()) + len(RL_FEATURES_DICT_1.keys()) + 3] = 1
+    elif dm_type==1:
+        encoded_record[len(RL_FEATURES_DICT_2.keys()) + len(RL_FEATURES_DICT_1.keys()) + 4] = 1
+    elif dm_type==2:
+        encoded_record[len(RL_FEATURES_DICT_2.keys()) + len(RL_FEATURES_DICT_1.keys()) + 5] = 1
+    return encoded_record
 
 class AgCTI(Agent):
     def __init__(self, agent_uuid, config, agent_type="CTI"):
@@ -35,6 +58,7 @@ class AgCTI(Agent):
         self.cti_data_send={}
         self.rewards={}
         self.policies={}
+        self.rl_agent_info=read_from_json(self.config["rl_config_path_simple"])
         self.client=APIClientAgCTI()
 
     def sends_cti_product(self,src_uuid,product):
@@ -83,7 +107,18 @@ class AgCTI(Agent):
         return self.source_score
 
     def _get_decision(self,dm_uuid,product):
+
+        if self.connection_data_dm[dm_uuid]['metadata']=="Preventive":
+            dm_type=0
+        elif self.connection_data_dm[dm_uuid]['metadata']=="Detective":
+            dm_type=1
+        elif self.connection_data_dm[dm_uuid]['metadata']=="Responsive":
+            dm_type=2
+        else:
+            dm_type=0
         decision=False
+        encoded_product=record_encoder(product,dm_type,self.rl_agent_info['state_vector_size'])
+        #TODO
         if dm_uuid in self.policies.keys():
             decision=True
         return decision

@@ -38,10 +38,11 @@ class APIServer:
       POST /echo      → {"received": <your JSON>}
     """
 
-    def __init__(self,agent_type,host: str = "0.0.0.0", port: int = 8000,title="Async Echo API",config_path=CONFIG_PATH,local=True,lifespan=None) -> None:
+    def __init__(self,agent_type,host: str = "0.0.0.0", port: int = 8000,title="Async Echo API",config_path=CONFIG_PATH,local=True,lifespan=None,metadata="") -> None:
         self.agent_type = agent_type
         self.agent_uuid = uuid.uuid4()
         self.config = read_config(config_path)
+        self.metadata=metadata
         self.agent=None
         if local:
             self.host = host
@@ -73,11 +74,11 @@ class APIServer:
 
 class APIBaseServer(APIServer):
 
-    def __init__(self,agent_type,title) -> None:
-        super().__init__(agent_type=agent_type,title=title)
+    def __init__(self,agent_type,title,metadata="") -> None:
+        super().__init__(agent_type=agent_type,title=title,metadata=metadata)
         self.coordinator_url = f"{self.config['coordinator_host']}:{self.config['coordinator_port']}"
         self.registration_client = APIRegistrationClient(coordinator_url=self.coordinator_url)
-        self.registration_id = {'uuid': str(self.agent_uuid), 'agent_type': self.agent_type,'host': self.host}
+        self.registration_id = {'uuid': str(self.agent_uuid), 'agent_type': self.agent_type,'host': self.host,'metadata':self.metadata}
         registration_response = asyncio.run(self.registration_client.register(self.registration_id))
         self.host = registration_response["host"]
         self.port = registration_response["port"]

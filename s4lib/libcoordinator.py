@@ -31,9 +31,10 @@ class ConnectionString:
     port:int
     agent_type:str
     uuid:str
+    metadata:str
 
     def get_connection_string(self):
-        return {'host':self.host,'port':self.port,'agent_type':self.agent_type,'uuid':self.uuid}
+        return {'host':self.host,'port':self.port,'agent_type':self.agent_type,'uuid':self.uuid,'metadata':self.metadata}
 
 
 class Coordinator:
@@ -77,6 +78,7 @@ class Coordinator:
         connection_string.port = port
         connection_string.agent_type = reg_id['agent_type']
         connection_string.uuid = reg_id['uuid']
+        connection_string.metadata=reg_id['metadata']
         if reg_id['agent_type'] == "TA":
             self.connection_data_ta[reg_id['uuid']] = connection_string.get_connection_string()
         elif reg_id['agent_type'] == "CTI":
@@ -121,8 +123,6 @@ class Coordinator:
         conn_info = {"DM": self.connection_data_dm, "TA": self.connection_data_ta, "IS": self.connection_data_is,
                      "CTI": self.connection_data_cti,"SRC":self.connection_data_src,"RA":self.registered_agents}
         return conn_info
-        #for agent_id in self.registered_agents.keys():
-        #            #    self.client.update_agent(self.registered_agents[agent_id],conn_info)
 
     def _select_port(self):
         random_port = random.randint(8000,8100)

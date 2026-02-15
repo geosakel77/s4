@@ -27,8 +27,12 @@ def _set_indicator_types(value):
     else:
         ind_types = []
         for key in RL_FEATURES_DICT_TO_TYPES.keys():
-            if key in value['pattern']:
-                ind_types.extend(RL_FEATURES_DICT_TO_TYPES[key])
+            if 'pattern' not in value.keys():
+                if value['type'] in key:
+                    ind_types.extend(RL_FEATURES_DICT_TO_TYPES[key])
+            else:
+                if key in value['pattern']:
+                    ind_types.extend(RL_FEATURES_DICT_TO_TYPES[key])
         selected_ind_types = random.sample(list(set(ind_types)), k=random.randint(1, len(set(ind_types))))
     return selected_ind_types
 
@@ -37,7 +41,7 @@ def _set_cti_confidence(value):
     if 'confidence' in value.keys():
         if value['confidence']>=66:
             confidence='high'
-        elif value[confidence]>=33 and value['confidence']<66:
+        elif value['confidence']>=33 and value['confidence']<66:
             confidence='medium'
         else:
             confidence='low'
@@ -103,10 +107,3 @@ class CTISRC(Agent):
             await self.client.share_cti_product(base_url=agcti_url,cti_product={str(self.uuid):self.shared_cti_product.serialize()})
 
 
-if __name__=='__main__':
-    from s4config.libconstants import CONFIG_PATH
-    from s4config.libconfig import read_config
-    config = read_config(CONFIG_PATH)
-    ctisrc = CTISRC(agent_uuid='SRC', config=config)
-    print(ctisrc.sharing_cti_data())
-    print(ctisrc.sharing_cti_data())

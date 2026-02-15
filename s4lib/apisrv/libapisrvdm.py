@@ -24,8 +24,8 @@ from typing import Dict,Any
 
 class APIDMServer(APIBaseServer):
 
-    def __init__(self,agent_type="DM",title="") -> None:
-        super().__init__(agent_type,title)
+    def __init__(self,agent_type="DM",title="",metadata="") -> None:
+        super().__init__(agent_type,title,metadata=metadata)
         self.agent = None #DM(dm_agent_uuid=self.agent_uuid,dm_agent_type=self.agent_type,dm_config=self.config,dm_type=None)
         self._register_dm_routes()
 
@@ -65,8 +65,8 @@ class APIDMServer(APIBaseServer):
 
 
 class APIPreventionDMServer(APIDMServer):
-    def __init__(self,agent_type="DM",title="") -> None:
-        super().__init__(agent_type,title)
+    def __init__(self,agent_type="DM",title="",metadata="Preventive") -> None:
+        super().__init__(agent_type,title,metadata=metadata)
         self.agent =PreventionDM(agent_uuid=self.agent_uuid,config=self.config)
         self._register_prevention_dm_routes()
 
@@ -79,8 +79,8 @@ class APIPreventionDMServer(APIDMServer):
                                                    {"request": request, "data": status_data})
 
 class APIDetectionDMServer(APIDMServer):
-    def __init__(self,agent_type="DM",title="") -> None:
-        super().__init__(agent_type,title)
+    def __init__(self,agent_type="DM",title="",metadata="Detective") -> None:
+        super().__init__(agent_type,title,metadata=metadata)
         self.agent =DetectionDM(agent_uuid=self.agent_uuid,config=self.config)
         self._register_detection_dm_routes()
 
@@ -93,8 +93,8 @@ class APIDetectionDMServer(APIDMServer):
                                                    {"request": request, "data": status_data})
 
 class APIResponseDMServer(APIDMServer):
-    def __init__(self,agent_type="DM",title="") -> None:
-        super().__init__(agent_type,title)
+    def __init__(self,agent_type="DM",title="",metadata="Responsive") -> None:
+        super().__init__(agent_type,title,metadata=metadata)
         self.agent =ResponseDM(agent_uuid=self.agent_uuid,config=self.config)
         self._register_response_dm_routes()
 
