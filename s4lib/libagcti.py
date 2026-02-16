@@ -15,12 +15,15 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from sympy.physics.units import action
 
 from s4lib.libbase import Agent,read_from_json
 from s4lib.libdm import Record
 from s4lib.apicli.libapiclientagcti import APIClientAgCTI
 import random,string
 import numpy as np
+from typing import Dict
+from s4librl.librlagent import RLAgent
 from s4config.libconstants import RL_FEATURES_DICT_1,RL_FEATURES_DICT_2
 
 def _get_random_key():
@@ -57,7 +60,7 @@ class AgCTI(Agent):
         self.cti_data_received={}
         self.cti_data_send={}
         self.rewards={}
-        self.policies={}
+        self.policies:Dict[str, RLAgent] = {}
         self.rl_agent_info=read_from_json(self.config["rl_config_path_simple"])
         self.client=APIClientAgCTI()
 
@@ -116,19 +119,32 @@ class AgCTI(Agent):
             dm_type=2
         else:
             dm_type=0
-        decision=False
         encoded_product=record_encoder(product,dm_type,self.rl_agent_info['state_vector_size'])
-        #TODO
-        if dm_uuid in self.policies.keys():
+        is_created=self.policy_maker(dm_uuid,dm_type)
+        if is_created:
+            action_decided=self.policies[dm_uuid].agent.agent_start(encoded_product)
+        else:
+            action_decided=self.policies[dm_uuid].agent.agent_step(action=0,reward=self.get_last_reward(dm_uuid),observation=encoded_product)
+        if action_decided==0:
+            decision=True
+        elif action_decided==1:
+            decision=False
+        else:
             decision=True
         return decision
 
-    def get_rewards(self,dm_uuid,reward):
+    def set_rewards(self,dm_uuid,reward):
         if dm_uuid in self.rewards.keys():
             self.rewards[dm_uuid].append(reward)
         else:
             self.rewards[dm_uuid]=[reward]
         return {str(self.uuid): f"Reward received {reward}"}
+
+    def get_last_reward(self,dm_uuid):
+        last_reward=0
+        if dm_uuid in self.rewards.keys():
+            last_reward= self.rewards[dm_uuid][-1]
+        return last_reward
 
 
     def get_cti_product_received(self):
@@ -162,15 +178,20 @@ class AgCTI(Agent):
         return total_number
 
     def get_policies(self):
-        return self.policies
+        policies_status={}
+        for key in self.policies.keys():
+            policies_status[key]=self.policies[key].get_status()
+        return policies_status
 
-    def policy_maker(self):
-        for key in self.connection_data_dm.keys():
-            self.policies[key]=['Send all']
-        #TODO
+    def policy_maker(self,dm_uuid,dm_type):
+        is_created=False
+        if dm_uuid not in self.policies.keys():
+            self.policies[dm_uuid]=RLAgent(self.config,self.rl_agent_info,dm_uuid,dm_type)
+            is_created=True
+        return is_created
 
     async def _update_time_actions(self):
-        self.policy_maker()
+        #self.policy_maker()
         product=self._pick_product()
         response_msg = []
         if product is not None:
@@ -197,3 +218,5 @@ class AgCTI(Agent):
         html_status_data = {'id': self.uuid, 'source_score': self.get_source_score(), 'total_received':self.get_total_cti_product_received(),'total_sent':self.get_total_cti_product_send(),
                             'cti_product_received': self.get_cti_product_received(), 'cti_product_send':self.get_cti_product_send(),'policies':self.get_policies()}
         return html_status_data
+
+

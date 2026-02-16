@@ -50,6 +50,6 @@ class APIAGCTIServer(APIBaseServer):
             update_data = await req.json()
             response = {str(self.agent.uuid):f"Agent has not received reward yet."}
             for key,value in update_data.items():
-                response = self.agent.get_rewards(key,value)
+                response = self.agent.set_rewards(key,value)
             print(response)
             return response

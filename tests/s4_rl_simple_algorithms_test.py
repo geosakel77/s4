@@ -1,5 +1,4 @@
 from s4librl.simple.librlqlearning import QLearningAgentX
-
 from s4librl.simple.librlenvironment import CTIAgentRLEnvironment
 from s4librl.simple.librlexpectedsarsa import ExpectedSarsaAgentX
 from s4librl.simple.librldiscreteactorcritic import SoftMaxActorCriticX

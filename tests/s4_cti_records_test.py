@@ -26,6 +26,7 @@ def records_creator_test():
         config = read_config(CONFIG_PATH)
         ctisrc = CTISRC(agent_uuid=uuid.uuid4(), config=config)
         record=ctisrc.shared_cti_product
+        print(record)
         record_encoder(record)
 
 
