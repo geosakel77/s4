@@ -26,11 +26,12 @@ import os
 
 class RLAgent:
 
-    def __init__(self,config,agent_info,dm_uuid,dm_type):
+    def __init__(self,config,agent_info,dm_uuid,dm_type,agcti_uuid):
         self.dm_uuid = dm_uuid
         self.env = CTIAgentRLEnvironment(max_steps=agent_info['max_steps'])
         self.config = config
         self.dm_type = dm_type
+        self.agcti_uuid = agcti_uuid
 
         if config['rl_agent_type']==RL_AGENT_TYPES["QL"]:
             self.algo="QL"
@@ -79,7 +80,7 @@ class RLAgent:
                 decided_action=self.agent_start(encoded_record,record_id)
                 self.terminal=False
         elif self.num_episodes==0:
-            agent_filename=f"{self.dm_uuid}_{self.dm_type}_agent_{self.algo}.json"
+            agent_filename=f"{self.agcti_uuid}_{self.dm_uuid}_{self.dm_type}_agent_{self.algo}.json"
             file_path=os.path.join(self.config['experiment_results_path'],agent_filename)
             experiment_results=self.get_status()
             write_to_json(file_path,experiment_results)

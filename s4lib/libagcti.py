@@ -15,8 +15,6 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from sympy.physics.units import action
-
 from s4lib.libbase import Agent,read_from_json,write_to_json
 from s4lib.libdm import Record
 from s4lib.apicli.libapiclientagcti import APIClientAgCTI
@@ -192,7 +190,7 @@ class AgCTI(Agent):
         is_created=False
         try:
             if dm_uuid not in self.policies.keys():
-                self.policies[dm_uuid]=RLAgent(self.config,self.rl_agent_info,dm_uuid,dm_type)
+                self.policies[dm_uuid]=RLAgent(self.config,self.rl_agent_info,dm_uuid,dm_type,self.uuid)
                 is_created=True
         except Exception as e:
             self.logger.error(e)
@@ -217,9 +215,9 @@ class AgCTI(Agent):
         return {self.uuid:response_msg}
 
     def store_source_score(self):
-        self.source_score_history.append(self.source_score)
+        self.source_score_history.append(self.get_source_score().copy())
         if self.clock%50==0:
-            agent_filename = f"source_score_history{self.uuid}.json"
+            agent_filename = f"source_score_history_{self.uuid}.json"
             file_path = os.path.join(self.config['experiment_results_path'], agent_filename)
             data={"history":self.source_score_history}
             write_to_json(file_path, data)

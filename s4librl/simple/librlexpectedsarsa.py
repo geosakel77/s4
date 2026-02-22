@@ -140,7 +140,7 @@ class ExpectedSarsaAgentX(BaseAgent):
         if message == "get_num_q_entries":
             return str(len(self.Q))
         elif message == "get_q":
-            return self.Q
+            return str(self.Q)
         elif message == "get_obs_action":
             return self.obs_action_dict
         else:

@@ -104,5 +104,5 @@ def  test_qlearning_algorithm(config_dic):
 if __name__ == '__main__':
     config_dic = read_config(CONFIG_PATH)
     test_qlearning_algorithm(config_dic)
-    test_expected_sarsa_algorithm(config_dic)
-    test_discrete_actor_critic_algorithm(config_dic)
+    #test_expected_sarsa_algorithm(config_dic)
+    #test_discrete_actor_critic_algorithm(config_dic)

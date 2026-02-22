@@ -168,7 +168,7 @@ class SoftMaxActorCriticX(BaseAgent):
         if message == "get_shapes":
             return f"W_pi={self.W_pi.shape}, w_v={self.w_v.shape}"
         elif message == "get_w_pi":
-            return self.W_pi
+            return str(self.W_pi)
         elif message == "get_obs_action":
             return self.obs_action_dict
         else:
