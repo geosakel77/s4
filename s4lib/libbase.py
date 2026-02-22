@@ -19,7 +19,7 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 import json, openai,requests,re,tempfile,pdfkit,os,time,random,nvdlib
 from io import BytesIO
 from cabby import create_client
-
+from s4lib.utlis import create_logger
 from taxii2client.v21 import Server,as_pages
 from requests.auth import HTTPBasicAuth
 from rdflib.plugins.sparql import prepareQuery
@@ -93,6 +93,7 @@ class Agent:
         self.registered_agents=[]
         self.client=None
         self.clock:int=0
+        self.logger=create_logger(f"{self.agent_type}_agent_{agent_uuid}",config=self.config)
 
     def update_connection_data(self,data):
         try:
@@ -105,6 +106,7 @@ class Agent:
             update_status = {"status":"Success"}
         except KeyError as e:
             print(e)
+            self.logger.error(e)
             update_status = {"status":"Error"}
         return update_status
 
@@ -118,6 +120,7 @@ class Agent:
             update_status = {"Time":"Synced"}
         except KeyError as e:
             print(e)
+            self.logger.error(e)
             update_status = {"Time":"Asynced"}
         return update_status
 
@@ -211,6 +214,7 @@ class AttackerAgent(Agent):
                     print(e)
         except requests.exceptions.RequestException as e:
             print(e)
+            self.logger.error(e)
         return generated_indicators
 
 

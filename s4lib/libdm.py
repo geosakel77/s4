@@ -134,25 +134,31 @@ class DM(Agent):
         pass
 
     def handle_indicator_from_agcti(self, indicator: Record):
-        self.step_indicators.append({'agcti':indicator})
-        if indicator.record_type in self.indicator_types:
-            self.check_cti_product_applicability = True
-            self.engine.update_knowledge_base(indicator)
-        else:
-            for ind_type in self.indicator_types:
-                if ind_type in indicator.record_value:
-                    self.check_cti_product_applicability = True
-                    self.engine.update_knowledge_base(indicator)
-                    break
+        try:
+            self.step_indicators.append({'agcti':indicator})
+            if indicator.record_type in self.indicator_types:
+                self.check_cti_product_applicability = True
+                self.engine.update_knowledge_base(indicator)
+            else:
+                for ind_type in self.indicator_types:
+                    if ind_type in indicator.record_value:
+                        self.check_cti_product_applicability = True
+                        self.engine.update_knowledge_base(indicator)
+                        break
+        except Exception as e:
+            self.logger.error(e)
         return {str(self.uuid):f"Indicator received from AgCTI"}
 
     def handle_indicator_from_ta(self,key,indicator):
-        if indicator is not None:
-            value = Record(record_id=indicator["indicator"]["id"], record_type=indicator["indicator"]["type"], record_value=indicator["indicator"]["pattern"],record_confidence=indicator["indicator"]["confidence"],record_indicator_type=indicator["indicator"]["indicator_type"])
-            if key in self.indicators_received_from_ta.keys():
-                self.indicators_received_from_ta[key].append(value)
-            else:
-                self.indicators_received_from_ta[key]=[value]
+        try:
+            if indicator is not None:
+                value = Record(record_id=indicator["indicator"]["id"], record_type=indicator["indicator"]["type"], record_value=indicator["indicator"]["pattern"],record_confidence=indicator["indicator"]["confidence"],record_indicator_type=indicator["indicator"]["indicator_type"])
+                if key in self.indicators_received_from_ta.keys():
+                    self.indicators_received_from_ta[key].append(value)
+                else:
+                    self.indicators_received_from_ta[key]=[value]
+        except Exception as e:
+            self.logger.error(e)
         return {str(self.uuid):f"Indicator received from TA {key}"}
 
     async def detect_indicator(self, is_uuid, decision):

@@ -9,7 +9,7 @@ class CTIAgentRLEnvironment(BaseEnvironment):
         self.state = None
         self.states_counter=len(RL_FEATURES_DICT_1.keys())+len(RL_FEATURES_DICT_2.keys())+3+3
         self.count=0
-        self.max_steps=100
+        self.max_steps=max_steps
 
     def env_init(self, env_info=None):
         self.state = np.zeros(self.states_counter)

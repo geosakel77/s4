@@ -36,7 +36,7 @@ class APIDMServer(APIBaseServer):
             update_data = await req.json()
             response = {str(self.agent.uuid):f"Product has not received yet."}
             for key,product in update_data.items():
-                response = self.agent.handle_indicator_from_agcti(Record(product['id'],product['type'],product['pattern']))
+                response = self.agent.handle_indicator_from_agcti(Record(record_id=product['id'],record_type=product['type'],record_value=product['pattern'],record_confidence=product['confidence'],record_indicator_type=product['indicator_type']))
             return response
 
         @self.app.post("/receives_ta_indicator")

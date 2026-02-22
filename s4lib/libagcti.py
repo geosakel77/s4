@@ -17,10 +17,10 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 """
 from sympy.physics.units import action
 
-from s4lib.libbase import Agent,read_from_json
+from s4lib.libbase import Agent,read_from_json,write_to_json
 from s4lib.libdm import Record
 from s4lib.apicli.libapiclientagcti import APIClientAgCTI
-import random,string
+import random,string,os
 import numpy as np
 from typing import Dict
 from s4librl.librlagent import RLAgent
@@ -63,6 +63,7 @@ class AgCTI(Agent):
         self.policies:Dict[str, RLAgent] = {}
         self.rl_agent_info=read_from_json(self.config["rl_config_path_simple"])
         self.client=APIClientAgCTI()
+        self.source_score_history=[]
 
     def sends_cti_product(self,src_uuid,product):
         destinations=[]
@@ -104,32 +105,36 @@ class AgCTI(Agent):
                 self.source_score[src_uuid]=score
         except Exception as e:
             print(e)
+            self.logger.error()
 
 
     def get_source_score(self):
         return self.source_score
 
     def _get_decision(self,dm_uuid,product):
-
-        if self.connection_data_dm[dm_uuid]['metadata']=="Preventive":
-            dm_type=0
-        elif self.connection_data_dm[dm_uuid]['metadata']=="Detective":
-            dm_type=1
-        elif self.connection_data_dm[dm_uuid]['metadata']=="Responsive":
-            dm_type=2
-        else:
-            dm_type=0
-        encoded_product=record_encoder(product,dm_type,self.rl_agent_info['state_vector_size'])
-        is_created=self.policy_maker(dm_uuid,dm_type)
-        if is_created:
-            action_decided=self.policies[dm_uuid].agent.agent_start(encoded_product)
-        else:
-            action_decided=self.policies[dm_uuid].agent.agent_step(action=0,reward=self.get_last_reward(dm_uuid),observation=encoded_product)
-        if action_decided==0:
-            decision=True
-        elif action_decided==1:
-            decision=False
-        else:
+        try:
+            if self.connection_data_dm[dm_uuid]['metadata']=="Preventive":
+                dm_type=0
+            elif self.connection_data_dm[dm_uuid]['metadata']=="Detective":
+                dm_type=1
+            elif self.connection_data_dm[dm_uuid]['metadata']=="Responsive":
+                dm_type=2
+            else:
+                dm_type=0
+            encoded_product=record_encoder(product,dm_type,self.rl_agent_info['state_vector_size'])
+            is_created=self.policy_maker(dm_uuid,dm_type)
+            if is_created:
+                action_decided=self.policies[dm_uuid].agent.agent_start(encoded_product)
+            else:
+                action_decided=self.policies[dm_uuid].agent_step(action=0,reward=self.get_last_reward(dm_uuid),encoded_record=encoded_product,record_id=product.record_id)
+            if action_decided==0:
+                decision=True
+            elif action_decided==1:
+                decision=False
+            else:
+                decision=True
+        except Exception as e:
+            self.logger.error(e)
             decision=True
         return decision
 
@@ -185,15 +190,19 @@ class AgCTI(Agent):
 
     def policy_maker(self,dm_uuid,dm_type):
         is_created=False
-        if dm_uuid not in self.policies.keys():
-            self.policies[dm_uuid]=RLAgent(self.config,self.rl_agent_info,dm_uuid,dm_type)
-            is_created=True
+        try:
+            if dm_uuid not in self.policies.keys():
+                self.policies[dm_uuid]=RLAgent(self.config,self.rl_agent_info,dm_uuid,dm_type)
+                is_created=True
+        except Exception as e:
+            self.logger.error(e)
         return is_created
 
     async def _update_time_actions(self):
         #self.policy_maker()
         product=self._pick_product()
         response_msg = []
+        self.store_source_score()
         if product is not None:
             src_uuid,record=next(iter(product.items()))
             destinations=self.sends_cti_product(src_uuid,record)
@@ -207,11 +216,24 @@ class AgCTI(Agent):
                 response_msg.append(msg)
         return {self.uuid:response_msg}
 
+    def store_source_score(self):
+        self.source_score_history.append(self.source_score)
+        if self.clock%50==0:
+            agent_filename = f"source_score_history{self.uuid}.json"
+            file_path = os.path.join(self.config['experiment_results_path'], agent_filename)
+            data={"history":self.source_score_history}
+            write_to_json(file_path, data)
+
+
     def _pick_product(self):
+
         product=None
-        if self.cti_data_current_pool:
-            k = random.choice(list(self.cti_data_current_pool.keys()))
-            product=self.cti_data_current_pool.pop(k)
+        try:
+            if self.cti_data_current_pool:
+                k = random.choice(list(self.cti_data_current_pool.keys()))
+                product=self.cti_data_current_pool.pop(k)
+        except Exception as e:
+            self.logger.error(e)
         return product
 
     def get_html_status_data(self):

@@ -28,7 +28,7 @@ class RLAgent:
 
     def __init__(self,config,agent_info,dm_uuid,dm_type):
         self.dm_uuid = dm_uuid
-        self.env = CTIAgentRLEnvironment()
+        self.env = CTIAgentRLEnvironment(max_steps=agent_info['max_steps'])
         self.config = config
         self.dm_type = dm_type
 
@@ -49,7 +49,7 @@ class RLAgent:
         self.goal=0.0
         self.terminal=False
         self.agent.agent_init()
-        self.num_episodes=agent_info["rl_num_episodes"]
+        self.num_episodes=config["rl_num_episodes"]
 
     def get_returned_actions(self):
         return self.returns

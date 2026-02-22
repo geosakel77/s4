@@ -6,5 +6,6 @@
   "state_vector_size": 49,
   "alpha_pi":1e-2,
   "alpha_v": 1e-2,
-  "entropy_coef": 0.001
+  "entropy_coef": 0.001,
+  "max_steps":3
 }

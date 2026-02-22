@@ -30,6 +30,7 @@ def read_config(filepath="config.ini"):
     log_level = config.get('general', 'log_level')
     wkhtmltopdf_path = config.get('general', 'wkhtmltopdf_path')
     images_path = config.get('general', 'images_path')
+    logs_dir=config.get('general', 'logs_dir')
     pyattck_path = config.get('ta', 'pyattck_path')
     pyattck_data=config.get('ta', 'pyattck_data')
     enterprise_attck_path=config.get('ta', 'enterprise_attck_path')
@@ -92,13 +93,15 @@ def read_config(filepath="config.ini"):
     rl_config_path_simple=config.get('rl', 'rl_config_path_simple')
     rl_num_episodes=config.getint('rl', 'rl_num_episodes')
     rl_agent_type=config.getint('rl', 'rl_agent_type')
-
+    validation_data_dir=config.get('validation', 'validation_data_dir')
+    validation_data_path=config.get('validation', 'validation_data_path')
     # Return a dictionary with the retrieved values
     config_values = {
         'debug_mode': debug_mode,
         'log_level': log_level,
         'wkhtmltopdf_path': wkhtmltopdf_path,
         'images_path': images_path,
+        'logs_dir': logs_dir,
         'pyattck_path': pyattck_path,
         'pyattck_data': pyattck_data,
         'enterprise_attck_path': enterprise_attck_path,
@@ -161,6 +164,8 @@ def read_config(filepath="config.ini"):
         'rl_config_path_simple': rl_config_path_simple,
         'rl_num_episodes': rl_num_episodes,
         'rl_agent_type': rl_agent_type,
+        'validation_data_path': validation_data_path,
+        'validation_data_dir': validation_data_dir,
     }
 
     return config_values
