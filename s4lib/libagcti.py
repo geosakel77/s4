@@ -122,7 +122,7 @@ class AgCTI(Agent):
             encoded_product=record_encoder(product,dm_type,self.rl_agent_info['state_vector_size'])
             is_created=self.policy_maker(dm_uuid,dm_type)
             if is_created:
-                action_decided=self.policies[dm_uuid].agent.agent_start(encoded_product)
+                action_decided=self.policies[dm_uuid].agent_start(encoded_record=encoded_product,record_id=product.record_id)
             else:
                 action_decided=self.policies[dm_uuid].agent_step(action=0,reward=self.get_last_reward(dm_uuid),encoded_record=encoded_product,record_id=product.record_id)
             if action_decided==0:

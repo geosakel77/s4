@@ -7,5 +7,5 @@
   "alpha_pi":1e-2,
   "alpha_v": 1e-2,
   "entropy_coef": 0.001,
-  "max_steps":3
+  "max_steps":20
 }

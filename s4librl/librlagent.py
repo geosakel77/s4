@@ -50,7 +50,7 @@ class RLAgent:
         self.goal=0.0
         self.terminal=False
         self.agent.agent_init()
-        self.num_episodes=config["rl_num_episodes"]
+        self.num_episodes=self.config["rl_num_episodes"]
 
     def get_returned_actions(self):
         return self.returns
@@ -71,6 +71,7 @@ class RLAgent:
                 if self.terminal:
                     self.agent.agent_end(r)
                     self.agent.agent_cleanup()
+                    self.env.env_cleanup()
                     self.num_episodes-=1
                     self.returns.append(self.goal)
                 else:
@@ -84,7 +85,7 @@ class RLAgent:
             file_path=os.path.join(self.config['experiment_results_path'],agent_filename)
             experiment_results=self.get_status()
             write_to_json(file_path,experiment_results)
-            self.num_episodes-=1
+            self.num_episodes=-1
         return decided_action
 
     def get_status(self):

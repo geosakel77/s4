@@ -9,6 +9,7 @@ class CTIAgentRLEnvironment(BaseEnvironment):
         self.state = None
         self.states_counter=len(RL_FEATURES_DICT_1.keys())+len(RL_FEATURES_DICT_2.keys())+3+3
         self.count=0
+        self.constant_steps=max_steps
         self.max_steps=max_steps
 
     def env_init(self, env_info=None):
@@ -31,6 +32,7 @@ class CTIAgentRLEnvironment(BaseEnvironment):
     def env_cleanup(self):
         self.state = None
         self.current_state = None
+        self.max_steps = self.constant_steps
 
     def env_message(self, message):
         pass
