@@ -24,6 +24,7 @@ def test_rl_agent(conf_dic):
             rl_agent.agent_start(observation,record_id)
         else:
             rl_agent.agent_step(action=0,reward=cti_agent_reward_generator.next_step(),encoded_record=observation,record_id=record_id)
+    print(rl_agent.get_status())
 
 
 if __name__ == '__main__':
