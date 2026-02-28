@@ -48,7 +48,7 @@ def prepare_source_score_data(config):
 
         df = pd.DataFrame(records)
         agent_cti_id=source_score_file.split("_")[4].split(".")[0]
-        print(agent_cti_id)
+
         source_score_df_data[agent_cti_id]={"df":df,"source_keys":sources_keys}
     return source_score_df_data
 
@@ -56,6 +56,34 @@ def source_score_matrix_plot(source_score_df_data,config):
     for key,item in source_score_df_data.items():
         filename=os.path.join(config['images_path'],f"plots\\{key}.png")
         plot_source_matrix_comparison(item["df"],item["source_keys"],filename)
+
+
+def plot_source_score_matrix_comparison_all(source_score_df_data,config):
+    filename = os.path.join(config['images_path'],f"plots\\source_score_matrix_comparison_all.png")
+    algos={"6fb16936-09b0-491b-8e6a-c3abbfc26f4a":"ES","add61679-8ecd-45b4-a77a-749c4c9dabb6":"QL","c370e907-9294-4755-a3a6-d756b4585180":"DAC"}
+
+    min_length=100000
+
+    for key in source_score_df_data.keys():
+        if len(source_score_df_data[key]["df"])<min_length:
+            min_length=len(source_score_df_data[key]["df"])
+    for key in source_score_df_data.keys():
+        df1_trim=source_score_df_data[key]["df"].iloc[:min_length]
+        source_score_df_data[key]["df"]=df1_trim
+        print(len(source_score_df_data[key]["df"]))
+    plt.figure()
+    for key,item in source_score_df_data.items():
+        df=item["df"]
+        source_keys=item["source_keys"]
+        for key1 in source_keys.keys():
+            sns.lineplot(data=df, x="time", y=f"src_{key1}", label=f"SRC {key1} - {algos[key]}")
+    plt.xlabel("Time")
+    plt.ylabel(f"Source Score")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.show()
+
 
 def plot_source_matrix_comparison(df,source_keys,filename):
     plt.figure()
@@ -210,5 +238,165 @@ def _plot_cumulative_reward(rl_agent_data,dm_type,dm_uuid,agent_id,config):
     plt.ylabel(f"Cumulative Reward")
     plt.legend()
     plt.tight_layout()
+    plt.savefig(filename)
+    plt.show()
+
+
+
+def plot_cumulative_reward_all_types(agents_data,config):
+    filename = os.path.join(config['images_path'], f"plots\\combined_cumulative_reward_all.png")
+    episodes=0
+    for agent_id,data in agents_data.items():
+        for dm_policy in data:
+           episodes=len(dm_policy['episode_goals'])
+           break
+    records = []
+    dm_keys = []
+    episode = 1
+    for i in range(episodes):
+        record = {"episode": episode}
+        id_prv = 0
+        id_det = 0
+        id_res = 0
+        for agent_id,dm_policy in agents_data.items():
+            for data in dm_policy:
+                if data["dm_type"] == 0:
+                    dm_id = f"Prev_{data['algo']}"
+                    dm_keys.append(dm_id)
+                    record[dm_id] = data["episode_goals"][i]
+                    id_prv += 1
+                elif data["dm_type"] == 1:
+                    dm_id = f"Det_{data['algo']}"
+                    dm_keys.append(dm_id)
+                    record[dm_id] = data["episode_goals"][i]
+                    id_det += 1
+                elif data["dm_type"] == 2:
+                    dm_id = f"Res_{data['algo']}"
+                    dm_keys.append(dm_id)
+                    record[dm_id] = data["episode_goals"][i]
+        records.append(record)
+        episode += 1
+    df = pd.DataFrame(records)
+    print("start plotting")
+    df_trim=df.iloc[:200]
+    dm_keys_u=set(dm_keys)
+    plt.figure()
+    for dm_key in dm_keys_u:
+        sns.lineplot(data=df_trim, x="episode", y=dm_key, label=dm_key)
+    plt.xlabel("Episode")
+    plt.ylabel(f"Cumulative Reward")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.show()
+    filename1 = os.path.join(config['images_path'], f"plots\\combined_cumulative_reward_all_prev.png")
+    plt.figure()
+    for dm_key in dm_keys_u:
+        if "Prev" in dm_key:
+            sns.lineplot(data=df_trim, x="episode", y=dm_key, label=dm_key)
+    plt.xlabel("Episode")
+    plt.ylabel(f"Cumulative Reward")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(filename1)
+    plt.show()
+    filename2 = os.path.join(config['images_path'], f"plots\\combined_cumulative_reward_all_det.png")
+    plt.figure()
+    for dm_key in dm_keys_u:
+        if "Det" in dm_key:
+            sns.lineplot(data=df_trim, x="episode", y=dm_key, label=dm_key)
+    plt.xlabel("Episode")
+    plt.ylabel(f"Cumulative Reward")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(filename2)
+    plt.show()
+    filename3 = os.path.join(config['images_path'], f"plots\\combined_cumulative_reward_all_res.png")
+    plt.figure()
+    for dm_key in dm_keys_u:
+        if "Res" in dm_key:
+            sns.lineplot(data=df_trim, x="episode", y=dm_key, label=dm_key)
+    plt.xlabel("Episode")
+    plt.ylabel(f"Cumulative Reward")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(filename3)
+    plt.show()
+
+def plot_cumulative_decisions(agents_data,config):
+    filename = os.path.join(config['images_path'], f"plots\\combined_cumulative_decisions_all.png")
+    min_value=10000000
+    policies=[]
+
+    for agent_id, data in agents_data.items():
+        for dm_policy in data:
+            records=[]
+            for key, item in dm_policy["decided_actions"].items():
+                record={"ind":key,"value":item}
+                records.append(record)
+            dm_policy['decided_actions'] = pd.DataFrame(records)
+            if len(dm_policy['decided_actions'])<min_value:
+                min_value=len(dm_policy['decided_actions'])
+            policies.append(dm_policy)
+    policies_trimmed=[]
+    for dm_policy in policies:
+        dm_policy['decided_actions'] = dm_policy['decided_actions'].iloc[:min_value]
+        policies_trimmed.append(dm_policy)
+    policies_final=[]
+
+    for dm_policy in policies_trimmed:
+        send= (dm_policy['decided_actions']["value"]==0).sum()
+        not_send= (dm_policy['decided_actions']["value"]==1).sum()
+        new_df=pd.DataFrame([{"send":send, "not_send":not_send}])
+        dm_policy['decided_actions'] = new_df
+        dm_policy.pop("episode_goals")
+        dm_policy.pop("num_q_entries")
+        dm_policy.pop("obs_actions")
+        if dm_policy["dm_type"]==0:
+            dm_policy["dm_type"]="Prev"
+        elif dm_policy["dm_type"]==1:
+            dm_policy["dm_type"]="Det"
+        elif dm_policy["dm_type"]==2:
+            dm_policy["dm_type"]="Res"
+        if "q" in dm_policy.keys():
+            dm_policy.pop("q")
+        elif 'w_pi' in dm_policy.keys():
+            dm_policy.pop("w_pi")
+        policies_final.append(dm_policy)
+
+
+    records=[]
+    for dm_policy in policies_final:
+        record={"dm_type":dm_policy["dm_type"],'algo':dm_policy["algo"],'send':dm_policy["decided_actions"].at[0,"send"],'not_send':dm_policy["decided_actions"].at[0,"not_send"]}
+        records.append(record)
+
+    df = pd.DataFrame(records)
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_columns', None)
+    print(df)
+
+    df_melt = df.melt(
+        id_vars=["dm_type", "algo"],
+        value_vars=["send", "not_send"],
+        var_name="action",
+        value_name="count"
+    )
+
+    g = sns.catplot(
+        data=df_melt,
+        col="algo",  # Level 1
+        x="dm_type",  # Level 2
+        y="count",
+        hue="action",  # Level 3
+        kind="bar",
+        height=5,
+        aspect=1.1,
+        errorbar=None
+    )
+    g.set_axis_labels("", "CTI Products")
+    g.set_titles("Algorithm = {col_name}")
+
+    g._legend.set_title("action")
+    plt.subplots_adjust(top=0.95)
     plt.savefig(filename)
     plt.show()

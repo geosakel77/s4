@@ -18,15 +18,18 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 
 from s4config.libconfig import read_config
 from s4config.libconstants import CONFIG_PATH
-from s4statistics.libstatistics import prepare_source_score_data,source_score_matrix_plot,prepare_agents_data,agents_data_plots
+from s4statistics.libstatistics import prepare_source_score_data,source_score_matrix_plot,prepare_agents_data,agents_data_plots,plot_source_score_matrix_comparison_all,plot_cumulative_reward_all_types, plot_cumulative_decisions
 
 
 def run():
     config = read_config(CONFIG_PATH)
     source_score_df_data=prepare_source_score_data(config)
-    source_score_matrix_plot(source_score_df_data, config)
+    #source_score_matrix_plot(source_score_df_data, config)
     agents_data=prepare_agents_data(config)
-    agents_data_plots(agents_data,config)
+    #agents_data_plots(agents_data,config)
+    #plot_source_score_matrix_comparison_all(source_score_df_data, config)
+    #plot_cumulative_reward_all_types(agents_data,config)
+    plot_cumulative_decisions(agents_data,config)
 
 if __name__ == '__main__':
     run()
