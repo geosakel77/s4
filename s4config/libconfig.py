@@ -62,6 +62,7 @@ def read_config(filepath="config.ini"):
     generic_host=config.get('experiments', 'generic_host')
     templates_path = config.get('experiments', 'templates_path')
     experiment_results_path=config.get('experiments', 'experiment_results_path')
+    exp_code=config.get('experiments', 'exp_code')
     static_path = config.get('experiments', 'static_path')
     heartbeat_rate=config.getint('experiments', 'heartbeat_rate')
     time_steps=config.getint('experiments', 'time_steps')
@@ -127,6 +128,7 @@ def read_config(filepath="config.ini"):
         'openai_model': openai_model,
         'experiments_data_path': experiments_data_path,
         'experiment_results_path': experiment_results_path,
+        'exp_code': exp_code,
         'ta_plan_threshold': ta_plan_threshold,
         'ta_actor_max_plans': ta_actor_max_plans,
         'coordinator_port': coordinator_port,

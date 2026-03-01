@@ -82,7 +82,8 @@ class RLAgent:
                 self.terminal=False
         elif self.num_episodes==0:
             agent_filename=f"{self.agcti_uuid}_{self.dm_uuid}_{self.dm_type}_agent_{self.algo}.json"
-            file_path=os.path.join(self.config['experiment_results_path'],agent_filename)
+            os.makedirs(os.path.join(self.config['experiment_results_path'],self.config["exp_code"]), exist_ok=True)
+            file_path=os.path.join(self.config['experiment_results_path'],self.config["exp_code"],agent_filename)
             experiment_results=self.get_status()
             write_to_json(file_path,experiment_results)
             self.num_episodes=-1

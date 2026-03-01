@@ -11,6 +11,7 @@
 3. [Background and Theory](#background-and-theory)  
 4. [Infrastructure](#infrastructure)
 5. [Dataset](#dataset)
+6. [Experiments](#experiments)
 6. [Dependencies](#dependencies)  
 7. [Usage](#usage)
 8. [License](#license)  
@@ -188,6 +189,20 @@ These datasets enable:
 - All statistics were extracted programmatically to ensure reproducibility
 
 ---
+
+## **Experiments**
+
+### **Algorithms Selection**
+
+The following decision tree was used for the selection and development of the *simple RL algorithms*.
+
+![Observable Patterns within CTI Pool Dataset](https://github.com/geosakel77/s4/blob/master/images/alg_map.png)
+
+The *enterprise RL algorithms* is part of the [Ray RLlib](https://docs.ray.io/en/latest/index.html)
+
+### **Experiments Configuration**
+
+
 
 ## **Dependencies**
 
