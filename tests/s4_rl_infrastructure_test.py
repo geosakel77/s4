@@ -24,7 +24,7 @@ from s4lib.apisrv.libapisrvta import APITAServer
 import tracemalloc
 
 if __name__ == '__main__':
-    print("Starting testing of the infrastructure...")
+    print("Starting experiment....")
     tracemalloc.start()
     #CTI Source Agents
     srcagent1 = APISRCServer(agent_type="SRC", title="SRC Agent 1")
