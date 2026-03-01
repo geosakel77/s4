@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="algorithm conf and read.md update">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="update readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/s4_rl_infrastructure_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/s4_rl_infrastructure_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,15 +350,7 @@
       <workItem from="1772262274435" duration="2000" />
       <workItem from="1772267889561" duration="1085000" />
       <workItem from="1772306415977" duration="214000" />
-      <workItem from="1772391556363" duration="3461000" />
-    </task>
-    <task id="LOCAL-00002" summary="Setup and TA development">
-      <option name="closed" value="true" />
-      <created>1752958305534</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1752958305534</updated>
+      <workItem from="1772391556363" duration="4648000" />
     </task>
     <task id="LOCAL-00003" summary="Setup and TA development cont">
       <option name="closed" value="true" />
@@ -747,7 +736,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772393547101</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="update readme">
+      <option name="closed" value="true" />
+      <created>1772395064867</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1772395064867</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -757,7 +754,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="config file, datasets and minor changes on TA" />
     <MESSAGE value="TA functionality and minor changes on dm and is" />
     <MESSAGE value="generic infrastructure testing and fixes" />
     <MESSAGE value="generic infrastructure fixes" />
@@ -782,7 +778,8 @@
     <MESSAGE value="dac experiments" />
     <MESSAGE value="analysis of the results" />
     <MESSAGE value="algorithm conf and read.md update" />
-    <option name="LAST_COMMIT_MESSAGE" value="algorithm conf and read.md update" />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
