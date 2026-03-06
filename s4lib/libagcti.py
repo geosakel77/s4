@@ -217,8 +217,9 @@ class AgCTI(Agent):
     def store_source_score(self):
         self.source_score_history.append(self.get_source_score().copy())
         if self.clock%50==0:
+            os.makedirs(os.path.join(self.config['experiment_results_path'], self.config["exp_code"]), exist_ok=True)
             agent_filename = f"source_score_history_{self.uuid}.json"
-            file_path = os.path.join(self.config['experiment_results_path'], agent_filename)
+            file_path = os.path.join(self.config['experiment_results_path'],self.config["exp_code"],agent_filename)
             data={"history":self.source_score_history}
             write_to_json(file_path, data)
 

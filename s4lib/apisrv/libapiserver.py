@@ -29,6 +29,7 @@ import uvicorn,uuid,asyncio
 from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
 from s4lib.apicli.libapiclient import APIRegistrationClient
+from s4lib.utlis import create_logger
 
 
 class APIServer:
@@ -108,6 +109,7 @@ class APIServerCoordinator(APIServer):
         self._heartbeat_task = None
         self.coordinator_agent=Coordinator(configuration=self.config)
         self._register_routes()
+        self.logger = create_logger(f"{self.agent_type}_agent_coordinator_server", config=self.config)
 
 
     async def clock(self)-> None:
@@ -118,11 +120,14 @@ class APIServerCoordinator(APIServer):
             for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
                 try:
                     update_time = await self.coordinator_agent.client.update_time(agent_url, time_data)
-                    print(update_time)
+                    print(update_time,time_data)
                 except Exception as e:
-                    print(e)
-            self.coordinator_agent.update_time()
-            await asyncio.sleep(int(self.config['step_duration']))
+                    self.logger.error(e)
+            try:
+                self.coordinator_agent.update_time()
+                await asyncio.sleep(int(self.config['step_duration']))
+            except Exception as e:
+                self.logger.error(e)
 
     async def heartbeat(self) -> None:
         while True:
@@ -135,14 +140,14 @@ class APIServerCoordinator(APIServer):
                     self.coordinator_agent.update_agents(agent_uuid,response)
                     print(response)
                 except Exception as e:
-                    print(e)
+                    self.logger.error(e)
             conn_info = self.coordinator_agent.get_connection_info()
             for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
                 try:
                     update_response = await self.coordinator_agent.client.update_agent(agent_url,conn_info)
                     print(update_response)
                 except Exception as e:
-                    print(e)
+                    self.logger.error(e)
             await asyncio.sleep(int(self.config['heartbeat_rate']))
 
 
