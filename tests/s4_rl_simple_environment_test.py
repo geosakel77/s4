@@ -17,7 +17,6 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 """
 
 from s4librl.simple.librlenvironment import CTIAgentRLEnvironment
-from s4librl.simple.librlqlearning import QLearningAgent
 from s4librl.utils import CTIAgentRLObservationsGenerator,CTIAgentRewardsGenerator
 from s4librl.simple.utils import StateEncoderXD
 
