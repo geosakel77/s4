@@ -4,24 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="exp2 results">
-      <change afterPath="$PROJECT_DIR$/experiments/s4_exp3_infrastructure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/s4_rl_enterprise_algorithms_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/s4_rl_enterprise_environment_test.py" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="exp2 results and exp3 prep">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_01d3309e-ae9e-4fb1-a2c6-bfde953abde3_2_agent_ES.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_01d3309e-ae9e-4fb1-a2c6-bfde953abde3_2_agent_ES.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_027a8532-dfe7-4ea5-87da-ca4c48d513eb_0_agent_ES.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_027a8532-dfe7-4ea5-87da-ca4c48d513eb_0_agent_ES.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_60cdfd89-d245-43ce-80a1-6dc64f2f7b3e_1_agent_ES.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/6fb16936-09b0-491b-8e6a-c3abbfc26f4a_60cdfd89-d245-43ce-80a1-6dc64f2f7b3e_1_agent_ES.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/add61679-8ecd-45b4-a77a-749c4c9dabb6_728286c0-38ee-4c57-a8f6-23796798bb37_0_agent_QL.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/add61679-8ecd-45b4-a77a-749c4c9dabb6_728286c0-38ee-4c57-a8f6-23796798bb37_0_agent_QL.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/add61679-8ecd-45b4-a77a-749c4c9dabb6_ab405238-5799-4450-bc47-41df625b0805_1_agent_QL.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/add61679-8ecd-45b4-a77a-749c4c9dabb6_ab405238-5799-4450-bc47-41df625b0805_1_agent_QL.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/add61679-8ecd-45b4-a77a-749c4c9dabb6_b1c6a725-8b7d-4e7c-931b-316d8bf5de65_2_agent_QL.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/add61679-8ecd-45b4-a77a-749c4c9dabb6_b1c6a725-8b7d-4e7c-931b-316d8bf5de65_2_agent_QL.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/c370e907-9294-4755-a3a6-d756b4585180_ac1ef157-cb2a-4186-8cd3-f1a8fb6659e7_1_agent_DAC.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/c370e907-9294-4755-a3a6-d756b4585180_ac1ef157-cb2a-4186-8cd3-f1a8fb6659e7_1_agent_DAC.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/c370e907-9294-4755-a3a6-d756b4585180_cb3aed15-5e2c-4ba1-aa9f-13dfc54431bc_2_agent_DAC.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/c370e907-9294-4755-a3a6-d756b4585180_cb3aed15-5e2c-4ba1-aa9f-13dfc54431bc_2_agent_DAC.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/c370e907-9294-4755-a3a6-d756b4585180_d5ab0ca3-4188-49c0-92fd-99e1b2db72ac_0_agent_DAC.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/c370e907-9294-4755-a3a6-d756b4585180_d5ab0ca3-4188-49c0-92fd-99e1b2db72ac_0_agent_DAC.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/source_score_history_6fb16936-09b0-491b-8e6a-c3abbfc26f4a.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/source_score_history_6fb16936-09b0-491b-8e6a-c3abbfc26f4a.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/source_score_history_add61679-8ecd-45b4-a77a-749c4c9dabb6.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/source_score_history_add61679-8ecd-45b4-a77a-749c4c9dabb6.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/source_score_history_c370e907-9294-4755-a3a6-d756b4585180.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp0/source_score_history_c370e907-9294-4755-a3a6-d756b4585180.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/s4_rl_simple_environment_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/s4_rl_simple_environment_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/s4_exp3_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/s4_exp3_infrastructure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4lib/apisrv/libapiserver.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4lib/apisrv/libapiserver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +116,7 @@
       <recent name="C:\Users\geosa\PycharmProjects\s4\s4lib\apisrv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.s4_exp2_infrastructure">
+  <component name="RunManager" selected="Python.s4_exp3_infrastructure">
     <configuration name="s4_exp1_infrastructure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
@@ -260,9 +246,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.s4_exp2_infrastructure" />
-        <item itemvalue="Python.s4_exp_coordinator" />
         <item itemvalue="Python.s4_exp3_infrastructure" />
+        <item itemvalue="Python.s4_exp_coordinator" />
+        <item itemvalue="Python.s4_exp2_infrastructure" />
         <item itemvalue="Python.s4_exp1_infrastructure" />
         <item itemvalue="Python.s4_rl_agent_test" />
       </list>
@@ -371,15 +357,7 @@
       <workItem from="1772306415977" duration="214000" />
       <workItem from="1772391556363" duration="4941000" />
       <workItem from="1772475805086" duration="23278000" />
-      <workItem from="1772869184011" duration="6044000" />
-    </task>
-    <task id="LOCAL-00006" summary="ta indicators data">
-      <option name="closed" value="true" />
-      <created>1753555632015</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1753555632015</updated>
+      <workItem from="1772869184011" duration="14776000" />
     </task>
     <task id="LOCAL-00007" summary="additional indicators data">
       <option name="closed" value="true" />
@@ -765,7 +743,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772869257873</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="exp2 results and exp3 prep">
+      <option name="closed" value="true" />
+      <created>1772897228839</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1772897228839</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -775,7 +761,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="final s4 generic infrastructure testing" />
     <MESSAGE value="readme update" />
     <MESSAGE value="readme update 1" />
     <MESSAGE value="librl init" />
@@ -800,7 +785,8 @@
     <MESSAGE value="update readme 1" />
     <MESSAGE value="exp1 and 2 results" />
     <MESSAGE value="exp2 results" />
-    <option name="LAST_COMMIT_MESSAGE" value="exp2 results" />
+    <MESSAGE value="exp2 results and exp3 prep" />
+    <option name="LAST_COMMIT_MESSAGE" value="exp2 results and exp3 prep" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
@@ -820,7 +806,7 @@
     <SUITE FILE_PATH="coverage/s4$s4_data_test.coverage" NAME="s4_data_test Coverage Results" MODIFIED="1769286203901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_algorithms_test.coverage" NAME="s4_rl_simple_algorithms_test Coverage Results" MODIFIED="1771786048563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_infrastructure_test.coverage" NAME="s4_rl_infrastructure_test Coverage Results" MODIFIED="1771954509549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/s4$s4_exp3_infrastructure.coverage" NAME="s4_exp3_infrastructure Coverage Results" MODIFIED="1772870444862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
+    <SUITE FILE_PATH="coverage/s4$s4_exp3_infrastructure.coverage" NAME="s4_exp3_infrastructure Coverage Results" MODIFIED="1772935965105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$libia.coverage" NAME="libia Coverage Results" MODIFIED="1755010520106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_agent_test.coverage" NAME="s4_rl_agent_test Coverage Results" MODIFIED="1772392635190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -830,7 +816,7 @@
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_test.coverage" NAME="s4_rl_simple_test Coverage Results" MODIFIED="1769243805233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1762037336694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$setup.coverage" NAME="setup Coverage Results" MODIFIED="1761427392499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/s4$s4_exp_coordinator.coverage" NAME="s4_exp_coordinator Coverage Results" MODIFIED="1772870650811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
+    <SUITE FILE_PATH="coverage/s4$s4_exp_coordinator.coverage" NAME="s4_exp_coordinator Coverage Results" MODIFIED="1772935958815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$agent1.coverage" NAME="agent1 Coverage Results" MODIFIED="1761411850076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_environment_test.coverage" NAME="s4_rl_simple_environment_test Coverage Results" MODIFIED="1771088229957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_exp1_infrastructure.coverage" NAME="s4_exp1_infrastructure Coverage Results" MODIFIED="1772600418633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />

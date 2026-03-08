@@ -113,21 +113,25 @@ class APIServerCoordinator(APIServer):
 
 
     async def clock(self)-> None:
-        while self.coordinator_agent.get_time()>0:
-            absolute_time=self.coordinator_agent.config["time_steps"]-self.coordinator_agent.get_time()
-            print(f"Clock Time: {absolute_time}")
-            time_data={"current":absolute_time}
-            for agent_uuid, agent_url in self.coordinator_agent.registered_agents.items():
+        try:
+            while self.coordinator_agent.get_time()>0:
+                absolute_time=self.coordinator_agent.config["time_steps"]-self.coordinator_agent.get_time()
+                print(f"Clock Time: {absolute_time}")
+                time_data={"current":absolute_time}
+                for agent_uuid, agent_url in list(self.coordinator_agent.registered_agents.items()):
+                    try:
+                        update_time = await self.coordinator_agent.client.update_time(agent_url, time_data)
+                        print(update_time,time_data)
+                    except Exception as e:
+                        self.logger.error(e)
                 try:
-                    update_time = await self.coordinator_agent.client.update_time(agent_url, time_data)
-                    print(update_time,time_data)
+                    self.coordinator_agent.update_time()
+                    await asyncio.sleep(int(self.config['step_duration']))
                 except Exception as e:
                     self.logger.error(e)
-            try:
-                self.coordinator_agent.update_time()
-                await asyncio.sleep(int(self.config['step_duration']))
-            except Exception as e:
-                self.logger.error(e)
+        except Exception as e:
+            self.logger.error(e)
+            print(e)
 
     async def heartbeat(self) -> None:
         while True:
