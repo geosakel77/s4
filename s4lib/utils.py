@@ -18,8 +18,9 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 
 import logging
 import logging.handlers
-import os
+import os,tracemalloc,csv,time
 from datetime import datetime
+from typing import Any
 
 
 def create_logger(
@@ -72,3 +73,66 @@ def create_logger(
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     return logger
+
+def filter_snapshot(snapshot: tracemalloc.Snapshot, include_stdlib: bool) -> tracemalloc.Snapshot:
+    filters = [
+        tracemalloc.Filter(False, "<unknown>"),
+    ]
+
+    if not include_stdlib:
+        filters.extend(
+            [
+                tracemalloc.Filter(False, "<frozen importlib._bootstrap>"),
+                tracemalloc.Filter(False, "<frozen importlib._bootstrap_external>"),
+            ]
+        )
+
+    return snapshot.filter_traces(filters)
+
+def take_absolute_records(snapshot: tracemalloc.Snapshot,timestamp_sec: float,) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for stat in snapshot.statistics("filename"):
+        frame = stat.traceback[0]
+        rows.append(
+            {
+                "time_sec": timestamp_sec,
+                "file": frame.filename,
+                "memory_mb": stat.size,
+                "alloc_count": stat.count,
+            }
+        )
+    return rows
+
+def append_memory_absolute_csv(output_file,interval=30):
+    """
+    Continuously sample Python memory allocations and append absolute values to a CSV file.
+
+    Parameters
+    ----------
+    output_file : str
+        CSV file to append samples
+    interval : int
+        sampling interval in seconds
+    nframe : int
+        tracemalloc stack depth
+    """
+    file_exists = os.path.exists(output_file)
+    with open(output_file, "a", newline="") as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            writer.writerow(["timestamp", "file", "memory_mb", "alloc_count"])
+        start = time.time()
+        while True:
+            snapshot = tracemalloc.take_snapshot()
+
+            snapshot = snapshot.filter_traces((
+                tracemalloc.Filter(False, "<unknown>"),
+                tracemalloc.Filter(False, "<frozen importlib._bootstrap>"),
+            ))
+            stats = snapshot.statistics("filename")
+            timestamp = time.time()
+            for stat in stats:
+                frame = stat.traceback[0]
+                writer.writerow([timestamp,frame.filename,stat.size/(1024 * 1024),stat.count])
+            f.flush()
+            time.sleep(interval)

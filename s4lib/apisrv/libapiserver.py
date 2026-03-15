@@ -29,7 +29,7 @@ import uvicorn,uuid,asyncio
 from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
 from s4lib.apicli.libapiclient import APIRegistrationClient
-from s4lib.utlis import create_logger
+from s4lib.utils import create_logger
 
 
 class APIServer:

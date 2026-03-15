@@ -19,7 +19,7 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 import json, openai,requests,re,tempfile,pdfkit,os,time,random,nvdlib
 from io import BytesIO
 from cabby import create_client
-from s4lib.utlis import create_logger
+from s4lib.utils import create_logger
 from taxii2client.v21 import Server,as_pages
 from requests.auth import HTTPBasicAuth
 from rdflib.plugins.sparql import prepareQuery
