@@ -143,11 +143,6 @@ def generate_flamegraph(statistics, config,exp="exp4",filename="stats_0.folded")
 
 def generate_memory_utilization_over_time(df:DataFrame,filename)->None:
     plot_df = df.copy()
-    # convert unix timestamp to datetime
-    #plot_df["timestamp"] = pd.to_datetime(plot_df["timestamp"], unit="s")
-
-    # optional: merge duplicate rows for same timestamp/file
-
 
     plot_df["time_delta_sec"] = (
             plot_df["timestamp"] - plot_df["timestamp"].min()
@@ -169,6 +164,30 @@ def generate_memory_utilization_over_time(df:DataFrame,filename)->None:
 
     plt.xlabel("Time (Sec)")
     plt.ylabel("Memory (MB)")
+    plt.xticks(rotation=45)
+    plt.legend(title="Objects", bbox_to_anchor=(1.02, 1), loc="upper left")
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.show()
+
+def generate_memory_allocation_count_over_time(df:DataFrame,filename)->None:
+    plot_df = df.copy()
+
+    plot_df["time_delta_sec"] = (
+            plot_df["timestamp"] - plot_df["timestamp"].min()
+    )
+    plt.figure(figsize=(14, 7))
+
+    sns.lineplot(
+        data=plot_df,
+        x="time_delta_sec",
+        y="alloc_count",
+        hue="file",
+        marker="o"
+    )
+
+    plt.xlabel("Time (Sec)")
+    plt.ylabel("Alloc Count")
     plt.xticks(rotation=45)
     plt.legend(title="Objects", bbox_to_anchor=(1.02, 1), loc="upper left")
     plt.tight_layout()

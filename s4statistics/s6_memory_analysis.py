@@ -18,7 +18,7 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 
 from s4config.libconstants import CONFIG_PATH
 from s4config.libconfig import read_config
-from s4statistics.libmemory_statistics import get_memory_files,load_memory_file,analyze_snapshot,load_csv_file,generate_memory_utilization_over_time
+from s4statistics.libmemory_statistics import get_memory_files, generate_memory_allocation_count_over_time,load_csv_file,generate_memory_utilization_over_time
 import os
 
 def process_csv(config,exp):
@@ -28,8 +28,8 @@ def process_csv(config,exp):
         os.makedirs(os.path.join(config['images_path'], "plots", exp),exist_ok=True)
         plot_filename = os.path.join(config['images_path'], "plots", exp, memory_file.split(".")[0]+".png")
         generate_memory_utilization_over_time(df,str(plot_filename))
-
-
+        plot_filename_1 = os.path.join(config['images_path'], "plots", exp, memory_file.split(".")[0] + "alloc_count.png")
+        generate_memory_allocation_count_over_time(df,str(plot_filename_1))
 
 if __name__ == "__main__":
     config = read_config(CONFIG_PATH)
