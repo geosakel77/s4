@@ -4,22 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="memory exp and statistics">
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_82c03807-3574-47d2-b0f7-6f9ad633bd6b_0_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_b35c82bf-e207-4551-a166-a02298b062cf_1_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_cb50a67f-98c4-4b8c-9b82-b83996a806a8_2_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_cfb4e8ad-33aa-459b-b454-93e953f930bb_1_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_d3a851ed-77ea-4d8a-8c63-a08a71fb7678_2_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiment_results/exp5/4ef81ff7-66e6-4e08-bb20-7c2138d6f306_e43f2693-1d62-4143-bfe9-39b1f9af2899_0_agent_DAC.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/exp5/memory_0alloc_count.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/exp5/memory_1alloc_count.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/exp5/memory_2alloc_count.png" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="memory exp and statistics all">
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/heatmap_hti_reward_appl_reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/heatmap_info_assets_num_is_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_appl_reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_hit_reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_info_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_is_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_l1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/plot_l2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/runtime_hit_reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reward_analysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4reward/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4reward/librewardanalysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/exp5/memory_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp5/memory_2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/exp5/source_score_history_4ef81ff7-66e6-4e08-bb20-7c2138d6f306.json" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/exp5/source_score_history_4ef81ff7-66e6-4e08-bb20-7c2138d6f306.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/plots/exp5/memory_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/memory_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4statistics/libmemory_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/libmemory_statistics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4statistics/s6_memory_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s6_memory_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/s4_exp5_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/s4_exp5_infrastructure.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +75,7 @@
     &quot;Python.libta (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.libta.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reward_analysis.executor&quot;: &quot;Run&quot;,
     &quot;Python.s4_cti_records_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.s4_data_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.s4_exp1_infrastructure.executor&quot;: &quot;Run&quot;,
@@ -131,8 +132,8 @@
       <recent name="C:\Users\geosa\PycharmProjects\s4\s4librl\enterprise" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.s6_memory_analysis">
-    <configuration name="s4_exp3_infrastructure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.reward_analysis">
+    <configuration name="reward_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,13 +142,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/experiments" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/experiments/s4_exp3_infrastructure.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reward_analysis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -253,27 +254,27 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.s4_exp5_infrastructure" />
-      <item itemvalue="Python.s6_memory_analysis" />
-      <item itemvalue="Python.s4_exp3_infrastructure" />
+      <item itemvalue="Python.reward_analysis" />
       <item itemvalue="Python.s4_exp4_infrastructure" />
+      <item itemvalue="Python.s4_exp5_infrastructure" />
       <item itemvalue="Python.s4_exp_coordinator" />
+      <item itemvalue="Python.s6_memory_analysis" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.reward_analysis" />
         <item itemvalue="Python.s6_memory_analysis" />
         <item itemvalue="Python.s4_exp5_infrastructure" />
         <item itemvalue="Python.s4_exp_coordinator" />
         <item itemvalue="Python.s4_exp4_infrastructure" />
-        <item itemvalue="Python.s4_exp3_infrastructure" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.31033.139" />
-        <option value="bundled-python-sdk-2653e85de345-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.31033.139" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.32098.74" />
+        <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
       </set>
     </attachedChunks>
   </component>
@@ -375,15 +376,11 @@
       <workItem from="1772869184011" duration="30872000" />
       <workItem from="1773475617209" duration="1011000" />
       <workItem from="1773557990501" duration="26153000" />
-      <workItem from="1774120749712" duration="5737000" />
-    </task>
-    <task id="LOCAL-00011" summary="dms and other updates">
-      <option name="closed" value="true" />
-      <created>1756818290078</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1756818290078</updated>
+      <workItem from="1774120749712" duration="5765000" />
+      <workItem from="1774193763696" duration="556000" />
+      <workItem from="1774682957373" duration="3244000" />
+      <workItem from="1774689531507" duration="29000" />
+      <workItem from="1775214451036" duration="27393000" />
     </task>
     <task id="LOCAL-00012" summary="cti source data created">
       <option name="closed" value="true" />
@@ -769,7 +766,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773606428492</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="memory exp and statistics all">
+      <option name="closed" value="true" />
+      <created>1774126929114</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1774126929115</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,7 +784,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="algrunner" />
     <MESSAGE value="algrunner v1" />
     <MESSAGE value="rl setup" />
     <MESSAGE value="rl setup 1" />
@@ -804,7 +808,8 @@
     <MESSAGE value="exp4 QL" />
     <MESSAGE value="exp4 all" />
     <MESSAGE value="memory exp and statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory exp and statistics" />
+    <MESSAGE value="memory exp and statistics all" />
+    <option name="LAST_COMMIT_MESSAGE" value="memory exp and statistics all" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
@@ -816,9 +821,10 @@
     <SUITE FILE_PATH="coverage/s4$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1772144184669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$s4_generic_infrastructure_test.coverage" NAME="s4_generic_infrastructure_test Coverage Results" MODIFIED="1767523232866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1768641617685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4librl" />
-    <SUITE FILE_PATH="coverage/s4$librlcti.coverage" NAME="librlcti Coverage Results" MODIFIED="1768140944646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4librl" />
     <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1764514428645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/s4$librlcti.coverage" NAME="librlcti Coverage Results" MODIFIED="1768140944646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4librl" />
     <SUITE FILE_PATH="coverage/s4$s4_exp2_infrastructure.coverage" NAME="s4_exp2_infrastructure Coverage Results" MODIFIED="1772870667156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
+    <SUITE FILE_PATH="coverage/s4$reward_analysis.coverage" NAME="reward_analysis Coverage Results" MODIFIED="1775253370952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$s6_memory_analysis.coverage" NAME="s6_memory_analysis Coverage Results" MODIFIED="1774122127108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$s4validationdata.coverage" NAME="s4validationdata Coverage Results" MODIFIED="1771767059286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics/libval" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_infrastructure_test_coordinator.coverage" NAME="s4_rl_infrastructure_test_coordinator Coverage Results" MODIFIED="1771954502121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

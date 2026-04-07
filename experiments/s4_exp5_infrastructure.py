@@ -51,7 +51,7 @@ if __name__ == '__main__':
     for i in range(2):
         agents.append(APIPreventionDMServer(agent_type="DM", title=f"Prevention DM Agent {i}"))
 
-    # IA Agents
+    # IS Agents
     for i in range(20):
         agents.append(APIISServer(agent_type="IS", title=f"IS Agent {i}"))
 
