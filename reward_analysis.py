@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     df_raw_csv = "df_raw.csv"
     df_raw_csv_file_path = os.path.join(config_data['experiment_results_path'], "reward_analysis", df_raw_csv)
-    df_raw.to_csv("raw_experiments.csv", index=False)
+    df_raw.to_csv(df_raw_csv_file_path, index=False)
     df_summary_csv = "df_summary.csv"
     df_summary_csv_file_path = os.path.join(config_data['experiment_results_path'], "reward_analysis", df_summary_csv)
     df_summary.to_csv(df_summary_csv_file_path, index=False)
