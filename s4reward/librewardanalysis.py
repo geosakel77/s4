@@ -1,12 +1,15 @@
 from __future__ import annotations
-
+from SALib.analyze import sobol
 import itertools
 import inspect
 import random
-import time,os
+import time
 from typing import Any, Callable
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from SALib.sample import saltelli
 
-import matplotlib.pyplot as plt
 import pandas as pd
 
 
@@ -111,116 +114,6 @@ def summarize_experiments(
 
     return summary
 
-
-def plot_parameter_effects(
-    summary_df: pd.DataFrame,
-    parameter_names: list[str],
-    metric_mean_col: str = "output_mean",
-    metric_std_col: str = "output_std",
-    save_prefix: str | None = None,
-    file_path: str | None = None,
-) -> None:
-    """
-    Plot average effect of each parameter on the output metric.
-    """
-    for parameter_name in parameter_names:
-        effect_df = (
-            summary_df.groupby(parameter_name, as_index=False)
-            .agg(
-                avg_metric=(metric_mean_col, "mean"),
-                std_metric=(metric_mean_col, "std"),
-            )
-            .sort_values(by=parameter_name)
-        )
-
-        plt.figure(figsize=(8, 5))
-        plt.errorbar(
-            effect_df[parameter_name],
-            effect_df["avg_metric"],
-            yerr=effect_df["std_metric"],
-            marker="o",
-            capsize=4,
-        )
-        plt.xlabel(parameter_name)
-        plt.ylabel(metric_mean_col)
-        plt.title(f"Effect of {parameter_name} on {metric_mean_col}")
-        plt.grid(True)
-        plt.tight_layout()
-
-        if save_prefix:
-            file_name_path=os.path.join(file_path, f"{save_prefix}_{parameter_name}.png")
-            plt.savefig(file_name_path, dpi=200)
-
-        plt.show()
-
-
-def plot_pairwise_heatmap(
-    summary_df: pd.DataFrame,
-    param_x: str,
-    param_y: str,
-    metric_mean_col: str = "output_mean",
-    save_path: str | None = None,
-) -> None:
-    """
-    Plot pairwise interaction heatmap for two parameters.
-    Works best when both parameters have a manageable number of unique values.
-    """
-    heatmap_df = (
-        summary_df.groupby([param_y, param_x], as_index=False)[metric_mean_col]
-        .mean()
-        .pivot(index=param_y, columns=param_x, values=metric_mean_col)
-    )
-
-    plt.figure(figsize=(8, 6))
-    plt.imshow(heatmap_df, aspect="auto")
-    plt.colorbar(label=metric_mean_col)
-    plt.xticks(range(len(heatmap_df.columns)), heatmap_df.columns, rotation=45)
-    plt.yticks(range(len(heatmap_df.index)), heatmap_df.index)
-    plt.xlabel(param_x)
-    plt.ylabel(param_y)
-    plt.title(f"Heatmap of {metric_mean_col}: {param_y} vs {param_x}")
-    plt.tight_layout()
-
-    if save_path:
-        plt.savefig(save_path, dpi=200)
-
-    plt.show()
-
-
-def plot_runtime_analysis(
-    summary_df: pd.DataFrame,
-    parameter_name: str,
-    runtime_col: str = "runtime_sec_mean",
-    save_path: str | None = None,
-) -> None:
-    """
-    Plot runtime sensitivity for one parameter.
-    """
-    runtime_df = (
-        summary_df.groupby(parameter_name, as_index=False)
-        .agg(avg_runtime=(runtime_col, "mean"))
-        .sort_values(by=parameter_name)
-    )
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(runtime_df[parameter_name], runtime_df["avg_runtime"], marker="o")
-    plt.xlabel(parameter_name)
-    plt.ylabel("Average runtime (sec)")
-    plt.title(f"Runtime effect of {parameter_name}")
-    plt.grid(True)
-    plt.tight_layout()
-
-    if save_path:
-        plt.savefig(save_path, dpi=200)
-
-    plt.show()
-
-
-
-
-# --------------------------------------------------
-# Reward function
-# --------------------------------------------------
 def reward_function(l1: float,l2: float,l3: float, hit_reward: int, hit_status: bool,appl_reward: int, appl_status: bool, is_num: int, info_assets_num: int, seed: int | None = None) -> float:
     rng = random.Random(seed)
     if hit_status:
@@ -249,3 +142,40 @@ def asset_value(seed):
     rng = random.Random(seed)
     rangeA=[1,2,3]
     return rng.choice(rangeA)+rng.choice(rangeA)+rng.choice(rangeA)
+
+def analyze_sobol(
+    df: pd.DataFrame,
+    parameter_names: list,
+    saltelli_problem: dict,
+y_col:str="output"
+)-> tuple[pd.DataFrame, pd.DataFrame]:
+    df_sample=df.sample(n=60000000,random_state=42)
+    X=df_sample[parameter_names]
+    y=df_sample[y_col]
+    model = RandomForestRegressor(n_estimators=100, random_state=42,max_depth=10,min_samples_leaf=100)
+    model.fit(X,y)
+    problem = saltelli_problem
+    param_values = saltelli.sample(
+        problem,
+        1024,
+        calc_second_order=True
+    )
+    Y = model.predict(param_values)
+
+    Si = sobol.analyze(
+        problem,
+        Y,
+        calc_second_order=True,
+        print_to_console=True
+    )
+    sobol_df = pd.DataFrame({
+        'parameter': problem['names'],
+        'S1_first_order': Si['S1'],
+        'S1_conf': Si['S1_conf'],
+        'ST_total_order': Si['ST'],
+        'ST_conf': Si['ST_conf']
+    })
+
+    S2 = pd.DataFrame(Si['S2'],index=problem['names'],columns=problem['names'])
+
+    return sobol_df,S2

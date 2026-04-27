@@ -1,11 +1,8 @@
-from s4reward.librewardanalysis import run_experiments,reward_function,summarize_experiments,plot_parameter_effects,plot_pairwise_heatmap,plot_runtime_analysis
+from s4reward.librewardanalysis import run_experiments,reward_function,summarize_experiments
+from s4reward.librewardplots import plot_parameter_effects,plot_pairwise_heatmap,plot_runtime_analysis
 from s4config.libconfig import read_config
 from s4config.libconstants import CONFIG_PATH
 import os
-
-
-
-
 
 
 if __name__ == "__main__":
