@@ -4,27 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="memory exp and statistics results LL">
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A1/plot_first_order_total_order_l1_l2_l3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A1/plot_second_order_l1_l2_l3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A4/plot_first_order_total_order_is_num_is_assets_num.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A4/plot_first_order_total_order_v1_v2_v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A4/plot_reward_v1v2v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A4/plot_second_order_is_num_is_assets_num.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A4/plot_second_order_v1_v2_v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libopendm/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libopendm/connectors/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libopendm/connectors/opnsense/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4reward/librewardplots.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4reward/reward_analysis_plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4statistics/s6_dataset_analysis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4statistics/s6libds/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4statistics/s6libds/s6dsanalysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/s4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/s4.iml" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="reward analysis">
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp1_decided_actions.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp1_episode_goals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp2_decided_actions.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp2_episode_goals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp3_decided_actions.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp3_episode_goals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp4_decided_actions.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp4_episode_goals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp5_decided_actions.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp5_episode_goals.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/source_score/exp1_source_score.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/source_score/exp2_source_score.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/source_score/exp3_source_score.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/source_score/exp4_source_score.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/source_score/exp5_source_score.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A3/plot_first_order_total_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A3/plot_first_order_total_order_v1_v2_v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A3/plot_reward_v1v2v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A3/plot_second_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A3/plot_second_order_v1_v2_v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4statistics/s6_analysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4statistics/s6lib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s4statistics/s6lib/s6libstatistics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reward_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/reward_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s4reward/librewardanalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4reward/librewardanalysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp1/ccc_aaa_0_agent_DAC.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp4/memory_0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_0.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp4/memory_1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp4/memory_2.dat" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_2.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp5/memory_0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp5/memory_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/exp5/memory_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/memory_analysis/memory_2.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,11 +144,11 @@
       <recent name="C:\Users\geosa\PycharmProjects\s4\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\geosa\PycharmProjects\s4\images\plots\dataset_analysis\ta_dataset" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiment_results\reward_analysis" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiment_results\exp5" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiment_results\exp5\old_memory" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\images\plots\exp0" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\experiment_results\exp0" />
     </key>
   </component>
   <component name="RunManager" selected="Python.s6_dataset_analysis">
@@ -398,15 +409,7 @@
       <workItem from="1776461016643" duration="475000" />
       <workItem from="1777126789852" duration="1022000" />
       <workItem from="1777127882321" duration="47432000" />
-      <workItem from="1777302762977" duration="1374000" />
-    </task>
-    <task id="LOCAL-00014" summary="dm and src development">
-      <option name="closed" value="true" />
-      <created>1762117630745</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1762117630745</updated>
+      <workItem from="1777302762977" duration="5939000" />
     </task>
     <task id="LOCAL-00015" summary="agcti development and actions">
       <option name="closed" value="true" />
@@ -792,18 +795,35 @@
       <option name="project" value="LOCAL" />
       <updated>1775577945690</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="reward analysis">
+      <option name="closed" value="true" />
+      <created>1777310654868</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1777310654869</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="rl setup 1" />
-    <MESSAGE value="Q-learning tested" />
     <MESSAGE value="Expected Sarsa tested" />
     <MESSAGE value="Soft MAx Actor Critic tested" />
     <MESSAGE value="AgCTI encoder rl integration" />
@@ -827,7 +847,9 @@
     <MESSAGE value="memory exp and statistics all" />
     <MESSAGE value="memory exp and statistics results" />
     <MESSAGE value="memory exp and statistics results LL" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory exp and statistics results LL" />
+    <MESSAGE value="reward analysis" />
+    <MESSAGE value="experiments analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="experiments analysis" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -846,7 +868,7 @@
     <SUITE FILE_PATH="coverage/s4$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1772144184669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_algorithms_test__1_.coverage" NAME="s4_rl_simple_algorithms_test (1) Coverage Results" MODIFIED="1771098570436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/s4$s6_dataset_analysis.coverage" NAME="s6_dataset_analysis Coverage Results" MODIFIED="1777231396794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
+    <SUITE FILE_PATH="coverage/s4$s6_dataset_analysis.coverage" NAME="s6_dataset_analysis Coverage Results" MODIFIED="1777314988457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$libta__1_.coverage" NAME="libta (1) Coverage Results" MODIFIED="1752958667180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$coordinator.coverage" NAME="coordinator Coverage Results" MODIFIED="1764514421494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$s4_exp4_infrastructure.coverage" NAME="s4_exp4_infrastructure Coverage Results" MODIFIED="1773558566193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
