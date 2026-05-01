@@ -43,10 +43,9 @@ def plot_experiments_analysis(config):
     for exp in EXP:
         plot_exp_analysis(config,exp)
 
-
 def run():
     config = read_config(CONFIG_PATH)
-    #prepare_data(config)
+    prepare_data(config)
     plot_experiments_analysis(config)
 
 if __name__ == '__main__':

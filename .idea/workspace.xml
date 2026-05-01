@@ -4,13 +4,135 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="experiments analysis">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="source score plot analysis">
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_comparison_rl_heuristic_commom_indicators.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_comparison_rl_heuristics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_cumulative_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_decisions_per_dm_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_decisions_per_dm_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_decisions_per_dm_type_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_decisions_per_dm_type_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_decisions_per_dm_type_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_roc_auc_rl_algos_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_roc_auc_rl_methods_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_total_decisions_per_dm_in_all_algos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_all_sources_comparison.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_all_sources_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_comparison_rl_heuristic_commom_indicators.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_comparison_rl_heuristics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_cumulative_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_decisions_per_dm_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_decisions_per_dm_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_decisions_per_dm_type_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_decisions_per_dm_type_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_roc_auc_rl_algos_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_roc_auc_rl_methods_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_0_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_0_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_1_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_1_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_2_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_2_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_3_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_src_3_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp2/exp2_total_decisions_per_dm_in_all_algos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_all_sources_comparison.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_all_sources_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_comparison_rl_heuristic_commom_indicators.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_comparison_rl_heuristics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_cumulative_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_decisions_per_dm_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_decisions_per_dm_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_decisions_per_dm_type_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_decisions_per_dm_type_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_roc_auc_rl_algos_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_roc_auc_rl_methods_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_0_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_0_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_1_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_1_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_2_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_2_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_3_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_3_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_4_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_src_4_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp3/exp3_total_decisions_per_dm_in_all_algos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_all_sources_comparison.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_all_sources_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_comparison_rl_heuristic_commom_indicators.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_comparison_rl_heuristics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_cumulative_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_decisions_per_dm_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_decisions_per_dm_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_decisions_per_dm_type_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_decisions_per_dm_type_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_roc_auc_rl_algos_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_roc_auc_rl_methods_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_0_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_0_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_1_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_1_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_2_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_2_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_3_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_3_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_4_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_4_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_5_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_5_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_6_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_6_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_7_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_7_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_8_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_8_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_9_3d_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_src_9_comparison_per_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp4/exp4_total_decisions_per_dm_in_all_algos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_comparison_rl_heuristic_commom_indicators.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_comparison_rl_heuristics.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_cumulative_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_decisions_per_dm_and_algo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_decisions_per_dm_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_decisions_per_dm_type_and_algo_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_decisions_per_dm_type_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_goal_per_episode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_roc_auc_rl_algos_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_roc_auc_rl_methods_heuristic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_total_decisions_per_dm_in_all_algos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A2/plot_first_order_total_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A2/plot_first_order_total_order_v1_v2_v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A2/plot_reward_v1v2v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A2/plot_second_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/A2/plot_second_order_v1_v2_v3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp1_decided_actions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp1_decided_actions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp2_decided_actions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp2_decided_actions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp3_decided_actions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp3_decided_actions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp4_decided_actions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp4_decided_actions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_results/source_score/exp1_source_score.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/source_score/exp1_source_score.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp1_episode_goals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp1_episode_goals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp2_episode_goals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp2_episode_goals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp3_episode_goals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp3_episode_goals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp4_episode_goals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp4_episode_goals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_results/agents_data/exp5_episode_goals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_results/agents_data/exp5_episode_goals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp1/exp1_all_sources_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_all_sources_comparison.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp1/exp1_all_sources_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_all_sources_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp1/exp1_src_0_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_src_0_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp1/exp1_src_1_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_src_1_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp1/exp1_src_2_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp1/exp1_src_2_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_all_sources_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_all_sources_comparison.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_all_sources_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_all_sources_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_0_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_0_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_1_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_1_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_2_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_2_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_3_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_3_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_4_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_4_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_5_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_5_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_6_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_6_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_7_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_7_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_8_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_8_comparison_per_algo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/plots/exp5/exp5_src_9_comparison_per_algo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/plots/exp5/exp5_src_9_comparison_per_algo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4statistics/s6_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s6_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4statistics/s6lib/s6libstatistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s6lib/s6libstatistics.py" afterDir="false" />
     </list>
@@ -52,67 +174,67 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.agent1.executor": "Run",
-    "Python.agent2.executor": "Run",
-    "Python.analysis.executor": "Run",
-    "Python.coordinator.executor": "Run",
-    "Python.libexperiments.executor": "Run",
-    "Python.libia.executor": "Run",
-    "Python.libis.executor": "Run",
-    "Python.librlcti.executor": "Run",
-    "Python.libsrc.executor": "Run",
-    "Python.libstatistics.executor": "Run",
-    "Python.libta (1).executor": "Run",
-    "Python.libta.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.reward_analysis.executor": "Run",
-    "Python.reward_analysis_plot.executor": "Run",
-    "Python.s4_cti_records_test.executor": "Run",
-    "Python.s4_data_test.executor": "Run",
-    "Python.s4_exp1_infrastructure.executor": "Run",
-    "Python.s4_exp2_infrastructure.executor": "Run",
-    "Python.s4_exp3_infrastructure.executor": "Run",
-    "Python.s4_exp4_infrastructure.executor": "Run",
-    "Python.s4_exp5_infrastructure.executor": "Run",
-    "Python.s4_exp_coordinator.executor": "Run",
-    "Python.s4_generic_infrastructure_test.executor": "Run",
-    "Python.s4_generic_infrastructure_test_coordinator.executor": "Run",
-    "Python.s4_rl_agent_test.executor": "Run",
-    "Python.s4_rl_infrastructure_test.executor": "Run",
-    "Python.s4_rl_infrastructure_test_coordinator.executor": "Run",
-    "Python.s4_rl_simple_algorithms_test (1).executor": "Run",
-    "Python.s4_rl_simple_algorithms_test.executor": "Run",
-    "Python.s4_rl_simple_environment_test.executor": "Run",
-    "Python.s4_rl_simple_test.executor": "Run",
-    "Python.s4datasetanalysis.executor": "Run",
-    "Python.s4validationdata.executor": "Run",
-    "Python.s6_analysis.executor": "Run",
-    "Python.s6_dataset_analysis.executor": "Run",
-    "Python.s6_memory_analysis.executor": "Run",
-    "Python.setup.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.test1.executor": "Run",
-    "Python.test2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/geosa/PycharmProjects/s4/experiments",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.agent1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.agent2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.coordinator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libexperiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libia.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.librlcti.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libsrc.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libstatistics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.libta (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.libta.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reward_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reward_analysis_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_cti_records_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_data_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp1_infrastructure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp2_infrastructure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp3_infrastructure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp4_infrastructure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp5_infrastructure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_exp_coordinator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_generic_infrastructure_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_generic_infrastructure_test_coordinator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_agent_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_infrastructure_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_infrastructure_test_coordinator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_simple_algorithms_test (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_simple_algorithms_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_simple_environment_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4_rl_simple_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4datasetanalysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s4validationdata.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s6_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s6_dataset_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.s6_memory_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/geosa/PycharmProjects/s4/experiments&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiments" />
@@ -389,15 +511,9 @@
       <workItem from="1777126789852" duration="1022000" />
       <workItem from="1777127882321" duration="47432000" />
       <workItem from="1777302762977" duration="1374000" />
-      <workItem from="1777568542348" duration="9586000" />
-    </task>
-    <task id="LOCAL-00014" summary="dm and src development">
-      <option name="closed" value="true" />
-      <created>1762117630745</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1762117630745</updated>
+      <workItem from="1777568542348" duration="10770000" />
+      <workItem from="1777579347100" duration="4434000" />
+      <workItem from="1777661624672" duration="9820000" />
     </task>
     <task id="LOCAL-00015" summary="agcti development and actions">
       <option name="closed" value="true" />
@@ -783,7 +899,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775577945690</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="source score plot analysis">
+      <option name="closed" value="true" />
+      <created>1777578452066</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1777578452068</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -804,7 +928,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="rl setup 1" />
     <MESSAGE value="Q-learning tested" />
     <MESSAGE value="Expected Sarsa tested" />
     <MESSAGE value="Soft MAx Actor Critic tested" />
@@ -829,7 +952,8 @@
     <MESSAGE value="memory exp and statistics all" />
     <MESSAGE value="memory exp and statistics results" />
     <MESSAGE value="memory exp and statistics results LL" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory exp and statistics results LL" />
+    <MESSAGE value="source score plot analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="source score plot analysis" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -869,7 +993,7 @@
     <SUITE FILE_PATH="coverage/s4$s4_generic_infrastructure_test.coverage" NAME="s4_generic_infrastructure_test Coverage Results" MODIFIED="1767523232866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1764514428645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1768641617685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4librl" />
-    <SUITE FILE_PATH="coverage/s4$s6_analysis.coverage" NAME="s6_analysis Coverage Results" MODIFIED="1777578147154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
+    <SUITE FILE_PATH="coverage/s4$s6_analysis.coverage" NAME="s6_analysis Coverage Results" MODIFIED="1777671288531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$agent1.coverage" NAME="agent1 Coverage Results" MODIFIED="1761411850076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$libstatistics.coverage" NAME="libstatistics Coverage Results" MODIFIED="1772134999777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_algorithms_test.coverage" NAME="s4_rl_simple_algorithms_test Coverage Results" MODIFIED="1771786048563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import roc_curve,roc_auc_score,precision_recall_curve,average_precision_score
+from sklearn.metrics import roc_curve,auc,roc_auc_score,precision_recall_curve,average_precision_score
 from s4statistics.libstatistics import prepare_agents_data
 
 def get_exp_details(exp_path):
@@ -67,6 +67,7 @@ def prepare_agent_data(config,exp):
                 row_episode_goals={"agent_id": agent_id, "algo": exp_details[agent_id], "dm_uuid": dm["dm_uuid"],
              "dm_type": DM_TYPES[dm["dm_type"] + 1],"episode": episode, "goal": goal,"cumulative_goal":cumulative_goal}
                 data_episode_goals.append(row_episode_goals)
+                episode+=1
 
     df_decided_actions = pd.DataFrame(data_decided_actions)
     df_episode_goals = pd.DataFrame(data_episode_goals)
@@ -99,7 +100,7 @@ def plot_source_score_comparison_per_algo(df,sources,prefix,config):
     # Plotting source score comparison per algorithm
     for src_col in sources:
         df_common = filter_common_time(df,src_col)
-        sns.lineplot(
+        g=sns.lineplot(
             data=df_common,
             x='time',
             y=src_col,
@@ -110,10 +111,11 @@ def plot_source_score_comparison_per_algo(df,sources,prefix,config):
         plt.xlabel('Time')
         plt.ylabel('Score')
         plt.legend(title='Algorithm')
+        plt.tight_layout()
         plt.show()
         os.makedirs(os.path.join(config['images_path'],"plots", prefix),exist_ok=True)
         plot_filename = os.path.join(config['images_path'], "plots", prefix,f"{prefix}_{src_col}_comparison_per_algo.png")
-        plt.savefig(plot_filename)
+        g.figure.savefig(plot_filename)
 
 def filter_common_time(df,src_col):
     df_plot = df[["time", "algo",src_col]].dropna()
@@ -159,9 +161,8 @@ def plot_3d_score_comparison_per_algo(df,sources,prefix,config):
         plot_filename = os.path.join(config['images_path'], "plots", prefix,f"{prefix}_{src_col}_3d_comparison_per_algo.png")
         plt.savefig(plot_filename)
 
-
 def plot_all_sources_score(df,prefix,config):
-    sns.relplot(
+    g=sns.relplot(
         data=df,
         x='time',
         y='score',
@@ -175,10 +176,10 @@ def plot_all_sources_score(df,prefix,config):
     plt.show()
     os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
     plot_filename = os.path.join(config['images_path'], "plots", prefix, f"{prefix}_all_sources_comparison.png")
-    plt.savefig(plot_filename)
+    g.figure.savefig(plot_filename)
 
 def plot_all_sources_score_combine(df,prefix,config):
-    sns.lineplot(
+    g=sns.lineplot(
         data=df,
         x='time',
         y='score',
@@ -189,7 +190,7 @@ def plot_all_sources_score_combine(df,prefix,config):
 
     os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
     plot_filename = os.path.join(config['images_path'], "plots", prefix, f"{prefix}_all_sources_comparison_per_algo.png")
-    plt.savefig(plot_filename)
+    g.figure.savefig(plot_filename)
 
 def plot_source_score(config,exp):
     source_scores_filename = os.path.join(config['experiment_results_path'], "source_score", f"{exp}_source_score.csv")
@@ -206,7 +207,6 @@ def plot_source_score(config,exp):
 
     # Compute time range per source
     time_ranges = df_long.groupby('algo')['time'].agg(['min', 'max'])
-    print(time_ranges)
     # Find common overlap window
     common_start = time_ranges['min'].max()
     common_end = time_ranges['max'].min()
@@ -222,7 +222,358 @@ def plot_source_score(config,exp):
     plot_all_sources_score(df_long_filtered,exp,config)
     plot_all_sources_score_combine(df_long_filtered,exp,config)
 
+def plot_cumulative_goal_per_episode(df_agg,prefix,config):
+    g=sns.relplot(
+        data=df_agg,
+        x='episode',
+        y='cumulative_goal',
+        hue='algo',
+        col='dm_type',
+        kind='line',
+        col_wrap=3,
+        height=4,
+        facet_kws={'sharey': True, 'sharex': True}
+    )
 
+    plt.show()
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                 f"{prefix}_cumulative_goal_per_episode.png")
+    g.figure.savefig(plot_filename)
+
+def plot_goal_per_episode(df_agg,prefix,config):
+    g=sns.relplot(
+        data=df_agg,
+        x='episode',
+        y='goal',
+        hue='algo',
+        col='dm_type',
+        kind='line',
+        col_wrap=3,
+        height=4,
+        facet_kws={'sharey': True, 'sharex': True}
+    )
+
+    plt.show()
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                 f"{prefix}_goal_per_episode.png")
+    g.figure.savefig(plot_filename)
+
+def plot_decisions_per_dm(df,prefix,config):
+    df['decision_label'] = df['decision'].map({0: 'send', 1: 'not send'})
+    df['dm_idx'] = (
+        df.groupby(['algo', 'dm_type'])['dm_uuid']
+        .transform(lambda x: pd.factorize(x)[0] + 1)
+    )
+
+    df['dm_label'] = (
+            'dm_' + df['dm_type'].astype(str).str.lower().str[:3] + '_' + df['dm_idx'].astype(str)
+    )
+
+    df_plot = (
+        df.groupby(['algo', 'dm_label', 'decision_label'])
+        .size()
+        .reset_index(name='count')
+    )
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    g = sns.catplot(
+        data=df_plot,
+        x='dm_label',
+        y='count',
+        hue='decision_label',
+        col='algo',
+        kind='bar',
+        height=4,
+        aspect=1.3
+    )
+    plt.legend(title="Decision")
+    plt.show()
+    plot_filename1 = os.path.join(config['images_path'], "plots", prefix,
+                                 f"{prefix}_decisions_per_dm_and_algo.png")
+    g.figure.savefig(plot_filename1)
+
+    g1=sns.barplot(
+        data=df_plot,
+        x='dm_label',
+        y='count',
+        hue='decision_label'
+    )
+    plt.legend(title="Decision")
+    plt.show()
+    plot_filename2 = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_total_decisions_per_dm_in_all_algos.png")
+    g1.figure.savefig(plot_filename2)
+
+    df_plot['ratio'] = (
+            df_plot['count'] /
+            df_plot.groupby(['algo', 'dm_label'])['count'].transform('sum')
+    )
+    g2=sns.catplot(
+        data=df_plot,
+        x='dm_label',
+        y='ratio',
+        hue='decision_label',
+        col='algo',
+        kind='bar',
+        height=4,
+        aspect=1.3
+    )
+    plt.legend(title="Decision")
+    plt.show()
+    plot_filename3 = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_decisions_per_dm_and_algo_ratio.png")
+    g2.figure.savefig(plot_filename3)
+
+
+def plot_decisions_per_dm_type(df,prefix,config):
+    df['decision_label'] = df['decision'].map({0: 'send', 1: 'not send'})
+    df_type = (
+        df.groupby(['algo', 'dm_type', 'decision_label'])
+        .size()
+        .reset_index(name='count')
+    )
+    df_type['ratio'] = (
+            df_type['count'] /
+            df_type.groupby(['algo', 'dm_type'])['count'].transform('sum')
+    )
+    g = sns.catplot(
+        data=df_type,
+        x='dm_type',
+        y='ratio',
+        hue='decision_label',
+        col='algo',
+        kind='bar',
+        height=4,
+        aspect=1.2
+    )
+    plt.legend(title="Decision")
+    g.set_titles("Algo: {col_name}")
+    g.set_axis_labels("DM Type", "Decision Ratio")
+
+    plt.show()
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_decisions_per_dm_type_and_algo_ratio.png")
+    g.figure.savefig(plot_filename)
+    g1=sns.barplot(
+        data=df_type,
+        x='dm_type',
+        y='ratio',
+        hue='decision_label'
+    )
+    plt.ylabel("Ratio")
+    plt.legend(title="Decision")
+    plt.xticks(rotation=30)
+    plt.tight_layout()
+    plt.show()
+    plot_filename1 = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_decisions_per_dm_type_ratio.png")
+    g1.figure.savefig(plot_filename1)
+
+def plot_comparison_rl_heuristic(df_rl,df_h,prefix,config):
+    df_rl["method"] = "RL"
+    df_h["method"] = "Heuristic"
+
+    common_cols = ["algo", "dm_type", "decision"]
+
+    df_compare = pd.concat([
+        df_rl[common_cols],
+        df_h[common_cols]
+    ], ignore_index=True)
+
+    df_compare["decision_label"] = df_compare["decision"].map({
+        0: "send",
+        1: "not send"
+    })
+    summary = (
+        df_compare
+        .groupby(["algo", "dm_type", "decision_label"])
+        .size()
+        .reset_index(name="count")
+    )
+    summary["percentage"] = (
+        summary
+        .groupby(["algo", "dm_type"])["count"]
+        .transform(lambda x: 100 * x / x.sum())
+    )
+
+    summary["percentage"] = (
+        summary
+        .groupby(["algo", "dm_type"])["count"]
+        .transform(lambda x: 100 * x / x.sum())
+    )
+
+    g = sns.catplot(
+        data=summary,
+        x="dm_type",
+        y="percentage",
+        hue="decision_label",
+        col="algo",
+        kind="bar",
+        col_wrap=3,
+        height=4,
+        aspect=1.3,
+        errorbar=None,
+        hue_order=["send", "not send"]
+    )
+
+    g.set_axis_labels("DM Type", "Percentage (%)")
+    g.set_titles("Algo: {col_name}")
+    g._legend.set_title("Decision")
+
+    plt.show()
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_comparison_rl_heuristics.png")
+    g.figure.savefig(plot_filename)
+
+def plot_comparison_rl_heuristic_common_indicators(df_rl,df_h,prefix,config):
+    common_indicators = set(df_rl["indicator"]).intersection(df_h["indicator"])
+    decision_map = {
+        0: "send",
+        1: "not send"
+    }
+    df_rl_c = df_rl.copy()
+    df_h_c = df_h.copy()
+
+    df_rl_c["indicator_norm"] = df_rl_c["indicator"].astype(str).str.strip().str.lower()
+    df_h_c["indicator_norm"] = df_h_c["indicator"].astype(str).str.strip().str.lower()
+
+    common_indicators = set(df_rl_c["indicator_norm"]) & set(df_h_c["indicator_norm"])
+
+    df_rl_c = df_rl_c[df_rl_c["indicator_norm"].isin(common_indicators)]
+    df_h_c = df_h_c[df_h_c["indicator_norm"].isin(common_indicators)]
+
+    df_merged = df_rl_c.merge(
+        df_h_c,
+        on=["indicator_norm", "dm_type"],
+        suffixes=("_rl", "_heur")
+    )
+
+    df_merged["decision_rl_label"] = df_merged["decision_rl"].map(decision_map)
+    df_merged["decision_heur_label"] = df_merged["decision_heur"].map(decision_map)
+
+    df_merged["agreement"] = df_merged["decision_rl"] == df_merged["decision_heur"]
+
+    summary = (
+        df_merged
+        .groupby(["algo_rl", "dm_type", "agreement"])
+        .size()
+        .reset_index(name="count")
+    )
+    summary["percentage"] = (
+        summary
+        .groupby(["algo_rl", "dm_type"])["count"]
+        .transform(lambda x: 100 * x / x.sum())
+    )
+
+    summary["agreement_label"] = summary["agreement"].map({
+        True: "Agreement",
+        False: "Disagreement"
+    })
+
+    if summary.empty:
+        print("No matching rows after merge.")
+    else:
+        g = sns.catplot(
+            data=summary,
+            x="dm_type",
+            y="percentage",
+            hue="agreement_label",
+            col="algo_rl",
+            kind="bar",
+            col_wrap=3,
+            height=4,
+            aspect=1.3,
+            errorbar=None
+        )
+
+        g.set_axis_labels("DM Type", "Percentage (%)")
+        g.set_titles("Algorithm: {col_name}")
+        g._legend.set_title("RL vs Heuristic")
+
+        plt.show()
+        os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+        plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                  f"{prefix}_comparison_rl_heuristic_commom_indicators.png")
+        g.figure.savefig(plot_filename)
+
+        plot_roc_curve_rl_heuristic(df_merged,prefix,config)
+
+def plot_roc_curve_rl_heuristic(df_merged,prefix,config):
+    y_true = df_merged["decision_heur"]
+    y_pred = df_merged["decision_rl"]
+    fpr, tpr, _ = roc_curve(y_true, y_pred)
+    roc_auc = auc(fpr, tpr)
+    f1=plt.figure()
+
+    plt.plot(fpr, tpr, marker='o', label=f"RL vs Heuristic (AUC={roc_auc:.2f})")
+    plt.plot([0, 1], [0, 1], 'k--')
+
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("ROC (Heuristic as Ground Truth)")
+    plt.legend()
+
+    plt.grid()
+    plt.show()
+
+    os.makedirs(os.path.join(config['images_path'], "plots", prefix), exist_ok=True)
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                 f"{prefix}_roc_auc_rl_methods_heuristic.png")
+
+    f1.savefig(plot_filename)
+    f2=plt.figure()
+
+    for algo in df_merged["algo_rl"].unique():
+        df_a = df_merged[df_merged["algo_rl"] == algo]
+
+        if len(df_a) == 0:
+            continue
+
+        fpr, tpr, _ = roc_curve(
+            df_a["decision_heur"],
+            df_a["decision_rl"]
+        )
+
+        roc_auc = auc(fpr, tpr)
+
+        plt.plot(fpr, tpr, marker='o', label=f"{algo} (AUC={roc_auc:.2f})")
+
+    plt.plot([0, 1], [0, 1], 'k--')
+
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.legend()
+    plt.grid()
+    plt.show()
+    plot_filename = os.path.join(config['images_path'], "plots", prefix,
+                                 f"{prefix}_roc_auc_rl_algos_heuristic.png")
+    f2.savefig(plot_filename)
+
+def plot_agent_analysis(config,exp):
+    agent_decided_actions_filename = os.path.join(config['experiment_results_path'], "agents_data", f"{exp}_decided_actions.csv")
+    agents_da_df = pd.read_csv(agent_decided_actions_filename)
+    agent_goals_filename = os.path.join(config['experiment_results_path'], "agents_data",
+                                                  f"{exp}_episode_goals.csv")
+    agents_goals_df = pd.read_csv(agent_goals_filename)
+    heuristic_filename=os.path.join(config['experiment_results_path'], "validation_data", f"heuristic_decided_actions.csv")
+    heuristic_data_df=pd.read_csv(heuristic_filename)
+    df_agg = (
+        agents_goals_df.groupby(['algo', 'dm_type', 'episode'])['cumulative_goal'].mean().reset_index()
+    )
+    plot_cumulative_goal_per_episode(df_agg,exp,config)
+
+    df_agg1 = (
+        agents_goals_df.groupby(['algo', 'dm_type', 'episode'])['goal'].mean().reset_index()
+    )
+    plot_goal_per_episode(df_agg1,exp,config)
+    plot_decisions_per_dm(agents_da_df,exp,config)
+    plot_decisions_per_dm_type(agents_da_df,exp,config)
+    plot_comparison_rl_heuristic(agents_da_df,heuristic_data_df,exp,config)
+    plot_comparison_rl_heuristic_common_indicators(agents_da_df,heuristic_data_df,exp,config)
 
 def plot_exp_analysis(config,exp):
     plot_source_score(config,exp)
+    plot_agent_analysis(config,exp)
