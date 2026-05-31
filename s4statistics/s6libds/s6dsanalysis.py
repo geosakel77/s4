@@ -7,6 +7,7 @@ from s4lib.libsrc import _set_cti_confidence,_set_indicator_types
 from s4lib.libdm import Record
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib_venn import venn2
 sns.set_style("darkgrid")
 
 def get_pattern_types(experiments_data_path):
@@ -1045,3 +1046,48 @@ def network_analysis(df: pd.DataFrame):
     B = build_actor_indicator_bipartite(df)
     plot_bipartite_graph(B, max_nodes=80)
     plot_bipartite_spring(B, max_nodes=150)
+
+def plot_compare_sets(set_ta_dataset,set_cti_pool_dataset) -> None:
+    plt.figure(figsize=(6, 6))
+
+    venn2(
+        [set_ta_dataset,set_cti_pool_dataset],
+        set_labels=("TA dataset", "CTI Pool Dataset")
+    )
+    plt.show()
+
+
+def plot_compare_sets_v1(set_ta_dataset, set_cti_pool_dataset) -> None:
+    only_ta_dataset = len(set_ta_dataset - set_cti_pool_dataset)
+    only_cti_pool_dataset = len(set_cti_pool_dataset - set_ta_dataset)
+    both = len(set_ta_dataset & set_cti_pool_dataset)
+
+    total = len(set_ta_dataset | set_cti_pool_dataset)
+
+    print(f"Only TA Dataset: {only_ta_dataset} ({only_ta_dataset / total:.2%})")
+    print(f"Only CTI Pool Dataset: {only_cti_pool_dataset} ({only_cti_pool_dataset / total:.2%})")
+    print(f"Overlap: {both} ({both / total:.2%})")
+
+    plt.figure(figsize=(6, 6))
+
+    v=venn2(
+        [set_ta_dataset,set_cti_pool_dataset],
+        set_labels=("TA dataset", "CTI Pool Dataset")
+    )
+    if v.get_label_by_id('10'):
+        v.get_label_by_id('10').set_text(
+            f"{only_ta_dataset}\n({only_ta_dataset / total:.1%})"
+        )
+
+    if v.get_label_by_id('01'):
+        v.get_label_by_id('01').set_text(
+            f"{only_cti_pool_dataset}\n({only_cti_pool_dataset / total:.1%})"
+        )
+
+    if v.get_label_by_id('11'):
+        v.get_label_by_id('11').set_text(
+            f"{both}\n({both / total:.1%})"
+        )
+    plt.show()
+
+
