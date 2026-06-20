@@ -2,7 +2,7 @@
   "epsilon": 0.1,
   "gamma": 0.99,
   "alpha": 0.1,
-  "seed": 0,
+  "seed": 3,
   "state_vector_size": 49,
   "alpha_pi":1e-2,
   "alpha_v": 1e-2,
