@@ -4,10 +4,83 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="opnsense dm agent">
-      <change afterPath="$PROJECT_DIR$/experiments/s4_expa0_infrastructure.py" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="additional expirements for s4">
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/37fe7b78-16b6-4c51-9937-8e2b05438f7b_69471c14-ca99-4579-ac92-9e89357052d3_1_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/37fe7b78-16b6-4c51-9937-8e2b05438f7b_db0c24c7-2c10-4b76-91c9-6f1e9d5f34a8_2_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/37fe7b78-16b6-4c51-9937-8e2b05438f7b_f745820c-97c8-4d33-a193-2f1caccf03d9_0_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/680c881b-2de6-4f68-a365-64033f0c439a_18980531-5690-4344-a23b-6d82bbe2890c_1_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/680c881b-2de6-4f68-a365-64033f0c439a_45b21b0a-f3a6-4648-bf73-56248c169418_0_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/680c881b-2de6-4f68-a365-64033f0c439a_ed5cc18d-88ce-4a1b-9c43-b98997144e8a_2_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/71be4bf1-4845-4dd5-854e-35af5d2d8673_5adbe8fb-2e6b-4811-a0ab-042a26255124_0_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/71be4bf1-4845-4dd5-854e-35af5d2d8673_778c31e6-301a-4fcd-abd5-b276ffb9e534_2_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/71be4bf1-4845-4dd5-854e-35af5d2d8673_fb00054b-f381-4a63-9d13-5b3b614113db_1_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/memory_0.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/memory_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/memory_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/source_score_history_37fe7b78-16b6-4c51-9937-8e2b05438f7b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/source_score_history_680c881b-2de6-4f68-a365-64033f0c439a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa5/source_score_history_71be4bf1-4845-4dd5-854e-35af5d2d8673.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/332b9829-6770-42ce-b381-15de19cb5f87_41931611-e830-47a3-9e99-b6b2f70a90cf_1_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/332b9829-6770-42ce-b381-15de19cb5f87_447e8e02-2043-4edc-bd59-6a63aaf4ba69_0_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/332b9829-6770-42ce-b381-15de19cb5f87_5a166be8-bbc1-424d-aa36-22ed5d3cf196_2_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/91e6c7f0-7379-4638-9046-a659324a9125_c75519a3-2845-4832-8876-542dbde74c12_1_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/91e6c7f0-7379-4638-9046-a659324a9125_ef0f8071-70e7-4a72-8c50-ab6bb2e29b7c_0_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/91e6c7f0-7379-4638-9046-a659324a9125_f304107c-bd80-4d41-ba2c-30f6628b2c1b_2_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/a4a55339-5457-4895-bbd0-8416dd0148da_a89b23a5-e2ef-4877-9463-52c4b721b538_1_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/a4a55339-5457-4895-bbd0-8416dd0148da_c9397b5d-fbf5-4832-bb65-651ec8a08800_2_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/a4a55339-5457-4895-bbd0-8416dd0148da_cfd136ea-76cc-468f-8c05-ee50f75427f6_0_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/memory_0.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/memory_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/memory_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/source_score_history_332b9829-6770-42ce-b381-15de19cb5f87.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/source_score_history_91e6c7f0-7379-4638-9046-a659324a9125.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa6/source_score_history_a4a55339-5457-4895-bbd0-8416dd0148da.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/1e64af4f-f408-4e89-8553-873e5715ebaf_2fad33e8-3a90-438a-8848-f77e15459d15_0_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/1e64af4f-f408-4e89-8553-873e5715ebaf_915db512-cce6-4e2f-b91c-44a87ab3a6b1_2_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/1e64af4f-f408-4e89-8553-873e5715ebaf_cc78be32-f847-498a-ac11-7e24a50561e6_1_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/b4a6dca5-6935-4def-b107-5fabc0208d2a_4853d619-f5f4-46ac-a951-5dc6875f81df_0_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/b4a6dca5-6935-4def-b107-5fabc0208d2a_81e16452-586f-4c48-a835-0cb7b4a2843e_1_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/b4a6dca5-6935-4def-b107-5fabc0208d2a_952b5e11-5c43-42e6-b40f-4ccf7a813430_2_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/cd8a8933-1c9f-46a5-a874-b6484fa71363_15f13a05-11c7-47f6-b8a9-e5f1e4da285f_1_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/cd8a8933-1c9f-46a5-a874-b6484fa71363_5c7940eb-0956-4dbd-a5ef-759ca82e8509_2_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/cd8a8933-1c9f-46a5-a874-b6484fa71363_e1612b5d-459b-4422-b633-5aa8ef1c8572_0_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/memory_0.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/memory_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/memory_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/source_score_history_1e64af4f-f408-4e89-8553-873e5715ebaf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/source_score_history_b4a6dca5-6935-4def-b107-5fabc0208d2a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa7/source_score_history_cd8a8933-1c9f-46a5-a874-b6484fa71363.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/009f4517-a774-4381-a2cb-b93879c94669_1f9598ba-1a0b-4df2-b5bb-761c40ac22e3_0_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/009f4517-a774-4381-a2cb-b93879c94669_3054164a-dc57-4c02-a4aa-90396b20e83a_1_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/009f4517-a774-4381-a2cb-b93879c94669_c4bb96b7-b5b5-46b2-9589-942bd3b8de9c_2_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/9055b0c3-00b4-4904-b8ca-275c225735ba_005f60d2-9102-4a6d-a85c-5757335c9668_2_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/9055b0c3-00b4-4904-b8ca-275c225735ba_75ba3db2-f1ae-4340-bcc6-67b654b058cf_1_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/9055b0c3-00b4-4904-b8ca-275c225735ba_8fbdc19d-eb5e-4ff2-8416-6293a19ba49b_0_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/bdedeb9e-d7f7-4213-bb50-0b3c62ba5e1f_0ea4f6f5-074a-4b36-b1ca-531ea49a9913_1_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/bdedeb9e-d7f7-4213-bb50-0b3c62ba5e1f_2305e456-ce7d-4e0f-b5db-dec5f7bfeddd_0_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/bdedeb9e-d7f7-4213-bb50-0b3c62ba5e1f_4ea259f6-f8e1-4dfc-aacb-a8045b034892_2_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/memory_0.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/memory_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/memory_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/source_score_history_009f4517-a774-4381-a2cb-b93879c94669.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/source_score_history_9055b0c3-00b4-4904-b8ca-275c225735ba.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa8/source_score_history_bdedeb9e-d7f7-4213-bb50-0b3c62ba5e1f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/a75204e4-4a77-44fd-ad8a-52680235d2f3_02495dab-04ed-49b6-b574-bb259362e8b0_1_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/a75204e4-4a77-44fd-ad8a-52680235d2f3_34296e56-528c-484e-b6f8-04b31d636467_2_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/a75204e4-4a77-44fd-ad8a-52680235d2f3_ad4b645d-1746-4257-96f5-e0e2f8c9ccbc_0_agent_QL.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/baa4893b-0cbe-499c-aa1a-46eb50fc6255_b45b0cdf-c112-4638-92cd-e3759316c316_0_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/baa4893b-0cbe-499c-aa1a-46eb50fc6255_d930e7a8-c00e-4966-a6ac-af361b7e9acf_1_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/baa4893b-0cbe-499c-aa1a-46eb50fc6255_f7556fd9-d6a9-4eff-84e4-5d52654e954a_2_agent_DAC.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/e48f9d41-c029-4ae2-89d4-91f011e976d1_291ad353-2e63-4781-887d-1ad055d8648d_2_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/e48f9d41-c029-4ae2-89d4-91f011e976d1_36dbda55-1fe9-4967-82d1-5bb29f2771b4_1_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/e48f9d41-c029-4ae2-89d4-91f011e976d1_8e5d01de-db0b-4a8c-a7c0-a38b8864190f_0_agent_ES.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/memory_0.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/memory_1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/memory_2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/source_score_history_a75204e4-4a77-44fd-ad8a-52680235d2f3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/source_score_history_baa4893b-0cbe-499c-aa1a-46eb50fc6255.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_results/expa9/source_score_history_e48f9d41-c029-4ae2-89d4-91f011e976d1.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s4config/librlconfigsimple.json" beforeDir="false" afterPath="$PROJECT_DIR$/s4config/librlconfigsimple.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -401,15 +474,7 @@
       <workItem from="1780242047652" duration="9381000" />
       <workItem from="1780339653869" duration="618000" />
       <workItem from="1781892335957" duration="162000" />
-      <workItem from="1781892579332" duration="20176000" />
-    </task>
-    <task id="LOCAL-00017" summary="dm srr, agcti srv, comms">
-      <option name="closed" value="true" />
-      <created>1764440406866</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1764440406866</updated>
+      <workItem from="1781892579332" duration="37141000" />
     </task>
     <task id="LOCAL-00018" summary="ta,is srv, comms">
       <option name="closed" value="true" />
@@ -795,7 +860,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780252549103</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="additional expirements for s4">
+      <option name="closed" value="true" />
+      <created>1781943870090</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1781943870090</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -816,7 +889,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="Soft MAx Actor Critic tested" />
     <MESSAGE value="AgCTI encoder rl integration" />
     <MESSAGE value="AgCTI encoder rl integration finished" />
     <MESSAGE value="initial test of experiments and validation data" />
@@ -841,7 +913,8 @@
     <MESSAGE value="source score plot analysis" />
     <MESSAGE value="agent results plot analysis" />
     <MESSAGE value="opnsense dm agent" />
-    <option name="LAST_COMMIT_MESSAGE" value="opnsense dm agent" />
+    <MESSAGE value="additional expirements for s4" />
+    <option name="LAST_COMMIT_MESSAGE" value="additional expirements for s4" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -865,7 +938,7 @@
     <SUITE FILE_PATH="coverage/s4$libta__1_.coverage" NAME="libta (1) Coverage Results" MODIFIED="1752958667180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$coordinator.coverage" NAME="coordinator Coverage Results" MODIFIED="1764514421494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$s4_exp4_infrastructure.coverage" NAME="s4_exp4_infrastructure Coverage Results" MODIFIED="1773558566193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
-    <SUITE FILE_PATH="coverage/s4$s4_expa0_infrastructure.coverage" NAME="s4_expa0_infrastructure Coverage Results" MODIFIED="1781942138638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
+    <SUITE FILE_PATH="coverage/s4$s4_expa0_infrastructure.coverage" NAME="s4_expa0_infrastructure Coverage Results" MODIFIED="1781984242083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$s4_cti_records_test.coverage" NAME="s4_cti_records_test Coverage Results" MODIFIED="1771278385932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$libexperiments.coverage" NAME="libexperiments Coverage Results" MODIFIED="1754021873677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$setup.coverage" NAME="setup Coverage Results" MODIFIED="1761427392499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -880,7 +953,7 @@
     <SUITE FILE_PATH="coverage/s4$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1767474478244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_environment_test.coverage" NAME="s4_rl_simple_environment_test Coverage Results" MODIFIED="1771088229957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$s4_exp5_infrastructure.coverage" NAME="s4_exp5_infrastructure Coverage Results" MODIFIED="1773605133287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
-    <SUITE FILE_PATH="coverage/s4$s4_exp_coordinator.coverage" NAME="s4_exp_coordinator Coverage Results" MODIFIED="1781942133775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
+    <SUITE FILE_PATH="coverage/s4$s4_exp_coordinator.coverage" NAME="s4_exp_coordinator Coverage Results" MODIFIED="1781984237012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$s4_generic_infrastructure_test.coverage" NAME="s4_generic_infrastructure_test Coverage Results" MODIFIED="1767523232866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$main.coverage" NAME="main Coverage Results" MODIFIED="1764514428645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$test.coverage" NAME="test Coverage Results" MODIFIED="1768641617685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4librl" />
