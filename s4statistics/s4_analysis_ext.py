@@ -17,10 +17,12 @@ Qualitative Assessment and Application of CTI based on Reinforcement Learning.
 """
 from distutils.command.config import config
 
+import pandas as pd
+import os
 from s4config.libconfig import read_config
 from s4config.libconstants import CONFIG_PATH
 from s4statistics.s6lib.s6libstatistics import prepare_source_score_data,prepare_agent_data,prepare_validation_data,plot_exp_analysis
-from s4statistics.libstatisticsext import plot_analysis
+from s4statistics.libstatisticsext import plot_analysis,plot_comparison
 EXP=["expa0","expa1","expa2","expa3","expa4","expa5","expa6","expa7","expa8","expa9"]
 
 
@@ -39,7 +41,9 @@ def prepare_data(config):
     prepare_source_data_df(config)
 
 def plot_experiments_analysis(config):
-    plot_analysis(config,EXP)
+    data=pd.read_csv(os.path.join(config['experiment_results_path'], "agents_data", f"exp0_comp_decided_actions.csv"))
+    plot_comparison(config,data)
+    #plot_analysis(config,EXP)
 
 def run():
     config = read_config(CONFIG_PATH)

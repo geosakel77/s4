@@ -192,7 +192,6 @@ def plot_confidence_intervals_source_score(config,exp):
     plt.show()
 
 
-
 def plot_average_cumulative_reward(config,exp):
     dfs=[]
     for expa in exp:
@@ -307,11 +306,89 @@ def plot_average_cumulative_reward(config,exp):
         plt.show()
 
 
-def plot_comparison(config,data):
-    pass
+def plot_comparison(config,df):
+    plot_df = df.copy()
 
-def plot_analysis(config,exp):
+    # 0 = send, 1 = not_send
+    plot_df["action"] = plot_df["decision"].map({
+        0: "send",
+        1: "not_send"
+    })
+
+    # Classify agent/method
+    def classify_method(row):
+        agent_id = str(row["agent_id"])
+
+        if agent_id.startswith("heuristic"):
+            return "Heuristic"
+        elif agent_id.startswith("rule_based"):
+            return "Rule-based"
+        elif agent_id.startswith("random"):
+            return "Random"
+        else:
+            return row["algo"]  # QL, ES, DAC
+
+    plot_df["method"] = plot_df.apply(classify_method, axis=1)
+    # Count decisions
+    counts = (
+        plot_df
+        .groupby(["algo","method", "dm_type", "action"])
+        .size()
+        .reset_index(name="count")
+    )
+    print(counts)
+    # Convert to percentages per method and dm_type
+    counts["percentage"] = (
+        counts.groupby(["algo","method", "dm_type"])["count"]
+        .transform(lambda x: 100 * x / x.sum())
+    )
+
+    # Ensure consistent order
+    rl_algorithms = ["ES", "QL", "DAC"]
+    dm_order = ["Responsive", "Preventive", "Detective"]
+    method_order_base = ["Heuristic", "Rule-based", "Random"]
+
+    fig, axes = plt.subplots(
+        1,
+        len(rl_algorithms),
+        figsize=(22, 6),
+        sharey=True
+    )
+
+    for ax, algo in zip(axes, rl_algorithms):
+
+        selected_methods = [algo] + method_order_base
+
+        d = counts[counts["method"].isin(selected_methods)].copy()
+
+        d["group"] = d["dm_type"] + "\n" + d["method"]
+
+        group_order = []
+        for dm_type in dm_order:
+            for method in selected_methods:
+                group_order.append(f"{dm_type}\n{method}")
+
+        sns.barplot(
+            data=d,
+            x="group",
+            y="percentage",
+            hue="action",
+            order=group_order,
+            hue_order=["send", "not_send"],
+            ax=ax
+        )
+
+        ax.set_title(f"Algorithm = {algo}")
+        ax.set_xlabel("")
+        ax.set_ylabel("Decision Percentage (%)")
+        ax.set_ylim(0, 100)
+        ax.tick_params(axis="x", rotation=45)
+        ax.grid(axis="y", alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_analysis(config,exp,data=None):
     #plot_average_source_score(config,exp)
     #plot_confidence_intervals_source_score(config,exp)
-    #plot_average_cumulative_reward(config,exp)
-    plot_comparison(config,data)
+    plot_average_cumulative_reward(config,exp)

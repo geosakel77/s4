@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="additional expirements for s4-b">
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/DAC_average_source_score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/ES_average_source_score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/QL_average_source_score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/all_algo_average_source_score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/all_avg_ci.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/cumulative_reward_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/dac_avg_ci.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/detective_reward_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/es_avg_ci.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/preventive_reward_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/qs_avg_ci.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/expext/responsive_reward_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4statistics/libstatisticsext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/s4statistics/s4_analysis_ext.py" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="additional expirements analysis 1">
+      <change afterPath="$PROJECT_DIR$/experiments/s4_exp_ext.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/expext/comparison_with_other.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4statistics/libstatisticsext.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/libstatisticsext.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/s4statistics/s4_analysis_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/s4statistics/s4_analysis_ext.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +78,7 @@
     "Python.s4_exp4_infrastructure.executor": "Run",
     "Python.s4_exp5_infrastructure.executor": "Run",
     "Python.s4_exp_coordinator.executor": "Run",
+    "Python.s4_exp_ext.executor": "Run",
     "Python.s4_expa0_infrastructure.executor": "Run",
     "Python.s4_generic_infrastructure_test.executor": "Run",
     "Python.s4_generic_infrastructure_test_coordinator.executor": "Run",
@@ -218,6 +208,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="s4_exp_ext" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="s4" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/experiments" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/experiments/s4_exp_ext.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="s4_expa0_infrastructure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="s4" />
       <option name="ENV_FILES" value="" />
@@ -243,45 +258,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="s6_dataset_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="s4" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/s4statistics" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/s4statistics/s6_dataset_analysis.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.s4_analysis_ext" />
+      <item itemvalue="Python.s4_exp_ext" />
       <item itemvalue="Python.s4_exp_coordinator" />
       <item itemvalue="Python.s4_expa0_infrastructure" />
       <item itemvalue="Python.opnsense_connector_test" />
-      <item itemvalue="Python.s6_dataset_analysis" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.s4_analysis_ext" />
+        <item itemvalue="Python.s4_exp_ext" />
         <item itemvalue="Python.s4_expa0_infrastructure" />
         <item itemvalue="Python.s4_exp_coordinator" />
         <item itemvalue="Python.opnsense_connector_test" />
-        <item itemvalue="Python.s6_dataset_analysis" />
       </list>
     </recent_temporary>
   </component>
@@ -416,15 +406,7 @@
       <workItem from="1781892335957" duration="162000" />
       <workItem from="1781892579332" duration="37787000" />
       <workItem from="1782022293239" duration="2129000" />
-      <workItem from="1782056019692" duration="8144000" />
-    </task>
-    <task id="LOCAL-00019" summary="complete is, dm, and ta basic structure">
-      <option name="closed" value="true" />
-      <created>1766950986475</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1766950986475</updated>
+      <workItem from="1782056019692" duration="18166000" />
     </task>
     <task id="LOCAL-00020" summary="data statistics and initial README.md">
       <option name="closed" value="true" />
@@ -810,7 +792,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781989074965</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="additional expirements analysis 1">
+      <option name="closed" value="true" />
+      <created>1782066848341</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1782066848342</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -831,7 +821,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="AgCTI encoder rl integration finished" />
     <MESSAGE value="initial test of experiments and validation data" />
     <MESSAGE value="diagrams preparation" />
     <MESSAGE value="q-learning experiments" />
@@ -856,13 +845,15 @@
     <MESSAGE value="opnsense dm agent" />
     <MESSAGE value="additional expirements for s4" />
     <MESSAGE value="additional expirements for s4-b" />
-    <option name="LAST_COMMIT_MESSAGE" value="additional expirements for s4-b" />
+    <MESSAGE value="additional expirements analysis 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="additional expirements analysis 1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$ruleset_sharing.coverage" NAME="ruleset_sharing Coverage Results" MODIFIED="1777754276591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libopendm/connectors/opnsense" />
     <SUITE FILE_PATH="coverage/s4$s4_exp2_infrastructure.coverage" NAME="s4_exp2_infrastructure Coverage Results" MODIFIED="1772870667156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_agent_test.coverage" NAME="s4_rl_agent_test Coverage Results" MODIFIED="1772392635190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/s4$s4_exp_ext.coverage" NAME="s4_exp_ext Coverage Results" MODIFIED="1782078589052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/experiments" />
     <SUITE FILE_PATH="coverage/s4$s4_generic_infrastructure_test_coordinator.coverage" NAME="s4_generic_infrastructure_test_coordinator Coverage Results" MODIFIED="1767523227321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$reward_analysis.coverage" NAME="reward_analysis Coverage Results" MODIFIED="1775253370952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libta.coverage" NAME="libta Coverage Results" MODIFIED="1767351204222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
@@ -872,7 +863,7 @@
     <SUITE FILE_PATH="coverage/s4$s6_memory_analysis.coverage" NAME="s6_memory_analysis Coverage Results" MODIFIED="1774122127108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$libsrc.coverage" NAME="libsrc Coverage Results" MODIFIED="1771155082281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_simple_test.coverage" NAME="s4_rl_simple_test Coverage Results" MODIFIED="1769243805233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/s4$s4_analysis_ext.coverage" NAME="s4_analysis_ext Coverage Results" MODIFIED="1782062457748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
+    <SUITE FILE_PATH="coverage/s4$s4_analysis_ext.coverage" NAME="s4_analysis_ext Coverage Results" MODIFIED="1782078770455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4statistics" />
     <SUITE FILE_PATH="coverage/s4$s4_rl_infrastructure_test.coverage" NAME="s4_rl_infrastructure_test Coverage Results" MODIFIED="1771954509549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/s4$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1772144184669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/s4$libis.coverage" NAME="libis Coverage Results" MODIFIED="1762068514730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/s4lib" />
