@@ -22,7 +22,8 @@ import os
 from s4config.libconfig import read_config
 from s4config.libconstants import CONFIG_PATH
 from s4statistics.s6lib.s6libstatistics import prepare_source_score_data,prepare_agent_data,prepare_validation_data,plot_exp_analysis
-from s4statistics.libstatisticsext import plot_analysis,plot_comparison
+from s4statistics.libstatisticsext import plot_analysis,plot_comparison,plot_average_actionability
+from experiments.s4_exp_ext import load_data
 EXP=["expa0","expa1","expa2","expa3","expa4","expa5","expa6","expa7","expa8","expa9"]
 
 
@@ -48,7 +49,9 @@ def plot_experiments_analysis(config):
 def run():
     config = read_config(CONFIG_PATH)
     #prepare_data(config)
-    plot_experiments_analysis(config)
+    #plot_experiments_analysis(config)
+    df=load_data(config)
+    plot_average_actionability(config,df)
 
 if __name__ == '__main__':
     run()

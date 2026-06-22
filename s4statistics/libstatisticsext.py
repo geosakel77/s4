@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.graph_objects as go
+
 from sklearn.metrics import roc_curve,auc,roc_auc_score,precision_recall_curve,average_precision_score
 
 
@@ -311,8 +313,8 @@ def plot_comparison(config,df):
 
     # 0 = send, 1 = not_send
     plot_df["action"] = plot_df["decision"].map({
-        0: "send",
-        1: "not_send"
+        1: "send",
+        0: "not_send"
     })
 
     # Classify agent/method
@@ -387,6 +389,267 @@ def plot_comparison(config,df):
 
     plt.tight_layout()
     plt.show()
+
+
+def plot_average_actionability(config,df):
+    """
+    summary = (
+        df.groupby(["algo", "indicator"])["decision"]
+        .sum()  # since 1 = Send
+        .reset_index(name="send_count")
+    )
+
+    # Convert to categories
+    summary["category"] = summary["send_count"].map({
+        0: "0 DMs",
+        1: "1 DM",
+        2: "2 DMs",
+        3: "3 DMs"
+    })
+
+    fig, axes = plt.subplots(
+        1,
+        len(summary.algo.unique()),
+        figsize=(15, 5),
+        sharey=True
+    )
+
+    for ax, algo in zip(axes, sorted(summary.algo.unique())):
+        sns.countplot(
+            data=summary[summary.algo == algo],
+            x="category",
+            order=["0 DMs", "1 DM", "2 DMs", "3 DMs"],
+            ax=ax
+        )
+
+        ax.set_title(algo)
+        ax.set_xlabel("Number of Defense Mechanisms")
+        ax.set_ylabel("Number of Indicators")
+
+    plt.tight_layout()
+    plt.show()
+    """
+    decision = 1  # Send
+    decision = 0  # Not Send
+
+    send_summary = (
+        df.groupby(["algo", "indicator"])["decision"]
+        .sum()
+        .reset_index(name="send_count")
+    )
+
+    send_summary["category"] = send_summary["send_count"].map({
+        0: "0 DMs",
+        1: "1 DM",
+        2: "2 DMs",
+        3: "3 DMs"
+    })
+
+    category_order = ["0 DMs", "1 DM", "2 DMs", "3 DMs"]
+    algos = sorted(send_summary["algo"].unique())
+    fig, axes = plt.subplots(
+        1,
+        len(algos),
+        figsize=(5 * len(algos), 5),
+        sharey=True
+    )
+
+    if len(algos) == 1:
+        axes = [axes]
+
+    for ax, algo in zip(axes, algos):
+        sns.countplot(
+            data=send_summary[send_summary["algo"] == algo],
+            x="category",
+            order=category_order,
+            ax=ax
+        )
+
+        ax.set_title(algo)
+        ax.set_xlabel("Number of DM types receiving the indicator")
+        ax.set_ylabel("Number of Indicators")
+        ax.grid(axis="y", alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+    plot_counts = (
+        send_summary
+        .groupby(["algo", "category"])
+        .size()
+        .reset_index(name="count")
+    )
+
+    plot_counts["category"] = pd.Categorical(
+        plot_counts["category"],
+        categories=category_order,
+        ordered=True
+    )
+
+    fig, axes = plt.subplots(
+        1,
+        len(algos),
+        figsize=(5 * len(algos), 5),
+        sharex=True
+    )
+
+    if len(algos) == 1:
+        axes = [axes]
+
+    for ax, algo in zip(axes, algos):
+
+        d = (
+            plot_counts[plot_counts["algo"] == algo]
+            .sort_values("category")
+        )
+
+        y_pos = range(len(d))
+
+        ax.hlines(
+            y=y_pos,
+            xmin=0,
+            xmax=d["count"],
+            linewidth=2
+        )
+
+        ax.plot(
+            d["count"],
+            y_pos,
+            "o",
+            markersize=8
+        )
+
+        for y, count in zip(y_pos, d["count"]):
+            ax.text(
+                count,
+                y,
+                f" {count}",
+                va="center"
+            )
+
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(d["category"])
+        ax.set_title(algo)
+        ax.set_xlabel("Number of Indicators")
+        ax.grid(axis="x", alpha=0.3)
+
+    axes[0].set_ylabel("Number of DM types receiving the indicator")
+
+    plt.tight_layout()
+    plt.show()
+
+
+    # Keep only sent indicators
+    sent = df[df["decision"] == 1]
+
+    # Count flows
+    flows = (
+        sent.groupby(["algo", "dm_type"])
+        .size()
+        .reset_index(name="count")
+    )
+
+    algos = sorted(flows["algo"].unique())
+    dms = ["Responsive", "Preventive", "Detective"]
+
+    labels = algos + dms
+
+    algo_idx = {a: i for i, a in enumerate(algos)}
+    dm_idx = {d: len(algos) + i for i, d in enumerate(dms)}
+
+    source = flows["algo"].map(algo_idx)
+    target = flows["dm_type"].map(dm_idx)
+    value = flows["count"]
+
+    fig = go.Figure(go.Sankey(
+        node=dict(
+            pad=20,
+            thickness=20,
+            line=dict(color="black", width=0.5),
+            label=labels
+        ),
+        link=dict(
+            source=source,
+            target=target,
+            value=value
+        )
+    ))
+
+    fig.update_layout(
+        title="CTI Dissemination per Algorithm",
+        font_size=13
+    )
+
+    fig.show()
+    send_profile = (
+        df.groupby(["algo", "indicator"])["decision"]
+        .sum()
+        .reset_index(name="send_count")
+    )
+
+    send_profile["send_category"] = send_profile["send_count"].map({
+        0: "0 DMs",
+        1: "1 DM",
+        2: "2 DMs",
+        3: "3 DMs"
+    })
+
+    # --------------------------------------------------
+    # 2. Count flows: Algorithm -> Send Category
+    # --------------------------------------------------
+
+    flows = (
+        send_profile
+        .groupby(["algo", "send_category"])
+        .size()
+        .reset_index(name="count")
+    )
+
+    # --------------------------------------------------
+    # 3. Build Sankey nodes
+    # --------------------------------------------------
+
+    algos = sorted(flows["algo"].unique())
+    categories = ["0 DMs", "1 DM", "2 DMs", "3 DMs"]
+
+    labels = algos + categories
+
+    algo_idx = {algo: i for i, algo in enumerate(algos)}
+    cat_idx = {
+        cat: len(algos) + i
+        for i, cat in enumerate(categories)
+    }
+
+    flows["source"] = flows["algo"].map(algo_idx)
+    flows["target"] = flows["send_category"].map(cat_idx)
+
+    # --------------------------------------------------
+    # 4. Plot Sankey diagram
+    # --------------------------------------------------
+
+    fig = go.Figure(
+        data=[
+            go.Sankey(
+                node=dict(
+                    pad=20,
+                    thickness=20,
+                    line=dict(color="black", width=0.5),
+                    label=labels
+                ),
+                link=dict(
+                    source=flows["source"],
+                    target=flows["target"],
+                    value=flows["count"]
+                )
+            )
+        ]
+    )
+
+    fig.update_layout(
+        title="Indicator Dissemination Profile per Algorithm",
+        font_size=13
+    )
+
+    fig.show()
 
 def plot_analysis(config,exp,data=None):
     #plot_average_source_score(config,exp)
