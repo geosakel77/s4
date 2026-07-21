@@ -249,11 +249,11 @@ The *enterprise RL algorithms* is part of the [Ray RLlib](https://docs.ray.io/en
 #### **Results**
 The following outcomes of the sensitivity analysis was observed.
 
-![First Order Total](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_first_order_total_order_v1_v2_v3.png)
+![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_first_order_total_order_v1_v2_v3.png)
 
-![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_second_order_v1_v2_v3.png)
+![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_second_order_v1_v2_v3.png)
 
-![Reward](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_reward_v1v2v3.png)
+![Reward](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_reward_v1v2v3.png)
 
 ## **Dependencies**
 
