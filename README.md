@@ -12,9 +12,10 @@
 4. [Infrastructure](#infrastructure)
 5. [Dataset](#dataset)
 6. [Experiments](#experiments)
-6. [Dependencies](#dependencies)  
-7. [Usage](#usage)
-8. [License](#license)  
+7. [Special Experiments](#special-experiments)
+8. [Dependencies](#dependencies)  
+9. [Usage](#usage)
+10. [License](#license)  
 
 ---
 
@@ -227,9 +228,32 @@ The *enterprise RL algorithms* is part of the [Ray RLlib](https://docs.ray.io/en
 | a9              | QL,ES,DAC  | 2   | 1     | 1  | 1 x Prev<br/> 1 x Det <br/> 1 x Res | 3  | Random 3~10 per IS | {"num_actions": 2,"epsilon": 0.1,"gamma": 0.99,"alpha": 0.1,"seed": 9,"state_vector_size": 49,"alpha_pi":1e-2,"alpha_v": 1e-2,"entropy_coef": 0.001,"max_steps":20 } | l1=0.2</br>l2=0.4</br>l3=0.4</br>applicability_reward=30</br>hit_reward=50</br>hardening_threshold=0.2</br>harden_q_steps=30 | step_duration=5</br> ta_plan_threshold=0.3</br>ta_actor_max_plans=10</br>rl_num_episodes=10 |
 
 
+## **Special Experiments**
 
+### **Sensitivity Analysis of Reward Function**
 
+#### **Factorial Design**
 
+| Variable         | Values                                         |
+|------------------|------------------------------------------------|
+| λ_1              | {0.1, 0.2,0.3,0.4,0.5, 0.6, 0.7, 0.8, 0.9,1.0} |
+| λ_2              | {0.1, 0.2,0.3,0.4,0.5, 0.6, 0.7, 0.8, 0.9,1.0} |
+| λ_3              | {0.1, 0.2,0.3,0.4,0.5, 0.6, 0.7, 0.8, 0.9,1.0} | 
+| hit_reward       | {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}      |
+| hit_status       | {True,False\}                                  |
+| appl_reward      | {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}      |
+| appl_status      | {True,False}                                   |
+| is_reg.  to dm_x | {5,10,15,20\}                                  |
+| ia               | {10, 20, 30, 40}                               |
+
+#### **Results**
+The following outcomes of the sensitivity analysis was observed.
+
+![First Order Total](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_first_order_total_order_v1_v2_v3.png)
+
+![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_second_order_v1_v2_v3.png)
+
+![Reward](https://github.com/geosakel77/s4/blob/master/images/reward_analysis/plot_reward_v1v2v3.png)
 
 ## **Dependencies**
 
