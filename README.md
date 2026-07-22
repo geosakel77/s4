@@ -249,19 +249,27 @@ The *enterprise RL algorithms* is part of the [Ray RLlib](https://docs.ray.io/en
 #### **Results**
 The following outcomes of the sensitivity analysis was observed. 
 
+Variance-based sensitivity analysis of reward function
+![First Order Total Reward Function](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_v1_v2_v3.png)
 
-![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_is_num_is_assets_num.png)
+![Second Order Total Reward Function](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_v1_v2_v3.png)
 
-![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_is_num_is_assets_num.png)
+Variance-based sensitivity analysis of the v3
+![First Order Total v3](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_is_num_is_assets_num.png)
 
-![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_v1_v2_v3.png)
-
-![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_v1_v2_v3.png)
+![Second Order Total v3](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_is_num_is_assets_num.png)
 
 Reward Function Output Analysis
-![Reward](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_reward_v1v2v3.png)
+![Reward Outcome](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_reward_v1v2v3.png)
 
-### **Sensitivity Analysis of Reward Function**
+### **Performance Comparison**
+
+Memory Analysis QL
+![Memory Analysis QL](https://github.com/geosakel77/s4/blob/master/images/plots/exp5/memory_0.png)
+Memory Analysis ES
+![Memory Analysis ES](https://github.com/geosakel77/s4/blob/master/images/plots/exp5/memory_1.png)
+Memory Analysis DAC
+![Memory Analysis DAC](https://github.com/geosakel77/s4/blob/master/images/plots/exp5/memory_2.png)
 
 
 ## **Dependencies**

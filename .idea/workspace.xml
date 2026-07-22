@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="special experiments">
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_first_order_total_order_is_num_is_assets_num.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_first_order_total_order_v1_v2_v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_reward_v1v2v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_second_order_is_num_is_assets_num.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_second_order_v1_v2_v3.png" afterDir="false" />
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="special experiments v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -414,15 +409,7 @@
       <workItem from="1783251052749" duration="345000" />
       <workItem from="1784385835971" duration="277000" />
       <workItem from="1784386269826" duration="48000" />
-      <workItem from="1784663512664" duration="2811000" />
-    </task>
-    <task id="LOCAL-00024" summary="README updated  and licencing completed">
-      <option name="closed" value="true" />
-      <created>1767042527548</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1767042527548</updated>
+      <workItem from="1784663512664" duration="3665000" />
     </task>
     <task id="LOCAL-00025" summary="Fix TA plan">
       <option name="closed" value="true" />
@@ -808,7 +795,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784665229198</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="special experiments v1">
+      <option name="closed" value="true" />
+      <created>1784689538732</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1784689538732</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -829,7 +824,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="q-learning experiments" />
     <MESSAGE value="expected sarsa experiments" />
     <MESSAGE value="dac experiments" />
     <MESSAGE value="analysis of the results" />
@@ -854,7 +848,8 @@
     <MESSAGE value="additional expirements analysis 1" />
     <MESSAGE value="additional expirements analysis 2" />
     <MESSAGE value="special experiments" />
-    <option name="LAST_COMMIT_MESSAGE" value="special experiments" />
+    <MESSAGE value="special experiments v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="special experiments v1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
