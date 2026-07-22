@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="additional expirements analysis 2">
+    <list default="true" id="9c3defb4-c4ad-4a6d-ab6d-d9fe8c59f6eb" name="Changes" comment="special experiments">
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_first_order_total_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_first_order_total_order_v1_v2_v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_reward_v1v2v3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_second_order_is_num_is_assets_num.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/plots/reward_analysis/outcomes/plot_second_order_v1_v2_v3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -46,80 +51,80 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.agent1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.agent2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.coordinator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libexperiments.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libia.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.librlcti.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libsrc.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libstatistics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.libta (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.libta.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.opnsense_connector_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.reward_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.reward_analysis_plot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ruleset_sharing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_analysis_ext.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_cti_records_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_data_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp1_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp2_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp3_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp4_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp5_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp_coordinator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_exp_ext.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_expa0_infrastructure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_generic_infrastructure_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_generic_infrastructure_test_coordinator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_agent_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_infrastructure_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_infrastructure_test_coordinator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_simple_algorithms_test (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_simple_algorithms_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_simple_environment_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4_rl_simple_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4datasetanalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s4validationdata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s6_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s6_dataset_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.s6_memory_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/geosa/PycharmProjects/s4/experiments&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.agent1.executor": "Run",
+    "Python.agent2.executor": "Run",
+    "Python.analysis.executor": "Run",
+    "Python.coordinator.executor": "Run",
+    "Python.libexperiments.executor": "Run",
+    "Python.libia.executor": "Run",
+    "Python.libis.executor": "Run",
+    "Python.librlcti.executor": "Run",
+    "Python.libsrc.executor": "Run",
+    "Python.libstatistics.executor": "Run",
+    "Python.libta (1).executor": "Run",
+    "Python.libta.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.opnsense_connector_test.executor": "Run",
+    "Python.reward_analysis.executor": "Run",
+    "Python.reward_analysis_plot.executor": "Run",
+    "Python.ruleset_sharing.executor": "Run",
+    "Python.s4_analysis_ext.executor": "Run",
+    "Python.s4_cti_records_test.executor": "Run",
+    "Python.s4_data_test.executor": "Run",
+    "Python.s4_exp1_infrastructure.executor": "Run",
+    "Python.s4_exp2_infrastructure.executor": "Run",
+    "Python.s4_exp3_infrastructure.executor": "Run",
+    "Python.s4_exp4_infrastructure.executor": "Run",
+    "Python.s4_exp5_infrastructure.executor": "Run",
+    "Python.s4_exp_coordinator.executor": "Run",
+    "Python.s4_exp_ext.executor": "Run",
+    "Python.s4_expa0_infrastructure.executor": "Run",
+    "Python.s4_generic_infrastructure_test.executor": "Run",
+    "Python.s4_generic_infrastructure_test_coordinator.executor": "Run",
+    "Python.s4_rl_agent_test.executor": "Run",
+    "Python.s4_rl_infrastructure_test.executor": "Run",
+    "Python.s4_rl_infrastructure_test_coordinator.executor": "Run",
+    "Python.s4_rl_simple_algorithms_test (1).executor": "Run",
+    "Python.s4_rl_simple_algorithms_test.executor": "Run",
+    "Python.s4_rl_simple_environment_test.executor": "Run",
+    "Python.s4_rl_simple_test.executor": "Run",
+    "Python.s4datasetanalysis.executor": "Run",
+    "Python.s4validationdata.executor": "Run",
+    "Python.s6_analysis.executor": "Run",
+    "Python.s6_dataset_analysis.executor": "Run",
+    "Python.s6_memory_analysis.executor": "Run",
+    "Python.setup.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test1.executor": "Run",
+    "Python.test2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/geosa/PycharmProjects/s4/images/plots/reward_analysis/outcomes",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\geosa\PycharmProjects\s4\images\plots\reward_analysis\outcomes" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiments" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\libopendm\connectors\opnsense" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\s4config" />
       <recent name="C:\Users\geosa\PycharmProjects\s4\tests" />
-      <recent name="C:\Users\geosa\PycharmProjects\s4\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\geosa\PycharmProjects\s4\experiment_results\reward_analysis" />
@@ -409,23 +414,7 @@
       <workItem from="1783251052749" duration="345000" />
       <workItem from="1784385835971" duration="277000" />
       <workItem from="1784386269826" duration="48000" />
-      <workItem from="1784663512664" duration="1499000" />
-    </task>
-    <task id="LOCAL-00022" summary="README updated">
-      <option name="closed" value="true" />
-      <created>1767039309502</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1767039309502</updated>
-    </task>
-    <task id="LOCAL-00023" summary="README update 1">
-      <option name="closed" value="true" />
-      <created>1767040632107</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1767040632107</updated>
+      <workItem from="1784663512664" duration="2811000" />
     </task>
     <task id="LOCAL-00024" summary="README updated  and licencing completed">
       <option name="closed" value="true" />
@@ -803,7 +792,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782152055050</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="additional expirements analysis 2">
+      <option name="closed" value="true" />
+      <created>1784665022214</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1784665022215</updated>
+    </task>
+    <task id="LOCAL-00072" summary="special experiments">
+      <option name="closed" value="true" />
+      <created>1784665229198</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1784665229198</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -824,7 +829,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/s4targets/metasploitable3" />
     </ignored-roots>
-    <MESSAGE value="diagrams preparation" />
     <MESSAGE value="q-learning experiments" />
     <MESSAGE value="expected sarsa experiments" />
     <MESSAGE value="dac experiments" />
@@ -849,7 +853,8 @@
     <MESSAGE value="additional expirements for s4-b" />
     <MESSAGE value="additional expirements analysis 1" />
     <MESSAGE value="additional expirements analysis 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="additional expirements analysis 2" />
+    <MESSAGE value="special experiments" />
+    <option name="LAST_COMMIT_MESSAGE" value="special experiments" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/s4$agent2.coverage" NAME="agent2 Coverage Results" MODIFIED="1761411872521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

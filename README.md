@@ -247,13 +247,22 @@ The *enterprise RL algorithms* is part of the [Ray RLlib](https://docs.ray.io/en
 | ia               | {10, 20, 30, 40}                               |
 
 #### **Results**
-The following outcomes of the sensitivity analysis was observed.
+The following outcomes of the sensitivity analysis was observed. 
 
-![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_first_order_total_order_v1_v2_v3.png)
 
-![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_second_order_v1_v2_v3.png)
+![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_is_num_is_assets_num.png)
 
-![Reward](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/A4/plot_reward_v1v2v3.png)
+![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_is_num_is_assets_num.png)
+
+![First Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_first_order_total_order_v1_v2_v3.png)
+
+![Second Order Total](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_second_order_v1_v2_v3.png)
+
+Reward Function Output Analysis
+![Reward](https://github.com/geosakel77/s4/blob/master/images/plots/reward_analysis/outcomes/plot_reward_v1v2v3.png)
+
+### **Sensitivity Analysis of Reward Function**
+
 
 ## **Dependencies**
 
